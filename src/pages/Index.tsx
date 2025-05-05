@@ -39,7 +39,7 @@ const Index = () => {
       </section>
       
       {/* Overview Section */}
-      <section className="section-container">
+      <section className="section-container bg-slate-950">
         <SectionHeader title="Welcome to Paradise" subtitle="Arteon Villas is a luxurious complex of four maisonette-style villas located in the tranquil area of Akti Salonikiou on the Sithonia peninsula of Halkidiki." centered />
         
         <div className="grid md:grid-cols-2 gap-8 items-center">
