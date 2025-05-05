@@ -85,7 +85,7 @@ const Index = () => {
       backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')",
       backgroundSize: "cover",
       backgroundPosition: "center"
-    }} className="py-16 bg-slate-500">
+    }} className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
           <SectionHeader title="Our Luxurious Villas" subtitle="Choose from our four stunning sea-view villas, each designed to provide the ultimate comfort and relaxation during your Halkidiki getaway." centered />
           
