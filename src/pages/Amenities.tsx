@@ -2,6 +2,7 @@
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/layout/PageHero";
 import { ImageIcon, Waves, BedDouble, Wifi, Tv, MapPin, Utensils, Users, CalendarCheck } from "lucide-react";
 
 const Amenities = () => {
@@ -9,18 +10,10 @@ const Amenities = () => {
     <div className="min-h-screen flex flex-col bg-[#0F1524]">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] bg-[#172B4D] flex items-center justify-center">
-        <div className="absolute inset-0 bg-[#0F1524]/60" />
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white fade-in">
-            Villa Amenities & Facilities
-          </h1>
-          <p className="text-xl text-amber-400 max-w-2xl mx-auto fade-in">
-            Arteon Villas offers amenities that rival a boutique resort while maintaining privacy and comfort
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="Villa Amenities & Facilities"
+        subtitle="Arteon Villas offers amenities that rival a boutique resort while maintaining privacy and comfort"
+      />
       
       <main className="py-16 flex-grow">
         <div className="container mx-auto px-4">
@@ -37,7 +30,7 @@ const Amenities = () => {
                 <div className="md:col-span-3">
                   <div className="rounded-lg shadow-lg h-80 w-full bg-[#172B4D] flex items-center justify-center overflow-hidden">
                     <div className="flex flex-col items-center justify-center">
-                      <Waves size={64} className="text-gray-400" />
+                      <Waves size={64} className="text-villa-teal" />
                       <p className="mt-4 text-gray-300">Swimming pool image</p>
                     </div>
                   </div>
@@ -85,7 +78,7 @@ const Amenities = () => {
                 <div className="md:col-span-3 md:order-2 lg:order-none">
                   <div className="rounded-lg shadow-lg h-80 w-full bg-[#172B4D] flex items-center justify-center overflow-hidden">
                     <div className="flex flex-col items-center justify-center">
-                      <ImageIcon size={64} className="text-gray-400" />
+                      <ImageIcon size={64} className="text-villa-sand" />
                       <p className="mt-4 text-gray-300">Beach area image</p>
                     </div>
                   </div>
@@ -97,7 +90,7 @@ const Amenities = () => {
                 <div className="md:col-span-3">
                   <div className="rounded-lg shadow-lg h-80 w-full bg-[#172B4D] flex items-center justify-center overflow-hidden">
                     <div className="flex flex-col items-center justify-center">
-                      <Utensils size={64} className="text-gray-400" />
+                      <Utensils size={64} className="text-villa-green" />
                       <p className="mt-4 text-gray-300">BBQ area image</p>
                     </div>
                   </div>

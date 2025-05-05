@@ -16,7 +16,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#172B4D] text-white">
+    <div className="min-h-screen flex items-center justify-center bg-[#0F1524] text-white">
       <div className="text-center max-w-md p-6">
         <div className="flex justify-center mb-6">
           <Anchor size={60} className="text-amber-400" />
@@ -26,7 +26,7 @@ const NotFound = () => {
         <p className="text-gray-300 mb-8">
           The page you're looking for doesn't exist or has been moved.
         </p>
-        <Button asChild>
+        <Button asChild className="bg-gradient-to-r from-amber-500 to-villa-terracotta hover:opacity-90">
           <Link to="/">Return to Home</Link>
         </Button>
       </div>

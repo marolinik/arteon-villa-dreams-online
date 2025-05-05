@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ImageIcon } from "lucide-react";
+import PageHero from "@/components/layout/PageHero";
 
 const Booking = () => {
   const location = useLocation();
@@ -29,17 +30,16 @@ const Booking = () => {
   }, [location.search]);
   
   return (
-    <div className="min-h-screen flex flex-col bg-[#172B4D]">
+    <div className="min-h-screen flex flex-col bg-[#0F1524]">
       <Navbar />
+      
+      <PageHero
+        title="Book Your Stay"
+        subtitle="Select a villa and book your perfect getaway in Halkidiki"
+      />
       
       <main className="py-12 flex-grow">
         <div className="container mx-auto px-4">
-          <SectionHeader 
-            title="Book Your Stay" 
-            subtitle="Select a villa and book your perfect getaway in Halkidiki."
-            centered
-          />
-          
           <div className="max-w-4xl mx-auto bg-[#1D3A64] rounded-lg shadow-lg overflow-hidden">
             <Tabs 
               defaultValue={selectedVilla?.slug || villas[0].slug}
@@ -68,7 +68,7 @@ const Booking = () => {
                 >
                   <div className="grid md:grid-cols-2 gap-8 items-start">
                     <div>
-                      <div className="rounded-lg mb-4 h-64 bg-gray-700 flex items-center justify-center">
+                      <div className="rounded-lg mb-4 h-64 bg-[#172B4D] flex items-center justify-center">
                         {villa.mainImage ? (
                           <img 
                             src={villa.mainImage} 
@@ -77,7 +77,7 @@ const Booking = () => {
                           />
                         ) : (
                           <div className="flex flex-col items-center justify-center">
-                            <ImageIcon size={48} className="text-gray-500" />
+                            <ImageIcon size={48} className="text-villa-sand" />
                             <p className="mt-2 text-sm text-gray-400">Villa image placeholder</p>
                           </div>
                         )}

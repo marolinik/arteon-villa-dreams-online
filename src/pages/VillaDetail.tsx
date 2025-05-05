@@ -41,7 +41,7 @@ const VillaDetail = () => {
   }
   
   return (
-    <div className="bg-[#172B4D] text-white min-h-screen flex flex-col">
+    <div className="bg-[#0F1524] text-white min-h-screen flex flex-col">
       <Navbar />
       
       <main className="pt-8 pb-20 flex-grow">
@@ -151,7 +151,7 @@ const VillaDetail = () => {
           </div>
           
           {/* Call to Action */}
-          <div className="bg-gradient-to-r from-[#1C3654]/90 to-[#1C5D99]/90 p-10 rounded-lg text-center">
+          <div className="bg-gradient-to-r from-[#1C3654] to-[#1C5D99] p-10 rounded-lg text-center">
             <h2 className="text-3xl font-serif font-semibold mb-4 text-white">
               Ready to Experience {villa.name}?
             </h2>
