@@ -14,8 +14,13 @@ export const villas: Villa[] = [
     size: 80,
     capacity: 6,
     bedConfiguration: "2 Double Beds + 1 Sofa Bed",
-    mainImage: "", // Removed image
-    images: ["", "", "", ""], // Removed images
+    mainImage: "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+    images: [
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png"
+    ],
     amenities: [
       "Fully equipped kitchen",
       "Air conditioning",
@@ -54,8 +59,13 @@ export const villas: Villa[] = [
     size: 80,
     capacity: 6,
     bedConfiguration: "1 Double Bed + 2 Single Beds + 1 Sofa Bed",
-    mainImage: "", // Removed image
-    images: ["", "", "", ""], // Removed images
+    mainImage: "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+    images: [
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png"
+    ],
     amenities: [
       "Fully equipped kitchen",
       "Air conditioning",
@@ -94,8 +104,13 @@ export const villas: Villa[] = [
     size: 80,
     capacity: 6,
     bedConfiguration: "1 Double Bed + 2 Single Beds + 1 Sofa Bed",
-    mainImage: "", // Removed image
-    images: ["", "", "", ""], // Removed images
+    mainImage: "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+    images: [
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png"
+    ],
     amenities: [
       "Fully equipped kitchen",
       "Air conditioning",
@@ -134,8 +149,13 @@ export const villas: Villa[] = [
     size: 80,
     capacity: 6,
     bedConfiguration: "2 Double Beds + 1 Sofa Bed",
-    mainImage: "", // Removed image
-    images: ["", "", "", ""], // Removed images
+    mainImage: "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+    images: [
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png"
+    ],
     amenities: [
       "Fully equipped kitchen",
       "Air conditioning",
