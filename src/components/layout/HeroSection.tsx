@@ -24,7 +24,7 @@ const HeroSection = ({
       {backgroundImage ? (
         <>
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }} />
-          <div className="absolute inset-0 bg-[#0F1524]/70" /> {/* Overlay for better text visibility */}
+          <div className="absolute inset-0 bg-[#0F1524]/30" /> {/* Reduced overlay opacity from 70% to 30% */}
         </>
       ) : (
         <div className="absolute inset-0 bg-[#07091A]" />
