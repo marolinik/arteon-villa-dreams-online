@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -60,16 +61,16 @@ const Index = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/gallery">
-                <Button className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 h-14 text-lg font-medium rounded-md w-64">
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white py-2 h-12 text-base font-medium rounded-md w-full sm:w-auto px-6">
+                <Link to="/gallery">
                   Explore the Property
-                </Button>
-              </Link>
-              <Link to="/attractions">
-                <Button className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 h-14 text-lg font-medium rounded-md w-64">
+                </Link>
+              </Button>
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white py-2 h-12 text-base font-medium rounded-md w-full sm:w-auto px-6">
+                <Link to="/attractions">
                   Nearby Attractions
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
           
@@ -218,3 +219,4 @@ const Index = () => {
     </>;
 };
 export default Index;
+

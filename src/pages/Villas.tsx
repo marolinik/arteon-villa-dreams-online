@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+
 const Villas = () => {
   return <div className="min-h-screen flex flex-col bg-[#0F1524]">
       <Navbar />
@@ -55,3 +56,4 @@ const Villas = () => {
     </div>;
 };
 export default Villas;
+
