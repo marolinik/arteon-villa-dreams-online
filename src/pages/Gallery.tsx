@@ -28,8 +28,8 @@ const Gallery = () => {
       <section className="relative h-[50vh] min-h-[300px] bg-[#172B4D] flex items-center justify-center">
         <div className="absolute inset-0 bg-[#0F1524]/60" />
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Our Gallery</h1>
-          <p className="text-xl text-amber-400 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white fade-in">Our Gallery</h1>
+          <p className="text-xl text-amber-400 max-w-2xl mx-auto fade-in">
             Explore images of our beautiful villas and their surroundings
           </p>
         </div>

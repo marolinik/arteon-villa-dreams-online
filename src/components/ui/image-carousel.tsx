@@ -34,9 +34,9 @@ export const ImageCarousel = ({ images, className }: ImageCarouselProps) => {
             className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-full h-full bg-gray-200 flex flex-col items-center justify-center">
+          <div className="w-full h-full bg-[#172B4D] flex flex-col items-center justify-center">
             <ImageIcon size={64} className="text-gray-400" />
-            <p className="mt-4 text-gray-500">Image will be placed here</p>
+            <p className="mt-4 text-gray-300">Image will be placed here</p>
           </div>
         )}
         
