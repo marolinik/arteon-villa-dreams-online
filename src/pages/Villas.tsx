@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import HeroSection from "@/components/layout/HeroSection";
 
 // Background image for hero section
-const heroBackgroundImage = "/lovable-uploads/d54636e9-c25f-43fb-91c3-4630f549f0b2.png";
+const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
 
 const Villas = () => {
   return (
@@ -17,15 +17,15 @@ const Villas = () => {
       
       <HeroSection
         backgroundImage={heroBackgroundImage}
-        title="Your perfect Halkidiki getaway,"
-        subtitle="Book your villa today."
-        description="Arteon Villas is located 500 metres from Salonikiou Beach and features a swimming pool as well as a terrace for guests' pleasure. Featuring a car park, this property is located 3.4 km from Panoramic view."
+        title="Arteon Villas"
+        subtitle="Your Perfect Halkidiki Getaway"
+        height="h-[70vh]"
       >
-        <div className="flex flex-row gap-6 mt-8">
+        <div className="flex flex-row gap-6">
           <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
             Book Now
           </Link>
-          <Link to="/gallery" className="bg-white/20 hover:bg-white/30 text-white border border-white/40 px-8 py-3 rounded-md text-lg font-medium transition-all backdrop-blur-sm">
+          <Link to="/gallery" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
             View Gallery
           </Link>
         </div>
