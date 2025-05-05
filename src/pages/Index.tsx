@@ -96,7 +96,7 @@ const Index = () => {
       </section>
       
       {/* Amenities Section */}
-      <section className="section-container">
+      <section className="section-container bg-slate-950">
         <SectionHeader title="Villa Amenities & Facilities" subtitle="Arteon Villas offers amenities that rival a boutique resort while maintaining the privacy and comfort of a holiday home." centered />
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
