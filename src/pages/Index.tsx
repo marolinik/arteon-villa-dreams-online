@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -6,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+
 const Index = () => {
   return <>
       <Navbar />
@@ -152,30 +155,36 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div className="p-6 rounded-lg shadow-md bg-villa-sand">
               <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-villa-sand rounded-full mr-3"></div>
+                <Avatar className="w-12 h-12 mr-4">
+                  <AvatarImage src="/lovable-uploads/60e6001b-ba2f-4b6e-831e-3a51e3d36b44.png" alt="Maria K." />
+                  <AvatarFallback>MK</AvatarFallback>
+                </Avatar>
                 <div>
-                  <h4 className="text-zinc-500 text-base font-bold">Maria K.</h4>
-                  <div className="flex text-yellow-400">
+                  <h4 className="text-[#717171] text-base font-bold">Maria K.</h4>
+                  <div className="flex text-[#717171]">
                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600 italic">
+              <p className="text-[#5d6970] italic">
                 "The villa was absolutely stunning, with amazing views of the sea. Everything was spotlessly clean and the hosts were incredibly welcoming. We'll definitely be coming back next year!"
               </p>
             </div>
             
             <div className="p-6 rounded-lg shadow-md bg-villa-sand">
               <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-villa-teal rounded-full mr-3"></div>
+                <Avatar className="w-12 h-12 mr-4">
+                  <AvatarImage src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=120&h=120" alt="Thomas L." />
+                  <AvatarFallback>TL</AvatarFallback>
+                </Avatar>
                 <div>
-                  <h4 className="font-medium">Thomas L.</h4>
+                  <h4 className="text-white font-medium">Thomas L.</h4>
                   <div className="flex text-yellow-400">
                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600 italic">
+              <p className="text-[#5d6970] italic">
                 "Perfect location, just steps from a beautiful, uncrowded beach. The villa had everything we needed, and the pool area was fantastic. Highly recommend for families looking for a peaceful retreat."
               </p>
             </div>
