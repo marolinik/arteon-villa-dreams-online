@@ -100,6 +100,49 @@ export const galleryImages: GalleryImage[] = [
     alt: "Poolside view with loungers and surrounding greenery",
     category: "exterior"
   },
+  // New exterior images with pergolas and outdoor spaces
+  {
+    id: "ext17",
+    url: "/lovable-uploads/1c8db7a4-6ce5-4c29-ada4-51669591b31f.png",
+    alt: "Villa terrace with pergola and comfortable outdoor furniture",
+    category: "exterior"
+  },
+  {
+    id: "ext18",
+    url: "/lovable-uploads/9d253ed2-5d4d-4ecb-9d63-01c9696e21ca.png",
+    alt: "Covered outdoor dining area with rustic wooden furniture",
+    category: "exterior"
+  },
+  {
+    id: "ext19",
+    url: "/lovable-uploads/ddb9b9ba-ec2c-4280-ba53-53454d5a2832.png",
+    alt: "Pool deck at night with illuminated villas and seating area",
+    category: "exterior"
+  },
+  {
+    id: "ext20",
+    url: "/lovable-uploads/c0f07fe9-6abd-489e-a159-98dc2a5545f7.png",
+    alt: "Covered terrace with outdoor dining table and garden view",
+    category: "exterior"
+  },
+  {
+    id: "ext21",
+    url: "/lovable-uploads/c054c229-68e1-4d13-b07b-38a9c0eba2a8.png",
+    alt: "Breakfast table on private terrace with lavender plant",
+    category: "exterior"
+  },
+  {
+    id: "ext22",
+    url: "/lovable-uploads/b067611b-0fa4-418d-89c4-896b0a49e61c.png",
+    alt: "Private terrace with shaded pergola and dining furniture",
+    category: "exterior"
+  },
+  {
+    id: "ext23",
+    url: "/lovable-uploads/02162624-732f-402b-86b4-a61a0c8b240e.png",
+    alt: "Extensive villa terrace with outdoor dining and shade pergolas",
+    category: "exterior"
+  },
   
   // Interior images
   {
@@ -193,6 +236,57 @@ export const galleryImages: GalleryImage[] = [
     alt: "Villa kitchen with dining area and outdoor access",
     category: "interior"
   },
+  // New interior bedroom images
+  {
+    id: "int16",
+    url: "/lovable-uploads/5fb83d9b-d44b-425f-aa98-1b28cb8fb098.png",
+    alt: "Master bedroom with balcony access and mountain views",
+    category: "interior"
+  },
+  {
+    id: "int17",
+    url: "/lovable-uploads/fa802d55-1d56-4495-9cca-12b39ff0ae19.png",
+    alt: "Twin bedroom with balcony access and garden view",
+    category: "interior"
+  },
+  {
+    id: "int18",
+    url: "/lovable-uploads/1c019c50-b4a6-4b20-8485-272df3e166c1.png",
+    alt: "Bright master bedroom with triple windows and countryside view",
+    category: "interior"
+  },
+  {
+    id: "int19",
+    url: "/lovable-uploads/cc3be9e4-e3b8-4aac-88ce-e1a3676eaa84.png",
+    alt: "Second master bedroom with double bed and white linens",
+    category: "interior"
+  },
+  
+  // Bathroom interior images
+  {
+    id: "int20",
+    url: "/lovable-uploads/a2439a5f-82ac-420b-902a-0c0a309262f5.png",
+    alt: "Modern bathroom with bathtub and wooden storage",
+    category: "interior"
+  },
+  {
+    id: "int21",
+    url: "/lovable-uploads/7356ac23-c51a-4a29-a24f-e4f2c5851715.png",
+    alt: "Contemporary bathroom with walk-in shower and vanity",
+    category: "interior"
+  },
+  {
+    id: "int22",
+    url: "/lovable-uploads/c0e11304-0cfd-419c-b01d-52d2e793f81f.png",
+    alt: "Stylish bathroom with wooden accents and modern fixtures",
+    category: "interior"
+  },
+  {
+    id: "int23",
+    url: "/lovable-uploads/d2f50d35-d941-4bb7-b122-90110ab080f1.png",
+    alt: "Modern bathroom with laundry facilities and shower",
+    category: "interior"
+  },
   
   // Amenities images
   {
@@ -229,6 +323,13 @@ export const galleryImages: GalleryImage[] = [
     id: "amen6",
     url: "/lovable-uploads/9286c447-c204-4708-8b80-58ed52813332.png",
     alt: "Hammock with sun hat by the pool",
+    category: "amenities"
+  },
+  // New amenities - children's playground
+  {
+    id: "amen7",
+    url: "/lovable-uploads/9db34fb8-519f-433c-9bff-16bb9f8a6242.png",
+    alt: "Children's playground with slide and swing set",
     category: "amenities"
   },
   
