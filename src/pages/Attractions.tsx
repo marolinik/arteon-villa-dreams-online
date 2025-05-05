@@ -10,17 +10,17 @@ const Attractions = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] bg-cover bg-center bg-no-repeat" 
+      <section className="relative h-[80vh] min-h-[600px] bg-cover bg-center bg-no-repeat" 
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1920')"
+          backgroundImage: "url('/lovable-uploads/33403808-db10-4b5b-af0c-622fcec85c57.png')"
         }}
       >
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="container relative h-full flex flex-col justify-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-4">
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="container relative h-full flex flex-col justify-center items-center text-white text-center px-4">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">
             Nearby Attractions
           </h1>
-          <p className="text-xl font-light max-w-2xl">
+          <p className="text-xl md:text-2xl font-serif max-w-3xl">
             Explore the beautiful surroundings and activities near Arteon Villas
           </p>
         </div>
