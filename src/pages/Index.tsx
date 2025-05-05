@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -9,7 +8,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/layout/HeroSection";
 
-const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
+const heroBackgroundImage = "/lovable-uploads/33312371-b782-4168-974b-ccfb2f8b74c7.png";
 
 const Index = () => {
   return <>
