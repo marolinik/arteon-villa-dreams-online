@@ -26,13 +26,13 @@ const Villas = () => {
               Your Perfect Halkidiki Getaway
             </p>
             
-            <div className="flex flex-row gap-4 justify-center">
-              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-6 py-2 h-12 text-base font-medium rounded-md w-40">
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-5 py-2 h-10 text-sm font-medium rounded-md">
                 <Link to="/booking">
                   Book Now
                 </Link>
               </Button>
-              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-6 py-2 h-12 text-base font-medium rounded-md w-40">
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-5 py-2 h-10 text-sm font-medium rounded-md">
                 <Link to="/gallery">
                   View Gallery
                 </Link>
@@ -56,4 +56,3 @@ const Villas = () => {
     </div>;
 };
 export default Villas;
-

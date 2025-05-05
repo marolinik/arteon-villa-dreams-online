@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -6,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
 const Index = () => {
   return <>
       <Navbar />
@@ -54,17 +56,17 @@ const Index = () => {
             </p>
             
             <div className="flex items-center gap-2 mb-6">
-              <MapPin size={20} className="text-villa-terracotta" />
+              <MapPin size={20} className="text-orange-500" />
               <span className="font-medium text-villa-terracotta">Akti Salonikiou, Sithonia, Halkidiki, Greece</span>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white py-2 h-12 text-base font-medium rounded-md w-full sm:w-auto px-6">
+            <div className="flex flex-wrap gap-3 mt-4">
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-5 py-2 h-10 text-sm font-medium rounded-md">
                 <Link to="/gallery">
                   Explore the Property
                 </Link>
               </Button>
-              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white py-2 h-12 text-base font-medium rounded-md w-full sm:w-auto px-6">
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-5 py-2 h-10 text-sm font-medium rounded-md">
                 <Link to="/attractions">
                   Nearby Attractions
                 </Link>
