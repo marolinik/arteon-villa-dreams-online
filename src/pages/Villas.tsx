@@ -1,4 +1,3 @@
-
 import { VillaCard } from "@/components/ui/villa-card";
 import { villas } from "@/data/villas";
 import Navbar from "@/components/layout/Navbar";
@@ -7,7 +6,6 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
 import { Book, GalleryHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const Villas = () => {
   return <div className="min-h-screen flex flex-col bg-[#0F1524]">
       <Navbar />
@@ -18,7 +16,7 @@ const Villas = () => {
     }}>
         <div className="absolute inset-0 bg-[#0F1524]/80" />
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-orange-600" />
-        <div className="container relative h-full flex flex-col justify-center items-center text-center text-white px-4">
+        <div className="container relative h-full flex flex-col justify-center items-center text-center text-white px-4 bg-transparent">
           <div className="max-w-3xl fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 text-white">
               Arteon <span className="text-amber-400">Villas</span>
