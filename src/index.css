@@ -85,7 +85,7 @@
   }
 
   body {
-    @apply bg-villa-cream text-foreground font-sans;
+    @apply bg-[#172B4D] text-white font-sans;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -113,10 +113,29 @@
   }
   
   .btn-primary {
-    @apply bg-villa-blue text-white rounded-md px-6 py-3 hover:bg-blue-800 transition-colors font-medium;
+    @apply bg-amber-500 text-white rounded-md px-6 py-3 hover:bg-amber-600 transition-colors font-medium;
   }
   
   .btn-secondary {
-    @apply bg-villa-sand text-villa-navy rounded-md px-6 py-3 hover:bg-amber-100 transition-colors font-medium;
+    @apply bg-[#172B4D] text-white border border-amber-500 rounded-md px-6 py-3 hover:bg-amber-500/10 transition-colors font-medium;
   }
+}
+
+/* Reset App.css styles to match theme */
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  background-color: #172B4D;
+}
+
+.card {
+  padding: 2em;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.read-the-docs {
+  color: #E57F50;
 }
