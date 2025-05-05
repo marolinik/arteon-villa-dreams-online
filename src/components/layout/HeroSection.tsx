@@ -5,6 +5,7 @@ interface HeroSectionProps {
   title: string;
   subtitle?: string;
   height?: string;
+  backgroundImage?: string;
   children?: ReactNode;
 }
 
@@ -12,11 +13,21 @@ const HeroSection = ({
   title, 
   subtitle, 
   height = "h-[100vh]",
+  backgroundImage,
   children 
 }: HeroSectionProps) => {
   return (
-    <section className={`relative ${height} min-h-[600px] bg-[#07091A] flex items-center justify-center`}>
-      <div className="absolute inset-0 bg-[#07091A]" />
+    <section className={`relative ${height} min-h-[600px] flex items-center justify-center`}>
+      {backgroundImage ? (
+        <div 
+          className="absolute inset-0 bg-center bg-cover bg-no-repeat" 
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        >
+          <div className="absolute inset-0 bg-[#07091A]/60"></div>
+        </div>
+      ) : (
+        <div className="absolute inset-0 bg-[#07091A]" />
+      )}
       <div className="container relative flex flex-col justify-center items-center text-white text-center px-4">
         <h1 className="text-6xl md:text-8xl font-serif font-bold mb-8">
           {title}

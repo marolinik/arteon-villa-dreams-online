@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -6,31 +7,30 @@ import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import HeroSection from "@/components/layout/HeroSection";
+
+// Background image for hero section
+const heroBackgroundImage = "/lovable-uploads/1dc5c96e-38e2-4b8d-8cea-75391ab9e5eb.png";
 
 const Index = () => {
   return <>
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="relative h-[100vh] min-h-[600px] bg-[#07091A] flex items-center justify-center">
-        <div className="absolute inset-0 bg-[#07091A]" />
-        <div className="container relative flex flex-col justify-center items-center text-white text-center px-4">
-          <h1 className="text-6xl md:text-8xl font-serif font-bold mb-8">
-            Arteon Villas
-          </h1>
-          <p className="text-xl md:text-3xl text-amber-400 font-serif mb-16 max-w-3xl">
-            Your Perfect Halkidiki Getaway
-          </p>
-          <div className="flex flex-row gap-6">
-            <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
-              Book Now
-            </Link>
-            <Link to="/gallery" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
-              View Gallery
-            </Link>
-          </div>
+      {/* Hero Section with Background Image */}
+      <HeroSection
+        title="Arteon Villas"
+        subtitle="Your Perfect Halkidiki Getaway"
+        backgroundImage={heroBackgroundImage}
+      >
+        <div className="flex flex-row gap-6">
+          <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
+            Book Now
+          </Link>
+          <Link to="/gallery" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
+            View Gallery
+          </Link>
         </div>
-      </section>
+      </HeroSection>
       
       {/* Overview Section */}
       <section className="section-container bg-slate-950">
