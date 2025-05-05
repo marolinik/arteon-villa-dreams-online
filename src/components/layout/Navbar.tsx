@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Anchor, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,7 +33,11 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
       <div className="container mx-auto px-4 py-4 md:py-5 flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <Anchor className="text-amber-400 mr-2" size={24} />
+          <img 
+            src="/lovable-uploads/ad932535-35b0-41e0-8877-b070af49a757.png" 
+            alt="Arteon Villas Logo" 
+            className="h-8 w-8 mr-2"
+          />
           <h1 className="text-xl md:text-2xl font-serif font-bold text-white">
             Arteon Villas
           </h1>
