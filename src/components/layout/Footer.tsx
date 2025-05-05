@@ -1,6 +1,5 @@
-
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Anchor } from 'lucide-react';
+import { MapPin, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -9,7 +8,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <div className="flex items-center mb-4">
-              <Anchor className="text-amber-400 mr-2" size={24} />
+              <img 
+                src="/lovable-uploads/4b93e28a-3d4f-4e75-958b-2d436ebecdf7.png" 
+                alt="Arteon Villas Logo" 
+                className="h-8 w-8 mr-2"
+              />
               <h3 className="text-2xl font-serif font-semibold text-white">Arteon Villas</h3>
             </div>
             <p className="mb-6 text-gray-400">Your Perfect Seaside Escape in Halkidiki</p>
@@ -17,9 +20,23 @@ const Footer = () => {
               <MapPin size={18} className="mr-3 text-villa-terracotta group-hover:text-amber-400 transition-colors" />
               <span>Akti Salonikiou, Sithonia, Halkidiki, Greece</span>
             </div>
-            <div className="flex items-center mb-4 group cursor-pointer hover:text-amber-400 transition-colors">
-              <Phone size={18} className="mr-3 text-villa-terracotta group-hover:text-amber-400 transition-colors" />
-              <span>+30 123 456 7890</span>
+            <div className="flex flex-col space-y-2 mb-4">
+              <div className="flex items-center group cursor-pointer hover:text-amber-400 transition-colors">
+                <span className="w-6 h-6 mr-3 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-villa-terracotta group-hover:text-amber-400 transition-colors">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </span>
+                <span>+381 62 19 76 467</span>
+              </div>
+              <div className="flex items-center group cursor-pointer hover:text-amber-400 transition-colors">
+                <span className="w-6 h-6 mr-3 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-villa-terracotta group-hover:text-amber-400 transition-colors">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </span>
+                <span>+381 62 77 99 878</span>
+              </div>
             </div>
             <div className="flex items-center mb-6 group cursor-pointer hover:text-amber-400 transition-colors">
               <Mail size={18} className="mr-3 text-villa-terracotta group-hover:text-amber-400 transition-colors" />
