@@ -9,6 +9,7 @@ const heroBackgroundImage = "/lovable-uploads/31172d6b-392e-445c-996a-763f1bed68
 const beachImage = "/lovable-uploads/2c1e4f80-8aef-4f2b-b1f9-b33cc8918107.png";
 const mountAthosImage = "/lovable-uploads/16e396f9-26ed-498e-8812-e9ec4baee2f3.png";
 const pyrgadikiaImage = "/lovable-uploads/933815bb-5a56-43a4-ada7-4c974046bce7.png";
+const agiosNikolaosImage = "/lovable-uploads/912c27ba-131e-4e1c-9fc3-1608dbf2df69.png";
 
 const Attractions = () => {
   return (
@@ -105,11 +106,12 @@ const Attractions = () => {
               </div>
               
               <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700">
-                <div className="h-48 bg-[#172B4D] flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center">
-                    <ImageIcon size={36} className="text-gray-500" />
-                    <p className="mt-2 text-sm text-gray-400">Village image placeholder</p>
-                  </div>
+                <div className="h-48 bg-[#172B4D] overflow-hidden">
+                  <img 
+                    src={agiosNikolaosImage}
+                    alt="Agios Nikolaos restaurant with beautiful lake view"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-serif font-medium mb-2 text-white">Agios Nikolaos</h3>
