@@ -141,11 +141,11 @@ const Index = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section className="py-16" style={{
+      <section style={{
       backgroundImage: "linear-gradient(to bottom, rgba(28,93,153,0.9), rgba(28,93,153,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone02sm.jpg')",
       backgroundSize: "cover",
       backgroundPosition: "center"
-    }}>
+    }} className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
           <SectionHeader title="What Our Guests Say" subtitle="Arteon Villas boasts an exceptional reputation, with a 9.8/10 'Exceptional' rating based on guest reviews." centered titleClassName="text-white" className="text-white" />
           
