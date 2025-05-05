@@ -17,18 +17,24 @@ const HeroSection = ({
   children 
 }: HeroSectionProps) => {
   return (
-    <section className={`relative ${height} min-h-[600px] flex items-center justify-center`}>
-      {backgroundImage ? (
-        <div 
-          className="absolute inset-0 bg-center bg-cover bg-no-repeat" 
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        >
-          <div className="absolute inset-0 bg-[#07091A]/60"></div>
-        </div>
-      ) : (
-        <div className="absolute inset-0 bg-[#07091A]" />
+    <section className={`relative ${height} min-h-[600px] flex items-center justify-center overflow-hidden`}>
+      {/* Plain background color fallback */}
+      <div className="absolute inset-0 bg-[#07091A]" />
+      
+      {/* Image behind text (if provided) */}
+      {backgroundImage && (
+        <img 
+          src={backgroundImage} 
+          alt="Villa backdrop" 
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
       )}
-      <div className="container relative flex flex-col justify-center items-center text-white text-center px-4">
+      
+      {/* Optional overlay for better text readability */}
+      <div className="absolute inset-0 bg-[#07091A]/60 z-10"></div>
+      
+      {/* Content */}
+      <div className="container relative z-20 flex flex-col justify-center items-center text-white text-center px-4">
         <h1 className="text-6xl md:text-8xl font-serif font-bold mb-8">
           {title}
         </h1>

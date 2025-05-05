@@ -16,7 +16,7 @@ const Index = () => {
   return <>
       <Navbar />
       
-      {/* Hero Section with Background Image */}
+      {/* Hero Section with Image Behind Text */}
       <HeroSection
         title="Arteon Villas"
         subtitle="Your Perfect Halkidiki Getaway"
