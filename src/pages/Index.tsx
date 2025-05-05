@@ -15,7 +15,7 @@ const Index = () => {
       <section className="relative h-[100vh] min-h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center" style={{
       backgroundImage: "url('/lovable-uploads/d3e2077a-1823-4b3f-a63e-9b43d9afe6fe.png')"
     }}>
-        <div className="absolute inset-0 bg-[#0F1524]/80" />
+        <div className="absolute inset-0 bg-slate-950" />
         <div className="container relative flex flex-col justify-center items-center text-white text-center px-4">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-8">
             Arteon Villas
