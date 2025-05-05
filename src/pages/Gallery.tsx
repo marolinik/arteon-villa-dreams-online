@@ -21,10 +21,10 @@ const Gallery = () => {
   const filteredImages = getImagesByCategory(category);
   
   return (
-    <>
+    <div className="min-h-screen flex flex-col bg-[#172B4D]">
       <Navbar />
       
-      <main className="py-12">
+      <main className="py-12 flex-grow bg-[#172B4D]">
         <div className="container mx-auto px-4">
           <SectionHeader 
             title="Our Gallery" 
@@ -38,7 +38,7 @@ const Gallery = () => {
               onValueChange={(value) => setCategory(value === "all" ? undefined : value)}
               className="w-full max-w-3xl"
             >
-              <TabsList className="w-full bg-white p-1 shadow-sm">
+              <TabsList className="w-full bg-[#1D3A64] p-1 shadow-sm">
                 {categories.map((cat) => (
                   <TabsTrigger 
                     key={cat.value || "all"} 
@@ -57,7 +57,7 @@ const Gallery = () => {
       </main>
       
       <Footer />
-    </>
+    </div>
   );
 };
 

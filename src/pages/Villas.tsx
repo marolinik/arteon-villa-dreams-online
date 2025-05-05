@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 
 const Villas = () => {
   return (
-    <>
+    <div className="min-h-screen flex flex-col bg-[#172B4D]">
       <Navbar />
       
       {/* Hero Section */}
@@ -30,7 +30,7 @@ const Villas = () => {
         </div>
       </section>
       
-      <div className="bg-gray-900 text-white py-20 px-4">
+      <div className="bg-[#172B4D] text-white py-20 px-4">
         <div className="container mx-auto">
           <SectionHeader
             title="Discover Your Perfect Villa"
@@ -48,7 +48,7 @@ const Villas = () => {
       </div>
       
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -41,10 +41,10 @@ const VillaDetail = () => {
   }
   
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
+    <div className="bg-[#172B4D] text-white min-h-screen flex flex-col">
       <Navbar />
       
-      <main className="pt-8 pb-20">
+      <main className="pt-8 pb-20 flex-grow">
         <div className="container mx-auto px-4">
           {/* Villa Header */}
           <div className="mb-8">
@@ -72,7 +72,7 @@ const VillaDetail = () => {
               />
             </div>
             
-            <div className="lg:col-span-2 bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-700">
+            <div className="lg:col-span-2 bg-[#1D3A64] p-8 rounded-lg shadow-lg border border-gray-700">
               <h2 className="text-2xl font-serif font-semibold mb-6 text-amber-400">
                 Villa Overview
               </h2>
@@ -124,7 +124,7 @@ const VillaDetail = () => {
                 <p className="mb-6 text-gray-300 text-lg leading-relaxed">{villa.description}</p>
                 
                 {villa.features.map((feature, index) => (
-                  <div key={index} className="mb-8 bg-gray-800/50 p-6 rounded-lg border-l-4 border-villa-terracotta">
+                  <div key={index} className="mb-8 bg-[#1D3A64] p-6 rounded-lg border-l-4 border-villa-terracotta">
                     <h3 className="text-xl font-medium mb-3 text-white">{feature.title}</h3>
                     <p className="text-gray-300">{feature.description}</p>
                   </div>
@@ -137,7 +137,7 @@ const VillaDetail = () => {
                 Amenities
               </h2>
               
-              <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+              <div className="bg-[#1D3A64] p-6 rounded-lg shadow-lg border border-gray-700">
                 <ul className="space-y-4">
                   {villa.amenities.map((amenity, index) => (
                     <li key={index} className="flex items-start">
@@ -151,7 +151,7 @@ const VillaDetail = () => {
           </div>
           
           {/* Call to Action */}
-          <div className="bg-gradient-to-r from-blue-900/80 to-villa-blue/80 p-10 rounded-lg text-center">
+          <div className="bg-gradient-to-r from-[#1C3654]/90 to-[#1C5D99]/90 p-10 rounded-lg text-center">
             <h2 className="text-3xl font-serif font-semibold mb-4 text-white">
               Ready to Experience {villa.name}?
             </h2>
