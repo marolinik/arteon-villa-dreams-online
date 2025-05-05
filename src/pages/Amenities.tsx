@@ -41,12 +41,7 @@ const Amenities = () => {
                   </div>
                 </div>
                 <div className="md:col-span-2">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-villa-teal/20 rounded-full flex items-center justify-center mr-4">
-                      <img alt="Swimming Pool" className="w-8 h-8" src="/lovable-uploads/517011f9-d885-47e3-bd70-d058b9c078f8.jpg" />
-                    </div>
-                    <h3 className="text-2xl font-serif font-medium text-white">Swimming Pool & Sun Terrace</h3>
-                  </div>
+                  <h3 className="text-2xl font-serif font-medium text-white mb-4">Swimming Pool & Sun Terrace</h3>
                   <p className="text-gray-300">
                     At the heart of the property is a crystal-clear outdoor pool surrounded by a wooden deck with sun loungers 
                     and parasols for each villa. The pool is shared by the four villas and is meticulously maintained. It provides 
@@ -63,12 +58,7 @@ const Amenities = () => {
               {/* Private Beach Area */}
               <div className="grid md:grid-cols-5 gap-8 items-center">
                 <div className="md:col-span-2 md:order-1 lg:order-none">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-villa-sand/30 rounded-full flex items-center justify-center mr-4">
-                      <img src="https://cdn-icons-png.flaticon.com/512/3253/3253016.png" alt="Private Beach" className="w-8 h-8" />
-                    </div>
-                    <h3 className="text-2xl font-serif font-medium text-white">Private Beach Area</h3>
-                  </div>
+                  <h3 className="text-2xl font-serif font-medium text-white mb-4">Private Beach Area</h3>
                   <p className="text-gray-300">
                     Just across the small local road from Arteon Villas is Salonikiou Beach. Each villa is provided with its 
                     own set of beach equipment – typically a sun umbrella, two sunbeds, and folding beach chairs designated 
@@ -95,12 +85,7 @@ const Amenities = () => {
                   </div>
                 </div>
                 <div className="md:col-span-2">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-villa-green/20 rounded-full flex items-center justify-center mr-4">
-                      <img src="https://cdn-icons-png.flaticon.com/512/5990/5990702.png" alt="BBQ" className="w-8 h-8" />
-                    </div>
-                    <h3 className="text-2xl font-serif font-medium text-white">BBQ & Outdoor Dining</h3>
-                  </div>
+                  <h3 className="text-2xl font-serif font-medium text-white mb-4">BBQ & Outdoor Dining</h3>
                   <p className="text-gray-300">
                     In the garden area, there is a barbecue (BBQ) facility available for guest use. You can grill fresh local 
                     fish or meats and enjoy an outdoor meal at the shaded dining tables on your villa's patio.
