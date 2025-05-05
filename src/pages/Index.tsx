@@ -154,7 +154,7 @@ const Index = () => {
               <div className="flex items-center mb-4">
                 <div className="w-10 h-10 bg-villa-sand rounded-full mr-3"></div>
                 <div>
-                  <h4 className="font-medium">Maria K.</h4>
+                  <h4 className="text-zinc-500 text-base font-bold">Maria K.</h4>
                   <div className="flex text-yellow-400">
                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                   </div>
