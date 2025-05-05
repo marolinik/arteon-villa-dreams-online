@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -13,26 +12,22 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[100vh] min-h-[600px] bg-[#172B4D] flex items-center justify-center">
-        <div className="absolute inset-0 bg-slate-950" />
+      <section className="relative h-[100vh] min-h-[600px] bg-[#07091A] flex items-center justify-center">
+        <div className="absolute inset-0 bg-[#07091A]" />
         <div className="container relative flex flex-col justify-center items-center text-white text-center px-4">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-8">
+          <h1 className="text-6xl md:text-8xl font-serif font-bold mb-8">
             Arteon Villas
           </h1>
-          <p className="text-xl md:text-3xl font-serif mb-16 max-w-3xl">
+          <p className="text-xl md:text-3xl text-amber-400 font-serif mb-16 max-w-3xl">
             Your Perfect Halkidiki Getaway
           </p>
           <div className="flex flex-row gap-6">
-            <Button asChild size="lg" variant="default" className="w-40 h-12 text-base rounded-md">
-              <Link to="/booking">
-                Book Now
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="default" className="w-40 h-12 text-base rounded-md">
-              <Link to="/gallery">
-                View Gallery
-              </Link>
-            </Button>
+            <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
+              Book Now
+            </Link>
+            <Link to="/gallery" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
+              View Gallery
+            </Link>
           </div>
         </div>
       </section>
