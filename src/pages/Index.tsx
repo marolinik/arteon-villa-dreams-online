@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -6,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Book, GalleryHorizontal } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
 const Index = () => {
   return <>
       <Navbar />
@@ -75,8 +77,18 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="rounded-lg overflow-hidden shadow-lg">
-            <img src="https://arteonvillas.com/wp-content/uploads/2022/06/arteonvillas27.jpg" alt="Arteon Villas" className="w-full h-full object-cover" />
+          <div className="rounded-lg overflow-hidden shadow-lg h-[450px]">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.9032757437003!2d23.691418775298548!3d40.29760116288237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a895000c2d8971%3A0x580e197d9810c112!2sARTEON%20VILLAS!5e1!3m2!1ssr!2srs!4v1746447525225!5m2!1ssr!2srs" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Arteon Villas Location"
+              className="w-full h-full"
+            ></iframe>
           </div>
         </div>
       </section>
