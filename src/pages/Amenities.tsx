@@ -3,9 +3,14 @@ import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
-import { ImageIcon, Waves, BedDouble, Wifi, Tv, MapPin, Utensils, Users, CalendarCheck } from "lucide-react";
+import { BedDouble, Wifi, Tv, MapPin, Utensils, Users, CalendarCheck } from "lucide-react";
 
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
+
+// Amenity images
+const poolImage = "/lovable-uploads/c232481a-4e45-4abf-8303-8255f283f461.png";
+const beachImage = "/lovable-uploads/1708fc5b-9ac9-4750-a28f-4e70a19fe340.png";
+const bbqImage = "/lovable-uploads/5d5cf7e6-d036-4143-9758-43e42ccbd966.png";
 
 const Amenities = () => {
   return (
@@ -31,17 +36,14 @@ const Amenities = () => {
               {/* Swimming Pool */}
               <div className="grid md:grid-cols-5 gap-8 items-center">
                 <div className="md:col-span-3">
-                  <div className="rounded-lg shadow-lg h-80 w-full bg-[#172B4D] flex items-center justify-center overflow-hidden">
-                    <div className="flex flex-col items-center justify-center">
-                      <Waves size={64} className="text-villa-teal" />
-                      <p className="mt-4 text-gray-300">Swimming pool image</p>
-                    </div>
+                  <div className="rounded-lg shadow-lg h-80 w-full overflow-hidden">
+                    <img src={poolImage} alt="Swimming pool" className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="md:col-span-2">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-villa-teal/20 rounded-full flex items-center justify-center mr-4">
-                      <Waves size={20} className="text-villa-teal" />
+                      <img alt="Swimming Pool" className="w-8 h-8" src="/lovable-uploads/517011f9-d885-47e3-bd70-d058b9c078f8.jpg" />
                     </div>
                     <h3 className="text-2xl font-serif font-medium text-white">Swimming Pool & Sun Terrace</h3>
                   </div>
@@ -63,7 +65,7 @@ const Amenities = () => {
                 <div className="md:col-span-2 md:order-1 lg:order-none">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-villa-sand/30 rounded-full flex items-center justify-center mr-4">
-                      <MapPin size={20} className="text-villa-sand" />
+                      <img src="https://cdn-icons-png.flaticon.com/512/3253/3253016.png" alt="Private Beach" className="w-8 h-8" />
                     </div>
                     <h3 className="text-2xl font-serif font-medium text-white">Private Beach Area</h3>
                   </div>
@@ -79,11 +81,8 @@ const Amenities = () => {
                   </p>
                 </div>
                 <div className="md:col-span-3 md:order-2 lg:order-none">
-                  <div className="rounded-lg shadow-lg h-80 w-full bg-[#172B4D] flex items-center justify-center overflow-hidden">
-                    <div className="flex flex-col items-center justify-center">
-                      <ImageIcon size={64} className="text-villa-sand" />
-                      <p className="mt-4 text-gray-300">Beach area image</p>
-                    </div>
+                  <div className="rounded-lg shadow-lg h-80 w-full overflow-hidden">
+                    <img src={beachImage} alt="Beach area" className="w-full h-full object-cover" />
                   </div>
                 </div>
               </div>
@@ -91,17 +90,14 @@ const Amenities = () => {
               {/* BBQ & Outdoor Dining */}
               <div className="grid md:grid-cols-5 gap-8 items-center">
                 <div className="md:col-span-3">
-                  <div className="rounded-lg shadow-lg h-80 w-full bg-[#172B4D] flex items-center justify-center overflow-hidden">
-                    <div className="flex flex-col items-center justify-center">
-                      <Utensils size={64} className="text-villa-green" />
-                      <p className="mt-4 text-gray-300">BBQ area image</p>
-                    </div>
+                  <div className="rounded-lg shadow-lg h-80 w-full overflow-hidden">
+                    <img src={bbqImage} alt="BBQ area" className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="md:col-span-2">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-villa-green/20 rounded-full flex items-center justify-center mr-4">
-                      <Utensils size={20} className="text-villa-green" />
+                      <img src="https://cdn-icons-png.flaticon.com/512/5990/5990702.png" alt="BBQ" className="w-8 h-8" />
                     </div>
                     <h3 className="text-2xl font-serif font-medium text-white">BBQ & Outdoor Dining</h3>
                   </div>

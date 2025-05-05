@@ -12,6 +12,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const heroBackgroundImage = "/lovable-uploads/33312371-b782-4168-974b-ccfb2f8b74c7.png";
 
+// Amenity images
+const poolImage = "/lovable-uploads/c232481a-4e45-4abf-8303-8255f283f461.png";
+const beachImage = "/lovable-uploads/1708fc5b-9ac9-4750-a28f-4e70a19fe340.png";
+const bbqImage = "/lovable-uploads/5d5cf7e6-d036-4143-9758-43e42ccbd966.png";
+
 const Index = () => {
   return <>
       <Navbar />
@@ -99,6 +104,9 @@ const Index = () => {
             <p className="text-gray-600">
               A crystal-clear outdoor pool surrounded by a wooden deck with sun loungers and parasols for each villa.
             </p>
+            <div className="mt-4 rounded-lg overflow-hidden h-40">
+              <img src={poolImage} alt="Swimming pool" className="w-full h-full object-cover" />
+            </div>
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
@@ -109,6 +117,9 @@ const Index = () => {
             <p className="text-gray-600">
               Each villa is provided with its own set of beach equipment on the uncrowded Salonikiou Beach.
             </p>
+            <div className="mt-4 rounded-lg overflow-hidden h-40">
+              <img src={beachImage} alt="Beach area" className="w-full h-full object-cover" />
+            </div>
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
@@ -119,6 +130,9 @@ const Index = () => {
             <p className="text-gray-600">
               Barbecue facility available for guest use with shaded dining tables on your villa's patio.
             </p>
+            <div className="mt-4 rounded-lg overflow-hidden h-40">
+              <img src={bbqImage} alt="BBQ area" className="w-full h-full object-cover" />
+            </div>
           </div>
         </div>
         
@@ -225,4 +239,3 @@ const Index = () => {
     </>;
 };
 export default Index;
-
