@@ -8,8 +8,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/layout/HeroSection";
 
-// Background image for hero section
-const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
+// We'll remove this unused variable since we no longer need the background image
+// const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
 
 const Index = () => {
   return <>
@@ -17,7 +17,6 @@ const Index = () => {
       
       {/* Hero Section with Image Behind Text */}
       <HeroSection
-        backgroundImage={heroBackgroundImage}
         title="Arteon Villas"
         subtitle="Your Perfect Halkidiki Getaway"
       >
