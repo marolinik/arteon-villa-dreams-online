@@ -51,7 +51,7 @@ const Index = () => {
             <p className="mb-4 text-villa-cream">
               The property is just a few minutes' walk (approx. 100 m) from the quiet Salonikiou Beach, offering guests a peaceful seaside retreat.
             </p>
-            <p className="mb-6 text-gray-700">
+            <p className="mb-6 text-villa-cream">
               Arteon Villas sits about 5 km from the traditional village of Agios Nikolaos (Sithonia), giving a sense of seclusion while still being a short drive from local tavernas and shops. The closest airport is Thessaloniki International (SKG), approximately 100 km away (around 1.5 hours by car).
             </p>
             
