@@ -103,7 +103,7 @@ const Index = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-villa-teal/20 rounded-full flex items-center justify-center mb-4">
-              <img src="https://cdn-icons-png.flaticon.com/512/5762/5762478.png" alt="Swimming Pool" className="w-8 h-8" />
+              <img alt="Swimming Pool" className="w-8 h-8" src="/lovable-uploads/517011f9-d885-47e3-bd70-d058b9c078f8.jpg" />
             </div>
             <h3 className="text-xl font-serif font-medium mb-3">Swimming Pool & Sun Terrace</h3>
             <p className="text-gray-600">
