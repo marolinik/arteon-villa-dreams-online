@@ -55,18 +55,18 @@ const Index = () => {
               Arteon Villas sits about 5 km from the traditional village of Agios Nikolaos (Sithonia), giving a sense of seclusion while still being a short drive from local tavernas and shops. The closest airport is Thessaloniki International (SKG), approximately 100 km away (around 1.5 hours by car).
             </p>
             
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center gap-2 mb-8">
               <MapPin size={20} className="text-orange-500" />
-              <span className="font-medium text-villa-terracotta">Akti Salonikiou, Sithonia, Halkidiki, Greece</span>
+              <span className="font-medium text-orange-500">Akti Salonikiou, Sithonia, Halkidiki, Greece</span>
             </div>
             
-            <div className="flex flex-wrap gap-3 mt-4">
-              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-5 py-2 h-10 text-sm font-medium rounded-md">
+            <div className="flex justify-center md:justify-start gap-6">
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white w-56 h-14 text-lg font-medium rounded-md">
                 <Link to="/gallery">
                   Explore the Property
                 </Link>
               </Button>
-              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-5 py-2 h-10 text-sm font-medium rounded-md">
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white w-56 h-14 text-lg font-medium rounded-md">
                 <Link to="/attractions">
                   Nearby Attractions
                 </Link>
