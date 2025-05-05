@@ -1,21 +1,16 @@
-
 import { VillaCard } from "@/components/ui/villa-card";
 import { villas } from "@/data/villas";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { SectionHeader } from "@/components/ui/section-header";
-
 const Villas = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-[#172B4D]">
+  return <div className="min-h-screen flex flex-col bg-[#172B4D]">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat" 
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1920')"
-        }}
-      >
+      <section className="relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat" style={{
+      backgroundImage: "url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1920')"
+    }}>
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40" />
         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-500 to-villa-terracotta" />
         <div className="container relative h-full flex flex-col justify-center text-white px-4">
@@ -30,26 +25,17 @@ const Villas = () => {
         </div>
       </section>
       
-      <div className="bg-[#172B4D] text-white py-20 px-4">
+      <div className="text-white py-20 px-4 bg-villa-navy">
         <div className="container mx-auto">
-          <SectionHeader
-            title="Discover Your Perfect Villa"
-            subtitle="Each villa offers a unique blend of contemporary design, comfort, and breathtaking sea views"
-            className="mb-16"
-            titleClassName="text-white"
-          />
+          <SectionHeader title="Discover Your Perfect Villa" subtitle="Each villa offers a unique blend of contemporary design, comfort, and breathtaking sea views" className="mb-16" titleClassName="text-white" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {villas.map((villa) => (
-              <VillaCard key={villa.id} villa={villa} />
-            ))}
+            {villas.map(villa => <VillaCard key={villa.id} villa={villa} />)}
           </div>
         </div>
       </div>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Villas;
