@@ -21,7 +21,7 @@ const Index = () => {
         title="Arteon Villas"
         subtitle="Your Perfect Halkidiki Getaway"
       >
-        <div className="flex flex-row gap-6">
+        <div className="flex flex-wrap gap-6 justify-center">
           <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
             Book Now
           </Link>

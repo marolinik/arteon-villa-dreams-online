@@ -23,12 +23,12 @@ const HeroSection = ({
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 text-center">
         {title && (
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-4 text-white">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-white">
             {title}
           </h1>
         )}
         {subtitle && (
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-light mb-8 text-white/90">
+          <h2 className="text-xl md:text-2xl lg:text-2xl font-light mb-8 text-white/90">
             {subtitle}
           </h2>
         )}
@@ -37,7 +37,7 @@ const HeroSection = ({
             {description}
           </p>
         )}
-        {children && <div className="mt-8">{children}</div>}
+        {children && <div className="mt-8 flex justify-center">{children}</div>}
       </div>
     </section>;
 };
