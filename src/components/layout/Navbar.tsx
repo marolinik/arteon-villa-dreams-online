@@ -14,10 +14,14 @@ const Navbar = () => {
   
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Villa Armonia', path: '/villas/armonia' },
-    { name: 'Villa Eirini', path: '/villas/eirini' },
-    { name: 'Villa Thea', path: '/villas/thea' },
-    { name: 'Villa Onar', path: '/villas/onar' },
+    { name: 'Villas', path: '/villas', submenu: [
+      { name: 'Villa Armonia', path: '/villas/armonia' },
+      { name: 'Villa Eirini', path: '/villas/eirini' },
+      { name: 'Villa Thea', path: '/villas/thea' },
+      { name: 'Villa Onar', path: '/villas/onar' },
+    ]},
+    { name: 'Amenities', path: '/amenities' },
+    { name: 'Attractions', path: '/attractions' },
     { name: 'Gallery', path: '/gallery' },
   ];
 
@@ -37,17 +41,43 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <Link 
-              key={link.name}
-              to={link.path}
-              className={`font-medium hover:text-villa-blue transition-colors ${
-                isActive(link.path) 
-                  ? 'text-villa-blue border-b-2 border-villa-blue' 
-                  : 'text-gray-700'
-              }`}
-            >
-              {link.name}
-            </Link>
+            link.submenu ? (
+              <div key={link.name} className="relative group">
+                <Link 
+                  to={link.path}
+                  className={`font-medium hover:text-villa-blue transition-colors ${
+                    location.pathname.includes(link.path) 
+                      ? 'text-villa-blue border-b-2 border-villa-blue' 
+                      : 'text-gray-700'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+                <div className="absolute left-0 mt-1 w-48 bg-white shadow-lg rounded-md overflow-hidden z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                  {link.submenu.map((subItem) => (
+                    <Link 
+                      key={subItem.name} 
+                      to={subItem.path}
+                      className="block px-4 py-2 text-gray-700 hover:bg-villa-blue/10 hover:text-villa-blue"
+                    >
+                      {subItem.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <Link 
+                key={link.name}
+                to={link.path}
+                className={`font-medium hover:text-villa-blue transition-colors ${
+                  isActive(link.path) 
+                    ? 'text-villa-blue border-b-2 border-villa-blue' 
+                    : 'text-gray-700'
+                }`}
+              >
+                {link.name}
+              </Link>
+            )
           ))}
           <Button className="bg-villa-blue hover:bg-blue-800 text-white">
             <Link to="/booking">Book Now</Link>
@@ -66,24 +96,50 @@ const Navbar = () => {
       
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg animate-fade-in">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg animate-fade-in z-50">
           <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
             {navLinks.map((link) => (
-              <Link 
-                key={link.name}
-                to={link.path}
-                className={`py-2 px-3 block ${
-                  isActive(link.path) 
-                    ? 'text-villa-blue font-medium' 
-                    : 'text-gray-700'
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
+              link.submenu ? (
+                <div key={link.name} className="py-2">
+                  <div className="px-3 font-medium text-gray-700 mb-1">
+                    {link.name}
+                  </div>
+                  <div className="pl-6">
+                    {link.submenu.map((subItem) => (
+                      <Link 
+                        key={subItem.name}
+                        to={subItem.path}
+                        className={`py-2 px-3 block ${
+                          isActive(subItem.path)
+                            ? 'text-villa-blue font-medium' 
+                            : 'text-gray-600'
+                        }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {subItem.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link 
+                  key={link.name}
+                  to={link.path}
+                  className={`py-2 px-3 block ${
+                    isActive(link.path) 
+                      ? 'text-villa-blue font-medium' 
+                      : 'text-gray-700'
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
             <Button className="bg-villa-blue hover:bg-blue-800 text-white w-full">
-              <Link to="/booking" className="w-full">Book Now</Link>
+              <Link to="/booking" className="w-full" onClick={() => setMobileMenuOpen(false)}>
+                Book Now
+              </Link>
             </Button>
           </div>
         </div>

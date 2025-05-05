@@ -39,3 +39,59 @@ export interface AdminUser {
   username: string;
   name: string;
 }
+
+export interface ContentBlock {
+  id: string;
+  title: string;
+  content: string;
+  pageId: string;
+  type: 'text' | 'image' | 'hero' | 'list';
+  position: number;
+  metadata?: Record<string, any>;
+}
+
+export interface Page {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  isPublished: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface Amenity {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  image: string;
+  category: string;
+  featured: boolean;
+}
+
+export interface Attraction {
+  id: string;
+  title: string;
+  description: string;
+  distance: string;
+  location: string;
+  image: string;
+  category: string;
+  featured: boolean;
+}
+
+export interface SiteSettings {
+  siteName: string;
+  siteDescription: string;
+  contactEmail: string;
+  contactPhone: string;
+  address: string;
+  socialMedia: {
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+  };
+  logoUrl?: string;
+  faviconUrl?: string;
+}

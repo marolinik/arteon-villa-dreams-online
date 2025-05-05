@@ -16,10 +16,10 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[600px] bg-cover bg-center bg-no-repeat" 
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1920')"
+          backgroundImage: "url('https://arteonvillas.com/wp-content/uploads/2022/06/drone02sm.jpg')"
         }}
       >
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/30" />
         <div className="container relative h-full flex flex-col justify-center items-center text-white text-center px-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6">
             Arteon Villas
@@ -31,7 +31,7 @@ const Index = () => {
             <Button asChild size="lg" className="bg-villa-blue hover:bg-blue-800">
               <Link to="/booking">Book Now</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
+            <Button asChild size="lg" className="bg-villa-blue hover:bg-blue-800">
               <Link to="/gallery">View Gallery</Link>
             </Button>
           </div>
@@ -48,13 +48,13 @@ const Index = () => {
         
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <p className="mb-4">
+            <p className="mb-4 text-gray-700">
               Each villa enjoys stunning sea views and shares a well-maintained garden with a swimming pool and sun terrace, perfect for relaxation. On-site private parking is available for guests' convenience.
             </p>
-            <p className="mb-4">
+            <p className="mb-4 text-gray-700">
               The property is just a few minutes' walk (approx. 100 m) from the quiet Salonikiou Beach, offering guests a peaceful seaside retreat.
             </p>
-            <p className="mb-6">
+            <p className="mb-6 text-gray-700">
               Arteon Villas sits about 5 km from the traditional village of Agios Nikolaos (Sithonia), giving a sense of seclusion while still being a short drive from local tavernas and shops. The closest airport is Thessaloniki International (SKG), approximately 100 km away (around 1.5 hours by car).
             </p>
             
@@ -63,16 +63,23 @@ const Index = () => {
               <span className="font-medium">Akti Salonikiou, Sithonia, Halkidiki, Greece</span>
             </div>
             
-            <Link to="/gallery">
-              <Button className="bg-villa-blue hover:bg-blue-800">
-                Explore the Property
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/gallery">
+                <Button className="bg-villa-blue hover:bg-blue-800">
+                  Explore the Property
+                </Button>
+              </Link>
+              <Link to="/attractions">
+                <Button className="bg-villa-blue hover:bg-blue-800">
+                  Nearby Attractions
+                </Button>
+              </Link>
+            </div>
           </div>
           
           <div className="rounded-lg overflow-hidden shadow-lg">
             <img 
-              src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1200" 
+              src="https://arteonvillas.com/wp-content/uploads/2022/06/arteonvillas27.jpg" 
               alt="Arteon Villas" 
               className="w-full h-full object-cover"
             />
@@ -81,7 +88,11 @@ const Index = () => {
       </section>
       
       {/* Our Villas Section */}
-      <section className="bg-gray-50 py-16">
+      <section className="py-16" style={{ 
+        backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}>
         <div className="container mx-auto px-4">
           <SectionHeader 
             title="Our Luxurious Villas" 
@@ -106,7 +117,7 @@ const Index = () => {
         />
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-villa-teal/20 rounded-full flex items-center justify-center mb-4">
               <img src="https://cdn-icons-png.flaticon.com/512/5762/5762478.png" alt="Swimming Pool" className="w-8 h-8" />
             </div>
@@ -116,7 +127,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-villa-sand/30 rounded-full flex items-center justify-center mb-4">
               <img src="https://cdn-icons-png.flaticon.com/512/3253/3253016.png" alt="Private Beach" className="w-8 h-8" />
             </div>
@@ -126,7 +137,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-villa-green/20 rounded-full flex items-center justify-center mb-4">
               <img src="https://cdn-icons-png.flaticon.com/512/5990/5990702.png" alt="BBQ" className="w-8 h-8" />
             </div>
@@ -138,21 +149,27 @@ const Index = () => {
         </div>
         
         <div className="text-center">
-          <Link to="/booking">
+          <Link to="/amenities">
             <Button size="lg" className="bg-villa-blue hover:bg-blue-800">
-              Book Your Stay Now
+              Explore All Amenities
             </Button>
           </Link>
         </div>
       </section>
       
       {/* Testimonials Section */}
-      <section className="bg-villa-blue/10 py-16">
+      <section className="py-16" style={{ 
+        backgroundImage: "linear-gradient(to bottom, rgba(28,93,153,0.9), rgba(28,93,153,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone02sm.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}>
         <div className="container mx-auto px-4">
           <SectionHeader 
             title="What Our Guests Say" 
             subtitle="Arteon Villas boasts an exceptional reputation, with a 9.8/10 'Exceptional' rating based on guest reviews."
             centered
+            titleClassName="text-white"
+            className="text-white"
           />
           
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -192,7 +209,7 @@ const Index = () => {
       {/* CTA Section */}
       <section className="relative py-16 bg-center bg-cover"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1560448204-603b3fc33ddc?q=80&w=1920')"
+          backgroundImage: "url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')"
         }}
       >
         <div className="absolute inset-0 bg-villa-navy/70" />
@@ -203,7 +220,7 @@ const Index = () => {
           <p className="mb-8 max-w-2xl mx-auto text-white/90">
             Book your stay today and discover the perfect blend of luxury, comfort, and natural beauty at our seaside retreat in Halkidiki.
           </p>
-          <Button asChild size="lg" className="bg-white text-villa-navy hover:bg-gray-100">
+          <Button asChild size="lg" className="bg-villa-blue text-white hover:bg-blue-700">
             <Link to="/booking">Book Your Villa Now</Link>
           </Button>
         </div>
