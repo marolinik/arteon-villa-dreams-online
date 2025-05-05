@@ -1,4 +1,3 @@
-
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -10,17 +9,17 @@ const Attractions = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] bg-cover bg-center bg-no-repeat" 
+      <section className="relative h-[50vh] min-h-[400px] bg-cover bg-center bg-no-repeat" 
         style={{
-          backgroundImage: "url('/lovable-uploads/33403808-db10-4b5b-af0c-622fcec85c57.png')"
+          backgroundImage: "url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1920')"
         }}
       >
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="container relative h-full flex flex-col justify-center items-center text-white text-center px-4">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="container relative h-full flex flex-col justify-center text-white px-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-4">
             Nearby Attractions
           </h1>
-          <p className="text-xl md:text-2xl font-serif max-w-3xl">
+          <p className="text-xl font-light max-w-2xl">
             Explore the beautiful surroundings and activities near Arteon Villas
           </p>
         </div>
@@ -154,7 +153,7 @@ const Attractions = () => {
               </p>
               <div className="grid grid-cols-3 gap-3">
                 <img 
-                  src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400" 
+                  src="https://images.unsplash.com/photo-1507525428034-b7b1f875659b?q=80&w=400" 
                   alt="Beach" 
                   className="rounded-md h-24 w-full object-cover"
                 />
