@@ -10,21 +10,21 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-amber-500 to-villa-terracotta text-white hover:opacity-90 hover:shadow-lg hover:shadow-amber-500/20 transform hover:translate-y-[-2px]",
+        default: "bg-gradient-to-r from-amber-500 to-villa-terracotta text-white hover:opacity-90 hover:shadow-md hover:shadow-amber-500/20 transform hover:translate-y-[-1px]",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:shadow-lg hover:shadow-destructive/20 transform hover:translate-y-[-2px]",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:shadow-md hover:shadow-destructive/20 transform hover:translate-y-[-1px]",
         outline:
-          "border border-amber-500/30 bg-transparent text-amber-400 hover:bg-amber-500/10 hover:text-amber-300 transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-amber-500/10",
+          "border border-amber-500/30 bg-transparent text-amber-400 hover:bg-amber-500/10 hover:text-amber-300 transform hover:translate-y-[-1px] hover:shadow-md hover:shadow-amber-500/10",
         secondary:
-          "bg-[#1e3a68] text-gray-100 hover:bg-[#25487e] hover:text-white transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-[#1e3a68]/20",
-        ghost: "hover:bg-[#1e3a68] hover:text-amber-400 transform hover:translate-y-[-2px]",
+          "bg-[#1e3a68] text-gray-100 hover:bg-[#25487e] hover:text-white transform hover:translate-y-[-1px] hover:shadow-md hover:shadow-[#1e3a68]/20",
+        ghost: "hover:bg-[#1e3a68] hover:text-amber-400 transform hover:translate-y-[-1px]",
         link: "text-amber-400 underline-offset-4 hover:underline hover:text-amber-300",
       },
       size: {
-        default: "h-10 px-5 py-2",
-        sm: "h-9 rounded-md px-4 text-xs",
-        lg: "h-12 rounded-md px-8 text-base",
-        icon: "h-10 w-10",
+        default: "h-9 px-4 py-1.5 text-sm",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-6 text-base",
+        icon: "h-9 w-9",
       },
     },
     defaultVariants: {

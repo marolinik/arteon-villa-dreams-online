@@ -4,25 +4,43 @@ import { villas } from "@/data/villas";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { SectionHeader } from "@/components/ui/section-header";
+import { Button } from "@/components/ui/button";
+import { Book, GalleryHorizontal } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Villas = () => {
   return <div className="min-h-screen flex flex-col bg-[#0F1524]">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat" style={{
-      backgroundImage: "url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1920')"
+      <section className="relative h-[70vh] min-h-[500px] bg-cover bg-center bg-no-repeat" style={{
+      backgroundImage: "url('/lovable-uploads/812dfeea-e982-4df1-b8b4-4775371ca109.png')"
     }}>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40" />
-        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-500 to-villa-terracotta" />
-        <div className="container relative h-full flex flex-col justify-center text-white px-4">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/40" />
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-villa-terracotta" />
+        <div className="container relative h-full flex flex-col justify-center items-center text-center text-white px-4">
           <div className="max-w-3xl fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 text-white">
-              Luxury <span className="text-amber-400">Seaside</span> Villas
+              Arteon <span className="text-amber-400">Villas</span>
             </h1>
-            <p className="text-xl font-light max-w-2xl text-gray-100">
-              Experience the perfect harmony of modern luxury and seaside tranquility in our premium Halkidiki villas
+            <p className="text-xl md:text-2xl font-serif font-light max-w-2xl text-gray-100 mb-8">
+              Your Perfect Halkidiki Getaway
             </p>
+            
+            <div className="flex flex-row gap-4 justify-center">
+              <Button asChild size="default" variant="default" className="w-36 text-sm">
+                <Link to="/booking" className="flex items-center justify-center">
+                  <Book className="mr-2 h-4 w-4" />
+                  Book Now
+                </Link>
+              </Button>
+              <Button asChild size="default" variant="default" className="w-36 text-sm">
+                <Link to="/gallery" className="flex items-center justify-center">
+                  <GalleryHorizontal className="mr-2 h-4 w-4" />
+                  View Gallery
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
