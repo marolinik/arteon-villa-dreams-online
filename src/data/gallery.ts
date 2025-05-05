@@ -143,6 +143,43 @@ export const galleryImages: GalleryImage[] = [
     alt: "Extensive villa terrace with outdoor dining and shade pergolas",
     category: "exterior"
   },
+  // New exterior images (uploaded)
+  {
+    id: "ext24",
+    url: "/lovable-uploads/9a6934b4-26c8-45ff-890b-fade1ecad6b0.png",
+    alt: "Wooden outdoor dining table with chairs under pergola",
+    category: "exterior"
+  },
+  {
+    id: "ext25",
+    url: "/lovable-uploads/887bdcdc-d6a0-4751-91a0-e439f3146bb8.png",
+    alt: "Exterior view of villa complex with gardens",
+    category: "exterior"
+  },
+  {
+    id: "ext26",
+    url: "/lovable-uploads/c78eff44-040e-42ba-887c-83f5fc9e7a12.png",
+    alt: "Villa garden view with covered terrace and outdoor furniture",
+    category: "exterior"
+  },
+  {
+    id: "ext27",
+    url: "/lovable-uploads/bef71546-f34d-4ecc-9198-6c9578a23c40.png",
+    alt: "Outdoor dining area with canvas shade and countryside view",
+    category: "exterior"
+  },
+  {
+    id: "ext28",
+    url: "/lovable-uploads/749a8f8e-df2c-41a0-9e6c-4303d04852a1.png",
+    alt: "Outdoor dining table with seating overlooking garden",
+    category: "exterior"
+  },
+  {
+    id: "ext29",
+    url: "/lovable-uploads/0f5850b6-3e2e-486c-af29-9a524fa745b4.png",
+    alt: "Outdoor dining table with place settings and shells",
+    category: "exterior"
+  },
   
   // Interior images
   {
@@ -288,6 +325,50 @@ export const galleryImages: GalleryImage[] = [
     category: "interior"
   },
   
+  // New interior images (uploaded)
+  {
+    id: "int24",
+    url: "/lovable-uploads/2015958d-f242-4abe-bc2c-f8869d769b39.png",
+    alt: "Bedroom with closet, TV and countryside view",
+    category: "interior"
+  },
+  {
+    id: "int25",
+    url: "/lovable-uploads/d71f8fe5-133f-46ac-9444-1083a2c36c24.png",
+    alt: "Living room with sofa and sliding glass doors to terrace",
+    category: "interior"
+  },
+  {
+    id: "int26",
+    url: "/lovable-uploads/d5edb2c5-3fee-47cc-bce1-ab56a5f68ef5.png",
+    alt: "Master bedroom with white bedding and wooden headboard",
+    category: "interior"
+  },
+  {
+    id: "int27",
+    url: "/lovable-uploads/e7cfebd6-a210-4df9-8efd-ffd8eb4fa43a.png",
+    alt: "Modern bedroom with contemporary wooden and white headboard",
+    category: "interior"
+  },
+  {
+    id: "int28",
+    url: "/lovable-uploads/233dfb75-ac19-4d1f-8b7e-006f0cdde128.png",
+    alt: "Bedroom with white bed and open window with view",
+    category: "interior"
+  },
+  {
+    id: "int29",
+    url: "/lovable-uploads/4b05d78b-a07b-4a77-a2ad-e30b565fc0ff.png",
+    alt: "Living room with sofa and TV entertainment area",
+    category: "interior"
+  },
+  {
+    id: "int30",
+    url: "/lovable-uploads/5563b6b3-66e1-4d4d-9bd9-64815ea30d73.png",
+    alt: "Chair with decorative cushion and straw hat",
+    category: "interior"
+  },
+  
   // Amenities images
   {
     id: "amen1",
@@ -330,6 +411,13 @@ export const galleryImages: GalleryImage[] = [
     id: "amen7",
     url: "/lovable-uploads/9db34fb8-519f-433c-9bff-16bb9f8a6242.png",
     alt: "Children's playground with slide and swing set",
+    category: "amenities"
+  },
+  // New amenities image (uploaded)
+  {
+    id: "amen8",
+    url: "/lovable-uploads/6aeb8cd2-d7d6-4995-a943-995a7b72e871.png",
+    alt: "Coffee and cookies served on outdoor wooden table",
     category: "amenities"
   },
   
