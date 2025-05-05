@@ -1,3 +1,4 @@
+
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -5,6 +6,7 @@ import PageHero from "@/components/layout/PageHero";
 import { MapPin, ImageIcon } from "lucide-react";
 
 const heroBackgroundImage = "/lovable-uploads/31172d6b-392e-445c-996a-763f1bed68bb.png";
+const beachImage = "/lovable-uploads/2c1e4f80-8aef-4f2b-b1f9-b33cc8918107.png";
 
 const Attractions = () => {
   return (
@@ -28,11 +30,12 @@ const Attractions = () => {
             
             <div className="grid md:grid-cols-2 gap-8 mb-10">
               <div className="bg-[#1D3A64] rounded-lg overflow-hidden border border-gray-700 shadow-xl">
-                <div className="h-64 w-full bg-[#172B4D] flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center">
-                    <ImageIcon size={48} className="text-gray-500" />
-                    <p className="mt-2 text-sm text-gray-400">Beach image placeholder</p>
-                  </div>
+                <div className="h-64 w-full bg-[#172B4D] overflow-hidden">
+                  <img 
+                    src={beachImage}
+                    alt="Salonikiou Beach with crystal clear turquoise waters"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-serif font-medium mb-2 text-white">
