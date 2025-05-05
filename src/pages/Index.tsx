@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -7,6 +8,7 @@ import { MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/layout/HeroSection";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const heroBackgroundImage = "/lovable-uploads/33312371-b782-4168-974b-ccfb2f8b74c7.png";
 
@@ -134,13 +136,15 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <SectionHeader title="What Our Guests Say" subtitle="Arteon Villas boasts an exceptional reputation, with a 9.8/10 'Exceptional' rating based on guest reviews." centered titleClassName="text-white" className="text-white" />
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-0 rounded-lg overflow-hidden shadow-lg bg-white">
-              <div className="h-48 bg-gray-200 flex items-center justify-center">
-                <div className="text-gray-400">Testimonial image placeholder</div>
-              </div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Testimonial 1 */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02]">
               <div className="p-6">
                 <div className="flex items-center mb-4">
+                  <Avatar className="h-12 w-12 mr-4 border-2 border-amber-400">
+                    <AvatarImage src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D" alt="Maria K." />
+                    <AvatarFallback>MK</AvatarFallback>
+                  </Avatar>
                   <div>
                     <h4 className="text-[#0F1524] text-lg font-semibold">Maria K.</h4>
                     <div className="flex text-amber-500">
@@ -154,12 +158,14 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="p-0 rounded-lg overflow-hidden shadow-lg bg-white">
-              <div className="h-48 bg-gray-200 flex items-center justify-center">
-                <div className="text-gray-400">Testimonial image placeholder</div>
-              </div>
+            {/* Testimonial 2 */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02]">
               <div className="p-6">
                 <div className="flex items-center mb-4">
+                  <Avatar className="h-12 w-12 mr-4 border-2 border-amber-400">
+                    <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D" alt="Thomas L." />
+                    <AvatarFallback>TL</AvatarFallback>
+                  </Avatar>
                   <div>
                     <h4 className="text-[#0F1524] text-lg font-semibold">Thomas L.</h4>
                     <div className="flex text-amber-500">
@@ -169,6 +175,27 @@ const Index = () => {
                 </div>
                 <p className="text-[#5d6970] italic">
                   "Perfect location, just steps from a beautiful, uncrowded beach. The villa had everything we needed, and the pool area was fantastic. Highly recommend for families looking for a peaceful retreat."
+                </p>
+              </div>
+            </div>
+            
+            {/* Testimonial 3 */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02]">
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <Avatar className="h-12 w-12 mr-4 border-2 border-amber-400">
+                    <AvatarImage src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Alexandra M." />
+                    <AvatarFallback>AM</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h4 className="text-[#0F1524] text-lg font-semibold">Alexandra M.</h4>
+                    <div className="flex text-amber-500">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-[#5d6970] italic">
+                  "We had an amazing stay at Arteon Villas. The location is perfect - quiet and secluded but still close to restaurants and attractions. The villa was beautifully furnished and the views were breathtaking. Can't wait to return!"
                 </p>
               </div>
             </div>
@@ -198,3 +225,4 @@ const Index = () => {
     </>;
 };
 export default Index;
+
