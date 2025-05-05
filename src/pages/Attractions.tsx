@@ -1,4 +1,3 @@
-
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -11,6 +10,11 @@ const mountAthosImage = "/lovable-uploads/16e396f9-26ed-498e-8812-e9ec4baee2f3.p
 const pyrgadikiaImage = "/lovable-uploads/933815bb-5a56-43a4-ada7-4c974046bce7.png";
 const agiosNikolaosImage = "/lovable-uploads/912c27ba-131e-4e1c-9fc3-1608dbf2df69.png";
 const ormosPanagiasImage = "/lovable-uploads/be3e1f96-33fd-46eb-9e18-f84f96336e90.png";
+
+// Beach images for the Beautiful Beaches section
+const vourvourouBeachImage = "/lovable-uploads/db686af8-1d18-4972-a594-61131db2aef8.png";
+const kalogriaBayImage = "/lovable-uploads/7a963ea4-de5e-4fc6-ae02-386e71b04662.png";
+const karydiBeachImage = "/lovable-uploads/726c87bf-d710-484f-8e9e-5b3dc370dc62.png";
 
 const Attractions = () => {
   return (
@@ -162,14 +166,26 @@ const Attractions = () => {
                   Caribbean-esque turquoise shallows), or Kalogria Beach (fine sand, popular for families).
                 </p>
                 <div className="grid grid-cols-3 gap-3">
-                  <div className="rounded-md h-24 w-full bg-[#172B4D] flex items-center justify-center">
-                    <ImageIcon size={24} className="text-gray-500" />
+                  <div className="rounded-md h-24 w-full bg-[#172B4D] overflow-hidden">
+                    <img 
+                      src={vourvourouBeachImage} 
+                      alt="Aerial view of Vourvourou Bay with its stunning turquoise waters" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <div className="rounded-md h-24 w-full bg-[#172B4D] flex items-center justify-center">
-                    <ImageIcon size={24} className="text-gray-500" />
+                  <div className="rounded-md h-24 w-full bg-[#172B4D] overflow-hidden">
+                    <img 
+                      src={karydiBeachImage} 
+                      alt="Beautiful Karydi Beach with its clear turquoise waters and sandy shores" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <div className="rounded-md h-24 w-full bg-[#172B4D] flex items-center justify-center">
-                    <ImageIcon size={24} className="text-gray-500" />
+                  <div className="rounded-md h-24 w-full bg-[#172B4D] overflow-hidden">
+                    <img 
+                      src={kalogriaBayImage} 
+                      alt="Kalogria Bay with beach umbrellas and crystal clear waters" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               </div>
