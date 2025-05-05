@@ -13,6 +13,7 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
+    bedConfiguration: "2 Double Beds + 1 Sofa Bed",
     mainImage: "", // Removed image
     images: ["", "", "", ""], // Removed images
     amenities: [
@@ -46,12 +47,13 @@ export const villas: Villa[] = [
     name: "Villa Eirini",
     meaning: "Peace",
     slug: "eirini",
-    description: "Villa Eirini (Greek for \"Peace\") lives up to its name by providing a tranquil and private retreat with lovely sea views. Identical in size (80 m²) and layout to Villa Armonia, this villa comfortably hosts up to 5–6 guests across 2 bedrooms and a sofa-bed. Upstairs, there are 2 bedrooms (a master bedroom with a king-size bed, and a second bedroom with 2 single beds) – perfect for a family or group of friends. An additional sofa-bed in the living area can sleep 1–2 extra guests if needed. The villa features 2 bathrooms for convenience: one with a bathtub, second with walk-in shower. On the ground floor, Villa Eirini boasts an open-plan living and dining space with a fully equipped kitchen. Guests will find everything needed for self-catering, including a refrigerator, stovetop/oven, microwave, electric kettle, cookware, and a dining table. A washing machine is also available in the unit for laundry. The décor is bright and contemporary, with comfortable sofas and a flat-screen TV for indoor entertainment. For comfort, the villa has air conditioning and is soundproofed.",
+    description: "Villa Eirini (Greek for \"Peace\") lives up to its name by providing a tranquil and private retreat with lovely sea views. Identical in size (80 m²) and layout to Villa Armonia, this villa comfortably hosts up to 5–6 guests across 2 bedrooms and a sofa-bed. Upstairs, there are 2 bedrooms (a master bedroom with a double bed, and a second bedroom with 2 single beds) – perfect for a family or group of friends. An additional sofa-bed in the living area can sleep 1–2 extra guests if needed. The villa features 2 bathrooms for convenience: one with a bathtub, second with walk-in shower. On the ground floor, Villa Eirini boasts an open-plan living and dining space with a fully equipped kitchen. Guests will find everything needed for self-catering, including a refrigerator, stovetop/oven, microwave, electric kettle, cookware, and a dining table. A washing machine is also available in the unit for laundry. The décor is bright and contemporary, with comfortable sofas and a flat-screen TV for indoor entertainment. For comfort, the villa has air conditioning and is soundproofed.",
     shortDescription: "A peaceful retreat with lovely sea views, providing tranquility and comfort.",
     bedrooms: 2,
     bathrooms: 2,
     size: 80,
     capacity: 6,
+    bedConfiguration: "1 Double Bed + 2 Single Beds + 1 Sofa Bed",
     mainImage: "", // Removed image
     images: ["", "", "", ""], // Removed images
     amenities: [
@@ -85,12 +87,13 @@ export const villas: Villa[] = [
     name: "Villa Thea",
     meaning: "View",
     slug: "thea",
-    description: "Villa Thea takes its name from the Greek word for \"View,\" and accordingly offers wonderful views of the Aegean and the surrounding landscape. This villa is a two-story, 2-bedroom maisonette (80 m²) that accommodates up to 6 guests (5 comfortably). Upstairs, there are 2 bedrooms (a master bedroom with a king-size bed, and a second bedroom with two single beds) – perfect for a family or group of friends. An additional sofa-bed in the living area can sleep 1–2 extra guests if needed. The villa features 2 bathrooms for convenience: one with a bathtub, second with walk-in shower. On the ground floor, Villa Thea boasts an open-plan living and dining space with a fully equipped kitchen. Guests will find everything needed for self-catering, including a refrigerator, stovetop/oven, microwave, electric kettle, cookware, and a dining table. A washing machine is also available in the unit for laundry. The décor is bright and contemporary, with comfortable sofas and a flat-screen TV for indoor entertainment. For comfort, the villa has air conditioning and is soundproofed.",
+    description: "Villa Thea takes its name from the Greek word for \"View,\" and accordingly offers wonderful views of the Aegean and the surrounding landscape. This villa is a two-story, 2-bedroom maisonette (80 m²) that accommodates up to 6 guests (5 comfortably). Upstairs, there are 2 bedrooms (a master bedroom with a double bed, and a second bedroom with two single beds) – perfect for a family or group of friends. An additional sofa-bed in the living area can sleep 1–2 extra guests if needed. The villa features 2 bathrooms for convenience: one with a bathtub, second with walk-in shower. On the ground floor, Villa Thea boasts an open-plan living and dining space with a fully equipped kitchen. Guests will find everything needed for self-catering, including a refrigerator, stovetop/oven, microwave, electric kettle, cookware, and a dining table. A washing machine is also available in the unit for laundry. The décor is bright and contemporary, with comfortable sofas and a flat-screen TV for indoor entertainment. For comfort, the villa has air conditioning and is soundproofed.",
     shortDescription: "Named for its spectacular views of the Aegean, this villa is perfect for nature lovers.",
     bedrooms: 2,
     bathrooms: 2,
     size: 80,
     capacity: 6,
+    bedConfiguration: "1 Double Bed + 2 Single Beds + 1 Sofa Bed",
     mainImage: "", // Removed image
     images: ["", "", "", ""], // Removed images
     amenities: [
@@ -130,6 +133,7 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
+    bedConfiguration: "2 Double Beds + 1 Sofa Bed",
     mainImage: "", // Removed image
     images: ["", "", "", ""], // Removed images
     amenities: [

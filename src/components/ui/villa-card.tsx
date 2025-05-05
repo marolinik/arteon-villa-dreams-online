@@ -34,7 +34,7 @@ export const VillaCard = ({ villa, className }: VillaCardProps) => {
           <div className="flex justify-between text-sm mb-4">
             <div className="flex items-center">
               <BedDouble size={16} className="mr-1 text-amber-400" />
-              <span>{villa.bedrooms} Beds</span>
+              <span>{villa.bedConfiguration}</span>
             </div>
             <div className="flex items-center">
               <Bath size={16} className="mr-1 text-amber-400" />
@@ -72,7 +72,7 @@ export const VillaCard = ({ villa, className }: VillaCardProps) => {
         <div className="flex items-center justify-between text-sm text-gray-400">
           <span className="flex items-center">
             <BedDouble size={16} className="text-villa-terracotta mr-1" />
-            {villa.bedrooms} Bedrooms
+            {villa.bedConfiguration}
           </span>
           <span className="flex items-center">
             <Bath size={16} className="text-villa-terracotta mr-1" />

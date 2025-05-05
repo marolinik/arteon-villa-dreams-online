@@ -80,7 +80,7 @@ const VillaDetail = () => {
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div className="flex items-center">
                   <BedDouble className="text-villa-terracotta mr-3" size={24} />
-                  <span className="text-lg">{villa.bedrooms} Bedrooms</span>
+                  <span className="text-lg">{villa.bedConfiguration}</span>
                 </div>
                 
                 <div className="flex items-center">

@@ -10,6 +10,7 @@ export interface Villa {
   bathrooms: number;
   size: number;
   capacity: number;
+  bedConfiguration: string;
   mainImage: string;
   images: string[];
   amenities: string[];

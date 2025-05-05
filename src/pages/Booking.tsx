@@ -9,7 +9,7 @@ import { getBookingsByVillaId } from "@/data/bookings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { ImageIcon } from "lucide-react";
+import { ImageIcon, BedDouble, Bath, Users } from "lucide-react";
 import PageHero from "@/components/layout/PageHero";
 
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
@@ -96,15 +96,18 @@ const Booking = () => {
                       
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                          {villa.bedrooms} Bedrooms
+                          <BedDouble className="mr-1" size={14} />
+                          {villa.bedConfiguration}
                         </span>
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                          <Bath className="mr-1" size={14} />
                           {villa.bathrooms} Bathrooms
                         </span>
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
                           {villa.size} m²
                         </span>
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                          <Users className="mr-1" size={14} />
                           Up to {villa.capacity} Guests
                         </span>
                       </div>
