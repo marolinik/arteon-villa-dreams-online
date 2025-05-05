@@ -2,7 +2,7 @@
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { ImageIcon, Pool, BedDouble, Wifi, Tv, MapPin, Utensils, Users, CalendarCheck } from "lucide-react";
+import { ImageIcon, Waves, BedDouble, Wifi, Tv, MapPin, Utensils, Users, CalendarCheck } from "lucide-react";
 
 const Amenities = () => {
   return (
@@ -37,7 +37,7 @@ const Amenities = () => {
                 <div className="md:col-span-3">
                   <div className="rounded-lg shadow-lg h-80 w-full bg-[#172B4D] flex items-center justify-center overflow-hidden">
                     <div className="flex flex-col items-center justify-center">
-                      <Pool size={64} className="text-gray-400" />
+                      <Waves size={64} className="text-gray-400" />
                       <p className="mt-4 text-gray-300">Swimming pool image</p>
                     </div>
                   </div>
@@ -45,7 +45,7 @@ const Amenities = () => {
                 <div className="md:col-span-2">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-villa-teal/20 rounded-full flex items-center justify-center mr-4">
-                      <Pool size={20} className="text-villa-teal" />
+                      <Waves size={20} className="text-villa-teal" />
                     </div>
                     <h3 className="text-2xl font-serif font-medium text-white">Swimming Pool & Sun Terrace</h3>
                   </div>
