@@ -21,7 +21,7 @@ export const SectionHeader = ({
         {title}
         <span className="absolute -bottom-1 left-0 w-16 h-1 bg-gradient-to-r from-amber-500 to-villa-terracotta rounded-full"></span>
       </h2>
-      {subtitle && <p className="max-w-3xl mt-5 leading-relaxed text-villa-cream">
+      {subtitle && <p className="max-w-3xl mx-auto mt-5 leading-relaxed text-villa-cream">
           {subtitle}
         </p>}
     </div>;
