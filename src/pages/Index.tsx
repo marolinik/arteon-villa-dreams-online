@@ -1,10 +1,9 @@
-
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
-import { MapPin } from "lucide-react";
+import { MapPin, Book, Gallery } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -28,11 +27,17 @@ const Index = () => {
             Your Perfect Halkidiki Getaway
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="bg-villa-blue hover:bg-blue-800">
-              <Link to="/booking">Book Now</Link>
+            <Button asChild size="lg" className="bg-villa-blue hover:bg-blue-800 w-40">
+              <Link to="/booking" className="flex items-center justify-center">
+                <Book className="mr-2 h-4 w-4" />
+                Book Now
+              </Link>
             </Button>
-            <Button asChild size="lg" className="bg-villa-blue hover:bg-blue-800">
-              <Link to="/gallery">View Gallery</Link>
+            <Button asChild size="lg" className="bg-villa-blue hover:bg-blue-800 w-40">
+              <Link to="/gallery" className="flex items-center justify-center">
+                <Gallery className="mr-2 h-4 w-4" />
+                View Gallery
+              </Link>
             </Button>
           </div>
         </div>
@@ -65,12 +70,13 @@ const Index = () => {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/gallery">
-                <Button className="bg-villa-blue hover:bg-blue-800">
+                <Button className="bg-villa-blue hover:bg-blue-800 w-40 flex items-center justify-center">
+                  <Gallery className="mr-2 h-4 w-4" />
                   Explore the Property
                 </Button>
               </Link>
               <Link to="/attractions">
-                <Button className="bg-villa-blue hover:bg-blue-800">
+                <Button className="bg-villa-blue hover:bg-blue-800 w-40 flex items-center justify-center">
                   Nearby Attractions
                 </Button>
               </Link>
@@ -150,7 +156,7 @@ const Index = () => {
         
         <div className="text-center">
           <Link to="/amenities">
-            <Button size="lg" className="bg-villa-blue hover:bg-blue-800">
+            <Button size="lg" className="bg-villa-blue hover:bg-blue-800 w-40 flex items-center justify-center">
               Explore All Amenities
             </Button>
           </Link>
@@ -220,8 +226,11 @@ const Index = () => {
           <p className="mb-8 max-w-2xl mx-auto text-white/90">
             Book your stay today and discover the perfect blend of luxury, comfort, and natural beauty at our seaside retreat in Halkidiki.
           </p>
-          <Button asChild size="lg" className="bg-villa-blue text-white hover:bg-blue-700">
-            <Link to="/booking">Book Your Villa Now</Link>
+          <Button asChild size="lg" className="bg-villa-blue text-white hover:bg-blue-700 w-40 flex items-center justify-center">
+            <Link to="/booking">
+              <Book className="mr-2 h-4 w-4" />
+              Book Your Villa Now
+            </Link>
           </Button>
         </div>
       </section>
