@@ -21,17 +21,24 @@ const Gallery = () => {
   const filteredImages = getImagesByCategory(category);
   
   return (
-    <div className="min-h-screen flex flex-col bg-[#172B4D]">
+    <div className="min-h-screen flex flex-col bg-[#0F1524]">
       <Navbar />
       
-      <main className="py-12 flex-grow bg-[#172B4D]">
+      {/* Hero Section */}
+      <section className="relative h-[50vh] min-h-[300px] bg-cover bg-center bg-no-repeat flex items-center justify-center" style={{
+        backgroundImage: "linear-gradient(to bottom, rgba(15,21,36,0.85), rgba(15,21,36,0.85)), url('/lovable-uploads/d3e2077a-1823-4b3f-a63e-9b43d9afe6fe.png')"
+      }}>
+        <div className="absolute inset-0 bg-[#0F1524]/60" />
+        <div className="container relative z-10 mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Our Gallery</h1>
+          <p className="text-xl text-amber-400 max-w-2xl mx-auto">
+            Explore images of our beautiful villas and their surroundings
+          </p>
+        </div>
+      </section>
+      
+      <main className="py-12 flex-grow bg-[#0F1524]">
         <div className="container mx-auto px-4">
-          <SectionHeader 
-            title="Our Gallery" 
-            subtitle="Explore images of our beautiful villas and their surroundings."
-            centered
-          />
-          
           <div className="mb-8 flex justify-center">
             <Tabs 
               defaultValue="all" 
@@ -43,13 +50,19 @@ const Gallery = () => {
                   <TabsTrigger 
                     key={cat.value || "all"} 
                     value={cat.value || "all"}
-                    className="flex-1 data-[state=active]:bg-villa-blue data-[state=active]:text-white"
+                    className="flex-1 text-gray-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-500 data-[state=active]:to-villa-terracotta data-[state=active]:text-white"
                   >
                     {cat.label}
                   </TabsTrigger>
                 ))}
               </TabsList>
             </Tabs>
+          </div>
+          
+          <div className="mb-10">
+            <p className="text-villa-cream text-center max-w-3xl mx-auto">
+              Browse through our collection of images showcasing the beautiful Arteon Villas and the surrounding areas of Halkidiki. Filter by category to see specific features of our property.
+            </p>
           </div>
           
           <GalleryGrid images={filteredImages} />
