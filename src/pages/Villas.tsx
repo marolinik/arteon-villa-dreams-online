@@ -21,7 +21,7 @@ const Villas = () => {
         <div className="container relative h-full flex flex-col justify-center text-white px-4">
           <div className="max-w-3xl fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 text-white">
-              Luxury <span className="text-amber-400">Oceanside</span> Villas
+              Luxury <span className="text-amber-400">Seaside</span> Villas
             </h1>
             <p className="text-xl font-light max-w-2xl text-gray-100">
               Experience the perfect harmony of modern luxury and seaside tranquility in our premium Halkidiki villas
