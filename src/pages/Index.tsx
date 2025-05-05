@@ -1,9 +1,10 @@
+
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
-import { MapPin, Book, Gallery } from "lucide-react";
+import { MapPin, Book, GalleryHorizontal } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -35,7 +36,7 @@ const Index = () => {
             </Button>
             <Button asChild size="lg" className="bg-villa-blue hover:bg-blue-800 w-40">
               <Link to="/gallery" className="flex items-center justify-center">
-                <Gallery className="mr-2 h-4 w-4" />
+                <GalleryHorizontal className="mr-2 h-4 w-4" />
                 View Gallery
               </Link>
             </Button>
@@ -71,7 +72,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/gallery">
                 <Button className="bg-villa-blue hover:bg-blue-800 w-40 flex items-center justify-center">
-                  <Gallery className="mr-2 h-4 w-4" />
+                  <GalleryHorizontal className="mr-2 h-4 w-4" />
                   Explore the Property
                 </Button>
               </Link>
