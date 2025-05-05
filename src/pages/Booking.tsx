@@ -9,6 +9,7 @@ import { getBookingsByVillaId } from "@/data/bookings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { ImageIcon } from "lucide-react";
 
 const Booking = () => {
   const location = useLocation();
@@ -67,11 +68,20 @@ const Booking = () => {
                 >
                   <div className="grid md:grid-cols-2 gap-8 items-start">
                     <div>
-                      <img 
-                        src={villa.mainImage} 
-                        alt={villa.name} 
-                        className="w-full h-64 object-cover rounded-lg mb-4"
-                      />
+                      <div className="rounded-lg mb-4 h-64 bg-gray-700 flex items-center justify-center">
+                        {villa.mainImage ? (
+                          <img 
+                            src={villa.mainImage} 
+                            alt={villa.name} 
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        ) : (
+                          <div className="flex flex-col items-center justify-center">
+                            <ImageIcon size={48} className="text-gray-500" />
+                            <p className="mt-2 text-sm text-gray-400">Villa image placeholder</p>
+                          </div>
+                        )}
+                      </div>
                       
                       <h3 className="text-xl font-serif font-medium mb-2 text-white">
                         {villa.name} - {villa.meaning}

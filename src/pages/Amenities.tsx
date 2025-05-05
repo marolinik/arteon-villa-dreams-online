@@ -2,6 +2,7 @@
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { ImageIcon } from "lucide-react";
 
 const Amenities = () => {
   return (
@@ -9,10 +10,8 @@ const Amenities = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] bg-cover bg-center bg-no-repeat" 
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1920')"
-        }}
+      <section className="relative h-[50vh] min-h-[400px] bg-slate-900" 
+        
       >
         <div className="absolute inset-0 bg-black/40" />
         <div className="container relative h-full flex flex-col justify-center text-white px-4">
@@ -37,11 +36,9 @@ const Amenities = () => {
             {/* Swimming Pool */}
             <div className="grid md:grid-cols-5 gap-8 items-center">
               <div className="md:col-span-3">
-                <img 
-                  src="https://images.unsplash.com/photo-1571003123771-bd6a099dd83a?q=80&w=1080"
-                  alt="Swimming Pool"
-                  className="rounded-lg shadow-lg h-80 w-full object-cover"
-                />
+                <div className="rounded-lg shadow-lg h-80 w-full bg-gray-200 flex items-center justify-center">
+                  <ImageIcon size={64} className="text-gray-400" />
+                </div>
               </div>
               <div className="md:col-span-2">
                 <div className="flex items-center mb-4">
@@ -84,22 +81,18 @@ const Amenities = () => {
                 </p>
               </div>
               <div className="md:col-span-3 md:order-2 lg:order-none">
-                <img 
-                  src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1080"
-                  alt="Private Beach"
-                  className="rounded-lg shadow-lg h-80 w-full object-cover"
-                />
+                <div className="rounded-lg shadow-lg h-80 w-full bg-gray-200 flex items-center justify-center">
+                  <ImageIcon size={64} className="text-gray-400" />
+                </div>
               </div>
             </div>
             
             {/* BBQ & Outdoor Dining */}
             <div className="grid md:grid-cols-5 gap-8 items-center">
               <div className="md:col-span-3">
-                <img 
-                  src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1080"
-                  alt="BBQ Area"
-                  className="rounded-lg shadow-lg h-80 w-full object-cover"
-                />
+                <div className="rounded-lg shadow-lg h-80 w-full bg-gray-200 flex items-center justify-center">
+                  <ImageIcon size={64} className="text-gray-400" />
+                </div>
               </div>
               <div className="md:col-span-2">
                 <div className="flex items-center mb-4">
@@ -201,7 +194,7 @@ const Amenities = () => {
                 <p className="text-gray-700">
                   While Arteon Villas is about relaxation, there are plenty of activities that can be enjoyed nearby. The sea right 
                   in front is great for swimming, and the calm waters are suitable for snorkeling. The hosts can help organize 
-                  water sports such as windsurfing, diving, or canoeing in the area.
+                  water sports such as windsurfing, diving, or canoeing in the area, as Halkidiki's coasts offer these opportunities.
                 </p>
               </div>
             </div>

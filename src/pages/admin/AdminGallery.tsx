@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Image, Upload, Trash2 } from "lucide-react";
+import { Image, Upload, Trash2, ImageIcon } from "lucide-react";
 
 const AdminGallery = () => {
   const { toast } = useToast();
@@ -87,11 +87,18 @@ const AdminGallery = () => {
             className="group relative rounded-lg overflow-hidden bg-white shadow"
           >
             <div className="aspect-square">
-              <img
-                src={image.url}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
+              {image.url ? (
+                <img
+                  src={image.url}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gray-200 flex flex-col items-center justify-center">
+                  <ImageIcon size={36} className="text-gray-400 mb-2" />
+                  <p className="text-xs text-gray-400">Image placeholder</p>
+                </div>
+              )}
             </div>
             
             <div className="p-3">

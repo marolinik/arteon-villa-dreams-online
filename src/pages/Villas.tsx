@@ -12,9 +12,7 @@ const Villas = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] bg-cover bg-center bg-no-repeat" style={{
-      backgroundImage: "url('/lovable-uploads/d3e2077a-1823-4b3f-a63e-9b43d9afe6fe.png')"
-    }}>
+      <section className="relative h-[70vh] min-h-[500px] bg-[#172B4D]">
         <div className="absolute inset-0 bg-[#0F1524]/80" />
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-orange-600" />
         <div className="container relative h-full flex flex-col justify-center items-center text-center text-white px-4 bg-transparent">

@@ -13,13 +13,8 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
-    mainImage: "/lovable-uploads/70760d7a-aeee-4ce5-b176-bdab43c717f9.png",
-    images: [
-      "/lovable-uploads/70760d7a-aeee-4ce5-b176-bdab43c717f9.png",
-      "/lovable-uploads/76db6a84-db6d-4d00-ac91-1e4ceb84a041.png",
-      "/lovable-uploads/dd26ff21-2620-40ff-8962-cb6e0e9d3fd8.png",
-      "/lovable-uploads/1dfd64c7-ffbc-4388-8987-3061fc6f4783.png"
-    ],
+    mainImage: "", // Removed image
+    images: ["", "", "", ""], // Removed images
     amenities: [
       "Fully equipped kitchen",
       "Air conditioning",
@@ -57,13 +52,8 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
-    mainImage: "/lovable-uploads/3f7eff5f-5983-4602-801c-0faea5e67b17.png",
-    images: [
-      "/lovable-uploads/3f7eff5f-5983-4602-801c-0faea5e67b17.png",
-      "/lovable-uploads/c0431382-36a4-402f-9bf7-65e281e8da2d.png",
-      "/lovable-uploads/fc05634d-fdbd-49d4-9ea0-a7dd24671aea.png",
-      "/lovable-uploads/2567efd3-9273-4456-b87b-147b01a41a8c.png"
-    ],
+    mainImage: "", // Removed image
+    images: ["", "", "", ""], // Removed images
     amenities: [
       "Fully equipped kitchen",
       "Air conditioning",
@@ -101,13 +91,8 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
-    mainImage: "/lovable-uploads/c411917f-1b84-4377-b8ac-b2fbaecf4ad4.png",
-    images: [
-      "/lovable-uploads/c411917f-1b84-4377-b8ac-b2fbaecf4ad4.png",
-      "/lovable-uploads/5d4b65f2-0a24-45f0-95c9-2b51920ffe10.png",
-      "/lovable-uploads/dd26ff21-2620-40ff-8962-cb6e0e9d3fd8.png",
-      "/lovable-uploads/1dfd64c7-ffbc-4388-8987-3061fc6f4783.png"
-    ],
+    mainImage: "", // Removed image
+    images: ["", "", "", ""], // Removed images
     amenities: [
       "Fully equipped kitchen",
       "Air conditioning",
@@ -145,13 +130,8 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
-    mainImage: "/lovable-uploads/f4de3009-636a-49d6-b1f6-cd8606374d38.png",
-    images: [
-      "/lovable-uploads/f4de3009-636a-49d6-b1f6-cd8606374d38.png",
-      "/lovable-uploads/76db6a84-db6d-4d00-ac91-1e4ceb84a041.png",
-      "/lovable-uploads/fc05634d-fdbd-49d4-9ea0-a7dd24671aea.png",
-      "/lovable-uploads/2567efd3-9273-4456-b87b-147b01a41a8c.png"
-    ],
+    mainImage: "", // Removed image
+    images: ["", "", "", ""], // Removed images
     amenities: [
       "Fully equipped kitchen",
       "Air conditioning",

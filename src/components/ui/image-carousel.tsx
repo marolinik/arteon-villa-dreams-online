@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ImageIcon } from "lucide-react";
 
 interface ImageCarouselProps {
   images: string[];
@@ -27,11 +27,18 @@ export const ImageCarousel = ({ images, className }: ImageCarouselProps) => {
   return (
     <div className={cn("relative overflow-hidden rounded-lg", className)}>
       <div className="relative h-full">
-        <img
-          src={images[currentImageIndex]}
-          alt={`Image ${currentImageIndex + 1}`}
-          className="w-full h-full object-cover"
-        />
+        {images[currentImageIndex] ? (
+          <img
+            src={images[currentImageIndex]}
+            alt={`Image ${currentImageIndex + 1}`}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-200 flex flex-col items-center justify-center">
+            <ImageIcon size={64} className="text-gray-400" />
+            <p className="mt-4 text-gray-500">Image will be placed here</p>
+          </div>
+        )}
         
         {/* Navigation buttons */}
         <Button 

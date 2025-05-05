@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { Villa } from "@/types";
 import { Button } from "@/components/ui/button";
-import { BedDouble, Bath, Users, Anchor } from "lucide-react";
+import { BedDouble, Bath, Users, Anchor, ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface VillaCardProps {
@@ -14,11 +14,18 @@ export const VillaCard = ({ villa, className }: VillaCardProps) => {
   return (
     <div className={cn("bg-gray-800 rounded-lg overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] group border border-gray-700", className)}>
       <div className="relative h-64 overflow-hidden">
-        <img 
-          src={villa.mainImage} 
-          alt={villa.name} 
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
+        {villa.mainImage ? (
+          <img 
+            src={villa.mainImage} 
+            alt={villa.name} 
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-700 flex flex-col items-center justify-center">
+            <ImageIcon size={48} className="text-gray-500" />
+            <p className="mt-2 text-gray-500">Villa image will be placed here</p>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300" />
         <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-villa-terracotta text-white py-1 px-3 rounded-full text-sm font-medium shadow-lg">
           {villa.size} m²

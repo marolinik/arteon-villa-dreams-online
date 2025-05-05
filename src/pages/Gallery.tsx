@@ -25,9 +25,7 @@ const Gallery = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[300px] bg-cover bg-center bg-no-repeat flex items-center justify-center" style={{
-        backgroundImage: "linear-gradient(to bottom, rgba(15,21,36,0.85), rgba(15,21,36,0.85)), url('/lovable-uploads/d3e2077a-1823-4b3f-a63e-9b43d9afe6fe.png')"
-      }}>
+      <section className="relative h-[50vh] min-h-[300px] bg-[#172B4D] flex items-center justify-center">
         <div className="absolute inset-0 bg-[#0F1524]/60" />
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Our Gallery</h1>

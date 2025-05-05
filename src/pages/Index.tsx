@@ -7,16 +7,13 @@ import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Index = () => {
   return <>
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[100vh] min-h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center" style={{
-      backgroundImage: "url('/lovable-uploads/d3e2077a-1823-4b3f-a63e-9b43d9afe6fe.png')"
-    }}>
+      <section className="relative h-[100vh] min-h-[600px] bg-[#172B4D] flex items-center justify-center">
         <div className="absolute inset-0 bg-slate-950" />
         <div className="container relative flex flex-col justify-center items-center text-white text-center px-4">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-8">
@@ -78,17 +75,13 @@ const Index = () => {
           <div className="rounded-lg overflow-hidden shadow-lg h-[450px]">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.9032757437003!2d23.691418775298548!3d40.29760116288237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a895000c2d8971%3A0x580e197d9810c112!2sARTEON%20VILLAS!5e1!3m2!1ssr!2srs!4v1746447525225!5m2!1ssr!2srs" width="100%" height="100%" style={{
             border: 0
-          }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Arteon Villas Location" className="w-full h-full"></iframe>
+            }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Arteon Villas Location" className="w-full h-full"></iframe>
           </div>
         </div>
       </section>
       
       {/* Our Villas Section */}
-      <section style={{
-      backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center"
-    }} className="py-16 bg-slate-950">
+      <section className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
           <SectionHeader title="Our Luxurious Villas" subtitle="Choose from our four stunning sea-view villas, each designed to provide the ultimate comfort and relaxation during your Halkidiki getaway." centered />
           
@@ -144,22 +137,14 @@ const Index = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section style={{
-      backgroundImage: "linear-gradient(to bottom, rgba(15,21,36,0.95), rgba(15,21,36,0.92)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone02sm.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center"
-    }} className="py-16 bg-slate-950">
+      <section className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
           <SectionHeader title="What Our Guests Say" subtitle="Arteon Villas boasts an exceptional reputation, with a 9.8/10 'Exceptional' rating based on guest reviews." centered titleClassName="text-white" className="text-white" />
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="p-0 rounded-lg overflow-hidden shadow-lg bg-white">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="/lovable-uploads/60e6001b-ba2f-4b6e-831e-3a51e3d36b44.png" 
-                  alt="Maria K." 
-                  className="w-full h-full object-cover"
-                />
+              <div className="h-48 bg-gray-200 flex items-center justify-center">
+                <div className="text-gray-400">Testimonial image placeholder</div>
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-4">
@@ -177,12 +162,8 @@ const Index = () => {
             </div>
             
             <div className="p-0 rounded-lg overflow-hidden shadow-lg bg-white">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&h=400" 
-                  alt="Thomas L." 
-                  className="w-full h-full object-cover"
-                />
+              <div className="h-48 bg-gray-200 flex items-center justify-center">
+                <div className="text-gray-400">Testimonial image placeholder</div>
               </div>
               <div className="p-6">
                 <div className="flex items-center mb-4">
@@ -203,11 +184,7 @@ const Index = () => {
       </section>
       
       {/* CTA Section */}
-      <section className="relative py-16 bg-center bg-cover" style={{
-      backgroundImage: "url('/lovable-uploads/a9ecf5db-c898-4d3d-8065-cde9ceafb923.png')",
-      backgroundSize: "cover",
-      backgroundPosition: "center"
-    }}>
+      <section className="relative py-16 bg-[#172B4D]">
         <div className="absolute inset-0 bg-villa-navy/70" />
         <div className="container relative mx-auto px-4 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">

@@ -2,7 +2,7 @@
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { MapPin } from "lucide-react";
+import { MapPin, ImageIcon } from "lucide-react";
 
 const Attractions = () => {
   return (
@@ -10,11 +10,7 @@ const Attractions = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] bg-cover bg-center bg-no-repeat" 
-        style={{
-          backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/lovable-uploads/b092c892-630e-4f88-939c-5b37a8f92ee7.png')"
-        }}
-      >
+      <section className="relative h-[50vh] min-h-[400px] bg-slate-900" >
         <div className="absolute inset-0 bg-slate-950/60" />
         <div className="container relative h-full flex flex-col justify-center text-white px-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-4">
@@ -35,11 +31,9 @@ const Attractions = () => {
           
           <div className="grid md:grid-cols-2 gap-8 mb-10">
             <div className="bg-slate-900 rounded-lg overflow-hidden border border-gray-800 shadow-xl">
-              <img 
-                src="/lovable-uploads/40c1289b-5255-4931-97d4-ea42449175a0.png" 
-                alt="Salonikiou Beach" 
-                className="h-64 w-full object-cover"
-              />
+              <div className="h-64 w-full bg-slate-800 flex items-center justify-center">
+                <ImageIcon size={48} className="text-slate-600" />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-serif font-medium mb-2 text-white">
                   Salonikiou Beach (Kortiri Beach)
@@ -57,11 +51,9 @@ const Attractions = () => {
             </div>
             
             <div className="bg-slate-900 rounded-lg overflow-hidden border border-gray-800 shadow-xl">
-              <img 
-                src="/lovable-uploads/c4c4b32d-f0a7-4cdd-8922-827c8145531b.png" 
-                alt="Mount Athos" 
-                className="h-64 w-full object-cover"
-              />
+              <div className="h-64 w-full bg-slate-800 flex items-center justify-center">
+                <ImageIcon size={48} className="text-slate-600" />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-serif font-medium mb-2 text-white">Mount Athos Cruise</h3>
                 <p className="text-gray-300 mb-4">
@@ -83,12 +75,8 @@ const Attractions = () => {
           
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-slate-900 rounded-lg shadow-xl overflow-hidden border border-gray-800">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="/lovable-uploads/139a87fa-81bf-4b6f-9218-c82a60e08dfd.png" 
-                  alt="Pyrgadikia Village" 
-                  className="w-full h-full object-cover"
-                />
+              <div className="h-48 bg-slate-800 flex items-center justify-center">
+                <ImageIcon size={36} className="text-slate-600" />
               </div>
               <div className="p-5">
                 <h3 className="text-lg font-serif font-medium mb-2 text-white">Pyrgadikia</h3>
@@ -104,12 +92,8 @@ const Attractions = () => {
             </div>
             
             <div className="bg-slate-900 rounded-lg shadow-xl overflow-hidden border border-gray-800">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="/lovable-uploads/e899e9a6-0ba4-47b9-88db-9f01761b66a0.png" 
-                  alt="Agios Nikolaos" 
-                  className="w-full h-full object-cover"
-                />
+              <div className="h-48 bg-slate-800 flex items-center justify-center">
+                <ImageIcon size={36} className="text-slate-600" />
               </div>
               <div className="p-5">
                 <h3 className="text-lg font-serif font-medium mb-2 text-white">Agios Nikolaos</h3>
@@ -125,12 +109,8 @@ const Attractions = () => {
             </div>
             
             <div className="bg-slate-900 rounded-lg shadow-xl overflow-hidden border border-gray-800">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="/lovable-uploads/59e5e89f-a6f6-4e2f-a959-f19a5b5d4825.png" 
-                  alt="Ormos Panagias" 
-                  className="w-full h-full object-cover"
-                />
+              <div className="h-48 bg-slate-800 flex items-center justify-center">
+                <ImageIcon size={36} className="text-slate-600" />
               </div>
               <div className="p-5">
                 <h3 className="text-lg font-serif font-medium mb-2 text-white">Ormos Panagias</h3>
@@ -159,21 +139,15 @@ const Attractions = () => {
                 Caribbean-esque turquoise shallows), or Kalogria Beach (fine sand, popular for families).
               </p>
               <div className="grid grid-cols-3 gap-3">
-                <img 
-                  src="/lovable-uploads/84a19f38-57d0-4843-99c9-8472a4662ac8.png" 
-                  alt="Beach" 
-                  className="rounded-md h-24 w-full object-cover"
-                />
-                <img 
-                  src="/lovable-uploads/54dc8fff-a414-469c-bdc0-189c4f43e38b.png" 
-                  alt="Beach" 
-                  className="rounded-md h-24 w-full object-cover"
-                />
-                <img 
-                  src="/lovable-uploads/d3c93a92-905c-4671-83fe-6adc08720646.png" 
-                  alt="Beach" 
-                  className="rounded-md h-24 w-full object-cover"
-                />
+                <div className="rounded-md h-24 w-full bg-slate-800 flex items-center justify-center">
+                  <ImageIcon size={24} className="text-slate-600" />
+                </div>
+                <div className="rounded-md h-24 w-full bg-slate-800 flex items-center justify-center">
+                  <ImageIcon size={24} className="text-slate-600" />
+                </div>
+                <div className="rounded-md h-24 w-full bg-slate-800 flex items-center justify-center">
+                  <ImageIcon size={24} className="text-slate-600" />
+                </div>
               </div>
             </div>
             
