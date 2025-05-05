@@ -14,10 +14,10 @@ const Villas = () => {
       
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[500px] bg-cover bg-center bg-no-repeat" style={{
-      backgroundImage: "url('/lovable-uploads/812dfeea-e982-4df1-b8b4-4775371ca109.png')"
+      backgroundImage: "url('/lovable-uploads/d3e2077a-1823-4b3f-a63e-9b43d9afe6fe.png')"
     }}>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/40" />
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-villa-terracotta" />
+        <div className="absolute inset-0 bg-[#0F1524]/80" />
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-orange-600" />
         <div className="container relative h-full flex flex-col justify-center items-center text-center text-white px-4">
           <div className="max-w-3xl fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 text-white">
@@ -28,13 +28,13 @@ const Villas = () => {
             </p>
             
             <div className="flex flex-row gap-4 justify-center">
-              <Button asChild size="default" variant="default" className="w-36 text-sm">
+              <Button asChild size="default" variant="default" className="w-32 text-sm rounded-md">
                 <Link to="/booking" className="flex items-center justify-center">
                   <Book className="mr-2 h-4 w-4" />
                   Book Now
                 </Link>
               </Button>
-              <Button asChild size="default" variant="default" className="w-36 text-sm">
+              <Button asChild size="default" variant="default" className="w-32 text-sm rounded-md">
                 <Link to="/gallery" className="flex items-center justify-center">
                   <GalleryHorizontal className="mr-2 h-4 w-4" />
                   View Gallery

@@ -10,7 +10,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-amber-500 to-villa-terracotta text-white hover:opacity-90 hover:shadow-md hover:shadow-amber-500/20 transform hover:translate-y-[-1px]",
+        default: "bg-gradient-to-r from-amber-500 to-orange-600 text-white hover:opacity-90 hover:shadow-md hover:shadow-orange-500/20 transform hover:translate-y-[-1px]",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:shadow-md hover:shadow-destructive/20 transform hover:translate-y-[-1px]",
         outline:
@@ -21,9 +21,9 @@ const buttonVariants = cva(
         link: "text-amber-400 underline-offset-4 hover:underline hover:text-amber-300",
       },
       size: {
-        default: "h-9 px-4 py-1.5 text-sm",
+        default: "h-10 px-5 py-2 text-sm",
         sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-6 text-base",
+        lg: "h-11 rounded-md px-6 text-base",
         icon: "h-9 w-9",
       },
     },

@@ -13,9 +13,9 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative h-[100vh] min-h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center" style={{
-      backgroundImage: "url('/lovable-uploads/a9ecf5db-c898-4d3d-8065-cde9ceafb923.png')"
+      backgroundImage: "url('/lovable-uploads/d3e2077a-1823-4b3f-a63e-9b43d9afe6fe.png')"
     }}>
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-[#0F1524]/80" />
         <div className="container relative flex flex-col justify-center items-center text-white text-center px-4">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-8">
             Arteon Villas
@@ -24,13 +24,13 @@ const Index = () => {
             Your Perfect Halkidiki Getaway
           </p>
           <div className="flex flex-row gap-6">
-            <Button asChild size="lg" variant="default" className="w-48 h-14 text-lg">
+            <Button asChild size="lg" variant="default" className="w-40 h-12 text-base rounded-md">
               <Link to="/booking" className="flex items-center justify-center">
                 <Book className="mr-2 h-5 w-5" />
                 Book Now
               </Link>
             </Button>
-            <Button asChild size="lg" variant="default" className="w-48 h-14 text-lg">
+            <Button asChild size="lg" variant="default" className="w-40 h-12 text-base rounded-md">
               <Link to="/gallery" className="flex items-center justify-center">
                 <GalleryHorizontal className="mr-2 h-5 w-5" />
                 View Gallery
