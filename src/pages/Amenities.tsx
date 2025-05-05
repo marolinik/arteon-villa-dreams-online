@@ -9,7 +9,7 @@ const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47
 
 // Amenity images
 const poolImage = "/lovable-uploads/f141818c-0061-4e28-9ac8-1d309415dad2.png";
-const beachImage = "/lovable-uploads/1708fc5b-9ac9-4750-a28f-4e70a19fe340.png";
+const beachImage = "/lovable-uploads/6c6b8734-2898-4e3a-baef-7ba7f4b9914d.png";
 const bbqImage = "/lovable-uploads/5d5cf7e6-d036-4143-9758-43e42ccbd966.png";
 
 const Amenities = () => {
