@@ -165,7 +165,7 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="p-6 rounded-lg shadow-md bg-villa-sand">
               <div className="flex items-center mb-4">
                 <div className="w-10 h-10 bg-villa-teal rounded-full mr-3"></div>
                 <div>
