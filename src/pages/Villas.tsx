@@ -25,8 +25,8 @@ const Villas = () => {
         </div>
       </section>
       
-      <div className="text-white py-20 px-4 bg-villa-navy">
-        <div className="container mx-auto bg-villa-navy">
+      <div className="text-white py-20 px-4 bg-slate-800">
+        <div className="container mx-auto bg-slate-800">
           <SectionHeader title="Discover Your Perfect Villa" subtitle="Each villa offers a unique blend of contemporary design, comfort, and breathtaking sea views" className="mb-16" titleClassName="text-white" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
