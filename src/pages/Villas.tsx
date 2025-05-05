@@ -27,12 +27,12 @@ const Villas = () => {
             </p>
             
             <div className="flex flex-col md:flex-row gap-4 justify-center md:gap-6">
-              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white h-12 text-base font-medium rounded-md w-full md:w-auto px-6">
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white h-10 text-sm font-medium rounded-md w-full md:w-40 px-4">
                 <Link to="/booking">
                   Book Now
                 </Link>
               </Button>
-              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white h-12 text-base font-medium rounded-md w-full md:w-auto px-6">
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white h-10 text-sm font-medium rounded-md w-full md:w-40 px-4">
                 <Link to="/gallery">
                   View Gallery
                 </Link>
