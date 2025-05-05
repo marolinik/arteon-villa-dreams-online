@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import { ImageIcon, Waves, BedDouble, Wifi, Tv, MapPin, Utensils, Users, CalendarCheck } from "lucide-react";
 
-const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
+const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
 
 const Amenities = () => {
   return (
