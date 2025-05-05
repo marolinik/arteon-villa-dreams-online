@@ -1,10 +1,10 @@
+
 import { VillaCard } from "@/components/ui/villa-card";
 import { villas } from "@/data/villas";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
-import { Book, GalleryHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
 const Villas = () => {
   return <div className="min-h-screen flex flex-col bg-[#0F1524]">
@@ -26,15 +26,13 @@ const Villas = () => {
             </p>
             
             <div className="flex flex-row gap-4 justify-center">
-              <Button asChild size="default" variant="default" className="w-32 text-sm rounded-md">
-                <Link to="/booking" className="flex items-center justify-center">
-                  <Book className="mr-2 h-4 w-4" />
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-6 py-2 h-12 text-base font-medium rounded-md w-40">
+                <Link to="/booking">
                   Book Now
                 </Link>
               </Button>
-              <Button asChild size="default" variant="default" className="w-32 text-sm rounded-md">
-                <Link to="/gallery" className="flex items-center justify-center">
-                  <GalleryHorizontal className="mr-2 h-4 w-4" />
+              <Button asChild className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-6 py-2 h-12 text-base font-medium rounded-md w-40">
+                <Link to="/gallery">
                   View Gallery
                 </Link>
               </Button>

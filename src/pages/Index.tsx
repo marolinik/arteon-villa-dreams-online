@@ -1,10 +1,9 @@
-
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
-import { MapPin, Book, GalleryHorizontal } from "lucide-react";
+import { MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -26,14 +25,12 @@ const Index = () => {
           </p>
           <div className="flex flex-row gap-6">
             <Button asChild size="lg" variant="default" className="w-40 h-12 text-base rounded-md">
-              <Link to="/booking" className="flex items-center justify-center">
-                <Book className="mr-2 h-5 w-5" />
+              <Link to="/booking">
                 Book Now
               </Link>
             </Button>
             <Button asChild size="lg" variant="default" className="w-40 h-12 text-base rounded-md">
-              <Link to="/gallery" className="flex items-center justify-center">
-                <GalleryHorizontal className="mr-2 h-5 w-5" />
+              <Link to="/gallery">
                 View Gallery
               </Link>
             </Button>
@@ -57,20 +54,19 @@ const Index = () => {
               Arteon Villas sits about 5 km from the traditional village of Agios Nikolaos (Sithonia), giving a sense of seclusion while still being a short drive from local tavernas and shops. The closest airport is Thessaloniki International (SKG), approximately 100 km away (around 1.5 hours by car).
             </p>
             
-            <div className="flex items-center gap-2 text-villa-blue mb-6">
-              <MapPin size={20} />
+            <div className="flex items-center gap-2 mb-6">
+              <MapPin size={20} className="text-villa-terracotta" />
               <span className="font-medium text-villa-terracotta">Akti Salonikiou, Sithonia, Halkidiki, Greece</span>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/gallery">
-                <Button className="bg-villa-blue hover:bg-blue-800 w-40 flex items-center justify-center">
-                  <GalleryHorizontal className="mr-2 h-4 w-4" />
+                <Button className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 h-14 text-lg font-medium rounded-md w-64">
                   Explore the Property
                 </Button>
               </Link>
               <Link to="/attractions">
-                <Button className="bg-villa-blue hover:bg-blue-800 w-40 flex items-center justify-center">
+                <Button className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 h-14 text-lg font-medium rounded-md w-64">
                   Nearby Attractions
                 </Button>
               </Link>
@@ -210,9 +206,8 @@ const Index = () => {
           <p className="mb-8 max-w-2xl mx-auto text-white/90">
             Book your stay today and discover the perfect blend of luxury, comfort, and natural beauty at our seaside retreat in Halkidiki.
           </p>
-          <Button asChild size="lg" className="bg-villa-blue text-white hover:bg-blue-700 w-40 flex items-center justify-center">
+          <Button asChild size="lg" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 h-14 text-lg font-medium rounded-md w-64">
             <Link to="/booking">
-              <Book className="mr-2 h-4 w-4" />
               Book Your Villa Now
             </Link>
           </Button>
