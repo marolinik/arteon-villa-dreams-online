@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -31,7 +32,7 @@ const Index = () => {
       </HeroSection>
       
       {/* Overview Section */}
-      <section className="section-container bg-slate-950">
+      <section className="section-container bg-[#07091A]">
         <SectionHeader title="Welcome to Paradise" subtitle="Arteon Villas is a luxurious complex of four maisonette-style villas located in the tranquil area of Akti Salonikiou on the Sithonia peninsula of Halkidiki." centered />
         
         <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -74,7 +75,7 @@ const Index = () => {
       </section>
       
       {/* Our Villas Section */}
-      <section className="py-16 bg-slate-950">
+      <section className="py-16 bg-[#07091A]">
         <div className="container mx-auto px-4">
           <SectionHeader title="Our Luxurious Villas" subtitle="Choose from our four stunning sea-view villas, each designed to provide the ultimate comfort and relaxation during your Halkidiki getaway." centered />
           
@@ -85,7 +86,7 @@ const Index = () => {
       </section>
       
       {/* Amenities Section */}
-      <section className="section-container bg-slate-950">
+      <section className="section-container bg-[#07091A]">
         <SectionHeader title="Villa Amenities & Facilities" subtitle="Arteon Villas offers amenities that rival a boutique resort while maintaining the privacy and comfort of a holiday home." centered />
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -122,7 +123,7 @@ const Index = () => {
         
         <div className="text-center">
           <Link to="/amenities">
-            <Button size="lg" className="bg-villa-blue hover:bg-blue-800 w-40 flex items-center justify-center">
+            <Button size="lg" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white">
               Explore All Amenities
             </Button>
           </Link>
@@ -130,7 +131,7 @@ const Index = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section className="py-16 bg-slate-950">
+      <section className="py-16 bg-[#07091A]">
         <div className="container mx-auto px-4">
           <SectionHeader title="What Our Guests Say" subtitle="Arteon Villas boasts an exceptional reputation, with a 9.8/10 'Exceptional' rating based on guest reviews." centered titleClassName="text-white" className="text-white" />
           
@@ -177,7 +178,7 @@ const Index = () => {
       </section>
       
       {/* CTA Section */}
-      <section className="relative py-16 bg-[#172B4D]">
+      <section className="relative py-16 bg-[#07091A]">
         <div className="absolute inset-0 bg-villa-navy/70" />
         <div className="container relative mx-auto px-4 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">
