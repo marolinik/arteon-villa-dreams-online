@@ -46,6 +46,60 @@ export const galleryImages: GalleryImage[] = [
     alt: "Villas complex exterior view at night with pool",
     category: "exterior"
   },
+  {
+    id: "ext8",
+    url: "/lovable-uploads/f90b00ca-b712-4d26-9d3a-f76f279d77e4.png",
+    alt: "Arteon Villas entrance gate with stone wall and logo",
+    category: "exterior"
+  },
+  {
+    id: "ext9",
+    url: "/lovable-uploads/692f5445-79a9-4d82-9658-1be649739b84.png",
+    alt: "Aerial view of Arteon Villas with surrounding landscape",
+    category: "exterior"
+  },
+  {
+    id: "ext10",
+    url: "/lovable-uploads/c7171018-188d-46a0-ad20-1a702494d61a.png",
+    alt: "Aerial view of villas with beach and sea in background",
+    category: "exterior"
+  },
+  {
+    id: "ext11",
+    url: "/lovable-uploads/5ca9c1c1-4218-49a5-9053-c457c5585d03.png",
+    alt: "Swimming pool top view with sunbeds and deck",
+    category: "exterior"
+  },
+  {
+    id: "ext12",
+    url: "/lovable-uploads/265794f2-b9e4-4d1a-83bd-17a34d11eb5b.png",
+    alt: "Aerial view of swimming pool with deck and loungers",
+    category: "exterior"
+  },
+  {
+    id: "ext13",
+    url: "/lovable-uploads/06a6087d-810c-4044-8906-223147cd6010.png",
+    alt: "Swimming pool with umbrellas and sunbathing area",
+    category: "exterior"
+  },
+  {
+    id: "ext14",
+    url: "/lovable-uploads/cbc347b8-b737-424a-91b1-5f04a46601a0.png",
+    alt: "Aerial view of pool and sunbeds with private sandy area",
+    category: "exterior"
+  },
+  {
+    id: "ext15",
+    url: "/lovable-uploads/e30981e9-2b2f-4eda-86e3-0b01210f04c4.png",
+    alt: "Night view of villa with illuminated pool area",
+    category: "exterior"
+  },
+  {
+    id: "ext16",
+    url: "/lovable-uploads/11d163b8-9d98-482a-937f-34f8e539f307.png",
+    alt: "Poolside view with loungers and surrounding greenery",
+    category: "exterior"
+  },
   
   // Interior images
   {
@@ -115,6 +169,30 @@ export const galleryImages: GalleryImage[] = [
     alt: "Twin bedroom with air conditioning",
     category: "interior"
   },
+  {
+    id: "int12",
+    url: "/lovable-uploads/96364178-148d-42aa-8d14-147d9a3dc834.png",
+    alt: "Modern living room with TV and garden view",
+    category: "interior"
+  },
+  {
+    id: "int13",
+    url: "/lovable-uploads/b99d6d1b-4fe8-42ae-bb5b-fa538e5cf699.png",
+    alt: "Living room with sofa and stylish furniture",
+    category: "interior"
+  },
+  {
+    id: "int14",
+    url: "/lovable-uploads/6db330ac-b4a2-4b62-9111-8ef2355fcf4c.png",
+    alt: "Compact kitchen with dining table and garden view",
+    category: "interior"
+  },
+  {
+    id: "int15",
+    url: "/lovable-uploads/5dd9e5ed-841e-4699-95aa-b6da2fd0a65a.png",
+    alt: "Villa kitchen with dining area and outdoor access",
+    category: "interior"
+  },
   
   // Amenities images
   {
@@ -145,6 +223,12 @@ export const galleryImages: GalleryImage[] = [
     id: "amen5",
     url: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200",
     alt: "Pool with lounge chairs",
+    category: "amenities"
+  },
+  {
+    id: "amen6",
+    url: "/lovable-uploads/9286c447-c204-4708-8b80-58ed52813332.png",
+    alt: "Hammock with sun hat by the pool",
     category: "amenities"
   },
   
@@ -201,6 +285,18 @@ export const galleryImages: GalleryImage[] = [
     id: "sur9",
     url: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=1200",
     alt: "Aegean sea view",
+    category: "surroundings"
+  },
+  {
+    id: "sur10",
+    url: "/lovable-uploads/8d538fab-27db-4931-b8b2-582ec502b02d.png",
+    alt: "Sandy beach with rocks at sunset",
+    category: "surroundings"
+  },
+  {
+    id: "sur11",
+    url: "/lovable-uploads/a88c3819-e894-43a8-8be1-8bd8ab3bcaab.png",
+    alt: "Countryside surrounding the villas with hills and trees",
     category: "surroundings"
   }
 ];
