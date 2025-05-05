@@ -5,6 +5,8 @@ import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import { ImageIcon, Waves, BedDouble, Wifi, Tv, MapPin, Utensils, Users, CalendarCheck } from "lucide-react";
 
+const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
+
 const Amenities = () => {
   return (
     <div className="min-h-screen flex flex-col bg-[#0F1524]">
@@ -13,6 +15,7 @@ const Amenities = () => {
       <PageHero
         title="Villa Amenities & Facilities"
         subtitle="Arteon Villas offers amenities that rival a boutique resort while maintaining privacy and comfort"
+        backgroundImage={heroBackgroundImage}
       />
       
       <main className="py-16 flex-grow">

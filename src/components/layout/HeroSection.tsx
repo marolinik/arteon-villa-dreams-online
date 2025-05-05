@@ -6,6 +6,7 @@ interface HeroSectionProps {
   subtitle?: string;
   description?: string;
   height?: string;
+  backgroundImage?: string;
   children?: ReactNode;
 }
 
@@ -14,11 +15,20 @@ const HeroSection = ({
   subtitle,
   description,
   height = "h-[100vh]",
+  backgroundImage,
   children
 }: HeroSectionProps) => {
-  return <section className={`relative ${height} min-h-[600px] flex items-center justify-center overflow-hidden`}>
-      {/* Plain background color */}
-      <div className="absolute inset-0 bg-[#07091A]" />
+  return (
+    <section className={`relative ${height} min-h-[600px] flex items-center justify-center overflow-hidden`}>
+      {/* Background - either image or plain color */}
+      {backgroundImage ? (
+        <>
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }} />
+          <div className="absolute inset-0 bg-[#0F1524]/70" /> {/* Overlay for better text visibility */}
+        </>
+      ) : (
+        <div className="absolute inset-0 bg-[#07091A]" />
+      )}
       
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 text-center">
@@ -39,7 +49,8 @@ const HeroSection = ({
         )}
         {children && <div className="mt-8 flex justify-center">{children}</div>}
       </div>
-    </section>;
+    </section>
+  );
 };
 
 export default HeroSection;

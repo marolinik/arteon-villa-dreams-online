@@ -1,26 +1,21 @@
-
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/layout/PageHero";
 import { MapPin, ImageIcon } from "lucide-react";
+
+const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
 
 const Attractions = () => {
   return (
     <div className="min-h-screen flex flex-col bg-[#0F1524]">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] bg-[#172B4D] flex items-center justify-center">
-        <div className="absolute inset-0 bg-[#0F1524]/60" />
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white fade-in">
-            Nearby Attractions
-          </h1>
-          <p className="text-xl text-amber-400 max-w-2xl mx-auto fade-in">
-            Explore the beautiful surroundings and activities near Arteon Villas
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="Nearby Attractions"
+        subtitle="Explore the beautiful surroundings and activities near Arteon Villas"
+        backgroundImage={heroBackgroundImage}
+      />
       
       <main className="py-16 flex-grow">
         <div className="container mx-auto px-4">

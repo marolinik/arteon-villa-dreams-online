@@ -12,6 +12,8 @@ import Footer from "@/components/layout/Footer";
 import { ImageIcon } from "lucide-react";
 import PageHero from "@/components/layout/PageHero";
 
+const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
+
 const Booking = () => {
   const location = useLocation();
   const [selectedVilla, setSelectedVilla] = useState<Villa | null>(null);
@@ -36,6 +38,7 @@ const Booking = () => {
       <PageHero
         title="Book Your Stay"
         subtitle="Select a villa and book your perfect getaway in Halkidiki"
+        backgroundImage={heroBackgroundImage}
       />
       
       <main className="py-12 flex-grow">

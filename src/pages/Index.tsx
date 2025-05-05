@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -9,17 +8,17 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/layout/HeroSection";
 
-// We'll remove this unused variable since we no longer need the background image
-// const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
+const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
 
 const Index = () => {
   return <>
       <Navbar />
       
-      {/* Hero Section with Image Behind Text */}
+      {/* Hero Section with Background Image */}
       <HeroSection
         title="Arteon Villas"
         subtitle="Your Perfect Halkidiki Getaway"
+        backgroundImage={heroBackgroundImage}
       >
         <div className="flex flex-wrap gap-6 justify-center">
           <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">

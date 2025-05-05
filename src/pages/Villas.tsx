@@ -7,6 +7,8 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Link } from "react-router-dom";
 import HeroSection from "@/components/layout/HeroSection";
 
+const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
+
 const Villas = () => {
   return (
     <div className="min-h-screen flex flex-col bg-[#07091A]">
@@ -16,6 +18,7 @@ const Villas = () => {
         title="Arteon Villas"
         subtitle="Your Perfect Halkidiki Getaway"
         height="h-[70vh]"
+        backgroundImage={heroBackgroundImage}
       >
         <div className="flex flex-wrap gap-6 justify-center">
           <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">

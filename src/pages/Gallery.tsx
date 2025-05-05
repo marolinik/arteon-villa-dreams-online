@@ -8,6 +8,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 
+const heroBackgroundImage = "/lovable-uploads/6c3035bf-2fa8-4fc5-a182-0479268fcdad.png";
+
 const Gallery = () => {
   const [category, setCategory] = useState<string | undefined>(undefined);
   
@@ -28,6 +30,7 @@ const Gallery = () => {
       <PageHero
         title="Our Gallery"
         subtitle="Explore images of our beautiful villas and their surroundings"
+        backgroundImage={heroBackgroundImage}
       />
       
       <main className="py-12 flex-grow bg-[#0F1524]">
