@@ -6,32 +6,33 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Book, GalleryHorizontal } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
 const Index = () => {
   return <>
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] bg-cover bg-center bg-no-repeat" style={{
-      backgroundImage: "url('/lovable-uploads/cfb2646a-0771-4462-b964-f1e6f79e6642.png')"
+      <section className="relative h-[100vh] min-h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center" style={{
+      backgroundImage: "url('/lovable-uploads/a9ecf5db-c898-4d3d-8065-cde9ceafb923.png')"
     }}>
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="container relative h-full flex flex-col justify-center items-center text-white text-center px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6">
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="container relative flex flex-col justify-center items-center text-white text-center px-4">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-8">
             Arteon Villas
           </h1>
-          <p className="text-xl md:text-2xl font-serif mb-8 max-w-2xl">
+          <p className="text-xl md:text-3xl font-serif mb-16 max-w-3xl">
             Your Perfect Halkidiki Getaway
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="bg-villa-blue hover:bg-blue-800 w-40">
+          <div className="flex flex-row gap-6">
+            <Button asChild size="lg" variant="default" className="w-48 h-14 text-lg">
               <Link to="/booking" className="flex items-center justify-center">
-                <Book className="mr-2 h-4 w-4" />
+                <Book className="mr-2 h-5 w-5" />
                 Book Now
               </Link>
             </Button>
-            <Button asChild size="lg" className="bg-villa-blue hover:bg-blue-800 w-40">
+            <Button asChild size="lg" variant="default" className="w-48 h-14 text-lg">
               <Link to="/gallery" className="flex items-center justify-center">
-                <GalleryHorizontal className="mr-2 h-4 w-4" />
+                <GalleryHorizontal className="mr-2 h-5 w-5" />
                 View Gallery
               </Link>
             </Button>
@@ -186,7 +187,9 @@ const Index = () => {
       
       {/* CTA Section */}
       <section className="relative py-16 bg-center bg-cover" style={{
-      backgroundImage: "url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')"
+      backgroundImage: "url('/lovable-uploads/a9ecf5db-c898-4d3d-8065-cde9ceafb923.png')",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
     }}>
         <div className="absolute inset-0 bg-villa-navy/70" />
         <div className="container relative mx-auto px-4 text-center text-white">
@@ -208,4 +211,5 @@ const Index = () => {
       <Footer />
     </>;
 };
+
 export default Index;
