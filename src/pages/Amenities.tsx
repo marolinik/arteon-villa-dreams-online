@@ -1,4 +1,3 @@
-
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -10,7 +9,7 @@ const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47
 // Amenity images
 const poolImage = "/lovable-uploads/f141818c-0061-4e28-9ac8-1d309415dad2.png";
 const beachImage = "/lovable-uploads/6c6b8734-2898-4e3a-baef-7ba7f4b9914d.png";
-const bbqImage = "/lovable-uploads/5d5cf7e6-d036-4143-9758-43e42ccbd966.png";
+const bbqImage = "/lovable-uploads/31b09762-99ce-4978-b357-bd4e5876c1f1.png";
 
 const Amenities = () => {
   return (
