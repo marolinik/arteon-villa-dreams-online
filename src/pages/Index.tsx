@@ -16,7 +16,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[600px] bg-cover bg-center bg-no-repeat" 
         style={{
-          backgroundImage: "url('https://arteonvillas.com/wp-content/uploads/2022/06/drone02sm.jpg')"
+          backgroundImage: "url('/lovable-uploads/cfb2646a-0771-4462-b964-f1e6f79e6642.png')"
         }}
       >
         <div className="absolute inset-0 bg-black/30" />
