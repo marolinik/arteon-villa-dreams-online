@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -7,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
 const Index = () => {
   return <>
       <Navbar />
@@ -83,11 +81,11 @@ const Index = () => {
       </section>
       
       {/* Our Villas Section */}
-      <section className="py-16" style={{
+      <section style={{
       backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')",
       backgroundSize: "cover",
       backgroundPosition: "center"
-    }}>
+    }} className="py-16 bg-slate-500">
         <div className="container mx-auto px-4">
           <SectionHeader title="Our Luxurious Villas" subtitle="Choose from our four stunning sea-view villas, each designed to provide the ultimate comfort and relaxation during your Halkidiki getaway." centered />
           
