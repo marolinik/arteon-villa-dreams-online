@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BookingDate } from "@/types";
+import { DateRange } from "react-day-picker";
 
 interface DateRangePickerProps {
   villaId: string;
@@ -21,10 +22,7 @@ export const DateRangePicker = ({
   onDateRangeChange,
   className 
 }: DateRangePickerProps) => {
-  const [selectedRange, setSelectedRange] = useState<{
-    from: Date | undefined;
-    to: Date | undefined;
-  }>({
+  const [selectedRange, setSelectedRange] = useState<DateRange>({
     from: undefined,
     to: undefined
   });
