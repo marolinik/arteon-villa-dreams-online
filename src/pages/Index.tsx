@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -7,6 +8,7 @@ import { MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+
 const Index = () => {
   return <>
       <Navbar />
@@ -143,48 +145,58 @@ const Index = () => {
       
       {/* Testimonials Section */}
       <section style={{
-      backgroundImage: "linear-gradient(to bottom, rgba(28,93,153,0.9), rgba(28,93,153,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone02sm.jpg')",
+      backgroundImage: "linear-gradient(to bottom, rgba(15,21,36,0.95), rgba(15,21,36,0.92)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone02sm.jpg')",
       backgroundSize: "cover",
       backgroundPosition: "center"
     }} className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
           <SectionHeader title="What Our Guests Say" subtitle="Arteon Villas boasts an exceptional reputation, with a 9.8/10 'Exceptional' rating based on guest reviews." centered titleClassName="text-white" className="text-white" />
           
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div className="p-6 rounded-lg shadow-md bg-villa-sand">
-              <div className="flex items-center mb-4">
-                <Avatar className="w-12 h-12 mr-4">
-                  <AvatarImage src="/lovable-uploads/60e6001b-ba2f-4b6e-831e-3a51e3d36b44.png" alt="Maria K." />
-                  <AvatarFallback>MK</AvatarFallback>
-                </Avatar>
-                <div>
-                  <h4 className="text-[#717171] text-base font-bold">Maria K.</h4>
-                  <div className="flex text-[#717171]">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="p-0 rounded-lg overflow-hidden shadow-lg bg-white">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/lovable-uploads/60e6001b-ba2f-4b6e-831e-3a51e3d36b44.png" 
+                  alt="Maria K." 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <div>
+                    <h4 className="text-[#0F1524] text-lg font-semibold">Maria K.</h4>
+                    <div className="flex text-amber-500">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
                   </div>
                 </div>
+                <p className="text-[#5d6970] italic">
+                  "The villa was absolutely stunning, with amazing views of the sea. Everything was spotlessly clean and the hosts were incredibly welcoming. We'll definitely be coming back next year!"
+                </p>
               </div>
-              <p className="text-[#5d6970] italic">
-                "The villa was absolutely stunning, with amazing views of the sea. Everything was spotlessly clean and the hosts were incredibly welcoming. We'll definitely be coming back next year!"
-              </p>
             </div>
             
-            <div className="p-6 rounded-lg shadow-md bg-villa-sand">
-              <div className="flex items-center mb-4">
-                <Avatar className="w-12 h-12 mr-4">
-                  <AvatarImage src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=120&h=120" alt="Thomas L." />
-                  <AvatarFallback>TL</AvatarFallback>
-                </Avatar>
-                <div>
-                  <h4 className="text-white font-medium">Thomas L.</h4>
-                  <div className="flex text-yellow-400">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            <div className="p-0 rounded-lg overflow-hidden shadow-lg bg-white">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&h=400" 
+                  alt="Thomas L." 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <div>
+                    <h4 className="text-[#0F1524] text-lg font-semibold">Thomas L.</h4>
+                    <div className="flex text-amber-500">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
                   </div>
                 </div>
+                <p className="text-[#5d6970] italic">
+                  "Perfect location, just steps from a beautiful, uncrowded beach. The villa had everything we needed, and the pool area was fantastic. Highly recommend for families looking for a peaceful retreat."
+                </p>
               </div>
-              <p className="text-[#5d6970] italic">
-                "Perfect location, just steps from a beautiful, uncrowded beach. The villa had everything we needed, and the pool area was fantastic. Highly recommend for families looking for a peaceful retreat."
-              </p>
             </div>
           </div>
         </div>
@@ -204,7 +216,7 @@ const Index = () => {
           <p className="mb-8 max-w-2xl mx-auto text-white/90">
             Book your stay today and discover the perfect blend of luxury, comfort, and natural beauty at our seaside retreat in Halkidiki.
           </p>
-          <Button asChild size="lg" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 h-14 text-lg font-medium rounded-md w-64">
+          <Button asChild size="lg" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 h-14 text-base font-medium rounded-md w-64">
             <Link to="/booking">
               Book Your Villa Now
             </Link>
