@@ -8,7 +8,7 @@ import { BedDouble, Wifi, Tv, MapPin, Utensils, Users, CalendarCheck } from "luc
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
 
 // Amenity images
-const poolImage = "/lovable-uploads/c232481a-4e45-4abf-8303-8255f283f461.png";
+const poolImage = "/lovable-uploads/7c28530e-41fb-420b-88c3-8ddde6fc4d8e.png";
 const beachImage = "/lovable-uploads/1708fc5b-9ac9-4750-a28f-4e70a19fe340.png";
 const bbqImage = "/lovable-uploads/5d5cf7e6-d036-4143-9758-43e42ccbd966.png";
 
