@@ -1,21 +1,15 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="bg-[#0F1524] text-gray-300 pt-16 pb-8 border-t border-gray-800">
+  return <footer className="bg-[#0F1524] text-gray-300 pt-16 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <div className="flex items-center mb-4">
-              <img 
-                src="/lovable-uploads/4b93e28a-3d4f-4e75-958b-2d436ebecdf7.png" 
-                alt="Arteon Villas Logo" 
-                className="h-8 w-8 mr-2"
-              />
+              <img src="/lovable-uploads/4b93e28a-3d4f-4e75-958b-2d436ebecdf7.png" alt="Arteon Villas Logo" className="h-8 w-8 mr-2" />
               <h3 className="text-2xl font-serif font-semibold text-white">Arteon Villas</h3>
             </div>
-            <p className="mb-6 text-gray-400">Your Perfect Seaside Escape in Halkidiki</p>
+            <p className="mb-6 text-villa-cream">Your Perfect Seaside Escape in Halkidiki</p>
             <div className="flex items-center mb-4 group cursor-pointer hover:text-amber-400 transition-colors">
               <MapPin size={18} className="mr-3 text-villa-terracotta group-hover:text-amber-400 transition-colors" />
               <span>Akti Salonikiou, Sithonia, Halkidiki, Greece</span>
@@ -133,8 +127,6 @@ const Footer = () => {
           <p>&copy; {new Date().getFullYear()} Arteon Villas. All rights reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
