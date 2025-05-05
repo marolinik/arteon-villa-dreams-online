@@ -1,3 +1,4 @@
+
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -10,6 +11,7 @@ const mountAthosImage = "/lovable-uploads/16e396f9-26ed-498e-8812-e9ec4baee2f3.p
 const pyrgadikiaImage = "/lovable-uploads/933815bb-5a56-43a4-ada7-4c974046bce7.png";
 const agiosNikolaosImage = "/lovable-uploads/912c27ba-131e-4e1c-9fc3-1608dbf2df69.png";
 const ormosPanagiasImage = "/lovable-uploads/be3e1f96-33fd-46eb-9e18-f84f96336e90.png";
+const metagkitsiImage = "/lovable-uploads/44f74968-2505-411c-8ba8-56057e31ffd4.png";
 
 // Beach images for the Beautiful Beaches section
 const vourvourouBeachImage = "/lovable-uploads/db686af8-1d18-4972-a594-61131db2aef8.png";
@@ -88,7 +90,7 @@ const Attractions = () => {
           <div className="mb-16">
             <SectionHeader title="Dining Nearby" titleClassName="text-white" />
             
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700">
                 <div className="h-48 bg-[#172B4D] overflow-hidden">
                   <img 
@@ -148,6 +150,27 @@ const Attractions = () => {
                   <div className="flex items-center text-amber-400 text-sm">
                     <MapPin size={16} className="mr-2" />
                     <span>8-9km (10 min drive)</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700">
+                <div className="h-48 bg-[#172B4D] overflow-hidden">
+                  <img 
+                    src={metagkitsiImage}
+                    alt="Metagkitsi village with stone houses and outdoor dining"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-serif font-medium mb-2 text-white">Metagkitsi</h3>
+                  <p className="text-gray-300 mb-3">
+                    A nearby traditional village, just 5.2 km away. Known for its tranquil charm, it features stone-built houses, 
+                    a small central square, and a few cozy tavernas offering local delicacies.
+                  </p>
+                  <div className="flex items-center text-amber-400 text-sm">
+                    <MapPin size={16} className="mr-2" />
+                    <span>5.2km (7 min drive)</span>
                   </div>
                 </div>
               </div>
