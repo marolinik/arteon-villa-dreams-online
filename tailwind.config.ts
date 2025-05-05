@@ -59,7 +59,7 @@ export default {
 					green: "#89B270",
 					sand: "#F2E1C2",
 					terracotta: "#E57F50",
-					navy: "#172B4D",
+					navy: "#0F1524",
 					cream: "#F8F5F0"
 				},
 				sidebar: {

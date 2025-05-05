@@ -30,7 +30,7 @@ const Navbar = () => {
   };
   
   return (
-    <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+    <header className="sticky top-0 z-50 bg-[#0F1524] border-b border-gray-800">
       <div className="container mx-auto px-4 py-4 md:py-5 flex justify-between items-center">
         <Link to="/" className="flex items-center">
           <img 
@@ -59,7 +59,7 @@ const Navbar = () => {
                   {link.name}
                   <ChevronDown size={16} className="ml-1 group-hover:rotate-180 transition-transform duration-300" />
                 </Link>
-                <div className="absolute left-0 mt-1 w-48 bg-gray-800 shadow-lg rounded-md overflow-hidden z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-700">
+                <div className="absolute left-0 mt-1 w-48 bg-[#0F1524] shadow-lg rounded-md overflow-hidden z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-700">
                   {link.submenu.map((subItem) => (
                     <Link 
                       key={subItem.name} 
@@ -102,7 +102,7 @@ const Navbar = () => {
       
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-gray-900 shadow-lg border-t border-gray-800 animate-fade-in z-50">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0F1524] shadow-lg border-t border-gray-800 animate-fade-in z-50">
           <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
             {navLinks.map((link) => (
               link.submenu ? (

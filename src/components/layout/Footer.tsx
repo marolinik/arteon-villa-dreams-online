@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Anchor } from 'lucid
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-16 pb-8 border-t border-gray-800">
+    <footer className="bg-[#0F1524] text-gray-300 pt-16 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
@@ -27,13 +27,13 @@ const Footer = () => {
             </div>
             
             <div className="flex space-x-4">
-              <a href="#" className="bg-gray-800 hover:bg-gradient-to-r hover:from-amber-500 hover:to-villa-terracotta w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:translate-y-[-3px] shadow-lg hover:shadow-amber-500/25">
+              <a href="#" className="bg-[#172237] hover:bg-gradient-to-r hover:from-amber-500 hover:to-villa-terracotta w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:translate-y-[-3px] shadow-lg hover:shadow-amber-500/25">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="bg-gray-800 hover:bg-gradient-to-r hover:from-amber-500 hover:to-villa-terracotta w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:translate-y-[-3px] shadow-lg hover:shadow-amber-500/25">
+              <a href="#" className="bg-[#172237] hover:bg-gradient-to-r hover:from-amber-500 hover:to-villa-terracotta w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:translate-y-[-3px] shadow-lg hover:shadow-amber-500/25">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="bg-gray-800 hover:bg-gradient-to-r hover:from-amber-500 hover:to-villa-terracotta w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:translate-y-[-3px] shadow-lg hover:shadow-amber-500/25">
+              <a href="#" className="bg-[#172237] hover:bg-gradient-to-r hover:from-amber-500 hover:to-villa-terracotta w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:translate-y-[-3px] shadow-lg hover:shadow-amber-500/25">
                 <Twitter size={18} />
               </a>
             </div>

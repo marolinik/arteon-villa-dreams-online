@@ -1,4 +1,6 @@
+
 import { cn } from "@/lib/utils";
+
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
@@ -6,6 +8,7 @@ interface SectionHeaderProps {
   className?: string;
   titleClassName?: string;
 }
+
 export const SectionHeader = ({
   title,
   subtitle,
