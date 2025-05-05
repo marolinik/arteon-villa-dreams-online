@@ -16,12 +16,14 @@ import AdminAmenities from "@/pages/admin/AdminAmenities";
 import AdminAttractions from "@/pages/admin/AdminAttractions";
 import Amenities from "@/pages/Amenities";
 import Attractions from "@/pages/Attractions";
+import Villas from "@/pages/Villas";
 import "./App.css";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Index />} />
+      <Route path="/villas" element={<Villas />} />
       <Route path="/villas/:slug" element={<VillaDetail />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/booking" element={<Booking />} />
