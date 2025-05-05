@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -7,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
 const Index = () => {
   return <>
       <Navbar />
@@ -48,10 +46,10 @@ const Index = () => {
             <p className="mb-4 text-villa-cream">
               Each villa enjoys stunning sea views and shares a well-maintained garden with a swimming pool and sun terrace, perfect for relaxation. On-site private parking is available for guests' convenience.
             </p>
-            <p className="mb-4 text-villa-cream">
+            <p className="mb-4 text-villa-cream text-justify">
               The property is just a few minutes' walk (approx. 100 m) from the quiet Salonikiou Beach, offering guests a peaceful seaside retreat.
             </p>
-            <p className="mb-6 text-villa-cream">
+            <p className="mb-6 text-villa-cream text-justify">
               Arteon Villas sits about 5 km from the traditional village of Agios Nikolaos (Sithonia), giving a sense of seclusion while still being a short drive from local tavernas and shops. The closest airport is Thessaloniki International (SKG), approximately 100 km away (around 1.5 hours by car).
             </p>
             
@@ -75,17 +73,9 @@ const Index = () => {
           </div>
           
           <div className="rounded-lg overflow-hidden shadow-lg h-[450px]">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.9032757437003!2d23.691418775298548!3d40.29760116288237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a895000c2d8971%3A0x580e197d9810c112!2sARTEON%20VILLAS!5e1!3m2!1ssr!2srs!4v1746447525225!5m2!1ssr!2srs" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Arteon Villas Location"
-              className="w-full h-full"
-            ></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.9032757437003!2d23.691418775298548!3d40.29760116288237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a895000c2d8971%3A0x580e197d9810c112!2sARTEON%20VILLAS!5e1!3m2!1ssr!2srs!4v1746447525225!5m2!1ssr!2srs" width="100%" height="100%" style={{
+            border: 0
+          }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Arteon Villas Location" className="w-full h-full"></iframe>
           </div>
         </div>
       </section>
@@ -219,4 +209,3 @@ const Index = () => {
     </>;
 };
 export default Index;
-
