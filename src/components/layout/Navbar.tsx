@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Anchor, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,10 +30,11 @@ const Navbar = () => {
   };
   
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+    <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
       <div className="container mx-auto px-4 py-4 md:py-5 flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <h1 className="text-xl md:text-2xl font-serif font-bold text-villa-navy">
+          <Anchor className="text-amber-400 mr-2" size={24} />
+          <h1 className="text-xl md:text-2xl font-serif font-bold text-white">
             Arteon Villas
           </h1>
         </Link>
@@ -45,20 +46,21 @@ const Navbar = () => {
               <div key={link.name} className="relative group">
                 <Link 
                   to={link.path}
-                  className={`font-medium hover:text-villa-blue transition-colors ${
+                  className={`font-medium hover:text-amber-400 transition-all duration-300 flex items-center ${
                     location.pathname.includes(link.path) 
-                      ? 'text-villa-blue border-b-2 border-villa-blue' 
-                      : 'text-gray-700'
+                      ? 'text-amber-400 border-b-2 border-amber-400' 
+                      : 'text-gray-300'
                   }`}
                 >
                   {link.name}
+                  <ChevronDown size={16} className="ml-1 group-hover:rotate-180 transition-transform duration-300" />
                 </Link>
-                <div className="absolute left-0 mt-1 w-48 bg-white shadow-lg rounded-md overflow-hidden z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                <div className="absolute left-0 mt-1 w-48 bg-gray-800 shadow-lg rounded-md overflow-hidden z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-700">
                   {link.submenu.map((subItem) => (
                     <Link 
                       key={subItem.name} 
                       to={subItem.path}
-                      className="block px-4 py-2 text-gray-700 hover:bg-villa-blue/10 hover:text-villa-blue"
+                      className="block px-4 py-3 text-gray-300 hover:bg-gradient-to-r hover:from-amber-500 hover:to-villa-terracotta hover:text-white transition-all duration-300"
                     >
                       {subItem.name}
                     </Link>
@@ -69,17 +71,17 @@ const Navbar = () => {
               <Link 
                 key={link.name}
                 to={link.path}
-                className={`font-medium hover:text-villa-blue transition-colors ${
+                className={`font-medium hover:text-amber-400 transition-colors ${
                   isActive(link.path) 
-                    ? 'text-villa-blue border-b-2 border-villa-blue' 
-                    : 'text-gray-700'
+                    ? 'text-amber-400 border-b-2 border-amber-400' 
+                    : 'text-gray-300'
                 }`}
               >
                 {link.name}
               </Link>
             )
           ))}
-          <Button className="bg-villa-blue hover:bg-blue-800 text-white">
+          <Button className="bg-gradient-to-r from-amber-500 to-villa-terracotta hover:opacity-90 text-white transition-all duration-300 transform hover:translate-y-[-3px] shadow-lg hover:shadow-amber-500/25">
             <Link to="/booking">Book Now</Link>
           </Button>
         </nav>
@@ -87,7 +89,7 @@ const Navbar = () => {
         {/* Mobile menu button */}
         <button 
           onClick={toggleMenu}
-          className="md:hidden text-gray-700"
+          className="md:hidden text-gray-300 hover:text-amber-400 transition-colors"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -96,12 +98,12 @@ const Navbar = () => {
       
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg animate-fade-in z-50">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-gray-900 shadow-lg border-t border-gray-800 animate-fade-in z-50">
           <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
             {navLinks.map((link) => (
               link.submenu ? (
                 <div key={link.name} className="py-2">
-                  <div className="px-3 font-medium text-gray-700 mb-1">
+                  <div className="px-3 font-medium text-amber-400 mb-1">
                     {link.name}
                   </div>
                   <div className="pl-6">
@@ -111,9 +113,9 @@ const Navbar = () => {
                         to={subItem.path}
                         className={`py-2 px-3 block ${
                           isActive(subItem.path)
-                            ? 'text-villa-blue font-medium' 
-                            : 'text-gray-600'
-                        }`}
+                            ? 'text-amber-400 font-medium' 
+                            : 'text-gray-300 hover:text-amber-400'
+                        } transition-colors`}
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {subItem.name}
@@ -127,16 +129,16 @@ const Navbar = () => {
                   to={link.path}
                   className={`py-2 px-3 block ${
                     isActive(link.path) 
-                      ? 'text-villa-blue font-medium' 
-                      : 'text-gray-700'
-                  }`}
+                      ? 'text-amber-400 font-medium' 
+                      : 'text-gray-300 hover:text-amber-400'
+                  } transition-colors`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               )
             ))}
-            <Button className="bg-villa-blue hover:bg-blue-800 text-white w-full">
+            <Button className="bg-gradient-to-r from-amber-500 to-villa-terracotta hover:opacity-90 text-white w-full transition-all duration-300">
               <Link to="/booking" className="w-full" onClick={() => setMobileMenuOpen(false)}>
                 Book Now
               </Link>
