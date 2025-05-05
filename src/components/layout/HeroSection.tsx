@@ -2,8 +2,9 @@
 import { ReactNode } from "react";
 
 interface HeroSectionProps {
-  title: string;
+  title?: string;
   subtitle?: string;
+  description?: string;
   height?: string;
   backgroundImage?: string;
   children?: ReactNode;
@@ -11,13 +12,14 @@ interface HeroSectionProps {
 
 const HeroSection = ({ 
   title, 
-  subtitle, 
+  subtitle,
+  description, 
   height = "h-[100vh]",
   backgroundImage,
   children 
 }: HeroSectionProps) => {
   return (
-    <section className={`relative ${height} min-h-[600px] flex items-center justify-center overflow-hidden`}>
+    <section className={`relative ${height} min-h-[600px] flex items-center overflow-hidden`}>
       {/* Plain background color fallback */}
       <div className="absolute inset-0 bg-[#07091A]" />
       
@@ -30,17 +32,24 @@ const HeroSection = ({
         />
       )}
       
-      {/* Optional overlay for better text readability */}
-      <div className="absolute inset-0 bg-[#07091A]/60 z-10"></div>
+      {/* Semi-transparent overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/40 z-10"></div>
       
       {/* Content */}
-      <div className="container relative z-20 flex flex-col justify-center items-center text-white text-center px-4">
-        <h1 className="text-6xl md:text-8xl font-serif font-bold mb-8">
-          {title}
-        </h1>
+      <div className="container relative z-20 flex flex-col justify-end items-start text-white px-4 pb-32">
+        {title && (
+          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 text-white">
+            {title}
+          </h1>
+        )}
         {subtitle && (
-          <p className="text-xl md:text-3xl text-amber-400 font-serif mb-16 max-w-3xl">
+          <h2 className="text-5xl md:text-7xl font-serif font-bold mb-8 text-white">
             {subtitle}
+          </h2>
+        )}
+        {description && (
+          <p className="text-xl md:text-2xl text-[#9fd580] font-normal mb-16 max-w-3xl">
+            {description}
           </p>
         )}
         {children}
