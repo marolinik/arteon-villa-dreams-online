@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -7,18 +6,14 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Book, GalleryHorizontal } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
 const Index = () => {
-  return (
-    <>
+  return <>
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] bg-cover bg-center bg-no-repeat" 
-        style={{
-          backgroundImage: "url('/lovable-uploads/cfb2646a-0771-4462-b964-f1e6f79e6642.png')"
-        }}
-      >
+      <section className="relative h-[80vh] min-h-[600px] bg-cover bg-center bg-no-repeat" style={{
+      backgroundImage: "url('/lovable-uploads/cfb2646a-0771-4462-b964-f1e6f79e6642.png')"
+    }}>
         <div className="absolute inset-0 bg-black/30" />
         <div className="container relative h-full flex flex-col justify-center items-center text-white text-center px-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6">
@@ -46,15 +41,11 @@ const Index = () => {
       
       {/* Overview Section */}
       <section className="section-container">
-        <SectionHeader 
-          title="Welcome to Paradise" 
-          subtitle="Arteon Villas is a luxurious complex of four maisonette-style villas located in the tranquil area of Akti Salonikiou on the Sithonia peninsula of Halkidiki."
-          centered
-        />
+        <SectionHeader title="Welcome to Paradise" subtitle="Arteon Villas is a luxurious complex of four maisonette-style villas located in the tranquil area of Akti Salonikiou on the Sithonia peninsula of Halkidiki." centered />
         
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <p className="mb-4 text-gray-700">
+            <p className="mb-4 text-villa-cream">
               Each villa enjoys stunning sea views and shares a well-maintained garden with a swimming pool and sun terrace, perfect for relaxation. On-site private parking is available for guests' convenience.
             </p>
             <p className="mb-4 text-gray-700">
@@ -85,43 +76,29 @@ const Index = () => {
           </div>
           
           <div className="rounded-lg overflow-hidden shadow-lg">
-            <img 
-              src="https://arteonvillas.com/wp-content/uploads/2022/06/arteonvillas27.jpg" 
-              alt="Arteon Villas" 
-              className="w-full h-full object-cover"
-            />
+            <img src="https://arteonvillas.com/wp-content/uploads/2022/06/arteonvillas27.jpg" alt="Arteon Villas" className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
       
       {/* Our Villas Section */}
-      <section className="py-16" style={{ 
-        backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }}>
+      <section className="py-16" style={{
+      backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    }}>
         <div className="container mx-auto px-4">
-          <SectionHeader 
-            title="Our Luxurious Villas" 
-            subtitle="Choose from our four stunning sea-view villas, each designed to provide the ultimate comfort and relaxation during your Halkidiki getaway."
-            centered
-          />
+          <SectionHeader title="Our Luxurious Villas" subtitle="Choose from our four stunning sea-view villas, each designed to provide the ultimate comfort and relaxation during your Halkidiki getaway." centered />
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {villas.map((villa) => (
-              <VillaCard key={villa.id} villa={villa} />
-            ))}
+            {villas.map(villa => <VillaCard key={villa.id} villa={villa} />)}
           </div>
         </div>
       </section>
       
       {/* Amenities Section */}
       <section className="section-container">
-        <SectionHeader 
-          title="Villa Amenities & Facilities" 
-          subtitle="Arteon Villas offers amenities that rival a boutique resort while maintaining the privacy and comfort of a holiday home."
-          centered
-        />
+        <SectionHeader title="Villa Amenities & Facilities" subtitle="Arteon Villas offers amenities that rival a boutique resort while maintaining the privacy and comfort of a holiday home." centered />
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
@@ -165,19 +142,13 @@ const Index = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section className="py-16" style={{ 
-        backgroundImage: "linear-gradient(to bottom, rgba(28,93,153,0.9), rgba(28,93,153,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone02sm.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }}>
+      <section className="py-16" style={{
+      backgroundImage: "linear-gradient(to bottom, rgba(28,93,153,0.9), rgba(28,93,153,0.8)), url('https://arteonvillas.com/wp-content/uploads/2022/06/drone02sm.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    }}>
         <div className="container mx-auto px-4">
-          <SectionHeader 
-            title="What Our Guests Say" 
-            subtitle="Arteon Villas boasts an exceptional reputation, with a 9.8/10 'Exceptional' rating based on guest reviews."
-            centered
-            titleClassName="text-white"
-            className="text-white"
-          />
+          <SectionHeader title="What Our Guests Say" subtitle="Arteon Villas boasts an exceptional reputation, with a 9.8/10 'Exceptional' rating based on guest reviews." centered titleClassName="text-white" className="text-white" />
           
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div className="bg-white p-6 rounded-lg shadow-md">
@@ -214,11 +185,9 @@ const Index = () => {
       </section>
       
       {/* CTA Section */}
-      <section className="relative py-16 bg-center bg-cover"
-        style={{
-          backgroundImage: "url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')"
-        }}
-      >
+      <section className="relative py-16 bg-center bg-cover" style={{
+      backgroundImage: "url('https://arteonvillas.com/wp-content/uploads/2022/06/drone01sm.jpg')"
+    }}>
         <div className="absolute inset-0 bg-villa-navy/70" />
         <div className="container relative mx-auto px-4 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">
@@ -237,8 +206,6 @@ const Index = () => {
       </section>
       
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default Index;
