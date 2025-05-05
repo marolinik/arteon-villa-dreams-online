@@ -150,7 +150,7 @@ const Index = () => {
           <SectionHeader title="What Our Guests Say" subtitle="Arteon Villas boasts an exceptional reputation, with a 9.8/10 'Exceptional' rating based on guest reviews." centered titleClassName="text-white" className="text-white" />
           
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="p-6 rounded-lg shadow-md bg-villa-sand">
               <div className="flex items-center mb-4">
                 <div className="w-10 h-10 bg-villa-sand rounded-full mr-3"></div>
                 <div>
