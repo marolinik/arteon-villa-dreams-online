@@ -1,4 +1,3 @@
-
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -60,7 +59,7 @@ const Attractions = () => {
                 <div className="bg-[#152E53] p-3 mt-auto border-t border-gray-700/50">
                   <div className="flex items-center text-[#F97316]">
                     <MapPin size={18} className="mr-2" />
-                    <span className="font-medium">100m from Arteon Villas</span>
+                    <span className="font-medium">80m from Arteon Villas</span>
                   </div>
                 </div>
               </div>
@@ -253,4 +252,3 @@ const Attractions = () => {
 };
 
 export default Attractions;
-
