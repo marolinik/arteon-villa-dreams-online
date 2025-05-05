@@ -39,7 +39,7 @@ const Attractions = () => {
             />
             
             <div className="grid md:grid-cols-2 gap-8 mb-10">
-              <div className="bg-[#1D3A64] rounded-lg overflow-hidden border border-gray-700 shadow-xl">
+              <div className="bg-[#1D3A64] rounded-lg overflow-hidden border border-gray-700 shadow-xl flex flex-col">
                 <div className="h-64 w-full bg-[#172B4D] overflow-hidden">
                   <img 
                     src={beachImage}
@@ -47,7 +47,7 @@ const Attractions = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex-grow">
                   <h3 className="text-xl font-serif font-medium mb-2 text-white">
                     Salonikiou Beach (Kortiri Beach)
                   </h3>
@@ -56,14 +56,16 @@ const Attractions = () => {
                     This beach is prized for its cleanliness and calm, uncrowded waters. From here, you can gaze across the 
                     Gulf of Mount Athos and even see the silhouette of Mount Athos in the distance on a clear day.
                   </p>
-                  <div className="flex items-center mt-3 text-amber-400">
+                </div>
+                <div className="bg-[#152E53] p-3 mt-auto border-t border-gray-700/50">
+                  <div className="flex items-center text-[#F97316]">
                     <MapPin size={18} className="mr-2" />
                     <span className="font-medium">100m from Arteon Villas</span>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-[#1D3A64] rounded-lg overflow-hidden border border-gray-700 shadow-xl">
+              <div className="bg-[#1D3A64] rounded-lg overflow-hidden border border-gray-700 shadow-xl flex flex-col">
                 <div className="h-64 w-full bg-[#172B4D] overflow-hidden">
                   <img 
                     src={mountAthosImage}
@@ -71,14 +73,16 @@ const Attractions = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex-grow">
                   <h3 className="text-xl font-serif font-medium mb-2 text-white">Mount Athos Cruise</h3>
                   <p className="text-gray-300 mb-4">
                     A unique excursion is to take a day trip to Mount Athos. While women cannot enter the monastic republic, 
                     everyone can enjoy a Mount Athos cruise: boats depart from Ormos Panagias (9 km away) and tour along the 
                     Athos coast, where you can see the magnificent monasteries from the sea.
                   </p>
-                  <div className="flex items-center mt-3 text-amber-400">
+                </div>
+                <div className="bg-[#152E53] p-3 mt-auto border-t border-gray-700/50">
+                  <div className="flex items-center text-[#F97316]">
                     <MapPin size={18} className="mr-2" />
                     <span className="font-medium">9km from Arteon Villas</span>
                   </div>
@@ -91,7 +95,7 @@ const Attractions = () => {
             <SectionHeader title="Dining Nearby" titleClassName="text-white" />
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700">
+              <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700 flex flex-col">
                 <div className="h-48 bg-[#172B4D] overflow-hidden">
                   <img 
                     src={pyrgadikiaImage}
@@ -99,20 +103,22 @@ const Attractions = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-5 flex-grow">
                   <h3 className="text-lg font-serif font-medium mb-2 text-white">Pyrgadikia</h3>
                   <p className="text-gray-300 mb-3">
                     A charming fishing village roughly 7 km north (10–15 minutes' drive). Pyrgadikia has several seafront 
                     tavernas and cafes, especially known for fresh fish.
                   </p>
-                  <div className="flex items-center text-amber-400 text-sm">
+                </div>
+                <div className="bg-[#152E53] p-2 mt-auto border-t border-gray-700/50">
+                  <div className="flex items-center text-[#F97316] text-sm">
                     <MapPin size={16} className="mr-2" />
                     <span>7km (10-15 min drive)</span>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700">
+              <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700 flex flex-col">
                 <div className="h-48 bg-[#172B4D] overflow-hidden">
                   <img 
                     src={agiosNikolaosImage}
@@ -120,20 +126,22 @@ const Attractions = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-5 flex-grow">
                   <h3 className="text-lg font-serif font-medium mb-2 text-white">Agios Nikolaos</h3>
                   <p className="text-gray-300 mb-3">
                     The nearest town, about 5 km inland. This traditional village has a beautiful central square lined with 
                     tavernas, kafeneions (cafés), and bakeries.
                   </p>
-                  <div className="flex items-center text-amber-400 text-sm">
+                </div>
+                <div className="bg-[#152E53] p-2 mt-auto border-t border-gray-700/50">
+                  <div className="flex items-center text-[#F97316] text-sm">
                     <MapPin size={16} className="mr-2" />
                     <span>5km (10 min drive)</span>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700">
+              <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700 flex flex-col">
                 <div className="h-48 bg-[#172B4D] overflow-hidden">
                   <img 
                     src={ormosPanagiasImage}
@@ -141,20 +149,22 @@ const Attractions = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-5 flex-grow">
                   <h3 className="text-lg font-serif font-medium mb-2 text-white">Ormos Panagias</h3>
                   <p className="text-gray-300 mb-3">
                     A small harbor settlement about 8-9 km to the south. Here you'll find notable tavernas famous for seafood 
                     and beach bars on Trani Ammouda Beach.
                   </p>
-                  <div className="flex items-center text-amber-400 text-sm">
+                </div>
+                <div className="bg-[#152E53] p-2 mt-auto border-t border-gray-700/50">
+                  <div className="flex items-center text-[#F97316] text-sm">
                     <MapPin size={16} className="mr-2" />
                     <span>8-9km (10 min drive)</span>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700">
+              <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700 flex flex-col">
                 <div className="h-48 bg-[#172B4D] overflow-hidden">
                   <img 
                     src={metagkitsiImage}
@@ -162,13 +172,15 @@ const Attractions = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-5 flex-grow">
                   <h3 className="text-lg font-serif font-medium mb-2 text-white">Metagkitsi</h3>
                   <p className="text-gray-300 mb-3">
                     A nearby traditional village, just 5.2 km away. Known for its tranquil charm, it features stone-built houses, 
                     a small central square, and a few cozy tavernas offering local delicacies.
                   </p>
-                  <div className="flex items-center text-amber-400 text-sm">
+                </div>
+                <div className="bg-[#152E53] p-2 mt-auto border-t border-gray-700/50">
+                  <div className="flex items-center text-[#F97316] text-sm">
                     <MapPin size={16} className="mr-2" />
                     <span>5.2km (7 min drive)</span>
                   </div>
@@ -241,3 +253,4 @@ const Attractions = () => {
 };
 
 export default Attractions;
+
