@@ -1,11 +1,10 @@
-
 import { SectionHeader } from "@/components/ui/section-header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import { MapPin, ImageIcon } from "lucide-react";
 
-const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
+const heroBackgroundImage = "/lovable-uploads/31172d6b-392e-445c-996a-763f1bed68bb.png";
 
 const Attractions = () => {
   return (
