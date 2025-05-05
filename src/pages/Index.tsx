@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Book, GalleryHorizontal } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
 const Index = () => {
   return <>
       <Navbar />
@@ -49,7 +48,7 @@ const Index = () => {
             <p className="mb-4 text-villa-cream">
               Each villa enjoys stunning sea views and shares a well-maintained garden with a swimming pool and sun terrace, perfect for relaxation. On-site private parking is available for guests' convenience.
             </p>
-            <p className="mb-4 text-gray-700">
+            <p className="mb-4 text-villa-cream">
               The property is just a few minutes' walk (approx. 100 m) from the quiet Salonikiou Beach, offering guests a peaceful seaside retreat.
             </p>
             <p className="mb-6 text-gray-700">
@@ -211,5 +210,4 @@ const Index = () => {
       <Footer />
     </>;
 };
-
 export default Index;
