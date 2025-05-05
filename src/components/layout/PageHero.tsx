@@ -29,11 +29,11 @@ const PageHero = ({
       )}
       
       <div className="container relative z-10 mx-auto px-4 text-center">
-        <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white fade-in">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-white leading-tight tracking-wide">
           {title}
         </h1>
         {subtitle && (
-          <p className="text-xl text-amber-400 max-w-2xl mx-auto fade-in">
+          <p className="text-2xl md:text-3xl text-amber-400 max-w-3xl mx-auto font-light">
             {subtitle}
           </p>
         )}

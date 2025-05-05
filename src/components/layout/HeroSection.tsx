@@ -33,12 +33,12 @@ const HeroSection = ({
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 text-center">
         {title && (
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-white">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-white leading-tight tracking-wide">
             {title}
           </h1>
         )}
         {subtitle && (
-          <h2 className="text-xl md:text-2xl lg:text-2xl font-light mb-8 text-white/90">
+          <h2 className="text-2xl md:text-3xl text-amber-400 max-w-3xl mx-auto font-light">
             {subtitle}
           </h2>
         )}
