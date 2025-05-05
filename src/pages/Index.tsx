@@ -57,7 +57,7 @@ const Index = () => {
             
             <div className="flex items-center gap-2 text-villa-blue mb-6">
               <MapPin size={20} />
-              <span className="font-medium">Akti Salonikiou, Sithonia, Halkidiki, Greece</span>
+              <span className="font-medium text-villa-terracotta">Akti Salonikiou, Sithonia, Halkidiki, Greece</span>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
