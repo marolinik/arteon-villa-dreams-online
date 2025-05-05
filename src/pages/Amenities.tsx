@@ -104,8 +104,8 @@ const Amenities = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-[#1D3A64] p-6 rounded-lg shadow-lg border border-gray-700">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-villa-teal/20 rounded-full flex items-center justify-center mr-3">
-                      <Users size={18} className="text-villa-teal" />
+                    <div className="w-10 h-10 bg-[#152E53] rounded-full flex items-center justify-center mr-3">
+                      <Users size={18} className="text-white" />
                     </div>
                     <h3 className="text-xl font-serif font-medium text-white">Children's Playground</h3>
                   </div>
@@ -117,8 +117,8 @@ const Amenities = () => {
                 
                 <div className="bg-[#1D3A64] p-6 rounded-lg shadow-lg border border-gray-700">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-villa-blue/20 rounded-full flex items-center justify-center mr-3">
-                      <Wifi size={18} className="text-villa-blue" />
+                    <div className="w-10 h-10 bg-[#152E53] rounded-full flex items-center justify-center mr-3">
+                      <Wifi size={18} className="text-white" />
                     </div>
                     <h3 className="text-xl font-serif font-medium text-white">Free Wi-Fi & Tech</h3>
                   </div>
@@ -131,8 +131,8 @@ const Amenities = () => {
                 
                 <div className="bg-[#1D3A64] p-6 rounded-lg shadow-lg border border-gray-700">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-villa-sand/30 rounded-full flex items-center justify-center mr-3">
-                      <MapPin size={18} className="text-villa-sand" />
+                    <div className="w-10 h-10 bg-[#152E53] rounded-full flex items-center justify-center mr-3">
+                      <MapPin size={18} className="text-white" />
                     </div>
                     <h3 className="text-xl font-serif font-medium text-white">Private Parking</h3>
                   </div>
@@ -145,8 +145,8 @@ const Amenities = () => {
                 
                 <div className="bg-[#1D3A64] p-6 rounded-lg shadow-lg border border-gray-700">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-villa-green/20 rounded-full flex items-center justify-center mr-3">
-                      <CalendarCheck size={18} className="text-villa-green" />
+                    <div className="w-10 h-10 bg-[#152E53] rounded-full flex items-center justify-center mr-3">
+                      <CalendarCheck size={18} className="text-white" />
                     </div>
                     <h3 className="text-xl font-serif font-medium text-white">Housekeeping</h3>
                   </div>
@@ -158,8 +158,8 @@ const Amenities = () => {
                 
                 <div className="bg-[#1D3A64] p-6 rounded-lg shadow-lg border border-gray-700">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-villa-teal/20 rounded-full flex items-center justify-center mr-3">
-                      <BedDouble size={18} className="text-villa-teal" />
+                    <div className="w-10 h-10 bg-[#152E53] rounded-full flex items-center justify-center mr-3">
+                      <BedDouble size={18} className="text-white" />
                     </div>
                     <h3 className="text-xl font-serif font-medium text-white">Air Conditioning</h3>
                   </div>
@@ -171,8 +171,8 @@ const Amenities = () => {
                 
                 <div className="bg-[#1D3A64] p-6 rounded-lg shadow-lg border border-gray-700">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-villa-blue/20 rounded-full flex items-center justify-center mr-3">
-                      <Tv size={18} className="text-villa-blue" />
+                    <div className="w-10 h-10 bg-[#152E53] rounded-full flex items-center justify-center mr-3">
+                      <Tv size={18} className="text-white" />
                     </div>
                     <h3 className="text-xl font-serif font-medium text-white">Activities</h3>
                   </div>
