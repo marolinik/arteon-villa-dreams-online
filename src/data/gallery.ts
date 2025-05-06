@@ -1,4 +1,3 @@
-
 import { GalleryImage } from "@/types";
 
 // Gallery images with real image paths
@@ -238,6 +237,18 @@ export const galleryImages: GalleryImage[] = [
     id: "ext39",
     url: "/lovable-uploads/ab02adad-31b2-4c7e-902d-f94cb16a361e.png",
     alt: "Villa terrace with dining setup and garden views",
+    category: "exterior"
+  },
+  {
+    id: "ext40",
+    url: "/lovable-uploads/8fa77008-cbee-4543-aa17-8e46b9763537.png",
+    alt: "Outdoor wooden deck with cushioned sun loungers",
+    category: "exterior"
+  },
+  {
+    id: "ext41",
+    url: "/lovable-uploads/c7bc50e7-2fe1-49a2-90a2-7ba80a3f1c91.png",
+    alt: "Wooden table with espresso coffees, cookies, and lavender plant",
     category: "exterior"
   },
   
