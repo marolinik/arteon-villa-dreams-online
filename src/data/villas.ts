@@ -14,12 +14,12 @@ export const villas: Villa[] = [
     size: 80,
     capacity: 6,
     bedConfiguration: "2 Double Beds + 1 Sofa Bed",
-    mainImage: "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+    mainImage: "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png",
     images: [
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png"
+      "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png",
+      "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png",
+      "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png",
+      "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png"
     ],
     amenities: [
       "Fully equipped kitchen",
@@ -59,12 +59,12 @@ export const villas: Villa[] = [
     size: 80,
     capacity: 6,
     bedConfiguration: "1 Double Bed + 2 Single Beds + 1 Sofa Bed",
-    mainImage: "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+    mainImage: "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png",
     images: [
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png"
+      "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png",
+      "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png",
+      "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png",
+      "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png"
     ],
     amenities: [
       "Fully equipped kitchen",
@@ -104,12 +104,12 @@ export const villas: Villa[] = [
     size: 80,
     capacity: 6,
     bedConfiguration: "1 Double Bed + 2 Single Beds + 1 Sofa Bed",
-    mainImage: "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+    mainImage: "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png",
     images: [
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png"
+      "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png",
+      "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png",
+      "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png",
+      "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png"
     ],
     amenities: [
       "Fully equipped kitchen",
@@ -149,12 +149,12 @@ export const villas: Villa[] = [
     size: 80,
     capacity: 6,
     bedConfiguration: "2 Double Beds + 1 Sofa Bed",
-    mainImage: "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
+    mainImage: "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png",
     images: [
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png",
-      "/lovable-uploads/cf485c5f-33e3-4c53-bb18-66f449eb5ca3.png"
+      "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png",
+      "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png",
+      "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png",
+      "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png"
     ],
     amenities: [
       "Fully equipped kitchen",
@@ -186,4 +186,8 @@ export const villas: Villa[] = [
 
 export const getVillaBySlug = (slug: string): Villa | undefined => {
   return villas.find(villa => villa.slug === slug);
+};
+
+export const getVillaById = (id: string): Villa | undefined => {
+  return villas.find(villa => villa.id === id);
 };

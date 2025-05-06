@@ -117,7 +117,7 @@ export const addBooking = (booking: BookingDate): string => {
   const newBooking = {
     ...booking,
     id: uuidv4(),
-    status: booking.status || "confirmed",
+    status: booking.status || "confirmed" as "confirmed" | "pending" | "cancelled",
     createdAt: new Date()
   };
   
@@ -129,7 +129,7 @@ export const addRestrictedDates = (booking: BookingDate): string => {
   const restrictedBooking = {
     ...booking,
     id: uuidv4(),
-    status: "cancelled", // Marked as cancelled to indicate it's restricted
+    status: "cancelled" as "cancelled",
     createdAt: new Date()
   };
   
