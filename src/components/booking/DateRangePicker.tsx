@@ -14,12 +14,14 @@ interface DateRangePickerProps {
   bookedDates: BookingDate[];
   onDateRangeChange: (startDate: Date | undefined, endDate: Date | undefined) => void;
   className?: string;
+  onSeasonChange?: (seasonRate: number) => void;
 }
 
 export const DateRangePicker = ({ 
   villaId, 
   bookedDates, 
   onDateRangeChange,
+  onSeasonChange,
   className 
 }: DateRangePickerProps) => {
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
@@ -30,6 +32,29 @@ export const DateRangePicker = ({
   // Define the booking season dates
   const seasonStart = new Date(2025, 4, 31); // May 31, 2025
   const seasonEnd = new Date(2025, 9, 4); // October 4, 2025
+
+  // Define the seasonal rates as per the pricing page
+  const seasons = [
+    { start: new Date(2025, 3, 17), end: new Date(2025, 3, 22), rate: 430 }, // Easter: 17.4.25 - 22.4.25
+    { start: new Date(2025, 4, 31), end: new Date(2025, 5, 30), rate: 380 }, // 31.5.25 - 30.6.25
+    { start: new Date(2025, 6, 1), end: new Date(2025, 6, 31), rate: 460 }, // 1.7.25 - 31.7.25
+    { start: new Date(2025, 7, 1), end: new Date(2025, 7, 31), rate: 530 }, // 1.8.25 - 31.8.25
+    { start: new Date(2025, 8, 1), end: new Date(2025, 8, 15), rate: 460 }, // 1.9.25 - 15.9.25
+    { start: new Date(2025, 8, 16), end: new Date(2025, 9, 4), rate: 380 }, // 16.9.25 - 4.10.25
+  ];
+
+  // Calculate the rate for the current date range
+  useEffect(() => {
+    if (dateRange?.from && onSeasonChange) {
+      const season = seasons.find(s => 
+        isWithinInterval(dateRange.from, { start: s.start, end: s.end })
+      );
+      
+      if (season) {
+        onSeasonChange(season.rate);
+      }
+    }
+  }, [dateRange?.from, onSeasonChange]);
 
   // Only trigger the callback when dates actually change
   useEffect(() => {
@@ -119,6 +144,17 @@ export const DateRangePicker = ({
       }
     }
   };
+
+  // Get the season name based on a date
+  const getSeasonInfo = (date: Date | undefined) => {
+    if (!date) return null;
+    
+    const currentSeason = seasons.find(season => 
+      isWithinInterval(date, { start: season.start, end: season.end })
+    );
+    
+    return currentSeason ? `€${currentSeason.rate}/night` : null;
+  };
   
   return (
     <div className={cn("space-y-4", className)}>
@@ -136,7 +172,14 @@ export const DateRangePicker = ({
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
                 {dateRange?.from ? (
-                  format(dateRange.from, "PPP")
+                  <>
+                    {format(dateRange.from, "PPP")}
+                    {getSeasonInfo(dateRange.from) && (
+                      <span className="ml-2 text-amber-400 font-semibold">
+                        {getSeasonInfo(dateRange.from)}
+                      </span>
+                    )}
+                  </>
                 ) : (
                   <span>Pick a check-in date</span>
                 )}
@@ -203,6 +246,11 @@ export const DateRangePicker = ({
           {`Your stay: ${format(dateRange.from, "PPP")} - ${format(dateRange.to, "PPP")}`}
         </p>
       )}
+
+      <div className="text-sm text-amber-500 mt-2">
+        <p>Note: Bookings are available only from Saturday to Saturday, with a minimum stay of 5 nights.</p>
+        <p className="mt-1 font-medium">Early booking discounts available for reservations made before Dec 31, 2024.</p>
+      </div>
     </div>
   );
 };

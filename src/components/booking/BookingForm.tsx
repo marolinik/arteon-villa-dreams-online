@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -8,6 +9,7 @@ import { DateRangePicker } from "@/components/booking/DateRangePicker";
 import { BookingDate, GuestInfo, Villa } from "@/types";
 import { addBooking, checkAvailability, sendBookingEmail } from "@/data/bookings";
 import { format, differenceInDays, isSaturday } from "date-fns";
+import { AlertCircle } from "lucide-react";
 
 interface BookingFormProps {
   villa: Villa;
@@ -32,6 +34,8 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     to: undefined,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [seasonRate, setSeasonRate] = useState<number | null>(null);
+  const [totalPrice, setTotalPrice] = useState<number | null>(null);
 
   // Form validation
   const [errors, setErrors] = useState<{
@@ -114,9 +118,26 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
   const handleDateRangeChange = (from: Date | undefined, to: Date | undefined) => {
     setDateRange({ from, to });
     
+    // Calculate total price if rate is known
+    if (from && to && seasonRate) {
+      const nights = differenceInDays(to, from);
+      setTotalPrice(nights * seasonRate);
+    } else {
+      setTotalPrice(null);
+    }
+    
     // Clear date validation error when user selects dates
     if (errors.dates) {
       setErrors(prev => ({ ...prev, dates: undefined }));
+    }
+  };
+
+  const handleSeasonChange = (rate: number) => {
+    setSeasonRate(rate);
+    
+    if (dateRange.from && dateRange.to) {
+      const nights = differenceInDays(dateRange.to, dateRange.from);
+      setTotalPrice(nights * rate);
     }
   };
 
@@ -204,13 +225,47 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
           villaId={villa.id}
           bookedDates={bookedDates}
           onDateRangeChange={handleDateRangeChange}
+          onSeasonChange={handleSeasonChange}
         />
         {errors.dates && <p className="text-sm text-red-500 mt-1">{errors.dates}</p>}
         
-        <p className="text-sm text-amber-500 mt-2">
-          Note: Bookings are available only from Saturday to Saturday, with a minimum stay of 7 days.
-        </p>
+        <div className="mt-4 p-3 bg-[#172B4D] rounded-md">
+          <h4 className="font-medium text-amber-400 mb-2">Booking Policies:</h4>
+          <ul className="text-sm text-gray-200 space-y-1.5">
+            <li>• Minimum stay is 5 nights</li>
+            <li>• Check-in & check-out only on Saturdays</li>
+            <li>• Check-in: 15:00-18:30, Check-out: by 11:00</li>
+            <li>• Security deposit: €500 (refundable at check-out)</li>
+          </ul>
+        </div>
       </div>
+      
+      {totalPrice && (
+        <div className="bg-[#1C3D66] p-4 rounded-md">
+          <h4 className="font-medium text-white">Price Summary:</h4>
+          <div className="mt-2 space-y-1">
+            <div className="flex justify-between">
+              <span className="text-gray-300">Rate per night:</span>
+              <span className="text-amber-400 font-semibold">€{seasonRate}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-300">
+                Stay duration:
+              </span>
+              <span className="text-amber-400 font-semibold">
+                {dateRange.from && dateRange.to ? `${differenceInDays(dateRange.to, dateRange.from)} nights` : '-'}
+              </span>
+            </div>
+            <div className="flex justify-between border-t border-gray-600 mt-2 pt-2">
+              <span className="text-white font-medium">Total:</span>
+              <span className="text-amber-400 font-bold">€{totalPrice}</span>
+            </div>
+            <p className="text-xs text-gray-400 mt-2">
+              * A 30% deposit is required to confirm your reservation.
+            </p>
+          </div>
+        </div>
+      )}
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
@@ -282,6 +337,16 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
           className="resize-none"
           rows={4}
         />
+      </div>
+      
+      <div className="p-3 bg-[#172B4D] rounded-md flex items-start space-x-2">
+        <AlertCircle className="text-amber-400 w-5 h-5 mt-0.5" />
+        <div className="text-sm text-gray-300">
+          <p className="font-medium text-white">Payment Policy:</p>
+          <p>• 30% deposit required to confirm reservation</p>
+          <p>• Another 30% due 60 days before arrival</p>
+          <p>• Remaining 40% due 20 days before arrival</p>
+        </div>
       </div>
       
       <Button 
