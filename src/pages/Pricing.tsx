@@ -195,7 +195,7 @@ const Pricing = () => {
             </h2>
             
             <div className="bg-[#1D3A64] rounded-lg p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 <div>
                   <h3 className="text-xl font-medium text-white mb-4">Included in Your Stay</h3>
                   <ul className="space-y-3 text-gray-300">
@@ -222,36 +222,6 @@ const Pricing = () => {
                     <li className="flex items-start">
                       <span className="text-amber-400 mr-2">✓</span>
                       <span>Electricity, water, and air conditioning</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h3 className="text-xl font-medium text-white mb-4">Additional Services</h3>
-                  <ul className="space-y-3 text-gray-300">
-                    <li className="flex items-start">
-                      <span className="text-villa-terracotta mr-2">+</span>
-                      <span>Private chef: €150-€250 per meal</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-villa-terracotta mr-2">+</span>
-                      <span>Airport transfers: €60-€100 each way</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-villa-terracotta mr-2">+</span>
-                      <span>Grocery delivery: €25 + cost of groceries</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-villa-terracotta mr-2">+</span>
-                      <span>Yacht rental: From €450 per day</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-villa-terracotta mr-2">+</span>
-                      <span>Massage services: €80 per hour</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-villa-terracotta mr-2">+</span>
-                      <span>Childcare: €15 per hour</span>
                     </li>
                   </ul>
                 </div>
