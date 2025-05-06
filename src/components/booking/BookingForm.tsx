@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -256,7 +255,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
           villaId={villa.id}
           bookedDates={bookedDates}
           onDateRangeChange={handleDateRangeChange}
-          onSeasonChange={handleSeasonRate}
+          onSeasonChange={handleSeasonChange}
         />
         
         {errors.dates && (
