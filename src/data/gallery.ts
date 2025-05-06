@@ -642,6 +642,122 @@ export const galleryImages: GalleryImage[] = [
     url: "/lovable-uploads/44329134-e63f-4fae-b568-ee3fe2007f11.png",
     alt: "Private pool area with sun loungers, umbrellas and mountain view",
     category: "amenities"
+  },
+  
+  // Surroundings images
+  {
+    id: "sur1",
+    url: "/lovable-uploads/0d9d0806-3e15-4be7-8523-06382f4f4ff7.png",
+    alt: "Kavourotrypes Paradise beach with wooden sign and crystal clear water in the background",
+    category: "surroundings"
+  },
+  {
+    id: "sur2",
+    url: "/lovable-uploads/427e3a6c-6316-4aff-8cb5-177965a288df.png",
+    alt: "Traditional Greek taverna with blue doors and windows serving authentic Greek cuisine",
+    category: "surroundings"
+  },
+  {
+    id: "sur3",
+    url: "/lovable-uploads/40000230-369a-45b7-bf40-4e3182a4c8bb.png",
+    alt: "Aerial view of boat on crystal clear turquoise waters with Mount Athos in the background",
+    category: "surroundings"
+  },
+  {
+    id: "sur4",
+    url: "/lovable-uploads/02ebca7c-d4c7-4b00-bf68-a648db7e51e3.png",
+    alt: "Scenic pine tree overlooking secluded beach cove with crystal clear water",
+    category: "surroundings"
+  },
+  {
+    id: "sur5",
+    url: "/lovable-uploads/2885597c-3259-441f-b353-d6f5293b7290.png",
+    alt: "Small fishing boats anchored in turquoise waters near a rocky outcrop with pine trees",
+    category: "surroundings"
+  },
+  {
+    id: "sur6",
+    url: "/lovable-uploads/acd28974-30e6-4133-b3d3-5aa55791e29c.png",
+    alt: "Coastal town with colorful buildings rising above turquoise waters with fishing boat",
+    category: "surroundings"
+  },
+  {
+    id: "sur7",
+    url: "/lovable-uploads/f6c9744c-0a2f-45bb-9ec3-58ab45d8f82e.png",
+    alt: "Woman sitting in chair enjoying breathtaking view of turquoise waters and pine trees",
+    category: "surroundings"
+  },
+  {
+    id: "sur8",
+    url: "/lovable-uploads/1e2ee01a-5076-4172-9b0a-89e93de61c70.png",
+    alt: "White chapel with blue dome overlooking the Aegean Sea",
+    category: "surroundings"
+  },
+  {
+    id: "sur9",
+    url: "/lovable-uploads/b5397f7e-7d5a-4563-8a0e-9d8f7bd81e03.png",
+    alt: "Traditional Greek meze selection of dishes with olives, fish and local specialties",
+    category: "surroundings"
+  },
+  {
+    id: "sur10",
+    url: "/lovable-uploads/48baf89a-7ce4-47af-b88c-a92f3aaf9cec.png",
+    alt: "Colorful coastal village with boats anchored in crystal clear turquoise bay",
+    category: "surroundings"
+  },
+  {
+    id: "sur11",
+    url: "/lovable-uploads/9992bba5-29ba-4836-a101-d4bee2e491c6.png",
+    alt: "Aerial view of pristine beach with turquoise waters and pine forest",
+    category: "surroundings"
+  },
+  {
+    id: "sur12",
+    url: "/lovable-uploads/8de92140-183c-430c-bf96-1b0d19470f74.png",
+    alt: "Pine trees growing on rocky cliff with view of clear blue sea",
+    category: "surroundings"
+  },
+  {
+    id: "sur13",
+    url: "/lovable-uploads/559c6218-4c5d-460a-bb27-6d9564fa14fe.png",
+    alt: "Aerial view of boats on clear turquoise waters with visible underwater formations",
+    category: "surroundings"
+  },
+  {
+    id: "sur14",
+    url: "/lovable-uploads/7af08cad-a356-4d26-a321-215a3e252b8c.png",
+    alt: "Secluded beach with clear waters and rocky cliffs",
+    category: "surroundings"
+  },
+  {
+    id: "sur15",
+    url: "/lovable-uploads/4434c62d-116a-46d5-9c68-fb366c67a88d.png",
+    alt: "Aerial drone view of sandy beach with turquoise water and rocky coastline",
+    category: "surroundings"
+  },
+  {
+    id: "sur16",
+    url: "/lovable-uploads/ab337836-6907-439d-bbe8-aa6d72570e3d.png",
+    alt: "Seaside taverna with blue chairs and tables overlooking the Aegean Sea",
+    category: "surroundings"
+  },
+  {
+    id: "sur17",
+    url: "/lovable-uploads/b2748edf-87d4-42ac-b8a0-668e371a2428.png",
+    alt: "Beautiful pristine beach with crystal clear turquoise water and gentle waves",
+    category: "surroundings"
+  },
+  {
+    id: "sur18",
+    url: "/lovable-uploads/bce684aa-fa40-404a-b814-162e6255174a.png",
+    alt: "Coastal pine trees with shadow on golden sand and deep blue sea",
+    category: "surroundings"
+  },
+  {
+    id: "sur19",
+    url: "/lovable-uploads/a923c066-2790-4b91-9a95-2f9451f1707f.png",
+    alt: "Hidden beach between rocky cliffs with emerald water and sandy shore",
+    category: "surroundings"
   }
 ];
 

@@ -7,6 +7,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
+import { ImageCarousel } from "@/components/ui/image-carousel";
 
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
 
@@ -22,6 +23,14 @@ const Gallery = () => {
   ];
   
   const filteredImages = getImagesByCategory(category);
+
+  // Select a few stunning surroundings images for the showcase
+  const showcaseImages = [
+    "/lovable-uploads/40000230-369a-45b7-bf40-4e3182a4c8bb.png",
+    "/lovable-uploads/b2748edf-87d4-42ac-b8a0-668e371a2428.png",
+    "/lovable-uploads/2885597c-3259-441f-b353-d6f5293b7290.png",
+    "/lovable-uploads/f6c9744c-0a2f-45bb-9ec3-58ab45d8f82e.png"
+  ];
   
   return (
     <div className="min-h-screen flex flex-col bg-[#0F1524]">
@@ -35,6 +44,13 @@ const Gallery = () => {
       
       <main className="py-12 flex-grow bg-[#0F1524]">
         <div className="container mx-auto px-4">
+          <div className="mb-8 hidden md:block">
+            <ImageCarousel 
+              images={showcaseImages} 
+              className="w-full h-[50vh] rounded-lg mb-10" 
+            />
+          </div>
+          
           <div className="mb-8 flex justify-center">
             <Tabs 
               defaultValue="all" 
