@@ -8,6 +8,7 @@ import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BookingDate } from "@/types";
 import { DateRange } from "react-day-picker";
+import { useToast } from "@/hooks/use-toast";
 
 interface DateRangePickerProps {
   villaId: string;
@@ -24,6 +25,7 @@ export const DateRangePicker = ({
   onSeasonChange,
   className 
 }: DateRangePickerProps) => {
+  const { toast } = useToast();
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: undefined,
     to: undefined
@@ -95,6 +97,16 @@ export const DateRangePicker = ({
       return;
     }
 
+    // If selecting a start date that's a Sunday, show notification
+    if (range.from && isSunday(range.from) && !range.to) {
+      toast({
+        title: "Sunday Check-ins Not Available",
+        description: "We don't offer check-ins on Sundays. Please select a different day.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     // If no end date is selected yet, just update the start date
     if (!range.to) {
       setDateRange(range);
@@ -106,6 +118,13 @@ export const DateRangePicker = ({
     
     // Check if the range is at least 5 days
     if (daysBetween < 5) {
+      // Show a notification
+      toast({
+        title: "Minimum Stay Requirement",
+        description: "Bookings must be for at least 5 nights. We've adjusted your selection.",
+        variant: "destructive",
+      });
+      
       // Automatically set the end date to be 5 days from the start date
       const newEndDate = addDays(range.from, 5);
       setDateRange({

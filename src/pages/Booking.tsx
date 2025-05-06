@@ -11,6 +11,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ImageIcon, BedDouble, Bath, Users, CalendarDays } from "lucide-react";
 import PageHero from "@/components/layout/PageHero";
+import { Toaster } from "@/components/ui/toaster";
 
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
 
@@ -137,7 +138,7 @@ const Booking = () => {
                           </span>
                           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
                             <CalendarDays className="mr-1" size={14} />
-                            Saturday to Saturday
+                            Min. 5 nights
                           </span>
                         </div>
                         
@@ -160,6 +161,7 @@ const Booking = () => {
       </main>
       
       <Footer />
+      <Toaster />
     </div>
   );
 };

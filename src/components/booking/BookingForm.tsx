@@ -10,6 +10,7 @@ import { BookingDate, GuestInfo, Villa } from "@/types";
 import { addBooking, checkAvailability, sendBookingEmail } from "@/data/bookings";
 import { format, differenceInDays, isSunday } from "date-fns";
 import { AlertCircle } from "lucide-react";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 interface BookingFormProps {
   villa: Villa;
@@ -67,6 +68,11 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       newErrors.guests = "Number of guests is required";
     } else if (formData.guests > 6) {
       newErrors.guests = "Maximum 6 guests allowed";
+      toast({
+        title: "Too Many Guests",
+        description: `This villa can accommodate a maximum of 6 guests.`,
+        variant: "destructive",
+      });
     }
     
     if (!dateRange.from || !dateRange.to) {
@@ -75,12 +81,22 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       // Check if start date is not a Sunday
       if (isSunday(dateRange.from)) {
         newErrors.dates = "Check-in on Sundays is not available";
+        toast({
+          title: "Sunday Check-ins Not Available",
+          description: "We don't offer check-ins on Sundays. Please select a different day.",
+          variant: "destructive",
+        });
       }
       
       // Check if the stay is at least 5 nights
       const days = differenceInDays(dateRange.to, dateRange.from);
       if (days < 5) {
         newErrors.dates = "Minimum stay is 5 nights";
+        toast({
+          title: "Minimum Stay Required",
+          description: "Bookings must be for at least 5 nights.",
+          variant: "destructive",
+        });
       }
     }
     
@@ -98,6 +114,15 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       const numValue = parseInt(value) || 0;
       // Enforce max of 6 guests
       const limitedValue = Math.min(numValue, 6);
+      
+      if (numValue > 6) {
+        toast({
+          title: "Guest Limit Exceeded",
+          description: "This villa can accommodate a maximum of 6 guests.",
+          variant: "destructive",
+        });
+      }
+      
       setFormData((prev) => ({ 
         ...prev, 
         [name]: limitedValue 
@@ -146,8 +171,8 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     
     if (!validateForm()) {
       toast({
-        title: "Validation Error",
-        description: "Please correct the errors in the form",
+        title: "Booking Form Incomplete",
+        description: "Please correct the errors in the form before proceeding.",
         variant: "destructive",
       });
       return;
@@ -155,7 +180,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
 
     if (!dateRange.from || !dateRange.to) {
       toast({
-        title: "Date range required",
+        title: "Dates Required",
         description: "Please select both check-in and check-out dates.",
         variant: "destructive",
       });
@@ -174,7 +199,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
 
       if (!isAvailable) {
         toast({
-          title: "Villa not available",
+          title: "Villa Not Available",
           description: "The selected dates are no longer available. Please choose different dates.",
           variant: "destructive",
         });
@@ -199,6 +224,12 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       
       // Send confirmation emails
       await sendBookingEmail(newBooking);
+      
+      // Show success message
+      toast({
+        title: "Booking Successful!",
+        description: `Your stay at ${villa.name} has been confirmed.`,
+      });
       
       // Navigate to the thank you page instead of back to the villa
       navigate(`/booking-confirmation?villa=${villa.slug}`);
@@ -225,15 +256,22 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
           villaId={villa.id}
           bookedDates={bookedDates}
           onDateRangeChange={handleDateRangeChange}
-          onSeasonChange={handleSeasonChange}
+          onSeasonChange={handleSeasonRate}
         />
-        {errors.dates && <p className="text-sm text-red-500 mt-1">{errors.dates}</p>}
+        
+        {errors.dates && (
+          <Alert variant="destructive" className="mt-2">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{errors.dates}</AlertDescription>
+          </Alert>
+        )}
         
         <div className="mt-4 p-3 bg-[#172B4D] rounded-md">
           <h4 className="font-medium text-amber-400 mb-2">Booking Policies:</h4>
           <ul className="text-sm text-gray-200 space-y-1.5">
             <li>• Minimum stay is 5 nights</li>
-            <li>• Check-in & check-out only on Saturdays</li>
+            <li>• Sunday check-ins are not available</li>
             <li>• Check-in: 15:00-18:30, Check-out: by 11:00</li>
             <li>• Security deposit: €500 (refundable at check-out)</li>
           </ul>
@@ -278,7 +316,11 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             placeholder="Enter your full name"
             className={errors.name ? "border-red-500" : ""}
           />
-          {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
+          {errors.name && (
+            <Alert variant="destructive" className="mt-2 py-2">
+              <AlertDescription>{errors.name}</AlertDescription>
+            </Alert>
+          )}
         </div>
         
         <div>
@@ -292,7 +334,11 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             placeholder="your@email.com"
             className={errors.email ? "border-red-500" : ""}
           />
-          {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
+          {errors.email && (
+            <Alert variant="destructive" className="mt-2 py-2">
+              <AlertDescription>{errors.email}</AlertDescription>
+            </Alert>
+          )}
         </div>
         
         <div>
@@ -306,7 +352,11 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             placeholder="+30 123 456 7890"
             className={`bg-[#1C3D66] text-amber-300 ${errors.phone ? "border-red-500" : ""}`}
           />
-          {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
+          {errors.phone && (
+            <Alert variant="destructive" className="mt-2 py-2">
+              <AlertDescription>{errors.phone}</AlertDescription>
+            </Alert>
+          )}
         </div>
         
         <div>
