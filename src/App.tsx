@@ -18,6 +18,7 @@ import AdminAttractions from "@/pages/admin/AdminAttractions";
 import Amenities from "@/pages/Amenities";
 import Attractions from "@/pages/Attractions";
 import Villas from "@/pages/Villas";
+import Pricing from "@/pages/Pricing";
 import "./App.css";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Route path="/booking-confirmation" element={<BookingConfirmation />} />
       <Route path="/amenities" element={<Amenities />} />
       <Route path="/attractions" element={<Attractions />} />
+      <Route path="/pricing" element={<Pricing />} />
       
       {/* Admin Routes */}
       <Route path="/admin" element={<AdminLogin />} />
