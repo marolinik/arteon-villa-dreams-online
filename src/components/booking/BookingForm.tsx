@@ -62,8 +62,8 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     
     if (!formData.guests || formData.guests < 1) {
       newErrors.guests = "Number of guests is required";
-    } else if (formData.guests > villa.capacity) {
-      newErrors.guests = `Maximum ${villa.capacity} guests allowed`;
+    } else if (formData.guests > 6) {
+      newErrors.guests = "Maximum 6 guests allowed";
     }
     
     if (!dateRange.from || !dateRange.to) {
@@ -92,9 +92,12 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     
     // Special handling for numeric inputs
     if (name === "guests") {
+      const numValue = parseInt(value) || 0;
+      // Enforce max of 6 guests
+      const limitedValue = Math.min(numValue, 6);
       setFormData((prev) => ({ 
         ...prev, 
-        [name]: parseInt(value) || 0 
+        [name]: limitedValue 
       }));
     } else {
       setFormData((prev) => ({ 
@@ -252,7 +255,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             onChange={handleInputChange}
             required
             placeholder="+30 123 456 7890"
-            className={errors.phone ? "border-red-500" : ""}
+            className={`text-white ${errors.phone ? "border-red-500" : ""}`}
           />
           {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
         </div>
@@ -263,14 +266,14 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             type="number"
             name="guests"
             min={1}
-            max={villa.capacity}
+            max={6}
             value={formData.guests}
             onChange={handleInputChange}
             required
             className={errors.guests ? "border-red-500" : ""}
           />
           <p className={`text-sm mt-1 ${errors.guests ? "text-red-500" : "text-gray-500"}`}>
-            {errors.guests || `Maximum capacity: ${villa.capacity} guests`}
+            {errors.guests || `Maximum capacity: 6 guests`}
           </p>
         </div>
       </div>
