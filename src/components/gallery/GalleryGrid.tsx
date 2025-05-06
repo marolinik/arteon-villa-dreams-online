@@ -66,9 +66,7 @@ export const GalleryGrid = ({ images }: GalleryGridProps) => {
               )}
             </div>
             
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-              <span className="text-white text-sm font-medium truncate">{image.alt}</span>
-            </div>
+            {/* Removed the hovering text div that was here */}
           </div>
         ))}
       </div>
