@@ -9,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import { ImageCarousel } from "@/components/ui/image-carousel";
 
-const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
+const heroBackgroundImage = "/lovable-uploads/688e1adc-830e-4787-8a22-5c6afd28769c.png";
 
 const Gallery = () => {
   const [category, setCategory] = useState<string | undefined>(undefined);
