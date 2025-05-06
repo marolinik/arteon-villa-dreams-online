@@ -135,7 +135,7 @@ const BookingConfirmation = () => {
                   If you have any questions about your {fromRequest ? "reservation request" : "booking"}, please contact us:
                 </p>
                 <p className="text-gray-700 font-medium mt-2">
-                  Email: booking@arteonvillas.com<br />
+                  Email: <a href="mailto:booking@arteonvillas.com" className="text-blue-600 hover:text-blue-800">booking@arteonvillas.com</a><br />
                   Phone: +30 12 3456 7890
                 </p>
               </div>
