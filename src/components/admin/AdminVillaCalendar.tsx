@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { addDays, isBefore, isAfter, isEqual, format } from "date-fns";
@@ -8,14 +9,16 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { BookingDate } from "@/types";
+import { BookingDate, Villa } from "@/types";
 import { bookings } from "@/data/bookings";
 
 interface AdminVillaCalendarProps {
-  villaId: string;
+  villaId?: string;
+  villas?: Villa[];
+  onStatusChange?: () => void;
 }
 
-const AdminVillaCalendar = ({ villaId }: AdminVillaCalendarProps) => {
+const AdminVillaCalendar = ({ villaId, villas, onStatusChange }: AdminVillaCalendarProps) => {
   const { toast } = useToast();
   const [date, setDate] = useState<DateRange | undefined>(undefined);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,8 +26,10 @@ const AdminVillaCalendar = ({ villaId }: AdminVillaCalendarProps) => {
   
   useEffect(() => {
     // Load bookings for the villa
-    const villaBookings = bookings.filter(booking => booking.villaId === villaId);
-    setBookedDates(villaBookings);
+    if (villaId) {
+      const villaBookings = bookings.filter(booking => booking.villaId === villaId);
+      setBookedDates(villaBookings);
+    }
   }, [villaId]);
   
   const handleBooking = async () => {
@@ -45,8 +50,8 @@ const AdminVillaCalendar = ({ villaId }: AdminVillaCalendarProps) => {
       
       // Create a new booking
       const newBooking: BookingDate = {
-        id: undefined,
-        villaId: villaId,
+        id: `booking-${Date.now()}`, // Generate a temporary ID
+        villaId: villaId || "",
         startDate: date.from,
         endDate: date.to,
         status: "confirmed"
@@ -59,6 +64,11 @@ const AdminVillaCalendar = ({ villaId }: AdminVillaCalendarProps) => {
         title: "Success",
         description: "Villa booked successfully!",
       });
+      
+      // Notify parent component if needed
+      if (onStatusChange) {
+        onStatusChange();
+      }
       
       // Reset the date
       setDate(undefined);
@@ -88,7 +98,7 @@ const AdminVillaCalendar = ({ villaId }: AdminVillaCalendarProps) => {
     
     // Add a cancelled booking placeholder to show in the calendar
     const cancelledBooking: BookingDate = {
-      id: undefined, // Add this line to fix the error
+      id: `cancelled-${Date.now()}`, // Generate a temporary ID
       startDate: booking.startDate,
       endDate: booking.endDate,
       villaId: booking.villaId,
@@ -101,6 +111,11 @@ const AdminVillaCalendar = ({ villaId }: AdminVillaCalendarProps) => {
       title: "Booking Cancelled",
       description: `Booking from ${format(booking.startDate, 'PP')} to ${format(booking.endDate, 'PP')} has been cancelled.`,
     });
+    
+    // Notify parent component if needed
+    if (onStatusChange) {
+      onStatusChange();
+    }
   };
   
   return (

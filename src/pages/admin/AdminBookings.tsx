@@ -56,7 +56,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
-import { AdminVillaCalendar } from "@/components/admin/AdminVillaCalendar";
+import AdminVillaCalendar from "@/components/admin/AdminVillaCalendar";
 
 const AdminBookings = () => {
   const { toast } = useToast();
@@ -125,7 +125,7 @@ const AdminBookings = () => {
     const booking = bookings.find(booking => booking.id === bookingId);
     if (booking) {
       updatedBookings.push({
-        id: undefined, // Add this line to fix the error
+        id: `cancelled-${Date.now()}`, // Generate a temporary ID
         startDate: booking.startDate,
         endDate: booking.endDate,
         villaId: booking.villaId,
@@ -152,6 +152,7 @@ const AdminBookings = () => {
     
     // Create a new restricted date entry
     const restrictedBooking: BookingDate = {
+      id: `restricted-${Date.now()}`, // Generate a temporary ID
       startDate: dateRange.from,
       endDate: dateRange.to,
       villaId: selectedVillaId,

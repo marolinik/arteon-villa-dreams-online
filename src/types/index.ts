@@ -36,7 +36,7 @@ export type GuestInfo = {
 };
 
 export type BookingDate = {
-  id: string | undefined;
+  id: string;
   villaId: string;
   startDate: Date;
   endDate: Date;
@@ -46,7 +46,6 @@ export type BookingDate = {
   bookingNumber?: string;
 };
 
-// Add the missing types
 export type GalleryImage = {
   id: string;
   url: string;
@@ -69,6 +68,10 @@ export type Amenity = {
   description: string;
   icon: string;
   category: "indoor" | "outdoor" | "service";
+  // Added missing fields found in the code
+  image?: string;
+  featured?: boolean;
+  title?: string;
 };
 
 export type Attraction = {
@@ -79,4 +82,7 @@ export type Attraction = {
   distance: string;
   location: string;
   category: "beach" | "cultural" | "nature" | "activity";
+  // Added missing fields found in the code
+  title?: string;
+  featured?: boolean;
 };
