@@ -286,7 +286,7 @@ const Pricing = () => {
                 </div>
                 <h3 className="text-xl font-medium text-white mb-3 text-center">Security Deposit</h3>
                 <p className="text-gray-300 text-center">
-                  A security deposit of €500 is required upon check-in, refundable within 7 days after departure, subject to property inspection.
+                  A security deposit of €500 in cash is required upon check-in, refundable at check-out subject to property inspection.
                 </p>
               </div>
               
@@ -298,7 +298,7 @@ const Pricing = () => {
                 </div>
                 <h3 className="text-xl font-medium text-white mb-3 text-center">Payment Methods</h3>
                 <p className="text-gray-300 text-center">
-                  We accept credit cards (Visa, MasterCard), bank transfers, and PayPal. All prices are in Euros (€).
+                  We accept credit cards (Visa, MasterCard) and bank transfers. All prices are in Euros (€).
                 </p>
               </div>
             </div>
