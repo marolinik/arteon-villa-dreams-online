@@ -1,111 +1,34 @@
-
-export interface Villa {
+export type Villa = {
   id: string;
   name: string;
-  meaning: string;
-  slug: string;
   description: string;
-  shortDescription: string;
+  images: string[];
+  price: number;
   bedrooms: number;
   bathrooms: number;
-  size: number;
-  capacity: number;
-  bedConfiguration: string;
-  mainImage: string;
-  images: string[];
+  maxGuests: number;
   amenities: string[];
-  features: VillaFeature[];
-}
+  rating: number;
+  location: string;
+  slug: string;
+  isFeatured: boolean;
+};
 
-export interface VillaFeature {
-  title: string;
-  description: string;
-}
-
-export interface BookingDate {
-  id?: string;
-  startDate: Date;
-  endDate: Date;
-  villaId: string;
-  guestInfo?: GuestInfo;
-  status?: "confirmed" | "pending" | "cancelled";
-  createdAt?: Date;
-  bookingNumber?: string;
-}
-
-export interface GuestInfo {
+export type GuestInfo = {
   name: string;
   email: string;
   phone: string;
   guests: number;
   specialRequests?: string;
-}
+};
 
-export interface GalleryImage {
-  id: string;
-  url: string;
-  alt: string;
-  category: string;
-}
-
-export interface AdminUser {
-  id: string;
-  username: string;
-  name: string;
-}
-
-export interface ContentBlock {
-  id: string;
-  title: string;
-  content: string;
-  pageId: string;
-  type: 'text' | 'image' | 'hero' | 'list';
-  position: number;
-  metadata?: Record<string, any>;
-}
-
-export interface Page {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
-  isPublished: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface Amenity {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  image: string;
-  category: string;
-  featured: boolean;
-}
-
-export interface Attraction {
-  id: string;
-  title: string;
-  description: string;
-  distance: string;
-  location: string;
-  image: string;
-  category: string;
-  featured: boolean;
-}
-
-export interface SiteSettings {
-  siteName: string;
-  siteDescription: string;
-  contactEmail: string;
-  contactPhone: string;
-  address: string;
-  socialMedia: {
-    facebook?: string;
-    instagram?: string;
-    twitter?: string;
-  };
-  logoUrl?: string;
-  faviconUrl?: string;
-}
+export type BookingDate = {
+  id: string | undefined;
+  villaId: string;
+  startDate: Date;
+  endDate: Date;
+  status?: "confirmed" | "pending" | "cancelled";
+  createdAt?: Date;
+  guestInfo?: GuestInfo;
+  bookingNumber?: string;
+};

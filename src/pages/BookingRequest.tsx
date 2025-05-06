@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { format, differenceInDays } from "date-fns";
 import { getVillaById } from "@/data/villas";
 import { sendEmail } from "@/utils/emailService";
-import { addBooking, bookings } from "@/data/bookings";
+import { addBooking, bookings, generateBookingNumber } from "@/data/bookings";
 import { GuestInfo } from "@/types";
 import { Mail, ArrowLeft, Check } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
@@ -58,6 +58,9 @@ const BookingRequest = () => {
       const villaName = villa ? villa.name : "Unknown Villa";
       const nights = differenceInDays(bookingDetails.endDate, bookingDetails.startDate);
       
+      // Generate booking number
+      const bookingNumber = generateBookingNumber();
+      
       // Create email body for guest
       const guestEmailBody = `
 Dear ${bookingDetails.guestInfo.name},
@@ -71,6 +74,8 @@ Booking Details:
 - Nights: ${nights}
 - Guests: ${bookingDetails.guestInfo.guests}
 - Total Price: €${bookingDetails.totalPrice}
+
+Your booking reference number: ${bookingNumber}
 
 You will receive payment instructions shortly. Please note that a 30% deposit is required to confirm your reservation.
 
@@ -90,6 +95,7 @@ Check-out: ${format(bookingDetails.endDate, "PPP")}
 Nights: ${nights}
 Rate per night: €${bookingDetails.nightRate}
 Total Price: €${bookingDetails.totalPrice}
+Booking reference: ${bookingNumber}
 
 Guest Information:
 - Name: ${bookingDetails.guestInfo.name}
@@ -107,7 +113,8 @@ ${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetai
         endDate: bookingDetails.endDate,
         guestInfo: bookingDetails.guestInfo,
         status: "pending",
-        createdAt: new Date()
+        createdAt: new Date(),
+        bookingNumber
       });
       
       // Send email to guest
@@ -128,7 +135,8 @@ ${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetai
       navigate("/booking-confirmation", { 
         state: { 
           fromRequest: true,
-          villaId: bookingDetails.villaId 
+          villaId: bookingDetails.villaId,
+          bookingNumber
         } 
       });
       

@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getVillaBySlug, getVillaById } from "@/data/villas";
@@ -7,6 +8,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import { Card, CardContent } from "@/components/ui/card";
+import { generateBookingNumber } from "@/data/bookings";
 
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
 const logoImage = "/lovable-uploads/b388aa44-8e03-4351-ac72-cc6726b61786.png";
@@ -18,7 +20,7 @@ const BookingConfirmation = () => {
   const villaSlug = queryParams.get("villa");
   const fromRequest = location.state?.fromRequest;
   const villaId = location.state?.villaId;
-  const bookingNumber = location.state?.bookingNumber || "000000";
+  const bookingNumber = location.state?.bookingNumber || generateBookingNumber();
   
   let villa;
   
