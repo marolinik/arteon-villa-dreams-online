@@ -12,10 +12,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const heroBackgroundImage = "/lovable-uploads/33312371-b782-4168-974b-ccfb2f8b74c7.png";
 
-// Amenity images
-const poolImage = "/lovable-uploads/c232481a-4e45-4abf-8303-8255f283f461.png";
-const beachImage = "/lovable-uploads/1708fc5b-9ac9-4750-a28f-4e70a19fe340.png";
-const bbqImage = "/lovable-uploads/5d5cf7e6-d036-4143-9758-43e42ccbd966.png";
+// Updated amenity images from uploaded images
+const poolImage = "/lovable-uploads/c3e2f735-08e9-4b1d-a593-adf24209b021.png";
+const beachImage = "/lovable-uploads/91f20945-a0b3-4c4e-85e1-d9199efbc6ab.png";
+const bbqImage = "/lovable-uploads/689c9332-a346-42ed-9503-f0cb8c984271.png";
 
 const Index = () => {
   return <>
@@ -91,47 +91,47 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Amenities Section */}
+      {/* Amenities Section - Modified with new layout and images */}
       <section className="section-container bg-[#07091A]">
         <SectionHeader title="Villa Amenities & Facilities" subtitle="Arteon Villas offers amenities that rival a boutique resort while maintaining the privacy and comfort of a holiday home." centered />
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-            <div className="w-14 h-14 bg-villa-teal/20 rounded-full flex items-center justify-center mb-4">
-              <img alt="Swimming Pool" className="w-8 h-8" src="/lovable-uploads/517011f9-d885-47e3-bd70-d058b9c078f8.jpg" />
-            </div>
-            <h3 className="text-xl font-serif font-medium mb-3">Swimming Pool & Sun Terrace</h3>
-            <p className="text-gray-600">
-              A crystal-clear outdoor pool surrounded by a wooden deck with sun loungers and parasols for each villa.
-            </p>
-            <div className="mt-4 rounded-lg overflow-hidden h-40">
+          {/* Pool amenity - Updated layout and image */}
+          <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="rounded-lg overflow-hidden h-52">
               <img src={poolImage} alt="Swimming pool" className="w-full h-full object-cover" />
             </div>
+            <div className="p-4">
+              <h3 className="text-xl font-serif font-medium mb-2 text-center">Swimming Pool & Sun Terrace</h3>
+              <p className="text-gray-600 text-center">
+                A crystal-clear outdoor pool surrounded by a wooden deck with sun loungers and parasols for each villa.
+              </p>
+            </div>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-            <div className="w-14 h-14 bg-villa-sand/30 rounded-full flex items-center justify-center mb-4">
-              <img src="https://cdn-icons-png.flaticon.com/512/3253/3253016.png" alt="Private Beach" className="w-8 h-8" />
-            </div>
-            <h3 className="text-xl font-serif font-medium mb-3">Private Beach Area</h3>
-            <p className="text-gray-600">
-              Each villa is provided with its own set of beach equipment on the uncrowded Salonikiou Beach.
-            </p>
-            <div className="mt-4 rounded-lg overflow-hidden h-40">
+          {/* Beach amenity - Updated layout and image */}
+          <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="rounded-lg overflow-hidden h-52">
               <img src={beachImage} alt="Beach area" className="w-full h-full object-cover" />
             </div>
+            <div className="p-4">
+              <h3 className="text-xl font-serif font-medium mb-2 text-center">Private Beach Area</h3>
+              <p className="text-gray-600 text-center">
+                Each villa is provided with its own set of beach equipment on the uncrowded Salonikiou Beach.
+              </p>
+            </div>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-            <div className="w-14 h-14 bg-villa-green/20 rounded-full flex items-center justify-center mb-4">
-              <img src="https://cdn-icons-png.flaticon.com/512/5990/5990702.png" alt="BBQ" className="w-8 h-8" />
-            </div>
-            <h3 className="text-xl font-serif font-medium mb-3">BBQ & Outdoor Dining</h3>
-            <p className="text-gray-600">
-              Barbecue facility available for guest use with shaded dining tables on your villa's patio.
-            </p>
-            <div className="mt-4 rounded-lg overflow-hidden h-40">
+          {/* BBQ amenity - Updated layout and image */}
+          <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="rounded-lg overflow-hidden h-52">
               <img src={bbqImage} alt="BBQ area" className="w-full h-full object-cover" />
+            </div>
+            <div className="p-4">
+              <h3 className="text-xl font-serif font-medium mb-2 text-center">BBQ & Outdoor Dining</h3>
+              <p className="text-gray-600 text-center">
+                Barbecue facility available for guest use with shaded dining tables on your villa's patio.
+              </p>
             </div>
           </div>
         </div>
