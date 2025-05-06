@@ -3,7 +3,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import { MapPin, ImageIcon } from "lucide-react";
-
 const heroBackgroundImage = "/lovable-uploads/31172d6b-392e-445c-996a-763f1bed68bb.png";
 const beachImage = "/lovable-uploads/2c1e4f80-8aef-4f2b-b1f9-b33cc8918107.png";
 const mountAthosImage = "/lovable-uploads/16e396f9-26ed-498e-8812-e9ec4baee2f3.png";
@@ -16,35 +15,21 @@ const metagkitsiImage = "/lovable-uploads/44f74968-2505-411c-8ba8-56057e31ffd4.p
 const vourvourouBeachImage = "/lovable-uploads/db686af8-1d18-4972-a594-61131db2aef8.png";
 const kalogriaBayImage = "/lovable-uploads/7a963ea4-de5e-4fc6-ae02-386e71b04662.png";
 const karydiBeachImage = "/lovable-uploads/726c87bf-d710-484f-8e9e-5b3dc370dc62.png";
-
 const Attractions = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-[#0F1524]">
+  return <div className="min-h-screen flex flex-col bg-[#0F1524]">
       <Navbar />
       
-      <PageHero
-        title="Nearby Attractions"
-        subtitle="Explore the beautiful surroundings and activities near Arteon Villas"
-        backgroundImage={heroBackgroundImage}
-      />
+      <PageHero title="Nearby Attractions" subtitle="Explore the beautiful surroundings and activities near Arteon Villas" backgroundImage={heroBackgroundImage} />
       
       <main className="py-16 flex-grow">
         <div className="container mx-auto px-4">
           <div className="mb-16">
-            <SectionHeader 
-              title="Explore Sithonia"
-              subtitle="Arteon Villas is situated in the Akti Salonikiou area of Sithonia, known for its natural beauty and low-key atmosphere."
-              titleClassName="text-white"
-            />
+            <SectionHeader title="Explore Sithonia" subtitle="Arteon Villas is situated in the Akti Salonikiou area of Sithonia, known for its natural beauty and low-key atmosphere." titleClassName="text-white" />
             
             <div className="grid md:grid-cols-2 gap-8 mb-10">
               <div className="bg-[#1D3A64] rounded-lg overflow-hidden border border-gray-700 shadow-xl flex flex-col">
                 <div className="h-64 w-full bg-[#172B4D] overflow-hidden">
-                  <img 
-                    src={beachImage}
-                    alt="Salonikiou Beach with crystal clear turquoise waters"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={beachImage} alt="Salonikiou Beach with crystal clear turquoise waters" className="w-full h-full object-cover" />
                 </div>
                 <div className="p-6 flex-grow">
                   <h3 className="text-xl font-serif font-medium mb-2 text-white">
@@ -66,11 +51,7 @@ const Attractions = () => {
               
               <div className="bg-[#1D3A64] rounded-lg overflow-hidden border border-gray-700 shadow-xl flex flex-col">
                 <div className="h-64 w-full bg-[#172B4D] overflow-hidden">
-                  <img 
-                    src={mountAthosImage}
-                    alt="Mount Athos cruise boat with mountain in background"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={mountAthosImage} alt="Mount Athos cruise boat with mountain in background" className="w-full h-full object-cover" />
                 </div>
                 <div className="p-6 flex-grow">
                   <h3 className="text-xl font-serif font-medium mb-2 text-white">Mount Athos Cruise</h3>
@@ -96,11 +77,7 @@ const Attractions = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700 flex flex-col">
                 <div className="h-48 bg-[#172B4D] overflow-hidden">
-                  <img 
-                    src={pyrgadikiaImage}
-                    alt="Pyrgadikia village evening restaurant scene with diners"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={pyrgadikiaImage} alt="Pyrgadikia village evening restaurant scene with diners" className="w-full h-full object-cover" />
                 </div>
                 <div className="p-5 flex-grow">
                   <h3 className="text-lg font-serif font-medium mb-2 text-white">Pyrgadikia</h3>
@@ -119,11 +96,7 @@ const Attractions = () => {
               
               <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700 flex flex-col">
                 <div className="h-48 bg-[#172B4D] overflow-hidden">
-                  <img 
-                    src={agiosNikolaosImage}
-                    alt="Agios Nikolaos restaurant with beautiful lake view"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={agiosNikolaosImage} alt="Agios Nikolaos restaurant with beautiful lake view" className="w-full h-full object-cover" />
                 </div>
                 <div className="p-5 flex-grow">
                   <h3 className="text-lg font-serif font-medium mb-2 text-white">Agios Nikolaos</h3>
@@ -142,11 +115,7 @@ const Attractions = () => {
               
               <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700 flex flex-col">
                 <div className="h-48 bg-[#172B4D] overflow-hidden">
-                  <img 
-                    src={ormosPanagiasImage}
-                    alt="Ormos Panagias seaside taverna with turquoise waters"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={ormosPanagiasImage} alt="Ormos Panagias seaside taverna with turquoise waters" className="w-full h-full object-cover" />
                 </div>
                 <div className="p-5 flex-grow">
                   <h3 className="text-lg font-serif font-medium mb-2 text-white">Ormos Panagias</h3>
@@ -158,18 +127,14 @@ const Attractions = () => {
                 <div className="bg-[#152E53] p-2 mt-auto border-t border-gray-700/50">
                   <div className="flex items-center text-[#F97316] text-sm">
                     <MapPin size={16} className="mr-2" />
-                    <span>8-9km (10 min drive)</span>
+                    <span className="text-villa-terracotta">8-9km (10 min drive)</span>
                   </div>
                 </div>
               </div>
               
               <div className="bg-[#1D3A64] rounded-lg shadow-xl overflow-hidden border border-gray-700 flex flex-col">
                 <div className="h-48 bg-[#172B4D] overflow-hidden">
-                  <img 
-                    src={metagkitsiImage}
-                    alt="Metagkitsi village with stone houses and outdoor dining"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={metagkitsiImage} alt="Metagkitsi village with stone houses and outdoor dining" className="w-full h-full object-cover" />
                 </div>
                 <div className="p-5 flex-grow">
                   <h3 className="text-lg font-serif font-medium mb-2 text-white">Metagkitsi</h3>
@@ -181,7 +146,7 @@ const Attractions = () => {
                 <div className="bg-[#152E53] p-2 mt-auto border-t border-gray-700/50">
                   <div className="flex items-center text-[#F97316] text-sm">
                     <MapPin size={16} className="mr-2" />
-                    <span>5.2km (7 min drive)</span>
+                    <span className="text-villa-terracotta">5.2km (7 min drive)</span>
                   </div>
                 </div>
               </div>
@@ -201,25 +166,13 @@ const Attractions = () => {
                 </p>
                 <div className="grid grid-cols-3 gap-3">
                   <div className="rounded-md h-24 w-full bg-[#172B4D] overflow-hidden">
-                    <img 
-                      src={vourvourouBeachImage} 
-                      alt="Aerial view of Vourvourou Bay with its stunning turquoise waters" 
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={vourvourouBeachImage} alt="Aerial view of Vourvourou Bay with its stunning turquoise waters" className="w-full h-full object-cover" />
                   </div>
                   <div className="rounded-md h-24 w-full bg-[#172B4D] overflow-hidden">
-                    <img 
-                      src={karydiBeachImage} 
-                      alt="Beautiful Karydi Beach with its clear turquoise waters and sandy shores" 
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={karydiBeachImage} alt="Beautiful Karydi Beach with its clear turquoise waters and sandy shores" className="w-full h-full object-cover" />
                   </div>
                   <div className="rounded-md h-24 w-full bg-[#172B4D] overflow-hidden">
-                    <img 
-                      src={kalogriaBayImage} 
-                      alt="Kalogria Bay with beach umbrellas and crystal clear waters" 
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={kalogriaBayImage} alt="Kalogria Bay with beach umbrellas and crystal clear waters" className="w-full h-full object-cover" />
                   </div>
                 </div>
               </div>
@@ -247,8 +200,6 @@ const Attractions = () => {
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Attractions;
