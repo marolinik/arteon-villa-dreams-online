@@ -121,12 +121,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/admin" className="hover:text-amber-400 transition-all duration-300 flex items-center group">
+                <Link to="/admin?test=true" className="hover:text-amber-400 transition-all duration-300 flex items-center group">
                   <span className="inline-block w-1.5 h-1.5 bg-villa-terracotta rounded-full mr-2 group-hover:bg-amber-400 group-hover:scale-150 transition-all duration-300"></span>
-                  <span className="flex items-center">
-                    Admin Login 
-                    <span className="ml-1 text-xs text-amber-500">(Test: marolinik@gmail.com / 74marOLInik74)</span>
-                  </span>
+                  Admin Login
                 </Link>
               </li>
             </ul>
