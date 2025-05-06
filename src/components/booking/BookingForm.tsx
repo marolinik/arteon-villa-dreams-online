@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -180,13 +179,8 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       // Send confirmation emails
       await sendBookingEmail(newBooking);
       
-      toast({
-        title: "Booking Confirmed!",
-        description: `Your booking for ${villa.name} from ${format(dateRange.from, "PP")} to ${format(dateRange.to, "PP")} has been confirmed.`,
-      });
-
-      // Navigate to a confirmation page or back to the villa
-      navigate(`/villas/${villa.slug}?booked=true`);
+      // Navigate to the thank you page instead of back to the villa
+      navigate(`/booking-confirmation?villa=${villa.slug}`);
     } catch (error) {
       console.error("Booking failed:", error);
       toast({
@@ -255,7 +249,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             onChange={handleInputChange}
             required
             placeholder="+30 123 456 7890"
-            className={`text-white ${errors.phone ? "border-red-500" : ""}`}
+            className={`bg-[#1C3D66] text-amber-300 ${errors.phone ? "border-red-500" : ""}`}
           />
           {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
         </div>
@@ -270,7 +264,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             value={formData.guests}
             onChange={handleInputChange}
             required
-            className={`text-white ${errors.guests ? "border-red-500" : ""}`}
+            className={`bg-[#1C3D66] text-amber-300 ${errors.guests ? "border-red-500" : ""}`}
           />
           <p className={`text-sm mt-1 ${errors.guests ? "text-red-500" : "text-gray-500"}`}>
             {errors.guests || `Maximum capacity: 6 guests`}
