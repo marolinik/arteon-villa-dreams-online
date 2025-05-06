@@ -1,7 +1,8 @@
+
 import { Link } from 'react-router-dom';
 import { MapPin, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
 const Footer = () => {
-  return <footer className="bg-[#0F1524] text-gray-300 pt-16 pb-8 border-t border-gray-800">
+  return <footer className="bg-[#07091A] text-gray-300 pt-16 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
