@@ -136,7 +136,8 @@ const BookingConfirmation = () => {
                 </p>
                 <p className="text-gray-700 font-medium mt-2">
                   Email: <a href="mailto:booking@arteonvillas.com" className="text-blue-600 hover:text-blue-800">booking@arteonvillas.com</a><br />
-                  Phone: +30 12 3456 7890
+                  Phone: +381 62 19 76 467<br />
+                  Phone: +381 62 77 99 878
                 </p>
               </div>
               
