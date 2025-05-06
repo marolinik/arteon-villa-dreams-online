@@ -62,8 +62,8 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     
     if (!formData.guests || formData.guests < 1) {
       newErrors.guests = "Number of guests is required";
-    } else if (formData.guests > 6) {
-      newErrors.guests = "Maximum 6 guests allowed";
+    } else if (formData.guests > villa.capacity) {
+      newErrors.guests = `Maximum ${villa.capacity} guests allowed`;
     }
     
     if (!dateRange.from || !dateRange.to) {
@@ -89,7 +89,19 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    // Special handling for numeric inputs
+    if (name === "guests") {
+      setFormData((prev) => ({ 
+        ...prev, 
+        [name]: parseInt(value) || 0 
+      }));
+    } else {
+      setFormData((prev) => ({ 
+        ...prev, 
+        [name]: value 
+      }));
+    }
     
     // Clear validation error when user types
     if (errors[name as keyof typeof errors]) {
@@ -234,6 +246,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
         <div>
           <label className="block text-sm font-medium mb-1.5">Phone Number</label>
           <Input
+            type="text"
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
@@ -250,14 +263,14 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             type="number"
             name="guests"
             min={1}
-            max={6}
+            max={villa.capacity}
             value={formData.guests}
             onChange={handleInputChange}
             required
             className={errors.guests ? "border-red-500" : ""}
           />
           <p className={`text-sm mt-1 ${errors.guests ? "text-red-500" : "text-gray-500"}`}>
-            {errors.guests || `Maximum capacity: 6 guests (villa capacity: ${villa.capacity})`}
+            {errors.guests || `Maximum capacity: ${villa.capacity} guests`}
           </p>
         </div>
       </div>
