@@ -1,4 +1,3 @@
-
 import { Villa } from "@/types";
 
 export const villas: Villa[] = [
@@ -17,9 +16,9 @@ export const villas: Villa[] = [
     mainImage: "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png",
     images: [
       "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png",
-      "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png",
-      "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png",
-      "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png"
+      "/lovable-uploads/1c019c50-b4a6-4b20-8485-272df3e166c1.png", // Double bed bedroom
+      "/lovable-uploads/97791fed-d1e5-4d6d-90f5-d1f4e1b681dc.png", // Living room
+      "/lovable-uploads/16e396f9-26ed-498e-8812-e9ec4baee2f3.png"  // Bathroom
     ],
     amenities: [
       "Fully equipped kitchen",
@@ -62,9 +61,9 @@ export const villas: Villa[] = [
     mainImage: "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png",
     images: [
       "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png",
-      "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png",
-      "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png",
-      "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png"
+      "/lovable-uploads/139a87fa-81bf-4b6f-9218-c82a60e08dfd.png", // Double bed
+      "/lovable-uploads/265794f2-b9e4-4d1a-83bd-17a34d11eb5b.png", // Twin bedroom with single beds
+      "/lovable-uploads/1e2ee01a-5076-4172-9b0a-89e93de61c70.png"  // Kitchen/Dining area
     ],
     amenities: [
       "Fully equipped kitchen",
@@ -107,9 +106,9 @@ export const villas: Villa[] = [
     mainImage: "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png",
     images: [
       "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png",
-      "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png",
-      "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png",
-      "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png"
+      "/lovable-uploads/25f78276-040e-4369-bddf-ba863e268855.png", // Double bed bedroom
+      "/lovable-uploads/d2f50d35-d941-4bb7-b122-90110ab080f1.png", // Twin bedroom with single beds
+      "/lovable-uploads/a93962e4-9216-4977-bbba-2ee67f6f8953.png"  // Bathroom
     ],
     amenities: [
       "Fully equipped kitchen",
@@ -152,9 +151,9 @@ export const villas: Villa[] = [
     mainImage: "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png",
     images: [
       "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png",
-      "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png",
-      "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png",
-      "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png"
+      "/lovable-uploads/44cdbc7f-950c-4310-bc8d-31193270787f.png", // Double bed bedroom
+      "/lovable-uploads/31172d6b-392e-445c-996a-763f1bed68bb.png", // Living room with sofa
+      "/lovable-uploads/4b93e28a-3d4f-4e75-958b-2d436ebecdf7.png"  // Kitchen/Dining area
     ],
     amenities: [
       "Fully equipped kitchen",
