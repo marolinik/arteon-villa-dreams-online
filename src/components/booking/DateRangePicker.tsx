@@ -22,13 +22,15 @@ export const DateRangePicker = ({
   onDateRangeChange,
   className 
 }: DateRangePickerProps) => {
-  const [selectedRange, setSelectedRange] = useState<DateRange>({
+  const [selectedRange, setSelectedRange] = useState<DateRange | undefined>({
     from: undefined,
     to: undefined
   });
   
   useEffect(() => {
-    onDateRangeChange(selectedRange.from, selectedRange.to);
+    if (selectedRange) {
+      onDateRangeChange(selectedRange.from, selectedRange.to);
+    }
   }, [selectedRange, onDateRangeChange]);
   
   // Check if a date is booked already
@@ -82,11 +84,11 @@ export const DateRangePicker = ({
                 variant="outline"
                 className={cn(
                   "w-full justify-start text-left font-normal",
-                  !selectedRange.from && "text-muted-foreground"
+                  !selectedRange?.from && "text-muted-foreground"
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {selectedRange.from ? (
+                {selectedRange?.from ? (
                   format(selectedRange.from, "PPP")
                 ) : (
                   <span>Pick a check-in date</span>
@@ -129,11 +131,11 @@ export const DateRangePicker = ({
                 variant="outline"
                 className={cn(
                   "w-full justify-start text-left font-normal",
-                  !selectedRange.to && "text-muted-foreground"
+                  !selectedRange?.to && "text-muted-foreground"
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {selectedRange.to ? (
+                {selectedRange?.to ? (
                   format(selectedRange.to, "PPP")
                 ) : (
                   <span>Pick a check-out date</span>
@@ -169,7 +171,7 @@ export const DateRangePicker = ({
         </div>
       </div>
       
-      {selectedRange.from && selectedRange.to && (
+      {selectedRange?.from && selectedRange?.to && (
         <p className="text-sm text-villa-green">
           {`Your stay: ${format(selectedRange.from, "PPP")} - ${format(selectedRange.to, "PPP")}`}
         </p>
