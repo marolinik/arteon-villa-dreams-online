@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { villas } from "@/data/villas";
 import { VillaCard } from "@/components/ui/villa-card";
@@ -9,24 +8,18 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/layout/HeroSection";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 const heroBackgroundImage = "/lovable-uploads/33312371-b782-4168-974b-ccfb2f8b74c7.png";
 
 // Updated amenity images from uploaded images
 const poolImage = "/lovable-uploads/c3e2f735-08e9-4b1d-a593-adf24209b021.png";
 const beachImage = "/lovable-uploads/91f20945-a0b3-4c4e-85e1-d9199efbc6ab.png";
 const bbqImage = "/lovable-uploads/689c9332-a346-42ed-9503-f0cb8c984271.png";
-
 const Index = () => {
   return <>
       <Navbar />
       
       {/* Hero Section with Background Image */}
-      <HeroSection
-        title="Arteon Villas"
-        subtitle="Your Perfect Halkidiki Getaway"
-        backgroundImage={heroBackgroundImage}
-      >
+      <HeroSection title="Arteon Villas" subtitle="Your Perfect Halkidiki Getaway" backgroundImage={heroBackgroundImage}>
         <div className="flex flex-wrap gap-6 justify-center">
           <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
             Book Now
@@ -75,7 +68,7 @@ const Index = () => {
           <div className="rounded-lg overflow-hidden shadow-lg h-[450px]">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.9032757437003!2d23.691418775298548!3d40.29760116288237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a895000c2d8971%3A0x580e197d9810c112!2sARTEON%20VILLAS!5e1!3m2!1ssr!2srs!4v1746447525225!5m2!1ssr!2srs" width="100%" height="100%" style={{
             border: 0
-            }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Arteon Villas Location" className="w-full h-full"></iframe>
+          }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Arteon Villas Location" className="w-full h-full"></iframe>
           </div>
         </div>
       </section>
@@ -102,7 +95,7 @@ const Index = () => {
               <img src={poolImage} alt="Swimming pool" className="w-full h-full object-cover" />
             </div>
             <div className="p-4">
-              <h3 className="text-xl font-serif font-medium mb-2 text-center">Swimming Pool & Sun Terrace</h3>
+              
               <p className="text-gray-600 text-center">
                 A crystal-clear outdoor pool surrounded by a wooden deck with sun loungers and parasols for each villa.
               </p>
@@ -115,7 +108,7 @@ const Index = () => {
               <img src={beachImage} alt="Beach area" className="w-full h-full object-cover" />
             </div>
             <div className="p-4">
-              <h3 className="text-xl font-serif font-medium mb-2 text-center">Private Beach Area</h3>
+              
               <p className="text-gray-600 text-center">
                 Each villa is provided with its own set of beach equipment on the uncrowded Salonikiou Beach.
               </p>
@@ -128,7 +121,7 @@ const Index = () => {
               <img src={bbqImage} alt="BBQ area" className="w-full h-full object-cover" />
             </div>
             <div className="p-4">
-              <h3 className="text-xl font-serif font-medium mb-2 text-center">BBQ & Outdoor Dining</h3>
+              
               <p className="text-gray-600 text-center">
                 Barbecue facility available for guest use with shaded dining tables on your villa's patio.
               </p>
