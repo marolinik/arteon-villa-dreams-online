@@ -1,4 +1,3 @@
-
 import { GalleryImage } from "@/types";
 
 // Gallery images with real image paths
@@ -599,6 +598,50 @@ export const galleryImages: GalleryImage[] = [
     url: "/lovable-uploads/4942c559-24ae-45d9-a41f-881aa8c78704.png",
     alt: "Modern living room with wooden floors, sofa, accent pillows and wooden chair",
     category: "interior"
+  },
+  
+  // Amenities images
+  {
+    id: "am1",
+    url: "/lovable-uploads/fc2b762a-41b0-49d7-b1e8-d61175595802.png",
+    alt: "Covered outdoor dining area with wooden table and BBQ grill",
+    category: "amenities"
+  },
+  {
+    id: "am2",
+    url: "/lovable-uploads/326200ef-752b-4ee7-a492-ebb6d7bd63cf.png",
+    alt: "Aerial view of private pool with sun loungers on wooden deck",
+    category: "amenities"
+  },
+  {
+    id: "am3",
+    url: "/lovable-uploads/ac316b15-7380-4c5e-96c2-d21380196d85.png",
+    alt: "Pristine sandy beach with turquoise waters and white beach umbrellas",
+    category: "surroundings"
+  },
+  {
+    id: "am4",
+    url: "/lovable-uploads/63fe63fc-7948-4c8a-85ff-b1a1898b132e.png",
+    alt: "Beach umbrella and loungers with sunset sea view",
+    category: "surroundings"
+  },
+  {
+    id: "am5",
+    url: "/lovable-uploads/2ea9e26b-fc04-410e-a86b-0b02c3be6284.png",
+    alt: "Plush blue beach towel on comfortable sun lounger",
+    category: "amenities"
+  },
+  {
+    id: "am6",
+    url: "/lovable-uploads/94190d71-ba0a-4837-befd-0db997628a3a.png",
+    alt: "Modern outdoor shower with stone wall and stainless steel fixtures",
+    category: "amenities"
+  },
+  {
+    id: "am7",
+    url: "/lovable-uploads/44329134-e63f-4fae-b568-ee3fe2007f11.png",
+    alt: "Private pool area with sun loungers, umbrellas and mountain view",
+    category: "amenities"
   }
 ];
 
