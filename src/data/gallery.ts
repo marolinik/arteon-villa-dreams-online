@@ -1,3 +1,4 @@
+
 import { GalleryImage } from "@/types";
 
 // Gallery images with real image paths
@@ -523,6 +524,80 @@ export const galleryImages: GalleryImage[] = [
     id: "int40",
     url: "/lovable-uploads/77d8bf78-aaa4-4ee2-a728-ac6b7917e07a.png",
     alt: "Twin bedroom with separate single beds, wooden headboards, ceiling fan, and sheer curtains with balcony access",
+    category: "interior"
+  },
+  
+  // New interior images from uploaded files
+  {
+    id: "int41",
+    url: "/lovable-uploads/04f30a94-bc33-4789-8300-b9ba3c9e629e.png",
+    alt: "Modern bedroom with panoramic windows overlooking pool area and mountains",
+    category: "interior"
+  },
+  {
+    id: "int42",
+    url: "/lovable-uploads/8f80f38b-2d43-4707-a3f4-7b9e28018202.png",
+    alt: "Open window view framing garden, pool and mountain landscape",
+    category: "interior"
+  },
+  {
+    id: "int43",
+    url: "/lovable-uploads/07fa873c-891a-4a75-8bcc-31001662e701.png",
+    alt: "Elegant white lace dress hanging in bedroom with vanity area",
+    category: "interior"
+  },
+  {
+    id: "int44",
+    url: "/lovable-uploads/992ba450-d503-492a-8ced-c23f6c186037.png",
+    alt: "Open window view with sheer curtains showing villa grounds and pool",
+    category: "interior"
+  },
+  {
+    id: "int45",
+    url: "/lovable-uploads/a93962e4-9216-4977-bbba-2ee67f6f8953.png",
+    alt: "Dining table with green placemats, white dinnerware and potted plant centerpiece",
+    category: "interior"
+  },
+  {
+    id: "int46",
+    url: "/lovable-uploads/4fefa9ae-4a96-4592-b817-e59bb3ae37d0.png",
+    alt: "Wooden reading chair with colorful cushion, floor lamp and straw hat",
+    category: "interior"
+  },
+  {
+    id: "int47",
+    url: "/lovable-uploads/914f939c-c7bd-4684-b608-926200693788.png",
+    alt: "Bedroom with large windows, white bedding and rolled towels on runner",
+    category: "interior"
+  },
+  {
+    id: "int48",
+    url: "/lovable-uploads/1fd5cf44-3460-45f2-bc8a-8e823821e465.png",
+    alt: "White and wood modern bed with bedside tables and geometric lamps",
+    category: "interior"
+  },
+  {
+    id: "int49",
+    url: "/lovable-uploads/d6ef50af-0313-4f11-95b6-b5102073c4cc.png",
+    alt: "Bedroom with panoramic windows, white rocking chair and mountain views",
+    category: "interior"
+  },
+  {
+    id: "int50",
+    url: "/lovable-uploads/07b03475-a6d8-461c-bb8f-646e88430134.png",
+    alt: "Compact kitchen with dining area, white cabinetry and modern appliances",
+    category: "interior"
+  },
+  {
+    id: "int51",
+    url: "/lovable-uploads/ec537053-d177-41d3-a904-660ea61e93ec.png",
+    alt: "Bedroom with wooden floors, white bedding and mint accent chairs",
+    category: "interior"
+  },
+  {
+    id: "int52",
+    url: "/lovable-uploads/4942c559-24ae-45d9-a41f-881aa8c78704.png",
+    alt: "Modern living room with wooden floors, sofa, accent pillows and wooden chair",
     category: "interior"
   }
 ];
