@@ -41,7 +41,7 @@ const VillaDetail = () => {
   }
   
   return (
-    <div className="bg-[#0F1524] text-white min-h-screen flex flex-col">
+    <div className="bg-[#07091A] text-white min-h-screen flex flex-col">
       <Navbar />
       
       <main className="pt-8 pb-20 flex-grow">
