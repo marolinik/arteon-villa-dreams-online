@@ -22,16 +22,15 @@ export const DateRangePicker = ({
   onDateRangeChange,
   className 
 }: DateRangePickerProps) => {
-  const [selectedRange, setSelectedRange] = useState<DateRange | undefined>({
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: undefined,
     to: undefined
   });
   
+  // Only trigger the callback when dates actually change
   useEffect(() => {
-    if (selectedRange) {
-      onDateRangeChange(selectedRange.from, selectedRange.to);
-    }
-  }, [selectedRange, onDateRangeChange]);
+    onDateRangeChange(dateRange?.from, dateRange?.to);
+  }, [dateRange?.from, dateRange?.to, onDateRangeChange]);
   
   // Check if a date is booked already
   const isDateBooked = (date: Date): boolean => {
@@ -58,21 +57,6 @@ export const DateRangePicker = ({
            isAfter(day, seasonEnd);
   };
   
-  // Custom CSS for certain dates
-  const getDateClassName = (date: Date): string => {
-    const day = startOfDay(date);
-    
-    if (isDateBooked(day)) {
-      return "bg-red-100 text-red-800";
-    }
-    
-    if (isBefore(day, seasonStart) || isAfter(day, seasonEnd)) {
-      return "bg-gray-100 text-gray-400";
-    }
-    
-    return "";
-  };
-  
   return (
     <div className={cn("space-y-4", className)}>
       <div className="flex flex-col sm:flex-row gap-3">
@@ -84,12 +68,12 @@ export const DateRangePicker = ({
                 variant="outline"
                 className={cn(
                   "w-full justify-start text-left font-normal",
-                  !selectedRange?.from && "text-muted-foreground"
+                  !dateRange?.from && "text-muted-foreground"
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {selectedRange?.from ? (
-                  format(selectedRange.from, "PPP")
+                {dateRange?.from ? (
+                  format(dateRange.from, "PPP")
                 ) : (
                   <span>Pick a check-in date</span>
                 )}
@@ -98,8 +82,8 @@ export const DateRangePicker = ({
             <PopoverContent className="w-auto p-0" align="start">
               <Calendar
                 mode="range"
-                selected={selectedRange}
-                onSelect={setSelectedRange}
+                selected={dateRange}
+                onSelect={setDateRange}
                 disabled={isDateDisabled}
                 modifiers={{
                   booked: (date) => isDateBooked(date),
@@ -112,7 +96,7 @@ export const DateRangePicker = ({
                   booked: "bg-red-100 text-red-800",
                   outsideSeason: "bg-gray-100 text-gray-400"
                 }}
-                className={cn("p-3 pointer-events-auto")}
+                initialFocus
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
                     * Booking available only between May 31 - Oct 4, 2025
@@ -131,12 +115,12 @@ export const DateRangePicker = ({
                 variant="outline"
                 className={cn(
                   "w-full justify-start text-left font-normal",
-                  !selectedRange?.to && "text-muted-foreground"
+                  !dateRange?.to && "text-muted-foreground"
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {selectedRange?.to ? (
-                  format(selectedRange.to, "PPP")
+                {dateRange?.to ? (
+                  format(dateRange.to, "PPP")
                 ) : (
                   <span>Pick a check-out date</span>
                 )}
@@ -145,8 +129,8 @@ export const DateRangePicker = ({
             <PopoverContent className="w-auto p-0" align="start">
               <Calendar
                 mode="range"
-                selected={selectedRange}
-                onSelect={setSelectedRange}
+                selected={dateRange}
+                onSelect={setDateRange}
                 disabled={isDateDisabled}
                 modifiers={{
                   booked: (date) => isDateBooked(date),
@@ -159,7 +143,7 @@ export const DateRangePicker = ({
                   booked: "bg-red-100 text-red-800",
                   outsideSeason: "bg-gray-100 text-gray-400"
                 }}
-                className={cn("p-3 pointer-events-auto")}
+                initialFocus
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
                     * Booking available only between May 31 - Oct 4, 2025
@@ -171,9 +155,9 @@ export const DateRangePicker = ({
         </div>
       </div>
       
-      {selectedRange?.from && selectedRange?.to && (
+      {dateRange?.from && dateRange?.to && (
         <p className="text-sm text-villa-green">
-          {`Your stay: ${format(selectedRange.from, "PPP")} - ${format(selectedRange.to, "PPP")}`}
+          {`Your stay: ${format(dateRange.from, "PPP")} - ${format(dateRange.to, "PPP")}`}
         </p>
       )}
     </div>

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -86,6 +85,15 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     }
   };
 
+  const handleDateRangeChange = (from: Date | undefined, to: Date | undefined) => {
+    setDateRange({ from, to });
+    
+    // Clear date validation error when user selects dates
+    if (errors.dates) {
+      setErrors(prev => ({ ...prev, dates: undefined }));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -161,15 +169,6 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       });
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  const handleDateRangeChange = (from: Date | undefined, to: Date | undefined) => {
-    setDateRange({ from, to });
-    
-    // Clear date validation error when user selects dates
-    if (errors.dates) {
-      setErrors(prev => ({ ...prev, dates: undefined }));
     }
   };
 

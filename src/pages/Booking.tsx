@@ -28,11 +28,18 @@ const Booking = () => {
       if (villa) {
         setSelectedVilla(villa);
       }
+    } else if (villas.length > 0 && !selectedVilla) {
+      // Set a default villa if none is selected
+      setSelectedVilla(villas[0]);
     }
   }, [location.search]);
   
+  // Make sure we have a selected villa
+  const activeVilla = selectedVilla || villas[0];
+  const activeVillaSlug = activeVilla?.slug || villas[0].slug;
+  
   return (
-    <div className="min-h-screen flex flex-col bg-[#0F1524]">
+    <div className="min-h-screen flex flex-col bg-[#07091A]">
       <Navbar />
       
       <PageHero
@@ -45,7 +52,7 @@ const Booking = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto bg-[#1D3A64] rounded-lg shadow-lg overflow-hidden">
             <Tabs 
-              defaultValue={selectedVilla?.slug || villas[0].slug}
+              defaultValue={activeVillaSlug}
               className="w-full"
             >
               <div className="bg-[#213E69] px-6 py-4 border-b border-gray-700">
