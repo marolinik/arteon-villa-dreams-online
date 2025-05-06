@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getVillaBySlug, getVillaById } from "@/data/villas";
@@ -10,7 +9,7 @@ import PageHero from "@/components/layout/PageHero";
 import { Card, CardContent } from "@/components/ui/card";
 
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
-const logoImage = "/lovable-uploads/517011f9-d885-47e3-bd70-d058b9c078f8.jpg";
+const logoImage = "/lovable-uploads/b388aa44-8e03-4351-ac72-cc6726b61786.png";
 
 const BookingConfirmation = () => {
   const location = useLocation();
@@ -58,7 +57,7 @@ const BookingConfirmation = () => {
             {/* Document header */}
             <div className="border-b border-gray-200 p-8 flex flex-col md:flex-row justify-between items-center">
               <div className="mb-4 md:mb-0">
-                <img src={logoImage} alt="Arteon Villas Logo" className="h-24 object-contain" />
+                <img src={logoImage} alt="Arteon Villas Logo" className="h-28 object-contain" />
               </div>
               <div className="text-right">
                 <h2 className="text-2xl font-serif text-[#1D3A64] font-bold">
