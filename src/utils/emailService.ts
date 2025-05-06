@@ -13,9 +13,11 @@ interface EmailData {
 
 export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
   // In a real implementation, this would call an API to send an email
+  const recipients = emailData.to.split(',').map(email => email.trim());
+  
   console.log(`Sending email:
     From: ${emailData.from || 'booking@arteonvillas.com'}
-    To: ${emailData.to}
+    To: ${recipients.join(', ')}
     Subject: ${emailData.subject}
     Body: ${emailData.body}
   `);

@@ -4,6 +4,7 @@ import Index from "@/pages/Index";
 import VillaDetail from "@/pages/VillaDetail";
 import Gallery from "@/pages/Gallery";
 import Booking from "@/pages/Booking";
+import BookingRequest from "@/pages/BookingRequest";
 import BookingConfirmation from "@/pages/BookingConfirmation";
 import NotFound from "@/pages/NotFound";
 import AdminLogin from "@/pages/admin/AdminLogin";
@@ -29,6 +30,7 @@ function App() {
       <Route path="/villas/:slug" element={<VillaDetail />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/booking" element={<Booking />} />
+      <Route path="/booking-request" element={<BookingRequest />} />
       <Route path="/booking-confirmation" element={<BookingConfirmation />} />
       <Route path="/amenities" element={<Amenities />} />
       <Route path="/attractions" element={<Attractions />} />

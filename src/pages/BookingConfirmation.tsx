@@ -1,7 +1,7 @@
 
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { getVillaBySlug } from "@/data/villas";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { getVillaBySlug, getVillaById } from "@/data/villas";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, ChevronLeft, Home, Calendar } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
@@ -12,9 +12,19 @@ const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47
 
 const BookingConfirmation = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const villaSlug = queryParams.get("villa");
-  const villa = villaSlug ? getVillaBySlug(villaSlug) : undefined;
+  const fromRequest = location.state?.fromRequest;
+  const villaId = location.state?.villaId;
+  
+  let villa;
+  
+  if (villaSlug) {
+    villa = getVillaBySlug(villaSlug);
+  } else if (villaId) {
+    villa = getVillaById(villaId);
+  }
   
   // Scroll to top on component mount
   useEffect(() => {
@@ -26,7 +36,7 @@ const BookingConfirmation = () => {
       <Navbar />
       
       <PageHero
-        title="Booking Confirmed!"
+        title={fromRequest ? "Thank You for Your Reservation Request" : "Booking Confirmed!"}
         subtitle="Thank you for choosing our villa in Halkidiki"
         backgroundImage={heroBackgroundImage}
       />
@@ -40,27 +50,36 @@ const BookingConfirmation = () => {
               </div>
               
               <h1 className="text-3xl font-serif font-semibold mb-4 text-white">
-                Thank You for Your Booking
+                {fromRequest 
+                  ? "Thank You for Your Reservation Request" 
+                  : "Thank You for Your Booking"}
               </h1>
               
               <div className="bg-[#172B4D] p-6 rounded-lg mb-6">
                 <p className="text-lg text-gray-200 mb-4">
-                  Your booking has been recorded successfully.
+                  {fromRequest
+                    ? "Your booking request has been received successfully."
+                    : "Your booking has been recorded successfully."}
                 </p>
                 
                 <p className="text-amber-300 mb-6">
-                  {villa ? `You have booked ${villa.name} villa` : "Your villa booking"} has been confirmed.
+                  {villa 
+                    ? `You have ${fromRequest ? "requested" : "booked"} ${villa.name} villa` 
+                    : `Your villa ${fromRequest ? "request" : "booking"}`}
                 </p>
                 
                 <div className="border-t border-gray-700 pt-4">
                   <p className="text-white">
-                    You will be contacted soon on your email with payment instructions.
+                    {fromRequest 
+                      ? "You will receive an email with payment instructions shortly."
+                      : "You will be contacted soon on your email with payment instructions."
+                    }
                   </p>
                 </div>
               </div>
               
               <p className="text-gray-300 mb-8">
-                If you have any questions about your booking, please don't hesitate to contact us.
+                If you have any questions about your {fromRequest ? "reservation request" : "booking"}, please don't hesitate to contact us.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
