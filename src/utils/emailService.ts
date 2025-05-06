@@ -25,12 +25,32 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
   // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 500));
   
-  // Return true to simulate successful sending
+  // In a production environment, you'd replace this with actual email sending logic
+  // For example, using an API like SendGrid, Mailgun, etc.
+  
+  // If this was a real implementation, we would do something like:
+  // try {
+  //   const response = await fetch('https://api.emailservice.com/send', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${API_KEY}`
+  //     },
+  //     body: JSON.stringify({
+  //       from: emailData.from || 'booking@arteonvillas.com',
+  //       to: recipients,
+  //       subject: emailData.subject,
+  //       html: emailData.body
+  //     })
+  //   });
+  //
+  //   if (!response.ok) throw new Error('Failed to send email');
+  //   return true;
+  // } catch (error) {
+  //   console.error('Email send error:', error);
+  //   return false;
+  // }
+  
+  // For now, we'll just simulate a successful send
   return true;
 };
-
-/**
- * In a real application, this would be implemented as a backend service
- * like a serverless function, API route, etc. Here, we're just simulating
- * the functionality for demonstration purposes.
- */

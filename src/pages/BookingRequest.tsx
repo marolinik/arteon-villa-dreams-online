@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { format, differenceInDays } from "date-fns";
 import { getVillaById } from "@/data/villas";
 import { sendEmail } from "@/utils/emailService";
+import { addBooking } from "@/data/bookings";
 import { GuestInfo } from "@/types";
 import { Mail, ArrowLeft, Check } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
@@ -98,6 +99,17 @@ Guest Information:
 ${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetails.guestInfo.specialRequests}` : ''}
       `;
       
+      // Store the booking in the data service - add this to make dates unavailable
+      const bookingId = addBooking({
+        id: undefined, // Will be generated
+        villaId: bookingDetails.villaId,
+        startDate: bookingDetails.startDate,
+        endDate: bookingDetails.endDate,
+        guestInfo: bookingDetails.guestInfo,
+        status: "pending",
+        createdAt: new Date()
+      });
+      
       // Send email to guest
       await sendEmail({
         to: bookingDetails.guestInfo.email,
@@ -107,7 +119,7 @@ ${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetai
       
       // Send email to villa owners
       await sendEmail({
-        to: "booking@arteonvillas.com, marolinik@gmail.com",
+        to: "booking@arteonvillas.com,marolinik@gmail.com",
         subject: `New Booking Request: ${villaName} - ${format(bookingDetails.startDate, "PP")} to ${format(bookingDetails.endDate, "PP")}`,
         body: ownerEmailBody,
       });
