@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { villas, getVillaById } from "@/data/villas";
@@ -116,6 +115,29 @@ const AdminBookings = () => {
         variant: "destructive"
       });
     }
+  };
+  
+  const handleCancelBooking = (bookingId: string) => {
+    // In a real app, we would make an API call here
+    const updatedBookings = bookings.filter(booking => booking.id !== bookingId);
+    
+    // Add canceled booking for display purposes
+    const booking = bookings.find(booking => booking.id === bookingId);
+    if (booking) {
+      updatedBookings.push({
+        id: undefined, // Add this line to fix the error
+        startDate: booking.startDate,
+        endDate: booking.endDate,
+        villaId: booking.villaId,
+        status: "cancelled"
+      });
+    }
+    
+    setAllBookings(updatedBookings);
+    toast({
+      title: "Booking Cancelled",
+      description: "The booking has been cancelled."
+    });
   };
   
   const handleRestrictDates = () => {

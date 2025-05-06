@@ -1,3 +1,4 @@
+
 export type Villa = {
   id: string;
   name: string;
@@ -12,6 +13,18 @@ export type Villa = {
   location: string;
   slug: string;
   isFeatured: boolean;
+  
+  // Additional properties that were missing
+  meaning: string;
+  shortDescription: string;
+  size: number;
+  capacity: number;
+  bedConfiguration: string;
+  mainImage: string | null;
+  features: {
+    title: string;
+    description: string;
+  }[];
 };
 
 export type GuestInfo = {
@@ -31,4 +44,39 @@ export type BookingDate = {
   createdAt?: Date;
   guestInfo?: GuestInfo;
   bookingNumber?: string;
+};
+
+// Add the missing types
+export type GalleryImage = {
+  id: string;
+  url: string;
+  alt: string;
+  category: string;
+  featured?: boolean;
+};
+
+export type AdminUser = {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+  role: "admin" | "editor";
+};
+
+export type Amenity = {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  category: "indoor" | "outdoor" | "service";
+};
+
+export type Attraction = {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  distance: string;
+  location: string;
+  category: "beach" | "cultural" | "nature" | "activity";
 };
