@@ -245,30 +245,234 @@ export const galleryImages: GalleryImage[] = [
     alt: "Outdoor wooden deck with cushioned sun loungers",
     category: "exterior"
   },
+  {
+    id: "ext41",
+    url: "/lovable-uploads/7ae94339-09be-4edc-9939-aa383d6df4ba.png",
+    alt: "Luxury villa exterior with landscaped garden",
+    category: "exterior"
+  },
+  {
+    id: "ext42",
+    url: "/lovable-uploads/d51e5764-e2c1-40e7-895c-d6f3fee8ec42.png",
+    alt: "Villa terrace with panoramic view of mountains",
+    category: "exterior"
+  },
+  {
+    id: "ext43",
+    url: "/lovable-uploads/4eeb202c-b750-40b3-98d3-9805435031c6.png",
+    alt: "Arteon villa with private pool surrounded by greenery",
+    category: "exterior"
+  },
+  {
+    id: "ext44",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Outdoor lounge area with comfortable seating and shade",
+    category: "exterior"
+  },
+  {
+    id: "ext45",
+    url: "/lovable-uploads/2e280967-fdf4-46ad-8680-45cdad55a692.png",
+    alt: "Exterior view of villa with traditional Greek architecture",
+    category: "exterior"
+  },
+  {
+    id: "ext46",
+    url: "/lovable-uploads/52641965-ce48-4b9b-b06f-1f67f50629c5.png",
+    alt: "Villa entrance with beautiful Mediterranean plants",
+    category: "exterior"
+  },
+  {
+    id: "ext47",
+    url: "/lovable-uploads/7a8884e7-96ee-49c3-8bae-7a39c05777bc.png",
+    alt: "Waterfront view of the villa complex",
+    category: "exterior"
+  },
+  {
+    id: "ext48",
+    url: "/lovable-uploads/f2845f9b-93ed-4389-82b3-543f930e60c2.png",
+    alt: "Outdoor dining area with sea view",
+    category: "exterior"
+  },
+  {
+    id: "ext49",
+    url: "/lovable-uploads/0e4e6241-de52-4644-89a0-f84ef1d4b5ab.png",
+    alt: "Villa terrace with infinity pool overlooking the sea",
+    category: "exterior"
+  },
+  {
+    id: "ext50",
+    url: "/lovable-uploads/0a9b68b8-ece8-4edf-b98b-bb53eb58d9b3.png",
+    alt: "Stone pathway leading to villa entrance",
+    category: "exterior"
+  },
+  {
+    id: "ext51",
+    url: "/lovable-uploads/4155d36c-0158-4a10-8c69-24df548e7a74.png",
+    alt: "Panoramic view of the villa grounds and surrounding nature",
+    category: "exterior"
+  },
+  {
+    id: "ext52",
+    url: "/lovable-uploads/d8eaf768-d0b1-4fd8-a9fb-2704be968432.png",
+    alt: "Outdoor barbecue area with dining setup",
+    category: "exterior"
+  },
+  {
+    id: "ext53",
+    url: "/lovable-uploads/c93e1b2b-885b-40c1-82ee-d9a988cdf5be.png",
+    alt: "Poolside relaxation area with umbrellas",
+    category: "exterior"
+  },
+  {
+    id: "ext54",
+    url: "/lovable-uploads/a8599c3e-529c-4d7c-ad8d-56ddee55d6f3.png",
+    alt: "Villa exterior with traditional Greek elements",
+    category: "exterior"
+  },
+  {
+    id: "ext55",
+    url: "/lovable-uploads/c06f0f01-21a6-410e-817a-68f462733726.png",
+    alt: "Sunset view from the villa terrace",
+    category: "exterior"
+  },
+  {
+    id: "ext56",
+    url: "/lovable-uploads/b9b53bcd-23d6-4f73-8bd9-0743ad290f50.png",
+    alt: "Beachfront area with loungers and umbrellas",
+    category: "exterior"
+  },
+  {
+    id: "ext57",
+    url: "/lovable-uploads/0c0d885a-5653-46cf-8e93-a3a538166d47.png",
+    alt: "Lush garden surrounding villa property",
+    category: "exterior"
+  },
+  {
+    id: "ext58",
+    url: "/lovable-uploads/c5bda802-7f4b-4788-b738-c15dd6640c12.png",
+    alt: "Private pool with mountain backdrop",
+    category: "exterior"
+  },
+  {
+    id: "ext59",
+    url: "/lovable-uploads/f68e2fde-27cc-41cb-a19b-c865d43d6ba2.png",
+    alt: "Aerial view of Arteon Villas complex and surrounding landscape",
+    category: "exterior"
+  },
+  {
+    id: "ext60",
+    url: "/lovable-uploads/8ad25078-ab20-4b28-bd43-d00fd34a4cdb.png",
+    alt: "Tranquil pool setting with mountain views",
+    category: "exterior"
+  },
   
-  // Interior placeholders
+  // Interior images
   {
     id: "int1",
-    url: "", // Placeholder for interior image 1
-    alt: "Spacious living area with sea views",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Modern kitchen with dining area featuring coffee-themed artworks on wall",
     category: "interior"
   },
   {
     id: "int2",
-    url: "", // Placeholder for interior image 2
-    alt: "Master bedroom with king-size bed",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Hallway and living room with wooden floors and vintage wall clock",
     category: "interior"
   },
   {
     id: "int3",
-    url: "", // Placeholder for interior image 3
-    alt: "Modern kitchen with full amenities",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Bright kitchen with dining area and garden view through windows",
     category: "interior"
   },
   {
     id: "int4",
-    url: "", // Placeholder for interior image 4
-    alt: "Elegant bathroom with rainfall shower",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Modern bedroom with white bed and wooden headboard",
+    category: "interior"
+  },
+  {
+    id: "int5",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Bedroom with closet space and mirror",
+    category: "interior"
+  },
+  {
+    id: "int6",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Another view of kitchen with two-tone cabinetry and dining table",
+    category: "interior"
+  },
+  {
+    id: "int7",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Modern bathroom with geometric tile details",
+    category: "interior"
+  },
+  {
+    id: "int8",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Cozy living room with sofa and TV console",
+    category: "interior"
+  },
+  {
+    id: "int9",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Dining table set for meal with placemats and glassware",
+    category: "interior"
+  },
+  {
+    id: "int10",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Bedroom with view of mountains and pool",
+    category: "interior"
+  },
+  {
+    id: "int11",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Makeup vanity and desk in bedroom",
+    category: "interior"
+  },
+  {
+    id: "int12",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Bedroom with large windows and mountain view",
+    category: "interior"
+  },
+  {
+    id: "int13",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Bedroom vanity with stylish lamp and mirror",
+    category: "interior"
+  },
+  {
+    id: "int14",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Bedroom with open window showing pool and mountain view",
+    category: "interior"
+  },
+  {
+    id: "int15",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Vanity desk with red stool and decorative details",
+    category: "interior"
+  },
+  {
+    id: "int16",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Twin bedroom with white linens and wooden wardrobe",
+    category: "interior"
+  },
+  {
+    id: "int17",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Window view from villa showing beautiful landscape",
+    category: "interior"
+  },
+  {
+    id: "int18",
+    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
+    alt: "Lace dress hanging in bedroom showing attention to detail",
     category: "interior"
   },
   
