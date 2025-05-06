@@ -184,6 +184,7 @@ export const DateRangePicker = ({
                 disabled={isDateDisabled}
                 numberOfMonths={2}
                 initialFocus
+                className={cn("p-3 pointer-events-auto")}
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
                     * Minimum stay: 5 nights (Sunday check-ins not available)
@@ -221,6 +222,7 @@ export const DateRangePicker = ({
                 disabled={isDateDisabled}
                 numberOfMonths={2}
                 initialFocus
+                className={cn("p-3 pointer-events-auto")}
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
                     * Minimum stay: 5 nights
