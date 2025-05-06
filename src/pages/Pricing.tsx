@@ -6,7 +6,7 @@ import PageHero from "@/components/layout/PageHero";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Calendar, Wallet, CreditCard } from "lucide-react";
+import { Calendar, CreditCard } from "lucide-react";
 
 const heroBackgroundImage = "/lovable-uploads/f2845f9b-93ed-4389-82b3-543f930e60c2.png";
 
@@ -265,7 +265,7 @@ const Pricing = () => {
               Booking & Payment Information
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-[#172B4D] p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
                   <div className="w-16 h-16 bg-villa-blue rounded-full flex items-center justify-center">
@@ -275,18 +275,6 @@ const Pricing = () => {
                 <h3 className="text-xl font-medium text-white mb-3 text-center">Booking Process</h3>
                 <p className="text-gray-300 text-center">
                   To confirm your reservation, a 30% deposit is required at the time of booking. The remaining balance is due 60 days prior to arrival.
-                </p>
-              </div>
-              
-              <div className="bg-[#172B4D] p-6 rounded-lg">
-                <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 bg-villa-blue rounded-full flex items-center justify-center">
-                    <Wallet className="text-amber-400 w-8 h-8" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-medium text-white mb-3 text-center">Security Deposit</h3>
-                <p className="text-gray-300 text-center">
-                  A security deposit of €500 in cash is required upon check-in, refundable at check-out subject to property inspection.
                 </p>
               </div>
               
