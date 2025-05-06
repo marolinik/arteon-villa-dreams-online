@@ -1,4 +1,3 @@
-
 import { GalleryImage } from "@/types";
 
 // Gallery images with real image paths
@@ -602,6 +601,12 @@ export const galleryImages: GalleryImage[] = [
     id: "int39",
     url: "/lovable-uploads/b7058a82-4efc-4967-924f-0dab32c1ad8e.png",
     alt: "View from bedroom window showing mountain landscape",
+    category: "interior"
+  },
+  {
+    id: "int40",
+    url: "/lovable-uploads/77d8bf78-aaa4-4ee2-a728-ac6b7917e07a.png",
+    alt: "Twin bedroom with separate single beds, wooden headboards, ceiling fan, and sheer curtains with balcony access",
     category: "interior"
   }
 ];
