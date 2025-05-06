@@ -96,7 +96,7 @@ const Index = () => {
         <SectionHeader title="Villa Amenities & Facilities" subtitle="Arteon Villas offers amenities that rival a boutique resort while maintaining the privacy and comfort of a holiday home." centered />
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {/* Pool amenity - Updated layout and image */}
+          {/* Pool amenity - Updated layout and image - Now with center aligned text like the others */}
           <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow">
             <div className="rounded-lg overflow-hidden h-52">
               <img src={poolImage} alt="Swimming pool" className="w-full h-full object-cover" />
