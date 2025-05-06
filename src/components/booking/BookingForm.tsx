@@ -270,7 +270,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             value={formData.guests}
             onChange={handleInputChange}
             required
-            className={errors.guests ? "border-red-500" : ""}
+            className={`text-white ${errors.guests ? "border-red-500" : ""}`}
           />
           <p className={`text-sm mt-1 ${errors.guests ? "text-red-500" : "text-gray-500"}`}>
             {errors.guests || `Maximum capacity: 6 guests`}
