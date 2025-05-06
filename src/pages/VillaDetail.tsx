@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { getVillaBySlug } from "@/data/villas";
@@ -8,6 +7,7 @@ import { BedDouble, Bath, Users, Check, ChevronLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/layout/PageHero";
 
 const VillaDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -34,6 +34,9 @@ const VillaDetail = () => {
     if (!villa && slug) {
       navigate("/not-found");
     }
+    
+    // Scroll to top on component mount
+    window.scrollTo(0, 0);
   }, [villa, slug, navigate]);
   
   if (!villa) {
@@ -44,6 +47,12 @@ const VillaDetail = () => {
     <div className="bg-[#07091A] text-white min-h-screen flex flex-col">
       <Navbar />
       
+      <PageHero
+        title={villa.name}
+        subtitle={`${villa.meaning} - ${villa.shortDescription}`}
+        backgroundImage={villa.mainImage || villa.images[0]}
+      />
+      
       <main className="pt-8 pb-20 flex-grow">
         <div className="container mx-auto px-4">
           {/* Villa Header */}
@@ -52,6 +61,7 @@ const VillaDetail = () => {
               <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
               <span>Back to All Villas</span>
             </Link>
+            
             <h1 className="text-3xl md:text-5xl font-serif font-bold mb-3 text-white">
               {villa.name}
             </h1>

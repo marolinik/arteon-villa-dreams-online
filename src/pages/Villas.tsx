@@ -6,7 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Link } from "react-router-dom";
-import HeroSection from "@/components/layout/HeroSection";
+import PageHero from "@/components/layout/PageHero";
 
 const heroBackgroundImage = "/lovable-uploads/59d403c7-285a-488b-bf1f-23728f38fcfb.png";
 
@@ -25,10 +25,9 @@ const Villas = () => {
     <div className="min-h-screen flex flex-col bg-[#07091A]">
       <Navbar />
       
-      <HeroSection
+      <PageHero
         title="Arteon Villas"
         subtitle="Your Perfect Halkidiki Getaway"
-        height="h-[70vh]"
         backgroundImage={heroBackgroundImage}
       >
         <div className="flex flex-wrap gap-6 justify-center">
@@ -39,7 +38,7 @@ const Villas = () => {
             View Gallery
           </Link>
         </div>
-      </HeroSection>
+      </PageHero>
       
       <div className="text-white py-20 px-4 bg-[#07091A]">
         <div className="container mx-auto bg-[#07091A]">
