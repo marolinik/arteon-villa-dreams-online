@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { format, differenceInDays } from "date-fns";
 import { getVillaById } from "@/data/villas";
 import { sendEmail } from "@/utils/emailService";
-import { addBooking } from "@/data/bookings";
+import { addBooking, bookings } from "@/data/bookings";
 import { GuestInfo } from "@/types";
 import { Mail, ArrowLeft, Check } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";

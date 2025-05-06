@@ -8,6 +8,24 @@ export const bookings: BookingDate[] = [];
 // Array to store admin-restricted dates - also empty for now
 export const restrictedDates: BookingDate[] = [];
 
+// Store used booking numbers to ensure uniqueness
+const usedBookingNumbers: Set<string> = new Set();
+
+// Generate a unique 6-digit booking number
+export const generateBookingNumber = (): string => {
+  let bookingNumber: string;
+  
+  do {
+    // Generate a random 6-digit number
+    bookingNumber = Math.floor(100000 + Math.random() * 900000).toString();
+  } while (usedBookingNumbers.has(bookingNumber));
+  
+  // Add to used numbers set to prevent future duplicates
+  usedBookingNumbers.add(bookingNumber);
+  
+  return bookingNumber;
+};
+
 export const getBookingsByVillaId = (villaId: string): BookingDate[] => {
   return [...bookings, ...restrictedDates].filter(booking => 
     booking.villaId === villaId && booking.status !== "cancelled"
@@ -56,11 +74,14 @@ export const checkAvailability = (
 };
 
 export const addBooking = (booking: BookingDate): string => {
+  const bookingNumber = generateBookingNumber();
+  
   const newBooking = {
     ...booking,
     id: uuidv4(),
     status: booking.status || "confirmed" as "confirmed" | "pending" | "cancelled",
-    createdAt: new Date()
+    createdAt: new Date(),
+    bookingNumber: bookingNumber
   };
   
   bookings.push(newBooking);

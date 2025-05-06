@@ -1,3 +1,4 @@
+
 export interface Villa {
   id: string;
   name: string;
@@ -29,6 +30,7 @@ export interface BookingDate {
   guestInfo?: GuestInfo;
   status?: "confirmed" | "pending" | "cancelled";
   createdAt?: Date;
+  bookingNumber?: string;
 }
 
 export interface GuestInfo {

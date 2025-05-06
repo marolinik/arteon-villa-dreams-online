@@ -17,6 +17,7 @@ const BookingConfirmation = () => {
   const villaSlug = queryParams.get("villa");
   const fromRequest = location.state?.fromRequest;
   const villaId = location.state?.villaId;
+  const bookingNumber = location.state?.bookingNumber || "000000";
   
   let villa;
   
@@ -56,6 +57,10 @@ const BookingConfirmation = () => {
               </h1>
               
               <div className="bg-[#172B4D] p-6 rounded-lg mb-6">
+                <div className="inline-block bg-amber-500/20 text-amber-400 font-bold py-2 px-4 rounded-lg mb-4 border border-amber-600/30">
+                  Booking Reference: #{bookingNumber}
+                </div>
+                
                 <p className="text-lg text-gray-200 mb-4">
                   {fromRequest
                     ? "Your booking request has been received successfully."
@@ -74,6 +79,9 @@ const BookingConfirmation = () => {
                       ? "You will receive an email with payment instructions shortly."
                       : "You will be contacted soon on your email with payment instructions."
                     }
+                  </p>
+                  <p className="text-sm text-gray-400 mt-2">
+                    Please save your booking reference number: #{bookingNumber}
                   </p>
                 </div>
               </div>
