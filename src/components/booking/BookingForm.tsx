@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { DateRangePicker } from "@/components/booking/DateRangePicker";
-import { BookingDate, Villa } from "@/types";
-import { addBooking, checkAvailability } from "@/data/bookings";
+import { BookingDate, GuestInfo, Villa } from "@/types";
+import { addBooking, checkAvailability, sendBookingEmail } from "@/data/bookings";
 import { format } from "date-fns";
 
 interface BookingFormProps {
@@ -18,7 +18,7 @@ interface BookingFormProps {
 export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<GuestInfo>({
     name: "",
     email: "",
     phone: "",
@@ -32,16 +32,71 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     from: undefined,
     to: undefined,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Form validation
+  const [errors, setErrors] = useState<{
+    name?: string;
+    email?: string;
+    phone?: string;
+    guests?: string;
+    dates?: string;
+  }>({});
+
+  const validateForm = (): boolean => {
+    const newErrors: typeof errors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    }
+    
+    if (!formData.guests || formData.guests < 1) {
+      newErrors.guests = "Number of guests is required";
+    } else if (formData.guests > 6) {
+      newErrors.guests = "Maximum 6 guests allowed";
+    }
+    
+    if (!dateRange.from || !dateRange.to) {
+      newErrors.dates = "Please select both check-in and check-out dates";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    // Clear validation error when user types
+    if (errors[name as keyof typeof errors]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please correct the errors in the form",
+        variant: "destructive",
+      });
+      return;
+    }
 
     if (!dateRange.from || !dateRange.to) {
       toast({
@@ -52,42 +107,70 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       return;
     }
 
-    // Check availability
-    const isAvailable = checkAvailability(
-      villa.id,
-      dateRange.from,
-      dateRange.to
-    );
+    setIsSubmitting(true);
 
-    if (!isAvailable) {
+    try {
+      // Check availability
+      const isAvailable = checkAvailability(
+        villa.id,
+        dateRange.from,
+        dateRange.to
+      );
+
+      if (!isAvailable) {
+        toast({
+          title: "Villa not available",
+          description: "The selected dates are no longer available. Please choose different dates.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Create new booking
+      const newBooking: BookingDate = {
+        startDate: dateRange.from,
+        endDate: dateRange.to,
+        villaId: villa.id,
+        guestInfo: {
+          ...formData,
+          guests: Number(formData.guests)
+        },
+        status: "confirmed"
+      };
+      
+      // Add booking to our system
+      const bookingId = addBooking(newBooking);
+      
+      // Send confirmation emails
+      await sendBookingEmail(newBooking);
+      
       toast({
-        title: "Villa not available",
-        description: "The selected dates are no longer available. Please choose different dates.",
+        title: "Booking Confirmed!",
+        description: `Your booking for ${villa.name} from ${format(dateRange.from, "PP")} to ${format(dateRange.to, "PP")} has been confirmed.`,
+      });
+
+      // Navigate to a confirmation page or back to the villa
+      navigate(`/villas/${villa.slug}?booked=true`);
+    } catch (error) {
+      console.error("Booking failed:", error);
+      toast({
+        title: "Booking Failed",
+        description: "There was an error processing your booking. Please try again.",
         variant: "destructive",
       });
-      return;
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // Add new booking
-    const newBooking: BookingDate = {
-      startDate: dateRange.from,
-      endDate: dateRange.to,
-      villaId: villa.id,
-    };
-    
-    addBooking(newBooking);
-    
-    toast({
-      title: "Booking Confirmed!",
-      description: `Your booking for ${villa.name} from ${format(dateRange.from, "PP")} to ${format(dateRange.to, "PP")} has been confirmed.`,
-    });
-
-    // Navigate to a confirmation page or back to the villa
-    navigate(`/villas/${villa.slug}?booked=true`);
   };
 
   const handleDateRangeChange = (from: Date | undefined, to: Date | undefined) => {
     setDateRange({ from, to });
+    
+    // Clear date validation error when user selects dates
+    if (errors.dates) {
+      setErrors(prev => ({ ...prev, dates: undefined }));
+    }
   };
 
   return (
@@ -102,6 +185,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
           bookedDates={bookedDates}
           onDateRangeChange={handleDateRangeChange}
         />
+        {errors.dates && <p className="text-sm text-red-500 mt-1">{errors.dates}</p>}
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -113,7 +197,9 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             onChange={handleInputChange}
             required
             placeholder="Enter your full name"
+            className={errors.name ? "border-red-500" : ""}
           />
+          {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
         </div>
         
         <div>
@@ -125,7 +211,9 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             onChange={handleInputChange}
             required
             placeholder="your@email.com"
+            className={errors.email ? "border-red-500" : ""}
           />
+          {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
         </div>
         
         <div>
@@ -136,7 +224,9 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             onChange={handleInputChange}
             required
             placeholder="+30 123 456 7890"
+            className={errors.phone ? "border-red-500" : ""}
           />
+          {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
         </div>
         
         <div>
@@ -145,13 +235,14 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
             type="number"
             name="guests"
             min={1}
-            max={villa.capacity}
+            max={6}
             value={formData.guests}
             onChange={handleInputChange}
             required
+            className={errors.guests ? "border-red-500" : ""}
           />
-          <p className="text-sm text-gray-500 mt-1">
-            Maximum capacity: {villa.capacity} guests
+          <p className={`text-sm mt-1 ${errors.guests ? "text-red-500" : "text-gray-500"}`}>
+            {errors.guests || `Maximum capacity: 6 guests (villa capacity: ${villa.capacity})`}
           </p>
         </div>
       </div>
@@ -171,9 +262,9 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       <Button 
         type="submit" 
         className="w-full bg-villa-blue hover:bg-blue-800"
-        disabled={!dateRange.from || !dateRange.to}
+        disabled={isSubmitting || !dateRange.from || !dateRange.to}
       >
-        Confirm Booking
+        {isSubmitting ? "Processing..." : "Confirm Booking"}
       </Button>
       
       <p className="text-sm text-center text-gray-500">

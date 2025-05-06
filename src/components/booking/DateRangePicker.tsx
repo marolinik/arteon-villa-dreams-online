@@ -43,9 +43,32 @@ export const DateRangePicker = ({
     );
   };
   
-  // Don't allow past dates or booked dates
+  // Define the booking season dates
+  const seasonStart = new Date(2025, 4, 31); // May 31, 2025
+  const seasonEnd = new Date(2025, 9, 4); // October 4, 2025
+
+  // Don't allow past dates, booked dates, or dates outside the season
   const isDateDisabled = (date: Date): boolean => {
-    return isBefore(date, startOfDay(new Date())) || isDateBooked(date);
+    const day = startOfDay(date);
+    return isBefore(day, startOfDay(new Date())) || 
+           isDateBooked(day) || 
+           isBefore(day, seasonStart) || 
+           isAfter(day, seasonEnd);
+  };
+  
+  // Custom CSS for certain dates
+  const getDateClassName = (date: Date): string => {
+    const day = startOfDay(date);
+    
+    if (isDateBooked(day)) {
+      return "bg-red-100 text-red-800";
+    }
+    
+    if (isBefore(day, seasonStart) || isAfter(day, seasonEnd)) {
+      return "bg-gray-100 text-gray-400";
+    }
+    
+    return "";
   };
   
   return (
@@ -76,7 +99,23 @@ export const DateRangePicker = ({
                 selected={selectedRange}
                 onSelect={setSelectedRange}
                 disabled={isDateDisabled}
+                modifiers={{
+                  booked: (date) => isDateBooked(date),
+                  outsideSeason: (date) => {
+                    const day = startOfDay(date);
+                    return isBefore(day, seasonStart) || isAfter(day, seasonEnd);
+                  }
+                }}
+                modifiersClassNames={{
+                  booked: "bg-red-100 text-red-800",
+                  outsideSeason: "bg-gray-100 text-gray-400"
+                }}
                 className={cn("p-3 pointer-events-auto")}
+                footer={
+                  <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
+                    * Booking available only between May 31 - Oct 4, 2025
+                  </div>
+                }
               />
             </PopoverContent>
           </Popover>
@@ -107,7 +146,23 @@ export const DateRangePicker = ({
                 selected={selectedRange}
                 onSelect={setSelectedRange}
                 disabled={isDateDisabled}
+                modifiers={{
+                  booked: (date) => isDateBooked(date),
+                  outsideSeason: (date) => {
+                    const day = startOfDay(date);
+                    return isBefore(day, seasonStart) || isAfter(day, seasonEnd);
+                  }
+                }}
+                modifiersClassNames={{
+                  booked: "bg-red-100 text-red-800",
+                  outsideSeason: "bg-gray-100 text-gray-400"
+                }}
                 className={cn("p-3 pointer-events-auto")}
+                footer={
+                  <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
+                    * Booking available only between May 31 - Oct 4, 2025
+                  </div>
+                }
               />
             </PopoverContent>
           </Popover>

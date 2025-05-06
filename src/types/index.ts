@@ -1,4 +1,3 @@
-
 export interface Villa {
   id: string;
   name: string;
@@ -23,9 +22,21 @@ export interface VillaFeature {
 }
 
 export interface BookingDate {
+  id?: string;
   startDate: Date;
   endDate: Date;
   villaId: string;
+  guestInfo?: GuestInfo;
+  status?: "confirmed" | "pending" | "cancelled";
+  createdAt?: Date;
+}
+
+export interface GuestInfo {
+  name: string;
+  email: string;
+  phone: string;
+  guests: number;
+  specialRequests?: string;
 }
 
 export interface GalleryImage {
