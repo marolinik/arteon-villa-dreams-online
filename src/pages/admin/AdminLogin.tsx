@@ -1,6 +1,6 @@
 
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,10 +9,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const AdminLogin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const location = useLocation();
   const [credentials, setCredentials] = useState({
     username: "",
     password: ""
   });
+  
+  // Check if we should prefill test credentials
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    if (searchParams.get('test') === 'true') {
+      setCredentials({
+        username: "marolinik@gmail.com",
+        password: "74marOLInik74"
+      });
+    }
+  }, [location]);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,7 +35,8 @@ const AdminLogin = () => {
     e.preventDefault();
     
     // Mock login - in a real application, this would be authenticated against a backend
-    if (credentials.username === "admin" && credentials.password === "password") {
+    if (credentials.username === "admin" && credentials.password === "password" || 
+        credentials.username === "marolinik@gmail.com" && credentials.password === "74marOLInik74") {
       toast({
         title: "Login Successful",
         description: "Welcome to the admin dashboard."
@@ -31,6 +44,15 @@ const AdminLogin = () => {
       
       // Store admin auth in session storage
       sessionStorage.setItem("admin-authenticated", "true");
+      
+      // Store mock admin user data
+      const userData = {
+        name: credentials.username === "admin" ? "Admin User" : "Marolinik",
+        email: credentials.username,
+        role: "administrator"
+      };
+      
+      sessionStorage.setItem("admin-user", JSON.stringify(userData));
       
       // Navigate to admin dashboard
       navigate("/admin/dashboard");
@@ -83,8 +105,9 @@ const AdminLogin = () => {
             </Button>
             
             <div className="text-sm text-center text-gray-500 mt-6">
-              <p>Default credentials for demo:</p>
+              <p>Accepted credentials:</p>
               <p>Username: admin / Password: password</p>
+              <p>Username: marolinik@gmail.com / Password: 74marOLInik74</p>
             </div>
           </form>
         </CardContent>
