@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -7,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { DateRangePicker } from "@/components/booking/DateRangePicker";
 import { BookingDate, GuestInfo, Villa } from "@/types";
 import { addBooking, checkAvailability, sendBookingEmail } from "@/data/bookings";
-import { format } from "date-fns";
+import { format, differenceInDays, isSaturday } from "date-fns";
 
 interface BookingFormProps {
   villa: Villa;
@@ -67,6 +68,17 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     
     if (!dateRange.from || !dateRange.to) {
       newErrors.dates = "Please select both check-in and check-out dates";
+    } else {
+      // Check if both dates are Saturdays
+      if (!isSaturday(dateRange.from) || !isSaturday(dateRange.to)) {
+        newErrors.dates = "Both check-in and check-out dates must be Saturdays";
+      }
+      
+      // Check if the stay is exactly 7, 14, 21 days, etc.
+      const days = differenceInDays(dateRange.to, dateRange.from);
+      if (days % 7 !== 0 || days < 7) {
+        newErrors.dates = "Minimum stay is 7 days, and bookings must be in 7-day increments (Saturday to Saturday)";
+      }
     }
     
     setErrors(newErrors);
@@ -185,6 +197,10 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
           onDateRangeChange={handleDateRangeChange}
         />
         {errors.dates && <p className="text-sm text-red-500 mt-1">{errors.dates}</p>}
+        
+        <p className="text-sm text-amber-500 mt-2">
+          Note: Bookings are available only from Saturday to Saturday, with a minimum stay of 7 days.
+        </p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

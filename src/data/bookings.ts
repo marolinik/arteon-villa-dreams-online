@@ -2,69 +2,11 @@
 import { BookingDate, GuestInfo } from "@/types";
 import { v4 as uuidv4 } from 'uuid';
 
-// Mock booking data
-export const bookings: BookingDate[] = [
-  {
-    id: uuidv4(),
-    startDate: new Date(2025, 5, 1), // June 1, 2025
-    endDate: new Date(2025, 5, 7), // June 7, 2025
-    villaId: "villa-armonia",
-    status: "confirmed",
-    createdAt: new Date()
-  },
-  {
-    id: uuidv4(),
-    startDate: new Date(2025, 5, 15), // June 15, 2025
-    endDate: new Date(2025, 5, 22), // June 22, 2025
-    villaId: "villa-armonia",
-    status: "confirmed",
-    createdAt: new Date()
-  },
-  {
-    id: uuidv4(),
-    startDate: new Date(2025, 6, 5), // July 5, 2025
-    endDate: new Date(2025, 6, 15), // July 15, 2025
-    villaId: "villa-eirini",
-    status: "confirmed",
-    createdAt: new Date()
-  },
-  {
-    id: uuidv4(),
-    startDate: new Date(2025, 7, 10), // August 10, 2025
-    endDate: new Date(2025, 7, 20), // August 20, 2025
-    villaId: "villa-thea",
-    status: "confirmed",
-    createdAt: new Date()
-  },
-  {
-    id: uuidv4(),
-    startDate: new Date(2025, 5, 20), // June 20, 2025
-    endDate: new Date(2025, 5, 30), // June 30, 2025
-    villaId: "villa-onar",
-    status: "confirmed",
-    createdAt: new Date()
-  }
-];
+// Mock booking data - empty for now to reset all unavailable dates
+export const bookings: BookingDate[] = [];
 
-// Array to store admin-restricted dates
-export const restrictedDates: BookingDate[] = [
-  {
-    id: uuidv4(),
-    startDate: new Date(2025, 6, 1), // July 1, 2025
-    endDate: new Date(2025, 6, 4), // July 4, 2025
-    villaId: "villa-armonia",
-    status: "cancelled",
-    createdAt: new Date()
-  },
-  {
-    id: uuidv4(),
-    startDate: new Date(2025, 8, 15), // September 15, 2025
-    endDate: new Date(2025, 8, 20), // September 20, 2025
-    villaId: "villa-thea",
-    status: "cancelled",
-    createdAt: new Date()
-  }
-];
+// Array to store admin-restricted dates - also empty for now
+export const restrictedDates: BookingDate[] = [];
 
 export const getBookingsByVillaId = (villaId: string): BookingDate[] => {
   return [...bookings, ...restrictedDates].filter(booking => 
