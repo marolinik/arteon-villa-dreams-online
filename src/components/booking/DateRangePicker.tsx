@@ -36,10 +36,16 @@ export const DateRangePicker = ({
     onDateRangeChange(dateRange?.from, dateRange?.to);
   }, [dateRange?.from, dateRange?.to, onDateRangeChange]);
   
-  // Check if a date is booked already - we're resetting this for now
+  // Check if a date is booked already
   const isDateBooked = (date: Date): boolean => {
-    // Reset all booked dates for now
-    return false;
+    const day = startOfDay(date);
+    
+    return bookedDates.some(booking => {
+      return isWithinInterval(day, {
+        start: startOfDay(booking.startDate),
+        end: startOfDay(new Date(booking.endDate.getTime() - 1)) // Exclude checkout day
+      });
+    });
   };
   
   // Check if a date is a Saturday
@@ -62,31 +68,55 @@ export const DateRangePicker = ({
            isAfter(day, seasonEnd);
   };
 
-  // Handle date range selection with 7-day minimum stay requirement
+  // Handle date range selection
   const handleDateRangeSelect = (range: DateRange | undefined) => {
     if (!range || !range.from) {
       setDateRange(range);
       return;
     }
 
-    // If no end date is selected yet, just update the start date (must be a Saturday)
+    // If no end date is selected yet, just update the start date
     if (!range.to) {
       setDateRange(range);
       return;
     }
 
+    // Validate end date is also a Saturday
+    if (!isSaturdayDate(range.to)) {
+      // Find the next Saturday
+      let newEndDate = range.to;
+      while (!isSaturdayDate(newEndDate)) {
+        newEndDate = addDays(newEndDate, 1);
+      }
+      range.to = newEndDate;
+    }
+
     // Calculate the number of days between start and end dates
     const daysBetween = differenceInDays(range.to, range.from);
     
-    // Check if the range spans exactly 7, 14, 21, etc. days (Saturday to Saturday)
-    if (daysBetween % 7 === 0 && daysBetween >= 7) {
-      setDateRange(range);
-    } else {
-      // If not a 7-day multiple, automatically set to exactly 7 days
+    // Check if the range is at least 7 days
+    if (daysBetween < 7) {
+      // Automatically set the end date to the next Saturday (at least 7 days away)
+      const newEndDate = addDays(range.from, 7);
       setDateRange({
         from: range.from,
-        to: addDays(range.from, 7)
+        to: newEndDate
       });
+    } else {
+      // Check if weeks multiple (Saturday to Saturday)
+      if (daysBetween % 7 === 0) {
+        setDateRange(range);
+      } else {
+        // Round to the next Saturday
+        let newEndDate = range.to;
+        while (differenceInDays(newEndDate, range.from) % 7 !== 0) {
+          newEndDate = addDays(newEndDate, 1);
+        }
+        setDateRange({
+          from: range.from,
+          to: newEndDate
+        });
+      }
     }
   };
   
@@ -118,6 +148,7 @@ export const DateRangePicker = ({
                 selected={dateRange}
                 onSelect={handleDateRangeSelect}
                 disabled={isDateDisabled}
+                numberOfMonths={2}
                 initialFocus
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
@@ -154,6 +185,7 @@ export const DateRangePicker = ({
                 selected={dateRange}
                 onSelect={handleDateRangeSelect}
                 disabled={isDateDisabled}
+                numberOfMonths={2}
                 initialFocus
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
