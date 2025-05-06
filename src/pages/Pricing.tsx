@@ -76,6 +76,118 @@ const Pricing = () => {
             </div>
           </div>
           
+          {/* Booking Policies & Requirements */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-serif font-semibold mb-6 text-amber-400">
+              Booking Requirements & Policies
+            </h2>
+            
+            <div className="overflow-x-auto mb-10">
+              <table className="w-full border-collapse">
+                <tbody>
+                  {/* Minimum Stay */}
+                  <tr className="bg-[#172B4D]">
+                    <td colSpan={2} className="p-4 text-left text-white font-serif border border-gray-700 font-semibold">
+                      Arteon Villas have always minimum stay 5 nights.
+                    </td>
+                    <td colSpan={4} className="p-4 text-left text-white font-serif border border-gray-700 font-semibold">
+                      Early Booking Discounts
+                    </td>
+                  </tr>
+                  
+                  {/* Check-in & Check-out */}
+                  <tr>
+                    <td colSpan={2} className="p-4 text-left text-white font-serif border border-gray-700 bg-[#1D3A64] font-semibold">
+                      Check-in & Check-out hours of the complex Mon - Sat only
+                    </td>
+                    <td colSpan={4} rowSpan={1} className="p-4 text-left text-white font-serif border border-gray-700 bg-[#1D3A64]">
+                      <p>1. We offer <span className="text-amber-400 font-bold">10% early booking discount</span> for reservations made <span className="text-amber-400 font-bold">until 31.12.2024</span></p>
+                      <p className="pl-3 ml-3 mt-1">for <span className="font-bold">7 nights or more</span>, staying <span className="font-bold">from 1/6/25 - 30/9/25</span></p>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td colSpan={2} className="p-4 text-left text-gray-300 font-serif border border-gray-700 bg-[#1D3A64]">
+                      Check-in at 15:00-18:30 with the host or up to 23:00 by self.
+                    </td>
+                    <td colSpan={4} className="p-4 text-left text-white font-serif border border-gray-700 bg-[#1D3A64]">
+                      <p>2. We offer <span className="text-amber-400 font-bold">5% early booking discount</span> for reservations made from <span className="text-amber-400 font-bold">1.1.2025 - 28.2.2025</span></p>
+                      <p className="pl-3 ml-3 mt-1">for <span className="font-bold">5 nights or more</span>, staying <span className="font-bold">from 1/6/25 - 30/9/25</span></p>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td colSpan={2} className="p-4 text-left text-gray-300 font-serif border border-gray-700 bg-[#1D3A64]">
+                      Check-out up to 11:00 am.
+                    </td>
+                    <td colSpan={4} rowSpan={2} className="p-4 text-left text-white font-serif border border-gray-700 bg-[#1D3A64]">
+                      <p>3. <span className="text-amber-400 font-bold">Repeaters Discount 3%</span> for reservations made <span className="text-amber-400 font-bold">from 1/03/25 - 23/9/25</span></p>
+                      <p className="pl-3 ml-3 mt-1">for <span className="font-bold">7 nights or more</span>, staying <span className="font-bold">from 1/6/25 - 30/9/25</span></p>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td colSpan={2} className="p-4 text-left text-gray-300 font-serif border border-gray-700 bg-[#1D3A64]">
+                      Check-in or check out on Sundays is prohibited on Staff's day-off.
+                    </td>
+                  </tr>
+                  
+                  {/* Cancellation Policy */}
+                  <tr>
+                    <td colSpan={2} className="p-4 text-left text-white font-serif border border-gray-700 bg-[#172B4D] font-semibold">
+                      Cancellation Policy:
+                    </td>
+                    <td colSpan={4} className="p-4 border border-gray-700 bg-[#172B4D]"></td>
+                  </tr>
+                  
+                  <tr>
+                    <td colSpan={6} className="p-4 text-left text-gray-300 font-serif border border-gray-700 bg-[#1D3A64]">
+                      In the event of cancellation 21 days or more prior arrival, 70% refund.
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td colSpan={6} className="p-4 text-left text-gray-300 font-serif border border-gray-700 bg-[#1D3A64]">
+                      In the event of cancellation in less than 21 days before arrival all payment is lost.
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td colSpan={6} className="p-4 text-left text-gray-300 font-serif border border-gray-700 bg-[#1D3A64]">
+                      Early departures and No-shows are fully charged.
+                    </td>
+                  </tr>
+                  
+                  {/* Payment Policy */}
+                  <tr>
+                    <td colSpan={2} className="p-4 text-left text-white font-serif border border-gray-700 bg-[#172B4D] font-semibold">
+                      Payment Policy:
+                    </td>
+                    <td colSpan={4} className="p-4 border border-gray-700 bg-[#172B4D]"></td>
+                  </tr>
+                  
+                  <tr>
+                    <td colSpan={6} className="p-4 text-left text-gray-300 font-serif border border-gray-700 bg-[#1D3A64]">
+                      A deposit equal to 30% of the total amount is required to confirm the reservation.
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td colSpan={6} className="p-4 text-left text-gray-300 font-serif border border-gray-700 bg-[#1D3A64]">
+                      A second prepayment equal to another 30% of the total amount is paid 60 days before arrival.
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td colSpan={6} className="p-4 text-left text-gray-300 font-serif border border-gray-700 bg-[#1D3A64]">
+                      The remaining 40% is paid 20 days prior to the arrival at the complex.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
           {/* Additional Costs */}
           <div className="mb-16">
             <h2 className="text-2xl font-serif font-semibold mb-6 text-amber-400">
