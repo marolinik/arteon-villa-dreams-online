@@ -30,91 +30,49 @@ const Pricing = () => {
         <div className="container mx-auto px-4">
           <SectionHeader 
             title="Our Pricing Structure" 
-            subtitle="Competitive rates for exceptional luxury and amenities" 
+            subtitle="Specific seasonal rates for our luxury villas" 
             className="mb-12"
           />
           
-          {/* Seasonal Rates Section */}
+          {/* Seasonal Rates Table Section */}
           <div className="mb-16">
             <h2 className="text-2xl font-serif font-semibold mb-6 text-amber-400">
-              Seasonal Rates
+              2025 Seasonal Rates
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-[#1D3A64] rounded-lg overflow-hidden shadow-lg border border-gray-700 flex flex-col">
-                <div className="p-6 bg-[#172B4D]">
-                  <h3 className="text-xl font-serif font-medium text-white mb-2">Low Season</h3>
-                  <p className="text-gray-300 text-sm">October - April</p>
-                </div>
-                <div className="p-6 flex-grow">
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-amber-400">€200</span>
-                    <span className="text-gray-300 ml-2">/ night</span>
-                  </div>
-                  <ul className="space-y-2 text-gray-300 mb-6">
-                    <li>• Min 3 nights stay</li>
-                    <li>• Up to 6 guests</li>
-                    <li>• All amenities included</li>
-                    <li>• 10% discount for 7+ nights</li>
-                  </ul>
-                </div>
-                <div className="p-6 bg-[#172B4D]">
-                  <Button asChild className="w-full bg-gradient-to-r from-amber-500 to-villa-terracotta">
-                    <Link to="/booking">Book Now</Link>
-                  </Button>
-                </div>
-              </div>
-              
-              <div className="bg-[#1D3A64] rounded-lg overflow-hidden shadow-lg border border-amber-500 flex flex-col relative">
-                <div className="absolute top-0 right-0 bg-amber-500 text-[#07091A] px-3 py-1 text-sm font-bold">
-                  POPULAR
-                </div>
-                <div className="p-6 bg-[#172B4D]">
-                  <h3 className="text-xl font-serif font-medium text-white mb-2">Mid Season</h3>
-                  <p className="text-gray-300 text-sm">May - June, September</p>
-                </div>
-                <div className="p-6 flex-grow">
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-amber-400">€350</span>
-                    <span className="text-gray-300 ml-2">/ night</span>
-                  </div>
-                  <ul className="space-y-2 text-gray-300 mb-6">
-                    <li>• Min 5 nights stay</li>
-                    <li>• Up to 6 guests</li>
-                    <li>• All amenities included</li>
-                    <li>• 15% discount for 14+ nights</li>
-                  </ul>
-                </div>
-                <div className="p-6 bg-[#172B4D]">
-                  <Button asChild className="w-full bg-gradient-to-r from-amber-500 to-villa-terracotta">
-                    <Link to="/booking">Book Now</Link>
-                  </Button>
-                </div>
-              </div>
-              
-              <div className="bg-[#1D3A64] rounded-lg overflow-hidden shadow-lg border border-gray-700 flex flex-col">
-                <div className="p-6 bg-[#172B4D]">
-                  <h3 className="text-xl font-serif font-medium text-white mb-2">High Season</h3>
-                  <p className="text-gray-300 text-sm">July - August</p>
-                </div>
-                <div className="p-6 flex-grow">
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-amber-400">€490</span>
-                    <span className="text-gray-300 ml-2">/ night</span>
-                  </div>
-                  <ul className="space-y-2 text-gray-300 mb-6">
-                    <li>• Min 7 nights stay</li>
-                    <li>• Up to 6 guests</li>
-                    <li>• All amenities included</li>
-                    <li>• Priority concierge service</li>
-                  </ul>
-                </div>
-                <div className="p-6 bg-[#172B4D]">
-                  <Button asChild className="w-full bg-gradient-to-r from-amber-500 to-villa-terracotta">
-                    <Link to="/booking">Book Now</Link>
-                  </Button>
-                </div>
-              </div>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-[#172B4D]">
+                    <th className="p-4 text-left text-white font-serif border border-gray-700">Room Type / Category</th>
+                    <th className="p-4 text-left text-white font-serif border border-gray-700">Guests</th>
+                    <th className="p-4 text-center text-white font-serif border border-gray-700">17.4.25 - 22.4.25</th>
+                    <th className="p-4 text-center text-white font-serif border border-gray-700">31.5.25 - 30.6.25</th>
+                    <th className="p-4 text-center text-white font-serif border border-gray-700">1.7.25 - 31.7.25</th>
+                    <th className="p-4 text-center text-white font-serif border border-gray-700">1.8.25 - 31.8.25</th>
+                    <th className="p-4 text-center text-white font-serif border border-gray-700">1.9.25 - 15.9.25</th>
+                    <th className="p-4 text-center text-white font-serif border border-gray-700">16.9.25 - 4.10.25</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-[#1D3A64] hover:bg-[#234274] transition-colors">
+                    <td className="p-4 border border-gray-700 text-white">Villa</td>
+                    <td className="p-4 border border-gray-700 text-white">up to 6</td>
+                    <td className="p-4 border border-gray-700 text-center text-amber-400 font-semibold">€ 430</td>
+                    <td className="p-4 border border-gray-700 text-center text-amber-400 font-semibold">€ 380</td>
+                    <td className="p-4 border border-gray-700 text-center text-amber-400 font-semibold">€ 460</td>
+                    <td className="p-4 border border-gray-700 text-center text-amber-400 font-semibold">€ 530</td>
+                    <td className="p-4 border border-gray-700 text-center text-amber-400 font-semibold">€ 460</td>
+                    <td className="p-4 border border-gray-700 text-center text-amber-400 font-semibold">€ 380</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div className="mt-6 text-gray-300 text-sm">
+              <p>* All prices are per night and include all amenities.</p>
+              <p>* Minimum stay requirements may apply depending on the season.</p>
+              <p>* Special discounts available for longer stays.</p>
             </div>
           </div>
           
