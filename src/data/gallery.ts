@@ -245,12 +245,6 @@ export const galleryImages: GalleryImage[] = [
     alt: "Outdoor wooden deck with cushioned sun loungers",
     category: "exterior"
   },
-  {
-    id: "ext41",
-    url: "/lovable-uploads/c7bc50e7-2fe1-49a2-90a2-7ba80a3f1c91.png",
-    alt: "Wooden table with espresso coffees, cookies, and lavender plant",
-    category: "exterior"
-  },
   
   // Interior placeholders
   {
