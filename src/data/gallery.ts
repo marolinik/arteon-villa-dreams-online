@@ -369,110 +369,206 @@ export const galleryImages: GalleryImage[] = [
   // Interior images
   {
     id: "int1",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Modern kitchen with dining area featuring coffee-themed artworks on wall",
+    url: "/lovable-uploads/bf20de36-10ae-40a7-b360-beda4fae42c4.png",
+    alt: "Modern living room with cozy seating area, wooden coffee table and TV console",
     category: "interior"
   },
   {
     id: "int2",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Hallway and living room with wooden floors and vintage wall clock",
+    url: "/lovable-uploads/a7425d69-d90d-4d17-96a6-bcf01b49542d.png",
+    alt: "Cozy reading corner with wooden chair, patterned pillow and floor lamp",
     category: "interior"
   },
   {
     id: "int3",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Bright kitchen with dining area and garden view through windows",
+    url: "/lovable-uploads/90900be6-3bb1-421e-a474-4ffd874048d9.png",
+    alt: "Bedroom with white linens and balcony access showing beautiful outdoor views",
     category: "interior"
   },
   {
     id: "int4",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Modern bedroom with white bed and wooden headboard",
+    url: "/lovable-uploads/2cb48ea6-78f2-4971-b89f-e7f9e98437b0.png",
+    alt: "Living room with comfortable sofa, wooden chair, and natural light from balcony doors",
     category: "interior"
   },
   {
     id: "int5",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Bedroom with closet space and mirror",
+    url: "/lovable-uploads/dce542ec-ce31-45a2-831a-2ab9c8b260ff.png",
+    alt: "Living area with grey sofa, wooden furniture and bright windows overlooking garden",
     category: "interior"
   },
   {
     id: "int6",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Another view of kitchen with two-tone cabinetry and dining table",
+    url: "/lovable-uploads/9a73a696-5796-4fed-977b-eeb221a83d87.png",
+    alt: "Open window with white curtains showing stunning view of pool area and countryside",
     category: "interior"
   },
   {
     id: "int7",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Modern bathroom with geometric tile details",
+    url: "/lovable-uploads/84eb8d19-17e2-4a3f-9999-5512474663d2.png",
+    alt: "Spacious bedroom with white bedding, wooden floors and large windows with mountain views",
     category: "interior"
   },
   {
     id: "int8",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Cozy living room with sofa and TV console",
+    url: "/lovable-uploads/816ac17d-19c4-476b-b282-fd11098ce98e.png",
+    alt: "Another view of bedroom with modern wooden furniture and large windows",
     category: "interior"
   },
   {
     id: "int9",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Dining table set for meal with placemats and glassware",
+    url: "/lovable-uploads/379d6df0-ae82-4089-bb3e-f32139fedf28.png",
+    alt: "Modern bedroom with white and wood headboard design and minimalist decor",
     category: "interior"
   },
   {
     id: "int10",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Bedroom with view of mountains and pool",
+    url: "/lovable-uploads/a2a2586b-639c-45dc-ab89-cb475de1b4e7.png",
+    alt: "Bedroom with white paneled headboard and bedside tables with lamps",
     category: "interior"
   },
   {
     id: "int11",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Makeup vanity and desk in bedroom",
+    url: "/lovable-uploads/a6bc1e03-a564-49fd-8ce9-aa76a620b436.png",
+    alt: "Bedroom closet area with storage, TV wall mount and reading chair by window",
     category: "interior"
   },
   {
     id: "int12",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Bedroom with large windows and mountain view",
+    url: "/lovable-uploads/25f78276-040e-4369-bddf-ba863e268855.png",
+    alt: "Twin bedroom with separate beds, white linens and outdoor balcony access",
     category: "interior"
   },
   {
     id: "int13",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Bedroom vanity with stylish lamp and mirror",
+    url: "/lovable-uploads/18068aaf-590d-413b-be18-8873f51664d6.png",
+    alt: "Master bedroom with white bedding, wooden details and panoramic windows with countryside view",
     category: "interior"
   },
   {
     id: "int14",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Bedroom with open window showing pool and mountain view",
+    url: "/lovable-uploads/e729eebb-afaa-42e7-a60f-972d5d4337e3.png",
+    alt: "Spacious bedroom with wooden floors, dressing area and large windows with garden views",
     category: "interior"
   },
   {
     id: "int15",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Vanity desk with red stool and decorative details",
+    url: "/lovable-uploads/d08074bf-46b7-45ec-bed9-8ea3c64bc3eb.png",
+    alt: "Modern bathroom with walk-in shower, geometric tiles and washing machine",
     category: "interior"
   },
   {
     id: "int16",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Twin bedroom with white linens and wooden wardrobe",
+    url: "/lovable-uploads/a1e4aa47-4a12-47b5-a745-e015144bb6ed.png",
+    alt: "Stylish bathroom with wooden shelving, white sink and modern tiles",
     category: "interior"
   },
   {
     id: "int17",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Window view from villa showing beautiful landscape",
+    url: "/lovable-uploads/fab8d1cd-5ca1-4646-8c23-d58ce5686bdb.png",
+    alt: "Modern bathroom shower with glass doors and patterned tile accent wall",
     category: "interior"
   },
   {
     id: "int18",
-    url: "/lovable-uploads/1016fbf8-3b46-4ed0-a293-bddaec21a0d8.png",
-    alt: "Lace dress hanging in bedroom showing attention to detail",
+    url: "/lovable-uploads/6cf934e9-fe3c-42b3-a7fd-ad84877f4814.png",
+    alt: "Bathroom with bathtub, shower screen and wooden storage cabinets",
+    category: "interior"
+  },
+  {
+    id: "int19",
+    url: "/lovable-uploads/b8229598-aaf2-489d-a4b4-d77823ca9caf.png",
+    alt: "Living room with comfortable sofa, TV console and sliding doors to terrace",
+    category: "interior"
+  },
+  {
+    id: "int20",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Cozy chair arrangement with floor lamp and decorative pillows",
+    category: "interior"
+  },
+  {
+    id: "int21",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Living room interior with sofa, TV and patio access", 
+    category: "interior"
+  },
+  {
+    id: "int22",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Wooden chair with decorative pillow and straw hat",
+    category: "interior"
+  },
+  {
+    id: "int23",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Bedroom with balcony access showing garden views",
+    category: "interior"
+  },
+  {
+    id: "int24",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Living room with sofa, wooden chair and coffee table",
+    category: "interior"
+  },
+  {
+    id: "int25",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Grey sofa with colorful throw pillows and wooden chair",
+    category: "interior"
+  },
+  {
+    id: "int26",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Open window view showing pool area and mountains",
+    category: "interior"
+  },
+  {
+    id: "int27",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Spacious bedroom with large windows and mountain view",
+    category: "interior"
+  },
+  {
+    id: "int28",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Modern bedroom with natural light and wooden floors",
+    category: "interior"
+  },
+  {
+    id: "int29",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Bedroom with wood panel headboard and white linens",
+    category: "interior"
+  },
+  {
+    id: "int30",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Twin bedroom with bright windows and outdoor access",
+    category: "interior"
+  },
+  {
+    id: "int31",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Master bedroom with large windows and scenic views",
+    category: "interior"
+  },
+  {
+    id: "int32",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Modern bathroom with glass shower and patterned tiles",
+    category: "interior"
+  },
+  {
+    id: "int33",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Contemporary bathroom with wooden accents and white fixtures",
+    category: "interior"
+  },
+  {
+    id: "int34",
+    url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
+    alt: "Bathroom with bathtub and striped tile design",
     category: "interior"
   },
   
