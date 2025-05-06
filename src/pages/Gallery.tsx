@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { galleryImages, getImagesByCategory } from "@/data/gallery";
 import { SectionHeader } from "@/components/ui/section-header";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
@@ -14,6 +14,11 @@ const heroBackgroundImage = "/lovable-uploads/688e1adc-830e-4787-8a22-5c6afd2876
 const Gallery = () => {
   const [category, setCategory] = useState<string | undefined>(undefined);
   
+  // Add effect to scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const categories = [
     { value: undefined, label: "All" },
     { value: "exterior", label: "Exteriors" },
@@ -23,6 +28,17 @@ const Gallery = () => {
   ];
   
   const filteredImages = getImagesByCategory(category);
+
+  // Handle tab change
+  const handleTabChange = (value: string) => {
+    // Scroll to top of the gallery section
+    const gallerySection = document.querySelector('.gallery-grid');
+    if (gallerySection) {
+      gallerySection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    setCategory(value === "all" ? undefined : value);
+  };
 
   // Select a few stunning surroundings images for the showcase
   const showcaseImages = [
@@ -54,7 +70,7 @@ const Gallery = () => {
           <div className="mb-8 flex justify-center">
             <Tabs 
               defaultValue="all" 
-              onValueChange={(value) => setCategory(value === "all" ? undefined : value)}
+              onValueChange={handleTabChange}
               className="w-full max-w-3xl"
             >
               <TabsList className="w-full bg-[#1D3A64] p-1 shadow-sm">
@@ -77,7 +93,9 @@ const Gallery = () => {
             </p>
           </div>
           
-          <GalleryGrid images={filteredImages} />
+          <div className="gallery-grid">
+            <GalleryGrid images={filteredImages} />
+          </div>
         </div>
       </main>
       

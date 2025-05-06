@@ -19,6 +19,9 @@ const Booking = () => {
   const [selectedVilla, setSelectedVilla] = useState<Villa | null>(null);
   
   useEffect(() => {
+    // Scroll to top on component mount
+    window.scrollTo(0, 0);
+    
     // Check if a specific villa was requested in URL params
     const queryParams = new URLSearchParams(location.search);
     const villaSlug = queryParams.get("villa");
@@ -37,6 +40,20 @@ const Booking = () => {
   // Make sure we have a selected villa
   const activeVilla = selectedVilla || villas[0];
   const activeVillaSlug = activeVilla?.slug || villas[0].slug;
+  
+  // Handle villa tab change
+  const handleVillaChange = (slug: string) => {
+    const villa = getVillaBySlug(slug);
+    if (villa) {
+      setSelectedVilla(villa);
+      
+      // Scroll to the top of the content
+      const tabsContent = document.querySelector('.tabs-content');
+      if (tabsContent) {
+        tabsContent.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   
   return (
     <div className="min-h-screen flex flex-col bg-[#07091A]">
@@ -62,7 +79,7 @@ const Booking = () => {
                       key={villa.slug}
                       value={villa.slug}
                       className="flex-1 data-[state=active]:bg-villa-blue data-[state=active]:text-white"
-                      onClick={() => setSelectedVilla(villa)}
+                      onClick={() => handleVillaChange(villa.slug)}
                     >
                       {villa.name}
                     </TabsTrigger>
@@ -70,67 +87,69 @@ const Booking = () => {
                 </TabsList>
               </div>
               
-              {villas.map((villa) => (
-                <TabsContent 
-                  key={villa.slug}
-                  value={villa.slug}
-                  className="p-6 focus-visible:outline-none focus-visible:ring-0 text-white"
-                >
-                  <div className="grid md:grid-cols-2 gap-8 items-start">
-                    <div>
-                      <div className="rounded-lg mb-4 h-64 bg-[#172B4D] flex items-center justify-center">
-                        {villa.mainImage ? (
-                          <img 
-                            src={villa.mainImage} 
-                            alt={villa.name} 
-                            className="w-full h-full object-cover rounded-lg"
-                          />
-                        ) : (
-                          <div className="flex flex-col items-center justify-center">
-                            <ImageIcon size={48} className="text-villa-sand" />
-                            <p className="mt-2 text-sm text-gray-400">Villa image placeholder</p>
-                          </div>
-                        )}
+              <div className="tabs-content">
+                {villas.map((villa) => (
+                  <TabsContent 
+                    key={villa.slug}
+                    value={villa.slug}
+                    className="p-6 focus-visible:outline-none focus-visible:ring-0 text-white"
+                  >
+                    <div className="grid md:grid-cols-2 gap-8 items-start">
+                      <div>
+                        <div className="rounded-lg mb-4 h-64 bg-[#172B4D] flex items-center justify-center">
+                          {villa.mainImage ? (
+                            <img 
+                              src={villa.mainImage} 
+                              alt={villa.name} 
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          ) : (
+                            <div className="flex flex-col items-center justify-center">
+                              <ImageIcon size={48} className="text-villa-sand" />
+                              <p className="mt-2 text-sm text-gray-400">Villa image placeholder</p>
+                            </div>
+                          )}
+                        </div>
+                        
+                        <h3 className="text-xl font-serif font-medium mb-2 text-white">
+                          {villa.name} - {villa.meaning}
+                        </h3>
+                        
+                        <p className="text-gray-300 mb-4">
+                          {villa.shortDescription}
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                            <BedDouble className="mr-1" size={14} />
+                            {villa.bedConfiguration}
+                          </span>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                            <Bath className="mr-1" size={14} />
+                            {villa.bathrooms} Bathrooms
+                          </span>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                            {villa.size} m²
+                          </span>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                            <Users className="mr-1" size={14} />
+                            Up to {villa.capacity} Guests
+                          </span>
+                        </div>
+                        
+                        <p className="text-sm text-gray-400">
+                          Book with confidence - Your perfect stay awaits at {villa.name}.
+                        </p>
                       </div>
                       
-                      <h3 className="text-xl font-serif font-medium mb-2 text-white">
-                        {villa.name} - {villa.meaning}
-                      </h3>
-                      
-                      <p className="text-gray-300 mb-4">
-                        {villa.shortDescription}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                          <BedDouble className="mr-1" size={14} />
-                          {villa.bedConfiguration}
-                        </span>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                          <Bath className="mr-1" size={14} />
-                          {villa.bathrooms} Bathrooms
-                        </span>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                          {villa.size} m²
-                        </span>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                          <Users className="mr-1" size={14} />
-                          Up to {villa.capacity} Guests
-                        </span>
-                      </div>
-                      
-                      <p className="text-sm text-gray-400">
-                        Book with confidence - Your perfect stay awaits at {villa.name}.
-                      </p>
+                      <BookingForm 
+                        villa={villa} 
+                        bookedDates={getBookingsByVillaId(villa.id)}
+                      />
                     </div>
-                    
-                    <BookingForm 
-                      villa={villa} 
-                      bookedDates={getBookingsByVillaId(villa.id)}
-                    />
-                  </div>
-                </TabsContent>
-              ))}
+                  </TabsContent>
+                ))}
+              </div>
             </Tabs>
           </div>
         </div>

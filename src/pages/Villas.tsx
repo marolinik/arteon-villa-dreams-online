@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { VillaCard } from "@/components/ui/villa-card";
 import { villas } from "@/data/villas";
 import Navbar from "@/components/layout/Navbar";
@@ -10,6 +11,16 @@ import HeroSection from "@/components/layout/HeroSection";
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
 
 const Villas = () => {
+  // Add effect to scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Handle link click to scroll to top
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
+  
   return (
     <div className="min-h-screen flex flex-col bg-[#07091A]">
       <Navbar />
@@ -21,10 +32,10 @@ const Villas = () => {
         backgroundImage={heroBackgroundImage}
       >
         <div className="flex flex-wrap gap-6 justify-center">
-          <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
+          <Link to="/booking" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all" onClick={handleLinkClick}>
             Book Now
           </Link>
-          <Link to="/gallery" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all">
+          <Link to="/gallery" className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white px-8 py-3 rounded-md text-lg font-medium transition-all" onClick={handleLinkClick}>
             View Gallery
           </Link>
         </div>
