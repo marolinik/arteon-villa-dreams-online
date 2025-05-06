@@ -487,6 +487,8 @@ export const galleryImages: GalleryImage[] = [
     alt: "Cozy chair arrangement with floor lamp and decorative pillows",
     category: "interior"
   },
+  
+  // New interior images from recent uploads
   {
     id: "int21",
     url: "/lovable-uploads/a34cbcdc-88cf-46db-a2b8-051202df97f1.png",
@@ -571,61 +573,31 @@ export const galleryImages: GalleryImage[] = [
     alt: "Bathroom with bathtub and striped tile design",
     category: "interior"
   },
-  
-  // Amenities placeholders
   {
-    id: "amen1",
-    url: "", // Placeholder for amenities image 1
-    alt: "Swimming pool surrounded by lounge chairs",
-    category: "amenities"
+    id: "int35",
+    url: "/lovable-uploads/49172237-4a6d-47da-928c-8c4e9f8e2575.png",
+    alt: "Vanity area with wall mirror, shelf and blue upholstered stool",
+    category: "interior"
   },
   {
-    id: "amen2",
-    url: "", // Placeholder for amenities image 2
-    alt: "Outdoor dining area with BBQ facilities",
-    category: "amenities"
+    id: "int36",
+    url: "/lovable-uploads/65aa3e7b-58ef-4161-915d-0f1044f3a956.png",
+    alt: "Bedroom with pattern accent chairs and white bedding",
+    category: "interior"
   },
   {
-    id: "amen3",
-    url: "", // Placeholder for amenities image 3
-    alt: "Private beach area with umbrellas and sunbeds",
-    category: "amenities"
+    id: "int37",
+    url: "/lovable-uploads/2e72b1d7-9d8e-4037-984c-d3a52b42aed3.png",
+    alt: "Twin bedroom with white bedding and large window with view",
+    category: "interior"
   },
   {
-    id: "amen4",
-    url: "", // Placeholder for amenities image 4
-    alt: "Children's playground in garden setting",
-    category: "amenities"
-  },
-  
-  // Surroundings placeholders
-  {
-    id: "sur1",
-    url: "", // Placeholder for surroundings image 1
-    alt: "Panoramic view of Sithonia peninsula",
-    category: "surroundings"
+    id: "int38",
+    url: "/lovable-uploads/1b8879b1-9135-4d79-beae-415783aa4f6e.png",
+    alt: "Modern bedroom with pattern accent chairs and wood headboard",
+    category: "interior"
   },
   {
-    id: "sur2",
-    url: "", // Placeholder for surroundings image 2
-    alt: "Nearby Salonikiou Beach at sunset",
-    category: "surroundings"
-  },
-  {
-    id: "sur3",
-    url: "", // Placeholder for surroundings image 3
-    alt: "Traditional Greek village of Agios Nikolaos",
-    category: "surroundings"
-  },
-  {
-    id: "sur4",
-    url: "", // Placeholder for surroundings image 4
-    alt: "Clear blue waters of Aegean Sea with Mount Athos view",
-    category: "surroundings"
-  }
-];
-
-export const getImagesByCategory = (category?: string): GalleryImage[] => {
-  if (!category) return galleryImages;
-  return galleryImages.filter(image => image.category === category);
-};
+    id: "int39",
+    url: "/lovable-uploads/b7058a82-4efc-4967-924f-0dab32c1ad8e.png",
+    alt: "View from bedroom window
