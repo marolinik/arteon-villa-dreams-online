@@ -1,3 +1,4 @@
+
 import { GalleryImage } from "@/types";
 
 // Gallery images with real image paths
@@ -600,4 +601,16 @@ export const galleryImages: GalleryImage[] = [
   {
     id: "int39",
     url: "/lovable-uploads/b7058a82-4efc-4967-924f-0dab32c1ad8e.png",
-    alt: "View from bedroom window
+    alt: "View from bedroom window showing mountain landscape",
+    category: "interior"
+  }
+];
+
+// Function to get images by category
+export const getImagesByCategory = (category?: string) => {
+  if (!category) {
+    return galleryImages;
+  }
+  
+  return galleryImages.filter(image => image.category === category);
+};
