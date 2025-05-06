@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { DateRangePicker } from "@/components/booking/DateRangePicker";
 import { BookingDate, GuestInfo, Villa } from "@/types";
 import { addBooking, checkAvailability, sendBookingEmail } from "@/data/bookings";
-import { format, differenceInDays, isSaturday } from "date-fns";
+import { format, differenceInDays, isSunday } from "date-fns";
 import { AlertCircle } from "lucide-react";
 
 interface BookingFormProps {
@@ -72,15 +72,15 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     if (!dateRange.from || !dateRange.to) {
       newErrors.dates = "Please select both check-in and check-out dates";
     } else {
-      // Check if both dates are Saturdays
-      if (!isSaturday(dateRange.from) || !isSaturday(dateRange.to)) {
-        newErrors.dates = "Both check-in and check-out dates must be Saturdays";
+      // Check if start date is not a Sunday
+      if (isSunday(dateRange.from)) {
+        newErrors.dates = "Check-in on Sundays is not available";
       }
       
-      // Check if the stay is exactly 7, 14, 21 days, etc.
+      // Check if the stay is at least 5 nights
       const days = differenceInDays(dateRange.to, dateRange.from);
-      if (days % 7 !== 0 || days < 7) {
-        newErrors.dates = "Minimum stay is 7 days, and bookings must be in 7-day increments (Saturday to Saturday)";
+      if (days < 5) {
+        newErrors.dates = "Minimum stay is 5 nights";
       }
     }
     

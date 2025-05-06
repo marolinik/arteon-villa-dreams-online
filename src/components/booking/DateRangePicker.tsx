@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { format, addDays, isWithinInterval, isBefore, isAfter, startOfDay, isSaturday, differenceInDays } from "date-fns";
+import { format, addDays, isWithinInterval, isBefore, isAfter, startOfDay, isSunday, differenceInDays } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -72,18 +72,13 @@ export const DateRangePicker = ({
       });
     });
   };
-  
-  // Check if a date is a Saturday
-  const isSaturdayDate = (date: Date): boolean => {
-    return isSaturday(date);
-  };
 
-  // Don't allow past dates, booked dates, dates outside the season, or non-Saturday dates
+  // Don't allow past dates, booked dates, dates outside the season, or Sunday start dates
   const isDateDisabled = (date: Date): boolean => {
     const day = startOfDay(date);
     
-    // Allow only Saturdays
-    if (!isSaturdayDate(day)) {
+    // Disallow bookings starting on Sundays
+    if (isSunday(day)) {
       return true;
     }
     
@@ -106,42 +101,19 @@ export const DateRangePicker = ({
       return;
     }
 
-    // Validate end date is also a Saturday
-    if (!isSaturdayDate(range.to)) {
-      // Find the next Saturday
-      let newEndDate = range.to;
-      while (!isSaturdayDate(newEndDate)) {
-        newEndDate = addDays(newEndDate, 1);
-      }
-      range.to = newEndDate;
-    }
-
     // Calculate the number of days between start and end dates
     const daysBetween = differenceInDays(range.to, range.from);
     
-    // Check if the range is at least 7 days
-    if (daysBetween < 7) {
-      // Automatically set the end date to the next Saturday (at least 7 days away)
-      const newEndDate = addDays(range.from, 7);
+    // Check if the range is at least 5 days
+    if (daysBetween < 5) {
+      // Automatically set the end date to be 5 days from the start date
+      const newEndDate = addDays(range.from, 5);
       setDateRange({
         from: range.from,
         to: newEndDate
       });
     } else {
-      // Check if weeks multiple (Saturday to Saturday)
-      if (daysBetween % 7 === 0) {
-        setDateRange(range);
-      } else {
-        // Round to the next Saturday
-        let newEndDate = range.to;
-        while (differenceInDays(newEndDate, range.from) % 7 !== 0) {
-          newEndDate = addDays(newEndDate, 1);
-        }
-        setDateRange({
-          from: range.from,
-          to: newEndDate
-        });
-      }
+      setDateRange(range);
     }
   };
 
@@ -160,7 +132,7 @@ export const DateRangePicker = ({
     <div className={cn("space-y-4", className)}>
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="flex-1">
-          <p className="text-sm font-medium mb-1.5">Check-in Date (Saturday)</p>
+          <p className="text-sm font-medium mb-1.5">Check-in Date</p>
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -195,7 +167,7 @@ export const DateRangePicker = ({
                 initialFocus
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
-                    * Booking available Saturday to Saturday only
+                    * Minimum stay: 5 nights (Sunday check-ins not available)
                   </div>
                 }
               />
@@ -204,7 +176,7 @@ export const DateRangePicker = ({
         </div>
         
         <div className="flex-1">
-          <p className="text-sm font-medium mb-1.5">Check-out Date (Saturday)</p>
+          <p className="text-sm font-medium mb-1.5">Check-out Date</p>
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -232,7 +204,7 @@ export const DateRangePicker = ({
                 initialFocus
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
-                    * Minimum stay: 7 days (Saturday to Saturday)
+                    * Minimum stay: 5 nights
                   </div>
                 }
               />
@@ -248,7 +220,7 @@ export const DateRangePicker = ({
       )}
 
       <div className="text-sm text-amber-500 mt-2">
-        <p>Note: Bookings are available only from Saturday to Saturday, with a minimum stay of 5 nights.</p>
+        <p>Note: Bookings have a minimum stay of 5 nights. Sunday check-ins are not available.</p>
         <p className="mt-1 font-medium">Early booking discounts available for reservations made before Dec 31, 2024.</p>
       </div>
     </div>
