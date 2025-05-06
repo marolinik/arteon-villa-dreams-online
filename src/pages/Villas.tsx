@@ -8,7 +8,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Link } from "react-router-dom";
 import HeroSection from "@/components/layout/HeroSection";
 
-const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
+const heroBackgroundImage = "/lovable-uploads/59d403c7-285a-488b-bf1f-23728f38fcfb.png";
 
 const Villas = () => {
   // Add effect to scroll to top on component mount
