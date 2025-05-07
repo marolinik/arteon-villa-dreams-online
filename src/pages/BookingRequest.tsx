@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -64,9 +63,9 @@ const BookingRequest = () => {
       // Create email body for guest
       const guestEmailBody = `
 Dear ${bookingDetails.guestInfo.name},
-
+      
 Thank you for your booking request at Arteon Villas.
-
+      
 Booking Details:
 - Villa: ${villaName}
 - Check-in: ${format(bookingDetails.startDate, "PPP")}
@@ -74,13 +73,13 @@ Booking Details:
 - Nights: ${nights}
 - Guests: ${bookingDetails.guestInfo.guests}
 - Total Price: €${bookingDetails.totalPrice}
-
+      
 Your booking reference number: ${bookingNumber}
-
+      
 You will receive payment instructions shortly. Please note that a 30% deposit is required to confirm your reservation.
-
+      
 If you have any questions, please feel free to contact us.
-
+      
 Best regards,
 Arteon Villas Team
       `;
@@ -88,7 +87,7 @@ Arteon Villas Team
       // Create email body for villa owners
       const ownerEmailBody = `
 New Booking Request:
-
+      
 Villa: ${villaName}
 Check-in: ${format(bookingDetails.startDate, "PPP")}
 Check-out: ${format(bookingDetails.endDate, "PPP")}
@@ -96,7 +95,7 @@ Nights: ${nights}
 Rate per night: €${bookingDetails.nightRate}
 Total Price: €${bookingDetails.totalPrice}
 Booking reference: ${bookingNumber}
-
+      
 Guest Information:
 - Name: ${bookingDetails.guestInfo.name}
 - Email: ${bookingDetails.guestInfo.email}
@@ -131,12 +130,17 @@ ${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetai
         body: ownerEmailBody,
       });
       
-      // Navigate to thank you page
+      // Navigate to thank you page with all booking details
       navigate("/booking-confirmation", { 
         state: { 
           fromRequest: true,
           villaId: bookingDetails.villaId,
-          bookingNumber
+          bookingNumber,
+          startDate: bookingDetails.startDate,
+          endDate: bookingDetails.endDate,
+          totalPrice: bookingDetails.totalPrice,
+          nightRate: bookingDetails.nightRate,
+          guestInfo: bookingDetails.guestInfo
         } 
       });
       
