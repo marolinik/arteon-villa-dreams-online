@@ -3,10 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { format, differenceInDays } from "date-fns";
-import { getVillaById } from "@/data/villas";
-import { sendEmail } from "@/utils/emailService";
-import { addBooking, bookings, generateBookingNumber } from "@/data/bookings";
-import { GuestInfo } from "@/types";
+import { getVillaById } from "@/api/villasApi";
+import { addBooking, sendBookingEmail } from "@/api/bookingsApi";
+import { GuestInfo, Villa } from "@/types";
 import { Mail, ArrowLeft, Check } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -27,6 +26,7 @@ const BookingRequest = () => {
     totalPrice: number;
     nightRate: number;
   } | null>(null);
+  const [villa, setVilla] = useState<Villa | null>(null);
 
   useEffect(() => {
     // Get booking details from state or redirect back to booking page
@@ -43,6 +43,20 @@ const BookingRequest = () => {
     
     setBookingDetails(state.bookingDetails);
     
+    // Fetch villa details
+    const fetchVilla = async () => {
+      try {
+        if (state.bookingDetails.villaId) {
+          const villaData = await getVillaById(state.bookingDetails.villaId);
+          setVilla(villaData);
+        }
+      } catch (error) {
+        console.error("Failed to fetch villa details:", error);
+      }
+    };
+    
+    fetchVilla();
+    
     // Scroll to top on component mount
     window.scrollTo(0, 0);
   }, [location, navigate, toast]);
@@ -53,89 +67,38 @@ const BookingRequest = () => {
     setIsSubmitting(true);
     
     try {
-      const villa = getVillaById(bookingDetails.villaId);
       const villaName = villa ? villa.name : "Unknown Villa";
       const nights = differenceInDays(bookingDetails.endDate, bookingDetails.startDate);
       
-      // Generate booking number
-      const bookingNumber = generateBookingNumber();
-      
-      // Create email body for guest
-      const guestEmailBody = `
-Dear ${bookingDetails.guestInfo.name},
-      
-Thank you for your booking request at Arteon Villas.
-      
-Booking Details:
-- Villa: ${villaName}
-- Check-in: ${format(bookingDetails.startDate, "PPP")}
-- Check-out: ${format(bookingDetails.endDate, "PPP")}
-- Nights: ${nights}
-- Guests: ${bookingDetails.guestInfo.guests}
-- Total Price: €${bookingDetails.totalPrice}
-      
-Your booking reference number: ${bookingNumber}
-      
-You will receive payment instructions shortly. Please note that a 30% deposit is required to confirm your reservation.
-      
-If you have any questions, please feel free to contact us.
-      
-Best regards,
-Arteon Villas Team
-      `;
-      
-      // Create email body for villa owners
-      const ownerEmailBody = `
-New Booking Request:
-      
-Villa: ${villaName}
-Check-in: ${format(bookingDetails.startDate, "PPP")}
-Check-out: ${format(bookingDetails.endDate, "PPP")}
-Nights: ${nights}
-Rate per night: €${bookingDetails.nightRate}
-Total Price: €${bookingDetails.totalPrice}
-Booking reference: ${bookingNumber}
-      
-Guest Information:
-- Name: ${bookingDetails.guestInfo.name}
-- Email: ${bookingDetails.guestInfo.email}
-- Phone: ${bookingDetails.guestInfo.phone}
-- Number of guests: ${bookingDetails.guestInfo.guests}
-${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetails.guestInfo.specialRequests}` : ''}
-      `;
-      
-      // Store the booking in the data service - add this to make dates unavailable
-      const bookingId = addBooking({
-        id: undefined, // Will be generated
+      // Add booking to database
+      const bookingId = await addBooking({
         villaId: bookingDetails.villaId,
         startDate: bookingDetails.startDate,
         endDate: bookingDetails.endDate,
         guestInfo: bookingDetails.guestInfo,
-        status: "pending",
-        createdAt: new Date(),
-        bookingNumber
+        status: "pending"
       });
       
-      // Send email to guest
-      await sendEmail({
-        to: bookingDetails.guestInfo.email,
-        subject: "Arteon Villas - Booking Request Confirmation",
-        body: guestEmailBody,
-      });
+      // Get the booking with its generated number
+      const bookingWithId = {
+        id: bookingId,
+        villaId: bookingDetails.villaId,
+        startDate: bookingDetails.startDate,
+        endDate: bookingDetails.endDate,
+        guestInfo: bookingDetails.guestInfo,
+        status: "pending" as "pending",
+        createdAt: new Date()
+      };
       
-      // Send email to villa owners
-      await sendEmail({
-        to: "booking@arteonvillas.com,marolinik@gmail.com",
-        subject: `New Booking Request: ${villaName} - ${format(bookingDetails.startDate, "PP")} to ${format(bookingDetails.endDate, "PP")}`,
-        body: ownerEmailBody,
-      });
+      // Send email
+      await sendBookingEmail(bookingWithId);
       
       // Navigate to thank you page with all booking details
       navigate("/booking-confirmation", { 
         state: { 
           fromRequest: true,
           villaId: bookingDetails.villaId,
-          bookingNumber,
+          bookingNumber: bookingWithId.bookingNumber,
           startDate: bookingDetails.startDate,
           endDate: bookingDetails.endDate,
           totalPrice: bookingDetails.totalPrice,
@@ -149,7 +112,7 @@ ${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetai
         description: "You will receive an email with payment instructions shortly.",
       });
     } catch (error) {
-      console.error("Failed to send booking emails:", error);
+      console.error("Failed to submit booking request:", error);
       toast({
         title: "Error",
         description: "Failed to submit booking request. Please try again.",
@@ -175,7 +138,6 @@ ${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetai
     );
   }
   
-  const villa = getVillaById(bookingDetails.villaId);
   const nights = differenceInDays(bookingDetails.endDate, bookingDetails.startDate);
   
   return (
