@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { DateRangePicker } from "@/components/booking/DateRangePicker";
 import { BookingDate, GuestInfo, Villa } from "@/types";
-import { checkAvailability } from "@/api/bookingsApi";
+import { checkAvailability } from "@/data/bookings";
 import { format, differenceInDays, isSunday } from "date-fns";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
@@ -190,8 +190,8 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     setIsSubmitting(true);
 
     try {
-      // Check availability with our API
-      const isAvailable = await checkAvailability(
+      // Check availability
+      const isAvailable = checkAvailability(
         villa.id,
         dateRange.from,
         dateRange.to
@@ -207,7 +207,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
         return;
       }
 
-      // Navigate to booking request page
+      // Instead of confirming booking immediately, navigate to booking request page
       navigate("/booking-request", { 
         state: { 
           bookingDetails: {

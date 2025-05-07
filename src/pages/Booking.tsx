@@ -4,110 +4,57 @@ import { useLocation } from "react-router-dom";
 import { SectionHeader } from "@/components/ui/section-header";
 import { BookingForm } from "@/components/booking/BookingForm";
 import { Villa } from "@/types";
-import { getVillas, getVillaBySlug } from "@/api/villasApi";
-import { getBookingsByVillaId, getRestrictedDatesByVillaId } from "@/api/bookingsApi";
+import { villas, getVillaBySlug } from "@/data/villas";
+import { getBookingsByVillaId } from "@/data/bookings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ImageIcon, BedDouble, Bath, Users, CalendarDays } from "lucide-react";
 import PageHero from "@/components/layout/PageHero";
 import { Toaster } from "@/components/ui/toaster";
-import { BookingProvider } from "@/context/BookingContext";
 
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
 
 const Booking = () => {
   const location = useLocation();
-  const [villas, setVillas] = useState<Villa[]>([]);
   const [selectedVilla, setSelectedVilla] = useState<Villa | null>(null);
-  const [bookedDates, setBookedDates] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     // Scroll to top on component mount
     window.scrollTo(0, 0);
     
-    // Fetch all villas
-    const fetchVillas = async () => {
-      setIsLoading(true);
-      try {
-        const villasData = await getVillas();
-        setVillas(villasData);
-        
-        // Check if a specific villa was requested in URL params
-        const queryParams = new URLSearchParams(location.search);
-        const villaSlug = queryParams.get("villa");
-        
-        let villaToSelect: Villa | null = null;
-        
-        if (villaSlug) {
-          const villa = await getVillaBySlug(villaSlug);
-          if (villa) {
-            villaToSelect = villa;
-          }
-        }
-        
-        // If no villa was selected or found, use the first one
-        if (!villaToSelect && villasData.length > 0) {
-          villaToSelect = villasData[0];
-        }
-        
-        if (villaToSelect) {
-          setSelectedVilla(villaToSelect);
-          
-          // Fetch bookings for the selected villa
-          const bookings = await getBookingsByVillaId(villaToSelect.id);
-          const restrictedDates = await getRestrictedDatesByVillaId(villaToSelect.id);
-          setBookedDates([...bookings, ...restrictedDates]);
-        }
-      } catch (error) {
-        console.error('Error fetching villas:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    // Check if a specific villa was requested in URL params
+    const queryParams = new URLSearchParams(location.search);
+    const villaSlug = queryParams.get("villa");
     
-    fetchVillas();
-  }, [location.search]);
-  
-  // Handle villa tab change
-  const handleVillaChange = async (slug: string) => {
-    try {
-      const villa = await getVillaBySlug(slug);
+    if (villaSlug) {
+      const villa = getVillaBySlug(villaSlug);
       if (villa) {
         setSelectedVilla(villa);
-        
-        // Fetch bookings for the selected villa
-        const bookings = await getBookingsByVillaId(villa.id);
-        const restrictedDates = await getRestrictedDatesByVillaId(villa.id);
-        setBookedDates([...bookings, ...restrictedDates]);
-        
-        // Scroll to the top of the content
-        const tabsContent = document.querySelector('.tabs-content');
-        if (tabsContent) {
-          tabsContent.scrollIntoView({ behavior: 'smooth' });
-        }
       }
-    } catch (error) {
-      console.error('Error fetching villa details:', error);
+    } else if (villas.length > 0 && !selectedVilla) {
+      // Set a default villa if none is selected
+      setSelectedVilla(villas[0]);
     }
-  };
+  }, [location.search]);
   
   // Make sure we have a selected villa
-  const activeVilla = selectedVilla || (villas.length > 0 ? villas[0] : null);
-  const activeVillaSlug = activeVilla?.slug || '';
+  const activeVilla = selectedVilla || villas[0];
+  const activeVillaSlug = activeVilla?.slug || villas[0].slug;
   
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col bg-[#07091A]">
-        <Navbar />
-        <main className="py-12 flex-grow flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
+  // Handle villa tab change
+  const handleVillaChange = (slug: string) => {
+    const villa = getVillaBySlug(slug);
+    if (villa) {
+      setSelectedVilla(villa);
+      
+      // Scroll to the top of the content
+      const tabsContent = document.querySelector('.tabs-content');
+      if (tabsContent) {
+        tabsContent.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   
   return (
     <div className="min-h-screen flex flex-col bg-[#07091A]">
@@ -122,97 +69,93 @@ const Booking = () => {
       <main className="py-12 flex-grow">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto bg-[#1D3A64] rounded-lg shadow-lg overflow-hidden">
-            <BookingProvider>
-              <Tabs 
-                defaultValue={activeVillaSlug}
-                className="w-full"
-              >
-                <div className="bg-[#213E69] px-6 py-4 border-b border-gray-700">
-                  <TabsList className="w-full bg-[#172B4D] p-1 shadow-sm">
-                    {villas.map((villa) => (
-                      <TabsTrigger 
-                        key={villa.slug}
-                        value={villa.slug}
-                        className="flex-1 data-[state=active]:bg-villa-blue data-[state=active]:text-white"
-                        onClick={() => handleVillaChange(villa.slug)}
-                      >
-                        {villa.name}
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                </div>
-                
-                <div className="tabs-content">
+            <Tabs 
+              defaultValue={activeVillaSlug}
+              className="w-full"
+            >
+              <div className="bg-[#213E69] px-6 py-4 border-b border-gray-700">
+                <TabsList className="w-full bg-[#172B4D] p-1 shadow-sm">
                   {villas.map((villa) => (
-                    <TabsContent 
+                    <TabsTrigger 
                       key={villa.slug}
                       value={villa.slug}
-                      className="p-6 focus-visible:outline-none focus-visible:ring-0 text-white"
+                      className="flex-1 data-[state=active]:bg-villa-blue data-[state=active]:text-white"
+                      onClick={() => handleVillaChange(villa.slug)}
                     >
-                      <div className="grid md:grid-cols-2 gap-8 items-start">
-                        <div>
-                          <div className="rounded-lg mb-4 h-64 bg-[#172B4D] flex items-center justify-center">
-                            {villa.mainImage ? (
-                              <img 
-                                src={villa.mainImage} 
-                                alt={villa.name} 
-                                className="w-full h-full object-cover rounded-lg"
-                              />
-                            ) : (
-                              <div className="flex flex-col items-center justify-center">
-                                <ImageIcon size={48} className="text-villa-sand" />
-                                <p className="mt-2 text-sm text-gray-400">Villa image placeholder</p>
-                              </div>
-                            )}
-                          </div>
-                          
-                          <h3 className="text-xl font-serif font-medium mb-2 text-white">
-                            {villa.name} - {villa.meaning}
-                          </h3>
-                          
-                          <p className="text-gray-300 mb-4">
-                            {villa.shortDescription}
-                          </p>
-                          
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                              <BedDouble className="mr-1" size={14} />
-                              {villa.bedConfiguration}
-                            </span>
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                              <Bath className="mr-1" size={14} />
-                              {villa.bathrooms} Bathrooms
-                            </span>
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                              {villa.size} m²
-                            </span>
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                              <Users className="mr-1" size={14} />
-                              Up to {villa.capacity} Guests
-                            </span>
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
-                              <CalendarDays className="mr-1" size={14} />
-                              Min. 5 nights
-                            </span>
-                          </div>
-                          
-                          <p className="text-sm text-gray-400">
-                            Book with confidence - Your perfect stay awaits at {villa.name}.
-                          </p>
+                      {villa.name}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </div>
+              
+              <div className="tabs-content">
+                {villas.map((villa) => (
+                  <TabsContent 
+                    key={villa.slug}
+                    value={villa.slug}
+                    className="p-6 focus-visible:outline-none focus-visible:ring-0 text-white"
+                  >
+                    <div className="grid md:grid-cols-2 gap-8 items-start">
+                      <div>
+                        <div className="rounded-lg mb-4 h-64 bg-[#172B4D] flex items-center justify-center">
+                          {villa.mainImage ? (
+                            <img 
+                              src={villa.mainImage} 
+                              alt={villa.name} 
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          ) : (
+                            <div className="flex flex-col items-center justify-center">
+                              <ImageIcon size={48} className="text-villa-sand" />
+                              <p className="mt-2 text-sm text-gray-400">Villa image placeholder</p>
+                            </div>
+                          )}
                         </div>
                         
-                        {villa.id === selectedVilla?.id && (
-                          <BookingForm 
-                            villa={villa} 
-                            bookedDates={bookedDates}
-                          />
-                        )}
+                        <h3 className="text-xl font-serif font-medium mb-2 text-white">
+                          {villa.name} - {villa.meaning}
+                        </h3>
+                        
+                        <p className="text-gray-300 mb-4">
+                          {villa.shortDescription}
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                            <BedDouble className="mr-1" size={14} />
+                            {villa.bedConfiguration}
+                          </span>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                            <Bath className="mr-1" size={14} />
+                            {villa.bathrooms} Bathrooms
+                          </span>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                            {villa.size} m²
+                          </span>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                            <Users className="mr-1" size={14} />
+                            Up to {villa.capacity} Guests
+                          </span>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-villa-blue/20 text-amber-300">
+                            <CalendarDays className="mr-1" size={14} />
+                            Min. 5 nights
+                          </span>
+                        </div>
+                        
+                        <p className="text-sm text-gray-400">
+                          Book with confidence - Your perfect stay awaits at {villa.name}.
+                        </p>
                       </div>
-                    </TabsContent>
-                  ))}
-                </div>
-              </Tabs>
-            </BookingProvider>
+                      
+                      <BookingForm 
+                        villa={villa} 
+                        bookedDates={getBookingsByVillaId(villa.id)}
+                      />
+                    </div>
+                  </TabsContent>
+                ))}
+              </div>
+            </Tabs>
           </div>
         </div>
       </main>

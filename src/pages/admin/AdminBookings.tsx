@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
-import { getVillas, getVillaById } from "@/api/villasApi";
+import { villas, getVillaById } from "@/data/villas";
 import { 
+  bookings, 
+  restrictedDates, 
   getAllBookings, 
-  getRestrictedDatesByVillaId, 
   deleteBooking, 
   updateBookingStatus,
   addRestrictedDates
-} from "@/api/bookingsApi";
+} from "@/data/bookings";
 import {
   Table,
   TableBody,
@@ -39,23 +40,30 @@ import {
   TabsList, 
   TabsTrigger
 } from "@/components/ui/tabs";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { BookingDate, Villa } from "@/types";
+import { CalendarIcon, Calendar as CalendarCheck, CheckCircle, XCircle, PlusCircle } from "lucide-react";
+import { BookingDate } from "@/types";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { useForm } from "react-hook-form";
 import AdminVillaCalendar from "@/components/admin/AdminVillaCalendar";
-import { CalendarIcon, Calendar as CalendarCheck, CheckCircle, XCircle, PlusCircle } from "lucide-react";
 
 const AdminBookings = () => {
   const { toast } = useToast();
   const [allBookings, setAllBookings] = useState<BookingDate[]>([]);
-  const [allVillas, setAllVillas] = useState<Villa[]>([]);
-  const [allRestrictedDates, setAllRestrictedDates] = useState<BookingDate[]>([]);
   const [filter, setFilter] = useState<string>("all");
   const [isRestrictDatesOpen, setIsRestrictDatesOpen] = useState(false);
-  const [selectedVillaId, setSelectedVillaId] = useState<string>("");
+  const [selectedVillaId, setSelectedVillaId] = useState<string>(villas[0].id);
   const [dateRange, setDateRange] = useState<{
     from: Date | undefined;
     to: Date | undefined;
@@ -64,119 +72,75 @@ const AdminBookings = () => {
     to: undefined,
   });
   const [activeTab, setActiveTab] = useState<string>("bookings");
-  const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        // Fetch all villas
-        const villasData = await getVillas();
-        setAllVillas(villasData);
-        
-        if (villasData.length > 0) {
-          setSelectedVillaId(villasData[0].id);
-        }
-        
-        // Fetch all bookings
-        const bookingsData = await getAllBookings();
-        setAllBookings(bookingsData);
-        
-        // Fetch restricted dates for all villas
-        let allRestricted: BookingDate[] = [];
-        for (const villa of villasData) {
-          const restrictedForVilla = await getRestrictedDatesByVillaId(villa.id);
-          allRestricted = [...allRestricted, ...restrictedForVilla];
-        }
-        setAllRestrictedDates(allRestricted);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        toast({
-          title: "Error",
-          description: "Failed to load booking data. Please try again.",
-          variant: "destructive"
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    
-    fetchData();
+    // Load all bookings on mount
+    setAllBookings(getAllBookings());
   }, []);
   
-  const handleStatusChange = async (bookingId: string, status: string) => {
-    try {
-      const success = await updateBookingStatus(
-        bookingId, 
-        status as "confirmed" | "pending" | "cancelled"
-      );
-      
-      if (success) {
-        // Update local state
-        setAllBookings(prevBookings => 
-          prevBookings.map(booking => 
-            booking.id === bookingId 
-              ? { ...booking, status: status as "confirmed" | "pending" | "cancelled" } 
-              : booking
-          )
-        );
-        
-        toast({
-          title: "Booking Status Updated",
-          description: `The booking status has been changed to ${status}.`
-        });
-      } else {
-        toast({
-          title: "Update Failed",
-          description: "Failed to update booking status.",
-          variant: "destructive"
-        });
-      }
-    } catch (error) {
-      console.error('Error updating booking status:', error);
+  const handleStatusChange = (bookingId: string, status: string) => {
+    const success = updateBookingStatus(
+      bookingId, 
+      status as "confirmed" | "pending" | "cancelled"
+    );
+    
+    if (success) {
+      setAllBookings(getAllBookings());
       toast({
-        title: "Error",
-        description: "Failed to update booking status. Please try again.",
+        title: "Booking Status Updated",
+        description: `The booking status has been changed to ${status}.`
+      });
+    } else {
+      toast({
+        title: "Update Failed",
+        description: "Failed to update booking status.",
         variant: "destructive"
       });
     }
   };
   
-  const handleDelete = async (bookingId: string) => {
-    try {
-      const success = await deleteBooking(bookingId);
-      
-      if (success) {
-        // Update local state
-        setAllBookings(prevBookings => 
-          prevBookings.filter(booking => booking.id !== bookingId)
-        );
-        setAllRestrictedDates(prevDates => 
-          prevDates.filter(date => date.id !== bookingId)
-        );
-        
-        toast({
-          title: "Booking Deleted",
-          description: "The booking has been deleted successfully."
-        });
-      } else {
-        toast({
-          title: "Delete Failed",
-          description: "Failed to delete booking.",
-          variant: "destructive"
-        });
-      }
-    } catch (error) {
-      console.error('Error deleting booking:', error);
+  const handleDelete = (bookingId: string) => {
+    const success = deleteBooking(bookingId);
+    
+    if (success) {
+      setAllBookings(getAllBookings());
       toast({
-        title: "Error",
-        description: "Failed to delete booking. Please try again.",
+        title: "Booking Deleted",
+        description: "The booking has been deleted successfully."
+      });
+    } else {
+      toast({
+        title: "Delete Failed",
+        description: "Failed to delete booking.",
         variant: "destructive"
       });
     }
   };
   
-  const handleRestrictDates = async () => {
+  const handleCancelBooking = (bookingId: string) => {
+    // In a real app, we would make an API call here
+    const updatedBookings = bookings.filter(booking => booking.id !== bookingId);
+    
+    // Add canceled booking for display purposes
+    const booking = bookings.find(booking => booking.id === bookingId);
+    if (booking) {
+      updatedBookings.push({
+        id: `cancelled-${Date.now()}`, // Generate a temporary ID
+        startDate: booking.startDate,
+        endDate: booking.endDate,
+        villaId: booking.villaId,
+        status: "cancelled"
+      });
+    }
+    
+    setAllBookings(updatedBookings);
+    toast({
+      title: "Booking Cancelled",
+      description: "The booking has been cancelled."
+    });
+  };
+  
+  const handleRestrictDates = () => {
     if (!dateRange.from || !dateRange.to) {
       toast({
         title: "Date Range Required",
@@ -186,33 +150,27 @@ const AdminBookings = () => {
       return;
     }
     
-    try {
-      // Add restricted dates to the database
-      const id = await addRestrictedDates({
-        villaId: selectedVillaId,
-        startDate: dateRange.from,
-        endDate: dateRange.to,
-        status: "cancelled" // Marked as cancelled to indicate it's restricted
-      });
-      
-      // Fetch the newly added restricted dates
-      const restrictedForVilla = await getRestrictedDatesByVillaId(selectedVillaId);
-      
-      // Update local state
-      setAllRestrictedDates(prevDates => [
-        ...prevDates.filter(d => d.villaId !== selectedVillaId),
-        ...restrictedForVilla
-      ]);
-      
+    // Create a new restricted date entry
+    const restrictedBooking: BookingDate = {
+      id: `restricted-${Date.now()}`, // Generate a temporary ID
+      startDate: dateRange.from,
+      endDate: dateRange.to,
+      villaId: selectedVillaId,
+      status: "cancelled" // Marked as cancelled to indicate it's restricted
+    };
+    
+    const id = addRestrictedDates(restrictedBooking);
+    
+    if (id) {
+      setAllBookings(getAllBookings());
       setIsRestrictDatesOpen(false);
       setDateRange({ from: undefined, to: undefined });
       
       toast({
         title: "Dates Restricted",
-        description: `The selected dates for ${allVillas.find(v => v.id === selectedVillaId)?.name} have been marked as unavailable.`
+        description: `The selected dates for ${getVillaById(selectedVillaId)?.name} have been marked as unavailable.`
       });
-    } catch (error) {
-      console.error('Error restricting dates:', error);
+    } else {
       toast({
         title: "Operation Failed",
         description: "Failed to restrict the dates. Please try again.",
@@ -222,44 +180,22 @@ const AdminBookings = () => {
   };
   
   const getFilteredBookings = () => {
-    if (filter === "all") return [...allBookings, ...allRestrictedDates];
+    if (filter === "all") return allBookings;
     if (filter === "restricted") {
-      return allRestrictedDates;
+      return allBookings.filter(booking => 
+        booking.status === "cancelled" && restrictedDates.some(r => r.id === booking.id)
+      );
     }
-    const villa = allVillas.find(v => v.slug === filter);
-    return [...allBookings, ...allRestrictedDates].filter(booking => booking.villaId === villa?.id);
+    return allBookings.filter(booking => {
+      const villa = villas.find(v => v.id === booking.villaId);
+      return villa?.slug === filter;
+    });
   };
 
-  const handleCalendarChange = async () => {
-    try {
-      // Refresh all bookings data
-      const bookingsData = await getAllBookings();
-      setAllBookings(bookingsData);
-      
-      // Refresh restricted dates for all villas
-      let allRestricted: BookingDate[] = [];
-      for (const villa of allVillas) {
-        const restrictedForVilla = await getRestrictedDatesByVillaId(villa.id);
-        allRestricted = [...allRestricted, ...restrictedForVilla];
-      }
-      setAllRestrictedDates(allRestricted);
-    } catch (error) {
-      console.error('Error refreshing booking data:', error);
-      toast({
-        title: "Error",
-        description: "Failed to refresh booking data. Please try again.",
-        variant: "destructive"
-      });
-    }
+  const handleCalendarChange = () => {
+    // Refresh all bookings data
+    setAllBookings(getAllBookings());
   };
-
-  if (isLoading) {
-    return (
-      <div className="p-6 flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
 
   return (
     <div className="p-6">
@@ -284,7 +220,7 @@ const AdminBookings = () => {
               <SelectContent>
                 <SelectItem value="all">All Bookings</SelectItem>
                 <SelectItem value="restricted">Restricted Dates</SelectItem>
-                {allVillas.map(villa => (
+                {villas.map(villa => (
                   <SelectItem key={villa.slug} value={villa.slug}>
                     {villa.name}
                   </SelectItem>
@@ -319,7 +255,7 @@ const AdminBookings = () => {
                       <SelectValue placeholder="Select villa" />
                     </SelectTrigger>
                     <SelectContent>
-                      {allVillas.map(villa => (
+                      {villas.map(villa => (
                         <SelectItem key={villa.id} value={villa.id}>
                           {villa.name}
                         </SelectItem>
@@ -431,8 +367,8 @@ const AdminBookings = () => {
             </TableHeader>
             <TableBody>
               {getFilteredBookings().map((booking) => {
-                const villa = allVillas.find(v => v.id === booking.villaId);
-                const isRestricted = allRestrictedDates.some(r => r.id === booking.id);
+                const villa = villas.find(v => v.id === booking.villaId);
+                const isRestricted = restrictedDates.some(r => r.id === booking.id);
                 
                 return (
                   <TableRow key={booking.id}>
@@ -515,7 +451,7 @@ const AdminBookings = () => {
       
       <TabsContent value="calendar" className="mt-0">
         <AdminVillaCalendar 
-          villas={allVillas}
+          villas={villas}
           onStatusChange={handleCalendarChange}
         />
       </TabsContent>

@@ -10,19 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { BookingDate, Villa } from "@/types";
-import { 
-  getBookingsByVillaId, 
-  getRestrictedDatesByVillaId,
-  addRestrictedDates,
-  deleteBooking
-} from "@/api/bookingsApi";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { bookings } from "@/data/bookings";
 
 interface AdminVillaCalendarProps {
   villaId?: string;
@@ -35,51 +23,20 @@ const AdminVillaCalendar = ({ villaId, villas, onStatusChange }: AdminVillaCalen
   const [date, setDate] = useState<DateRange | undefined>(undefined);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookedDates, setBookedDates] = useState<BookingDate[]>([]);
-  const [restrictedDates, setRestrictedDates] = useState<BookingDate[]>([]);
-  const [selectedVillaId, setSelectedVillaId] = useState<string | undefined>(villaId);
-  const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() => {
-    // Load bookings for the villa if villaId is provided or selected
-    if (selectedVillaId) {
-      loadBookingsForVilla(selectedVillaId);
-    } else if (villas && villas.length > 0) {
-      setSelectedVillaId(villas[0].id);
-      loadBookingsForVilla(villas[0].id);
+    // Load bookings for the villa
+    if (villaId) {
+      const villaBookings = bookings.filter(booking => booking.villaId === villaId);
+      setBookedDates(villaBookings);
     }
-  }, [selectedVillaId]);
-  
-  const loadBookingsForVilla = async (id: string) => {
-    setIsLoading(true);
-    try {
-      // Fetch regular bookings
-      const bookings = await getBookingsByVillaId(id);
-      setBookedDates(bookings);
-      
-      // Fetch restricted dates
-      const restricted = await getRestrictedDatesByVillaId(id);
-      setRestrictedDates(restricted);
-    } catch (error) {
-      console.error('Error loading bookings:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to load booking information.',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  
-  const handleVillaChange = (id: string) => {
-    setSelectedVillaId(id);
-  };
+  }, [villaId]);
   
   const handleBooking = async () => {
-    if (!date?.from || !date?.to || !selectedVillaId) {
+    if (!date?.from || !date?.to) {
       toast({
         title: "Error",
-        description: "Please select both start and end dates and a villa.",
+        description: "Please select both start and end dates.",
         variant: "destructive",
       });
       return;
@@ -88,20 +45,24 @@ const AdminVillaCalendar = ({ villaId, villas, onStatusChange }: AdminVillaCalen
     setIsSubmitting(true);
     
     try {
-      // Add blocked dates to the database
-      await addRestrictedDates({
-        villaId: selectedVillaId,
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      
+      // Create a new booking
+      const newBooking: BookingDate = {
+        id: `booking-${Date.now()}`, // Generate a temporary ID
+        villaId: villaId || "",
         startDate: date.from,
         endDate: date.to,
-        status: "cancelled" // Marked as cancelled to indicate it's restricted
-      });
+        status: "confirmed"
+      };
       
-      // Refresh data
-      await loadBookingsForVilla(selectedVillaId);
+      // Add the new booking to the list
+      setBookedDates([...bookedDates, newBooking]);
       
       toast({
         title: "Success",
-        description: "Dates blocked successfully!",
+        description: "Villa booked successfully!",
       });
       
       // Notify parent component if needed
@@ -112,10 +73,9 @@ const AdminVillaCalendar = ({ villaId, villas, onStatusChange }: AdminVillaCalen
       // Reset the date
       setDate(undefined);
     } catch (error) {
-      console.error('Error booking villa:', error);
       toast({
         title: "Error",
-        description: "Failed to block dates. Please try again.",
+        description: "Failed to book villa. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -124,79 +84,43 @@ const AdminVillaCalendar = ({ villaId, villas, onStatusChange }: AdminVillaCalen
   };
   
   const isDateBlocked = (date: Date) => {
-    // Check against booked dates
-    const isBooked = bookedDates.some(booking => {
+    return bookedDates.some(booking => {
       return (
         (isEqual(date, booking.startDate) || isAfter(date, booking.startDate)) &&
         (isEqual(date, booking.endDate) || isBefore(date, booking.endDate))
       );
     });
-    
-    // Check against restricted dates
-    const isRestricted = restrictedDates.some(booking => {
-      return (
-        (isEqual(date, booking.startDate) || isAfter(date, booking.startDate)) &&
-        (isEqual(date, booking.endDate) || isBefore(date, booking.endDate))
-      );
-    });
-    
-    return isBooked || isRestricted;
   };
   
-  const cancelBooking = async (booking: BookingDate) => {
-    try {
-      // Delete booking from database
-      await deleteBooking(booking.id);
-      
-      // Refresh data
-      if (selectedVillaId) {
-        await loadBookingsForVilla(selectedVillaId);
-      }
-      
-      toast({
-        title: "Booking Cancelled",
-        description: `Dates from ${format(booking.startDate, 'PP')} to ${format(booking.endDate, 'PP')} are now available.`,
-      });
-      
-      // Notify parent component if needed
-      if (onStatusChange) {
-        onStatusChange();
-      }
-    } catch (error) {
-      console.error('Error cancelling booking:', error);
-      toast({
-        title: "Error",
-        description: "Failed to cancel booking. Please try again.",
-        variant: "destructive",
-      });
+  const cancelBooking = (booking: BookingDate) => {
+    // Delete existing booking
+    const filteredBookings = bookings.filter(b => b.id !== booking.id);
+    
+    // Add a cancelled booking placeholder to show in the calendar
+    const cancelledBooking: BookingDate = {
+      id: `cancelled-${Date.now()}`, // Generate a temporary ID
+      startDate: booking.startDate,
+      endDate: booking.endDate,
+      villaId: booking.villaId,
+      status: "cancelled"
+    };
+    
+    setBookedDates([...bookedDates.filter(b => b.id !== booking.id), cancelledBooking]);
+    
+    toast({
+      title: "Booking Cancelled",
+      description: `Booking from ${format(booking.startDate, 'PP')} to ${format(booking.endDate, 'PP')} has been cancelled.`,
+    });
+    
+    // Notify parent component if needed
+    if (onStatusChange) {
+      onStatusChange();
     }
   };
   
   return (
     <div className="bg-white rounded-lg shadow p-6">
       <h3 className="text-xl font-serif font-semibold mb-4">Villa Calendar</h3>
-      
-      {/* Villa selector */}
-      {villas && villas.length > 0 && (
-        <div className="mb-4">
-          <Label htmlFor="villa-select">Select Villa</Label>
-          <Select
-            value={selectedVillaId}
-            onValueChange={handleVillaChange}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a villa" />
-            </SelectTrigger>
-            <SelectContent>
-              {villas.map((villa) => (
-                <SelectItem key={villa.id} value={villa.id}>
-                  {villa.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      )}
       
       <Popover>
         <PopoverTrigger asChild>
@@ -218,7 +142,7 @@ const AdminVillaCalendar = ({ villaId, villas, onStatusChange }: AdminVillaCalen
                 format(date.from, "MMM dd, yyyy")
               )
             ) : (
-              <span>Pick dates to block</span>
+              <span>Pick dates</span>
             )}
           </Button>
         </PopoverTrigger>
@@ -233,7 +157,7 @@ const AdminVillaCalendar = ({ villaId, villas, onStatusChange }: AdminVillaCalen
             }
             numberOfMonths={2}
             pagedNavigation
-            className="border-0 rounded-md overflow-hidden p-3 pointer-events-auto"
+            className="border-0 rounded-md overflow-hidden"
           />
         </PopoverContent>
       </Popover>
@@ -243,50 +167,40 @@ const AdminVillaCalendar = ({ villaId, villas, onStatusChange }: AdminVillaCalen
         onClick={handleBooking}
         disabled={isSubmitting || !date?.from || !date?.to}
       >
-        {isSubmitting ? "Processing..." : "Block Selected Dates"}
+        {isSubmitting ? "Booking..." : "Book Villa"}
       </Button>
       
       <div className="mt-8">
-        <h4 className="text-lg font-medium mb-2">Unavailable Dates:</h4>
-        {isLoading ? (
-          <div className="flex justify-center p-4">
-            <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
-          </div>
+        <h4 className="text-lg font-medium mb-2">Booked Dates:</h4>
+        {bookedDates.length === 0 ? (
+          <p className="text-gray-500">No bookings yet.</p>
         ) : (
-          <>
-            {[...bookedDates, ...restrictedDates].length === 0 ? (
-              <p className="text-gray-500">No bookings or restrictions yet.</p>
-            ) : (
-              <ul className="space-y-2">
-                {[...bookedDates, ...restrictedDates]
-                  .sort((a, b) => a.startDate.getTime() - b.startDate.getTime())
-                  .map((booking) => (
-                    <li 
-                      key={booking.id}
-                      className="flex items-center justify-between py-2 px-3 rounded-md bg-gray-100"
-                    >
-                      <div>
-                        {booking.status === "cancelled" || restrictedDates.some(r => r.id === booking.id) ? (
-                          <XCircle className="inline-block w-4 h-4 mr-1 text-red-500 align-middle" />
-                        ) : (
-                          <CheckCircle className="inline-block w-4 h-4 mr-1 text-green-500 align-middle" />
-                        )}
-                        {format(booking.startDate, "MMM dd, yyyy")} - {format(booking.endDate, "MMM dd, yyyy")}
-                      </div>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="text-red-500 border-red-500 hover:bg-red-50"
-                        onClick={() => cancelBooking(booking)}
-                      >
-                        {booking.status === "cancelled" || restrictedDates.some(r => r.id === booking.id) 
-                          ? "Remove" : "Cancel"}
-                      </Button>
-                    </li>
-                  ))}
-              </ul>
-            )}
-          </>
+          <ul className="space-y-2">
+            {bookedDates.map((booking) => (
+              <li 
+                key={booking.startDate.toISOString() + booking.endDate.toISOString()}
+                className="flex items-center justify-between py-2 px-3 rounded-md bg-gray-100"
+              >
+                <div>
+                  {booking.status === "cancelled" ? (
+                    <XCircle className="inline-block w-4 h-4 mr-1 text-red-500 align-middle" />
+                  ) : (
+                    <CheckCircle className="inline-block w-4 h-4 mr-1 text-green-500 align-middle" />
+                  )}
+                  {format(booking.startDate, "MMM dd, yyyy")} - {format(booking.endDate, "MMM dd, yyyy")}
+                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="text-red-500 border-red-500 hover:bg-red-50"
+                  onClick={() => cancelBooking(booking)}
+                  disabled={booking.status === "cancelled"}
+                >
+                  Cancel
+                </Button>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </div>
