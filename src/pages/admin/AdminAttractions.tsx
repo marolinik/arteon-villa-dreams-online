@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Attraction } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -20,32 +19,35 @@ import { Pencil, Trash, Plus, X, MapPin } from "lucide-react";
 const mockAttractions: Attraction[] = [
   {
     id: "1",
+    name: "Salonikiou Beach", // Add name property
     title: "Salonikiou Beach",
     description: "The nearest beach is Salonikiou Beach, essentially at the foot of the property. This beach is prized for its cleanliness and calm, uncrowded waters.",
     distance: "100m",
     location: "Akti Salonikiou",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1080",
-    category: "beaches",
+    category: "beach", // Changed from "beaches"
     featured: true
   },
   {
     id: "2",
+    name: "Mount Athos Cruise", // Add name property
     title: "Mount Athos Cruise",
     description: "A unique excursion is to take a day trip to Mount Athos. Everyone can enjoy a Mount Athos cruise: boats depart from Ormos Panagias (9 km away).",
     distance: "9km",
     location: "Ormos Panagias",
     image: "https://images.unsplash.com/photo-1617369120004-4fc70312c5e6?q=80&w=1080",
-    category: "activities",
+    category: "activity", // Changed from "activities"
     featured: true
   },
   {
     id: "3",
+    name: "Pyrgadikia Village", // Add name property
     title: "Pyrgadikia Village",
     description: "A charming fishing village roughly 7 km north (10–15 minutes' drive). Pyrgadikia has several seafront tavernas and cafes, especially known for fresh fish.",
     distance: "7km",
     location: "Pyrgadikia",
     image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800",
-    category: "dining",
+    category: "cultural", // Changed from "dining"
     featured: false
   }
 ];
@@ -58,7 +60,8 @@ const AdminAttractions = () => {
   const [currentAttraction, setCurrentAttraction] = useState<Attraction | null>(null);
   const [formData, setFormData] = useState<Partial<Attraction>>({});
   
-  const categories = ["All", "beaches", "dining", "activities", "sightseeing"];
+  // Update categories to match the type definition
+  const categories = ["All", "beach", "cultural", "nature", "activity"];
   const [activeCategory, setActiveCategory] = useState("All");
   
   const filteredAttractions = activeCategory === "All" 
@@ -73,7 +76,7 @@ const AdminAttractions = () => {
       distance: "",
       location: "",
       image: "",
-      category: "beaches",
+      category: "beach",
       featured: false
     });
     setIsEditDialogOpen(true);
@@ -137,15 +140,16 @@ const AdminAttractions = () => {
         description: `"${formData.title}" has been updated.`
       });
     } else {
-      // Create new
+      // Create new with name matching title
       const newAttraction: Attraction = {
         id: `attraction_${Date.now()}`,
+        name: formData.title!, // Add name property matching the title
         title: formData.title!,
         description: formData.description!,
         distance: formData.distance!,
         location: formData.location!,
         image: formData.image || "",
-        category: formData.category!,
+        category: formData.category!, 
         featured: formData.featured || false
       };
       
@@ -318,10 +322,10 @@ const AdminAttractions = () => {
                   onChange={handleFormChange}
                   className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
                 >
-                  <option value="beaches">Beaches</option>
-                  <option value="dining">Dining</option>
-                  <option value="activities">Activities</option>
-                  <option value="sightseeing">Sightseeing</option>
+                  <option value="beach">Beach</option>
+                  <option value="cultural">Cultural</option>
+                  <option value="nature">Nature</option>
+                  <option value="activity">Activity</option>
                 </select>
               </div>
               

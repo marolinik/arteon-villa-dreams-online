@@ -45,7 +45,13 @@ export const villas: Villa[] = [
         title: "Full Connectivity",
         description: "High-speed Wi-Fi is available throughout the villa (and indeed across the whole property)."
       }
-    ]
+    ],
+    // Adding missing required properties
+    price: 250,
+    maxGuests: 6,
+    rating: 4.8,
+    location: "Halkidiki, Greece",
+    isFeatured: true
   },
   {
     id: "villa-eirini",
@@ -90,7 +96,13 @@ export const villas: Villa[] = [
         title: "Full Connectivity",
         description: "High-speed Wi-Fi is available throughout the villa (and indeed across the whole property)."
       }
-    ]
+    ],
+    // Adding missing required properties
+    price: 230,
+    maxGuests: 6,
+    rating: 4.7,
+    location: "Halkidiki, Greece",
+    isFeatured: false
   },
   {
     id: "villa-thea",
@@ -135,7 +147,13 @@ export const villas: Villa[] = [
         title: "Full Connectivity",
         description: "High-speed Wi-Fi is available throughout the villa (and indeed across the whole property)."
       }
-    ]
+    ],
+    // Adding missing required properties
+    price: 240,
+    maxGuests: 6,
+    rating: 4.9,
+    location: "Halkidiki, Greece",
+    isFeatured: true
   },
   {
     id: "villa-onar",
@@ -180,7 +198,13 @@ export const villas: Villa[] = [
         title: "Full Connectivity",
         description: "High-speed Wi-Fi is available throughout the villa (and indeed across the whole property)."
       }
-    ]
+    ],
+    // Adding missing required properties
+    price: 260,
+    maxGuests: 6,
+    rating: 4.8,
+    location: "Halkidiki, Greece",
+    isFeatured: false
   }
 ];
 

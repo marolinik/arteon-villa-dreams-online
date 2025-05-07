@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Amenity } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -20,6 +19,7 @@ import { Pencil, Trash, Plus, Check, X } from "lucide-react";
 const mockAmenities: Amenity[] = [
   {
     id: "1",
+    name: "Swimming Pool & Sun Terrace",
     title: "Swimming Pool & Sun Terrace",
     description: "At the heart of the property is a crystal-clear outdoor pool surrounded by a wooden deck with sun loungers and parasols for each villa.",
     icon: "https://cdn-icons-png.flaticon.com/512/5762/5762478.png",
@@ -29,6 +29,7 @@ const mockAmenities: Amenity[] = [
   },
   {
     id: "2",
+    name: "Private Beach Area",
     title: "Private Beach Area",
     description: "Each villa is provided with its own set of beach equipment on the uncrowded Salonikiou Beach.",
     icon: "https://cdn-icons-png.flaticon.com/512/3253/3253016.png",
@@ -38,6 +39,7 @@ const mockAmenities: Amenity[] = [
   },
   {
     id: "3",
+    name: "BBQ & Outdoor Dining",
     title: "BBQ & Outdoor Dining",
     description: "Barbecue facility available for guest use with shaded dining tables on your villa's patio.",
     icon: "https://cdn-icons-png.flaticon.com/512/5990/5990702.png",
@@ -47,6 +49,7 @@ const mockAmenities: Amenity[] = [
   },
   {
     id: "4",
+    name: "Free Wi-Fi & Tech",
     title: "Free Wi-Fi & Tech",
     description: "The Wi-Fi covers all villas and all common areas including the pool. It's free of charge and high-speed, suitable for streaming or even remote working.",
     icon: "https://cdn-icons-png.flaticon.com/512/2875/2875394.png",
@@ -142,9 +145,10 @@ const AdminAmenities = () => {
         description: `"${formData.title}" has been updated.`
       });
     } else {
-      // Create new
+      // Create new with name matching title
       const newAmenity: Amenity = {
         id: `amenity_${Date.now()}`,
+        name: formData.title!, // Add name property matching the title
         title: formData.title!,
         description: formData.description!,
         icon: formData.icon || "",
