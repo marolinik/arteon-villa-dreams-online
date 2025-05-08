@@ -1,22 +1,7 @@
 import { useState, useEffect } from "react";
-import { format } from "date-fns";
-import { villas, getVillaById } from "@/data/villas";
-import { 
-  bookings, 
-  restrictedDates, 
-  getAllBookings, 
-  deleteBooking, 
-  updateBookingStatus,
-  addRestrictedDates
-} from "@/data/bookings";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import AdminLayout from "@/components/admin/AdminLayout";
 import {
   Select,
   SelectContent,
@@ -25,38 +10,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-  DialogClose
-} from "@/components/ui/dialog";
-import {
-  Tabs, 
-  TabsContent, 
-  TabsList, 
-  TabsTrigger
-} from "@/components/ui/tabs";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage,
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
-import { CalendarIcon, Calendar as CalendarCheck, CheckCircle, XCircle, PlusCircle } from "lucide-react";
 import { BookingDate } from "@/types";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { useForm } from "react-hook-form";
-import AdminVillaCalendar from "@/components/admin/AdminVillaCalendar";
+import { format } from "date-fns";
 
 const AdminBookings = () => {
   const { toast } = useToast();

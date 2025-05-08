@@ -1,21 +1,23 @@
-
-import { useState } from "react";
-import { Amenity } from "@/types";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import AdminLayout from "@/components/admin/AdminLayout";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Plus, Edit, Trash, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { Pencil, Trash, Plus, Check, X } from "lucide-react";
 
 const mockAmenities: Amenity[] = [
   {
@@ -229,7 +231,7 @@ const AdminAmenities = () => {
                     size="sm" 
                     onClick={() => handleEdit(amenity)}
                   >
-                    <Pencil size={14} />
+                    <Edit size={14} />
                   </Button>
                   <Button 
                     variant="outline" 
