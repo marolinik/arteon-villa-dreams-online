@@ -21,8 +21,8 @@ const Gallery = () => {
   
   const categories = [
     { value: undefined, label: "All" },
-    { value: "exterior", label: "Exteriors" },
-    { value: "interior", label: "Interiors" },
+    { value: "exteriors", label: "Exteriors" },
+    { value: "interiors", label: "Interiors" },
     { value: "amenities", label: "Amenities" },
     { value: "surroundings", label: "Surroundings" }
   ];
