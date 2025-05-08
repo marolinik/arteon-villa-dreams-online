@@ -1,4 +1,3 @@
-
 import { Villa } from "@/types";
 
 export const villas: Villa[] = [
@@ -45,7 +44,11 @@ export const villas: Villa[] = [
         title: "Full Connectivity",
         description: "High-speed Wi-Fi is available throughout the villa (and indeed across the whole property)."
       }
-    ]
+    ],
+    price: 380, // Added base price
+    rating: 4.9,
+    location: "Halkidiki, Greece",
+    isFeatured: true
   },
   {
     id: "villa-eirini",

@@ -53,36 +53,3 @@ export type GalleryImage = {
   category: string;
   featured?: boolean;
 };
-
-export type AdminUser = {
-  id: string;
-  name: string;
-  username: string;
-  email: string;
-  role: "admin" | "editor";
-};
-
-export type Amenity = {
-  id: string;
-  name: string;
-  description: string;
-  icon: string;
-  category: "indoor" | "outdoor" | "service";
-  // Added missing fields found in the code
-  image?: string;
-  featured?: boolean;
-  title?: string;
-};
-
-export type Attraction = {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  distance: string;
-  location: string;
-  category: "beach" | "cultural" | "nature" | "activity";
-  // Added missing fields found in the code
-  title?: string;
-  featured?: boolean;
-};
