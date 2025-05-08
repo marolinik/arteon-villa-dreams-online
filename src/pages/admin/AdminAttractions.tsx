@@ -1,379 +1,460 @@
-
-import { useState } from "react";
-import { Attraction } from "@/types";
+import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Textarea } from "@/components/ui/textarea";
+import {
+  ImageIcon,
+  Pencil,
+  Plus,
+  Trash2
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { Pencil, Trash, Plus, X, MapPin } from "lucide-react";
+import { Attraction } from "@/types";
 
+interface DataTableProps {
+  data: Attraction[]
+}
+
+// Update the mock data categories
 const mockAttractions: Attraction[] = [
   {
     id: "1",
-    title: "Salonikiou Beach",
-    description: "The nearest beach is Salonikiou Beach, essentially at the foot of the property. This beach is prized for its cleanliness and calm, uncrowded waters.",
-    distance: "100m",
-    location: "Akti Salonikiou",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1080",
-    category: "beaches",
+    name: "Blue Lagoon Beach", // Add name field
+    title: "Blue Lagoon Beach",
+    description: "Crystal clear waters and soft golden sand make this beach a paradise for swimmers and sunbathers. Perfect for families.",
+    image: "/lovable-uploads/7a963ea4-de5e-4fc6-ae02-386e71b04662.png",
+    distance: "2.5 km",
+    location: "Vourvourou",
+    category: "beach", // Changed from "beaches" to "beach"
     featured: true
   },
   {
     id: "2",
+    name: "Mount Athos Cruise", // Add name field
     title: "Mount Athos Cruise",
-    description: "A unique excursion is to take a day trip to Mount Athos. Everyone can enjoy a Mount Athos cruise: boats depart from Ormos Panagias (9 km away).",
-    distance: "9km",
-    location: "Ormos Panagias",
-    image: "https://images.unsplash.com/photo-1617369120004-4fc70312c5e6?q=80&w=1080",
-    category: "activities",
+    description: "Enjoy a scenic boat trip around the holy Mount Athos peninsula, viewing the historic monasteries from the sea.",
+    image: "/lovable-uploads/5ca9c1c1-4218-49a5-9053-c457c5585d03.png",
+    distance: "30 km",
+    location: "Ouranoupoli",
+    category: "activity", // Changed from "activities" to "activity"
     featured: true
   },
   {
     id: "3",
-    title: "Pyrgadikia Village",
-    description: "A charming fishing village roughly 7 km north (10–15 minutes' drive). Pyrgadikia has several seafront tavernas and cafes, especially known for fresh fish.",
-    distance: "7km",
-    location: "Pyrgadikia",
-    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800",
-    category: "dining",
+    name: "Traditional Taverna", // Add name field
+    title: "Traditional Taverna",
+    description: "Experience authentic Greek cuisine in this family-run taverna offering fresh seafood and local specialties.",
+    image: "/lovable-uploads/f4d34909-5743-4e74-9542-c4fb64f711e4.png",
+    distance: "1 km",
+    location: "Nikiti Village",
+    category: "cultural", // Changed from "dining" to "cultural"
+    featured: false
+  },
+  {
+    id: "4",
+    name: "Parthenonas Village", // Add name field
+    title: "Parthenonas Village",
+    description: "Explore the traditional architecture and scenic views of this historic mountain village.",
+    image: "/lovable-uploads/49999959-399a-499d-899a-999999999999.png",
+    distance: "15 km",
+    location: "Mount Itamos",
+    category: "cultural",
+    featured: false
+  },
+  {
+    id: "5",
+    name: "Karydi Beach", // Add name field
+    title: "Karydi Beach",
+    description: "Discover the unique rock formations and shallow turquoise waters of this hidden gem.",
+    image: "/lovable-uploads/50000000-400a-400d-800a-000000000000.png",
+    distance: "3 km",
+    location: "Vourvourou",
+    category: "beach",
+    featured: false
+  },
+  {
+    id: "6",
+    name: "Aristotle's Park", // Add name field
+    title: "Aristotle's Park",
+    description: "Learn about the life and philosophy of Aristotle in this interactive park with working scientific instruments.",
+    image: "/lovable-uploads/51111111-511a-511d-811a-111111111111.png",
+    distance: "40 km",
+    location: "Stagira",
+    category: "cultural",
+    featured: false
+  },
+  {
+    id: "7",
+    name: "Caves of Petralona", // Add name field
+    title: "Caves of Petralona",
+    description: "Explore the fascinating stalactite and stalagmite formations in these ancient caves, home to prehistoric human remains.",
+    image: "/lovable-uploads/52222222-622a-522d-822a-222222222222.png",
+    distance: "60 km",
+    location: "Petralona",
+    category: "nature",
+    featured: false
+  },
+  {
+    id: "8",
+    name: "Afitos Village", // Add name field
+    title: "Afitos Village",
+    description: "Wander through the charming cobblestone streets of this traditional village with stunning sea views and local crafts.",
+    image: "/lovable-uploads/53333333-733a-633d-933a-333333333333.png",
+    distance: "20 km",
+    location: "Kassandra",
+    category: "cultural",
+    featured: false
+  },
+  {
+    id: "9",
+    name: "Hiking on Mount Itamos", // Add name field
+    title: "Hiking on Mount Itamos",
+    description: "Discover the diverse flora and fauna of Mount Itamos on a scenic hike through pine forests and rocky trails.",
+    image: "/lovable-uploads/54444444-844a-744d-a44a-444444444444.png",
+    distance: "10 km",
+    location: "Mount Itamos",
+    category: "nature",
+    featured: false
+  },
+  {
+    id: "10",
+    name: "Scuba Diving", // Add name field
+    title: "Scuba Diving",
+    description: "Explore the underwater world of Halkidiki with a scuba diving excursion to vibrant reefs and shipwrecks.",
+    image: "/lovable-uploads/55555555-955a-555d-b55a-555555555555.png",
+    distance: "5 km",
+    location: "Neos Marmaras",
+    category: "activity",
     featured: false
   }
 ];
 
-const AdminAttractions = () => {
-  const { toast } = useToast();
+interface Props {}
+
+const AdminAttractions: React.FC<Props> = () => {
   const [attractions, setAttractions] = useState<Attraction[]>(mockAttractions);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [currentAttraction, setCurrentAttraction] = useState<Attraction | null>(null);
-  const [formData, setFormData] = useState<Partial<Attraction>>({});
-  
-  const categories = ["All", "beaches", "dining", "activities", "sightseeing"];
-  const [activeCategory, setActiveCategory] = useState("All");
-  
-  const filteredAttractions = activeCategory === "All" 
-    ? attractions 
-    : attractions.filter(attraction => attraction.category === activeCategory);
-  
-  const handleCreate = () => {
-    setCurrentAttraction(null);
-    setFormData({
+  const [filteredAttractions, setFilteredAttractions] = useState<Attraction[]>(mockAttractions);
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [newAttraction, setNewAttraction] = useState<Attraction>({
+    id: "",
+    name: "",
+    title: "",
+    description: "",
+    image: "",
+    distance: "",
+    location: "",
+    category: "beach",
+    featured: false
+  });
+  const { toast } = useToast();
+
+  const attractionCategories = [
+    { value: "beach", label: "Beaches" }, // Changed from "beaches" to "beach"
+    { value: "cultural", label: "Cultural Sites" },
+    { value: "nature", label: "Nature & Parks" },
+    { value: "activity", label: "Activities & Tours" } // Changed from "activities" to "activity"
+  ];
+
+  useEffect(() => {
+    applyFilters();
+  }, [attractions, categoryFilter, searchQuery]);
+
+  const applyFilters = () => {
+    let filtered = [...attractions];
+
+    if (categoryFilter !== "all") {
+      filtered = filtered.filter(attraction => attraction.category === categoryFilter); // Updated to match corrected category values
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter(attraction =>
+        attraction.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        attraction.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        attraction.location.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredAttractions(filtered);
+  };
+
+  const getAttractionsByCategory = (category: string) => {
+    if (category === "all") return filteredAttractions;
+    return filteredAttractions.filter(attraction => attraction.category === category); // Updated to match corrected category values
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setCategoryFilter(category);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleAddAttraction = () => {
+    setNewAttraction({
+      id: uuidv4(),
+      name: "", // Add name field
       title: "",
       description: "",
+      image: "",
       distance: "",
       location: "",
-      image: "",
-      category: "beaches",
+      category: "beach", // Changed from "beaches" to "beach"
       featured: false
     });
-    setIsEditDialogOpen(true);
+    setIsModalOpen(true);
   };
-  
-  const handleEdit = (attraction: Attraction) => {
-    setCurrentAttraction(attraction);
-    setFormData({ ...attraction });
-    setIsEditDialogOpen(true);
+
+  const handleEditAttraction = (attraction: Attraction) => {
+    setNewAttraction(attraction);
+    setIsModalOpen(true);
   };
-  
-  const handleDelete = (attraction: Attraction) => {
-    setCurrentAttraction(attraction);
-    setIsDeleteDialogOpen(true);
-  };
-  
-  const confirmDelete = () => {
-    if (!currentAttraction) return;
-    
-    setAttractions(attractions.filter(a => a.id !== currentAttraction.id));
+
+  const handleDeleteAttraction = (id: string) => {
+    setAttractions(attractions.filter(attraction => attraction.id !== id));
     toast({
       title: "Attraction Deleted",
-      description: `"${currentAttraction.title}" has been removed.`
+      description: "The attraction has been successfully deleted.",
     });
-    setIsDeleteDialogOpen(false);
   };
-  
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setNewAttraction(prev => ({ ...prev, [name]: value }));
   };
-  
+
+  const handleSelectChange = (value: string) => {
+    setNewAttraction(prev => ({ ...prev, category: value as "beach" | "cultural" | "nature" | "activity" }));
+  };
+
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: checked
-    }));
+    setNewAttraction(prev => ({ ...prev, featured: e.target.checked }));
   };
-  
-  const handleSave = () => {
-    if (!formData.title || !formData.description || !formData.category || !formData.distance || !formData.location) {
-      toast({
-        title: "Error",
-        description: "Please fill in all required fields.",
-        variant: "destructive"
-      });
-      return;
-    }
-    
-    if (currentAttraction) {
-      // Update existing
-      setAttractions(attractions.map(a => 
-        a.id === currentAttraction.id ? { ...a, ...formData } as Attraction : a
-      ));
-      toast({
-        title: "Attraction Updated",
-        description: `"${formData.title}" has been updated.`
-      });
-    } else {
-      // Create new
-      const newAttraction: Attraction = {
-        id: `attraction_${Date.now()}`,
-        title: formData.title!,
-        description: formData.description!,
-        distance: formData.distance!,
-        location: formData.location!,
-        image: formData.image || "",
-        category: formData.category!,
-        featured: formData.featured || false
+
+  const handleSaveAttraction = () => {
+    if (newAttraction.title && newAttraction.description && newAttraction.image && newAttraction.location) {
+      // Make sure name is always equal to title for now
+      const attractionToSave = {
+        ...newAttraction,
+        name: newAttraction.title
       };
       
-      setAttractions([...attractions, newAttraction]);
+      if (attractions.find(attraction => attraction.id === attractionToSave.id)) {
+        // Update existing attraction
+        setAttractions(attractions.map(attraction =>
+          attraction.id === attractionToSave.id ? attractionToSave : attraction
+        ));
+        toast({
+          title: "Attraction Updated",
+          description: "The attraction has been successfully updated.",
+        });
+      } else {
+        // Add new attraction
+        setAttractions([...attractions, attractionToSave]);
+        toast({
+          title: "Attraction Added",
+          description: "The attraction has been successfully added.",
+        });
+      }
+      setIsModalOpen(false);
+      setNewAttraction({
+        id: "",
+        name: "",
+        title: "",
+        description: "",
+        image: "",
+        distance: "",
+        location: "",
+        category: "beach",
+        featured: false
+      });
+    } else {
       toast({
-        title: "Attraction Created",
-        description: `"${newAttraction.title}" has been added.`
+        title: "Missing Fields",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
       });
     }
-    
-    setIsEditDialogOpen(false);
   };
-  
+
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-serif font-semibold">Manage Attractions & POIs</h2>
-        <Button onClick={handleCreate} className="bg-villa-blue hover:bg-blue-700">
-          <Plus size={16} className="mr-2" />
-          Add New Attraction
-        </Button>
-      </div>
-      
-      <Tabs defaultValue="All" className="mb-6">
-        <TabsList className="bg-white">
-          {categories.map(category => (
-            <TabsTrigger 
-              key={category}
-              value={category}
-              onClick={() => setActiveCategory(category)}
-              className="capitalize"
-            >
-              {category}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
-      
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredAttractions.map(attraction => (
-          <Card key={attraction.id} className="overflow-hidden">
-            {attraction.image && (
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src={attraction.image}
-                  alt={attraction.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">{attraction.title}</CardTitle>
-              <div className="flex items-center text-villa-blue text-sm font-medium">
-                <MapPin size={14} className="mr-1" />
-                <span>{attraction.distance} - {attraction.location}</span>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                {attraction.description}
-              </p>
-              <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs bg-gray-100 px-2 py-1 rounded-full capitalize">
-                    {attraction.category}
-                  </span>
-                  {attraction.featured && (
-                    <span className="text-xs bg-villa-teal/20 text-villa-teal px-2 py-1 rounded-full">
-                      Featured
-                    </span>
-                  )}
-                </div>
-                <div className="flex space-x-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    onClick={() => handleEdit(attraction)}
-                  >
-                    <Pencil size={14} />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="text-red-500 border-red-200 hover:bg-red-50"
-                    onClick={() => handleDelete(attraction)}
-                  >
-                    <Trash size={14} />
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      
-      {/* Edit Dialog */}
-      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="max-w-lg">
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Manage Attractions</CardTitle>
+        <CardDescription>
+          Add, edit, and manage attractions listed on the website.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
+          <Input
+            type="text"
+            placeholder="Search attractions..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+          <Select value={categoryFilter} onValueChange={handleCategoryChange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Filter by category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Categories</SelectItem>
+              {attractionCategories.map(category => (
+                <SelectItem key={category.value} value={category.value}>{category.label}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button onClick={handleAddAttraction}>
+            <Plus className="mr-2 h-4 w-4" />
+            Add Attraction
+          </Button>
+        </div>
+
+        <div className="mt-6 overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[200px]">Title</TableHead>
+                <TableHead>Description</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead>Location</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {getAttractionsByCategory(categoryFilter).map((attraction) => (
+                <TableRow key={attraction.id}>
+                  <TableCell className="font-medium">{attraction.title}</TableCell>
+                  <TableCell>{attraction.description}</TableCell>
+                  <TableCell>{attraction.category}</TableCell>
+                  <TableCell>{attraction.location}</TableCell>
+                  <TableCell className="text-right">
+                    <Button variant="ghost" size="sm" onClick={() => handleEditAttraction(attraction)}>
+                      <Pencil className="mr-2 h-4 w-4" />
+                      Edit
+                    </Button>
+                    <Button variant="ghost" size="sm" onClick={() => handleDeleteAttraction(attraction.id)}>
+                      <Trash2 className="mr-2 h-4 w-4" />
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </CardContent>
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>
-              {currentAttraction ? 'Edit Attraction' : 'Add New Attraction'}
-            </DialogTitle>
+            <DialogTitle>{newAttraction.id ? "Edit Attraction" : "Add Attraction"}</DialogTitle>
             <DialogDescription>
-              {currentAttraction 
-                ? 'Update the information for this attraction.' 
-                : 'Fill out the details to add a new attraction.'}
+              {newAttraction.id ? "Edit the details of the selected attraction." : "Create a new attraction."}
             </DialogDescription>
           </DialogHeader>
-          
-          <div className="space-y-4 py-2">
-            <div>
-              <label className="block text-sm font-medium mb-1">Title*</label>
-              <Input
-                name="title"
-                value={formData.title || ''}
-                onChange={handleFormChange}
-                placeholder="e.g., Salonikiou Beach"
-              />
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="title" className="text-right">
+                Title
+              </Label>
+              <Input type="text" id="title" name="title" value={newAttraction.title} onChange={handleInputChange} className="col-span-3" />
             </div>
-            
-            <div>
-              <label className="block text-sm font-medium mb-1">Description*</label>
-              <Textarea
-                name="description"
-                value={formData.description || ''}
-                onChange={handleFormChange}
-                placeholder="Provide details about this attraction..."
-                rows={3}
-              />
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="description" className="text-right">
+                Description
+              </Label>
+              <Textarea id="description" name="description" value={newAttraction.description} onChange={handleInputChange} className="col-span-3" />
             </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-1">Distance*</label>
-                <Input
-                  name="distance"
-                  value={formData.distance || ''}
-                  onChange={handleFormChange}
-                  placeholder="e.g., 5km"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium mb-1">Location*</label>
-                <Input
-                  name="location"
-                  value={formData.location || ''}
-                  onChange={handleFormChange}
-                  placeholder="e.g., Ormos Panagias"
-                />
-              </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="image" className="text-right">
+                Image URL
+              </Label>
+              <Input type="text" id="image" name="image" value={newAttraction.image} onChange={handleInputChange} className="col-span-3" />
             </div>
-            
-            <div>
-              <label className="block text-sm font-medium mb-1">Image URL</label>
-              <Input
-                name="image"
-                value={formData.image || ''}
-                onChange={handleFormChange}
-                placeholder="URL to attraction image"
-              />
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="distance" className="text-right">
+                Distance
+              </Label>
+              <Input type="text" id="distance" name="distance" value={newAttraction.distance} onChange={handleInputChange} className="col-span-3" />
             </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-1">Category*</label>
-                <select
-                  name="category"
-                  value={formData.category || ''}
-                  onChange={handleFormChange}
-                  className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
-                >
-                  <option value="beaches">Beaches</option>
-                  <option value="dining">Dining</option>
-                  <option value="activities">Activities</option>
-                  <option value="sightseeing">Sightseeing</option>
-                </select>
-              </div>
-              
-              <div className="flex items-center space-x-2 mt-8">
-                <input
-                  type="checkbox"
-                  id="featured"
-                  name="featured"
-                  checked={formData.featured || false}
-                  onChange={handleCheckboxChange}
-                  className="w-4 h-4 rounded border-gray-300"
-                />
-                <label htmlFor="featured" className="text-sm font-medium">
-                  Featured Attraction
-                </label>
-              </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="location" className="text-right">
+                Location
+              </Label>
+              <Input type="text" id="location" name="location" value={newAttraction.location} onChange={handleInputChange} className="col-span-3" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="category" className="text-right">
+                Category
+              </Label>
+              <Select onValueChange={handleSelectChange} defaultValue={newAttraction.category}>
+                <SelectTrigger className="col-span-3">
+                  <SelectValue placeholder="Select a category" />
+                </SelectTrigger>
+                <SelectContent>
+                  {attractionCategories.map(category => (
+                    <SelectItem key={category.value} value={category.value}>{category.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="featured" className="text-right">
+                Featured
+              </Label>
+              <Input type="checkbox" id="featured" name="featured" checked={newAttraction.featured} onChange={handleCheckboxChange} className="col-span-3" />
             </div>
           </div>
-          
-          <DialogFooter className="flex justify-between">
-            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+          <DialogFooter>
+            <Button type="button" variant="secondary" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>
-            <Button className="bg-villa-blue hover:bg-blue-700" onClick={handleSave}>
-              {currentAttraction ? 'Update Attraction' : 'Add Attraction'}
+            <Button type="button" onClick={handleSaveAttraction}>
+              {newAttraction.id ? "Update Attraction" : "Add Attraction"}
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      
-      {/* Delete Confirmation Dialog */}
-      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Confirm Deletion</DialogTitle>
-            <DialogDescription>
-              Are you sure you want to delete "{currentAttraction?.title}"? This action cannot be undone.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="flex justify-between">
-            <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}>
-              <X size={16} className="mr-2" />
-              Cancel
-            </Button>
-            <Button variant="destructive" onClick={confirmDelete}>
-              <Trash size={16} className="mr-2" />
-              Delete Attraction
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </div>
+    </Card>
   );
 };
 

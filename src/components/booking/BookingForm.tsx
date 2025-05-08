@@ -190,8 +190,8 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
     setIsSubmitting(true);
 
     try {
-      // Check availability
-      const isAvailable = checkAvailability(
+      // Check availability using Supabase function
+      const isAvailable = await checkAvailability(
         villa.id,
         dateRange.from,
         dateRange.to

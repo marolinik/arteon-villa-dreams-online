@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -5,12 +6,13 @@ import { useToast } from "@/hooks/use-toast";
 import { format, differenceInDays } from "date-fns";
 import { getVillaById } from "@/data/villas";
 import { sendEmail } from "@/utils/emailService";
-import { addBooking, bookings, generateBookingNumber } from "@/data/bookings";
+import { addBooking, generateBookingNumber } from "@/data/bookings";
 import { GuestInfo } from "@/types";
 import { Mail, ArrowLeft, Check } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
+import { supabase } from "@/integrations/supabase/client";
 
 const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47d1.png";
 
@@ -53,12 +55,32 @@ const BookingRequest = () => {
     setIsSubmitting(true);
     
     try {
-      const villa = getVillaById(bookingDetails.villaId);
+      const villa = await getVillaById(bookingDetails.villaId);
       const villaName = villa ? villa.name : "Unknown Villa";
       const nights = differenceInDays(bookingDetails.endDate, bookingDetails.startDate);
       
       // Generate booking number
       const bookingNumber = generateBookingNumber();
+      
+      // Insert booking into Supabase
+      const { data, error } = await supabase
+        .from('bookings')
+        .insert([{
+          villa_id: bookingDetails.villaId,
+          start_date: bookingDetails.startDate.toISOString().split('T')[0],
+          end_date: bookingDetails.endDate.toISOString().split('T')[0],
+          guest_name: bookingDetails.guestInfo.name,
+          guest_email: bookingDetails.guestInfo.email,
+          guest_phone: bookingDetails.guestInfo.phone,
+          guest_count: bookingDetails.guestInfo.guests,
+          special_requests: bookingDetails.guestInfo.specialRequests || null,
+          booking_number: bookingNumber,
+          total_price: bookingDetails.totalPrice,
+          status: 'pending'
+        }])
+        .select();
+      
+      if (error) throw error;
       
       // Create email body for guest
       const guestEmailBody = `
@@ -103,18 +125,6 @@ Guest Information:
 - Number of guests: ${bookingDetails.guestInfo.guests}
 ${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetails.guestInfo.specialRequests}` : ''}
       `;
-      
-      // Store the booking in the data service - add this to make dates unavailable
-      const bookingId = addBooking({
-        id: undefined, // Will be generated
-        villaId: bookingDetails.villaId,
-        startDate: bookingDetails.startDate,
-        endDate: bookingDetails.endDate,
-        guestInfo: bookingDetails.guestInfo,
-        status: "pending",
-        createdAt: new Date(),
-        bookingNumber
-      });
       
       // Send email to guest
       await sendEmail({

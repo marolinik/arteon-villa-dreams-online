@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Amenity } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -16,10 +15,51 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Pencil, Trash, Plus, Check, X } from "lucide-react";
+import { v4 as uuidv4 } from 'uuid';
 
 const mockAmenities: Amenity[] = [
   {
     id: "1",
+    name: "Private Swimming Pool", // Added name field
+    title: "Private Swimming Pool",
+    description: "Enjoy our crystal clear private swimming pool surrounded by sun loungers and umbrellas",
+    icon: "Waves",
+    image: "/lovable-uploads/b88d0f95-f31e-4fdc-8820-124f9e35bc3a.png",
+    category: "outdoor",
+    featured: true
+  },
+  {
+    id: "2",
+    name: "Garden Terrace", // Added name field
+    title: "Garden Terrace",
+    description: "Relax in our beautiful garden terrace with comfortable seating and stunning views",
+    icon: "Trees",
+    image: "/lovable-uploads/9d253ed2-5d4d-4ecb-9d63-01c9696e21ca.png",
+    category: "outdoor",
+    featured: true
+  },
+  {
+    id: "3",
+    name: "Outdoor Dining Area", // Added name field
+    title: "Outdoor Dining Area",
+    description: "Dine alfresco in our fully equipped outdoor dining area with BBQ facilities",
+    icon: "UtensilsCrossed",
+    image: "/lovable-uploads/9a73a696-5796-4fed-977b-eeb221a83d87.png",
+    category: "outdoor",
+    featured: true
+  },
+  {
+    id: "4",
+    name: "Modern Kitchen", // Added name field
+    title: "Modern Kitchen",
+    description: "Cook in style with our fully equipped modern kitchen with high-end appliances",
+    icon: "Utensils",
+    image: "/lovable-uploads/9db34fb8-519f-433c-9bff-16bb9f8a6242.png",
+    category: "indoor",
+    featured: false
+  },
+  {
+    id: "5",
     title: "Swimming Pool & Sun Terrace",
     description: "At the heart of the property is a crystal-clear outdoor pool surrounded by a wooden deck with sun loungers and parasols for each villa.",
     icon: "https://cdn-icons-png.flaticon.com/512/5762/5762478.png",
@@ -28,7 +68,7 @@ const mockAmenities: Amenity[] = [
     featured: true
   },
   {
-    id: "2",
+    id: "6",
     title: "Private Beach Area",
     description: "Each villa is provided with its own set of beach equipment on the uncrowded Salonikiou Beach.",
     icon: "https://cdn-icons-png.flaticon.com/512/3253/3253016.png",
@@ -37,7 +77,7 @@ const mockAmenities: Amenity[] = [
     featured: true
   },
   {
-    id: "3",
+    id: "7",
     title: "BBQ & Outdoor Dining",
     description: "Barbecue facility available for guest use with shaded dining tables on your villa's patio.",
     icon: "https://cdn-icons-png.flaticon.com/512/5990/5990702.png",
@@ -46,7 +86,7 @@ const mockAmenities: Amenity[] = [
     featured: true
   },
   {
-    id: "4",
+    id: "8",
     title: "Free Wi-Fi & Tech",
     description: "The Wi-Fi covers all villas and all common areas including the pool. It's free of charge and high-speed, suitable for streaming or even remote working.",
     icon: "https://cdn-icons-png.flaticon.com/512/2875/2875394.png",
@@ -63,6 +103,17 @@ const AdminAmenities = () => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [currentAmenity, setCurrentAmenity] = useState<Amenity | null>(null);
   const [formData, setFormData] = useState<Partial<Amenity>>({});
+  const [newAmenity, setNewAmenity] = useState<Amenity>({
+    id: "",
+    name: "",
+    title: "",
+    description: "",
+    icon: "",
+    image: "",
+    category: "indoor",
+    featured: false
+  });
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const categories = ["All", "indoor", "outdoor", "services"];
   const [activeCategory, setActiveCategory] = useState("All");
@@ -145,6 +196,7 @@ const AdminAmenities = () => {
       // Create new
       const newAmenity: Amenity = {
         id: `amenity_${Date.now()}`,
+        name: formData.title!, // Use title as name
         title: formData.title!,
         description: formData.description!,
         icon: formData.icon || "",
@@ -161,6 +213,43 @@ const AdminAmenities = () => {
     }
     
     setIsEditDialogOpen(false);
+  };
+  
+  const handleAddAmenity = () => {
+    setNewAmenity({
+      id: uuidv4(),
+      name: "", // Add name field here
+      title: "",
+      description: "",
+      icon: "",
+      image: "",
+      category: "indoor",
+      featured: false
+    });
+    setIsModalOpen(true);
+  };
+  
+  const handleSaveAmenity = () => {
+    if (newAmenity.title && newAmenity.description && newAmenity.icon) {
+      // Make sure name is always equal to title for now
+      const amenityToSave = {
+        ...newAmenity,
+        name: newAmenity.title
+      };
+      
+      setAmenities([...amenities, amenityToSave]);
+      toast({
+        title: "Amenity Created",
+        description: `"${newAmenity.title}" has been added.`
+      });
+      setIsModalOpen(false);
+    } else {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+    }
   };
   
   return (
@@ -363,6 +452,99 @@ const AdminAmenities = () => {
             <Button variant="destructive" onClick={confirmDelete}>
               <Trash size={16} className="mr-2" />
               Delete Amenity
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      
+      {/* Add Amenity Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle>Add New Amenity</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-2">
+            <div>
+              <label className="block text-sm font-medium mb-1">Title*</label>
+              <Input
+                name="title"
+                value={newAmenity.title || ''}
+                onChange={handleFormChange}
+                placeholder="e.g., Swimming Pool"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-1">Description*</label>
+              <Textarea
+                name="description"
+                value={newAmenity.description || ''}
+                onChange={handleFormChange}
+                placeholder="Provide details about this amenity..."
+                rows={3}
+              />
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Icon URL</label>
+                <Input
+                  name="icon"
+                  value={newAmenity.icon || ''}
+                  onChange={handleFormChange}
+                  placeholder="URL to icon image"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium mb-1">Image URL</label>
+                <Input
+                  name="image"
+                  value={newAmenity.image || ''}
+                  onChange={handleFormChange}
+                  placeholder="URL to feature image"
+                />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Category*</label>
+                <select
+                  name="category"
+                  value={newAmenity.category || ''}
+                  onChange={handleFormChange}
+                  className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="indoor">Indoor</option>
+                  <option value="outdoor">Outdoor</option>
+                  <option value="services">Services</option>
+                </select>
+              </div>
+              
+              <div className="flex items-center space-x-2 mt-8">
+                <input
+                  type="checkbox"
+                  id="featured"
+                  name="featured"
+                  checked={newAmenity.featured || false}
+                  onChange={handleCheckboxChange}
+                  className="w-4 h-4 rounded border-gray-300"
+                />
+                <label htmlFor="featured" className="text-sm font-medium">
+                  Featured Amenity
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <DialogFooter className="flex justify-between">
+            <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+              Cancel
+            </Button>
+            <Button className="bg-villa-blue hover:bg-blue-700" onClick={handleSaveAmenity}>
+              Add Amenity
             </Button>
           </DialogFooter>
         </DialogContent>
