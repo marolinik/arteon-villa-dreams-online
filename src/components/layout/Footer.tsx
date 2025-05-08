@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { MapPin, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
 const Footer = () => {
@@ -35,7 +34,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center mb-6 group cursor-pointer hover:text-amber-400 transition-colors">
               <Mail size={18} className="mr-3 text-villa-terracotta group-hover:text-amber-400 transition-colors" />
-              <span>info@arteonvillas.com</span>
+              <a href="mailto:info@arteonvillas.com" className="hover:text-amber-400 transition-colors">info@arteonvillas.com</a>
             </div>
             
             <div className="flex space-x-4">
@@ -118,6 +117,12 @@ const Footer = () => {
                 <Link to="/attractions" className="hover:text-amber-400 transition-all duration-300 flex items-center group">
                   <span className="inline-block w-1.5 h-1.5 bg-villa-terracotta rounded-full mr-2 group-hover:bg-amber-400 group-hover:scale-150 transition-all duration-300"></span>
                   Attractions
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin?test=true" className="hover:text-amber-400 transition-all duration-300 flex items-center group">
+                  <span className="inline-block w-1.5 h-1.5 bg-villa-terracotta rounded-full mr-2 group-hover:bg-amber-400 group-hover:scale-150 transition-all duration-300"></span>
+                  Admin Login
                 </Link>
               </li>
             </ul>

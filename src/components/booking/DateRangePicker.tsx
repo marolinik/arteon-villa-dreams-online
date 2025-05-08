@@ -149,8 +149,8 @@ export const DateRangePicker = ({
   
   return (
     <div className={cn("space-y-4", className)}>
-      <div className="flex flex-col sm:flex-row gap-3">
-        <div className="flex-1">
+      <div className="flex flex-col gap-3">
+        <div className="w-full">
           <p className="text-sm font-medium mb-1.5">Check-in Date</p>
           <Popover>
             <PopoverTrigger asChild>
@@ -184,6 +184,7 @@ export const DateRangePicker = ({
                 disabled={isDateDisabled}
                 numberOfMonths={2}
                 initialFocus
+                className={cn("p-3 pointer-events-auto")}
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
                     * Minimum stay: 5 nights (Sunday check-ins not available)
@@ -194,7 +195,7 @@ export const DateRangePicker = ({
           </Popover>
         </div>
         
-        <div className="flex-1">
+        <div className="w-full">
           <p className="text-sm font-medium mb-1.5">Check-out Date</p>
           <Popover>
             <PopoverTrigger asChild>
@@ -221,6 +222,7 @@ export const DateRangePicker = ({
                 disabled={isDateDisabled}
                 numberOfMonths={2}
                 initialFocus
+                className={cn("p-3 pointer-events-auto")}
                 footer={
                   <div className="px-4 pt-0 pb-3 text-xs text-gray-500">
                     * Minimum stay: 5 nights
