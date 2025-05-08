@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { villas, getVillaById } from "@/data/villas";
@@ -35,12 +36,6 @@ import {
   DialogClose
 } from "@/components/ui/dialog";
 import {
-  Tabs, 
-  TabsContent, 
-  TabsList, 
-  TabsTrigger
-} from "@/components/ui/tabs";
-import {
   Form,
   FormField,
   FormItem,
@@ -56,7 +51,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
-import AdminVillaCalendar from "@/components/admin/AdminVillaCalendar";
 
 const AdminBookings = () => {
   const { toast } = useToast();
@@ -71,7 +65,6 @@ const AdminBookings = () => {
     from: undefined,
     to: undefined,
   });
-  const [activeTab, setActiveTab] = useState<string>("bookings");
   
   useEffect(() => {
     // Load all bookings on mount
@@ -117,29 +110,6 @@ const AdminBookings = () => {
     }
   };
   
-  const handleCancelBooking = (bookingId: string) => {
-    // In a real app, we would make an API call here
-    const updatedBookings = bookings.filter(booking => booking.id !== bookingId);
-    
-    // Add canceled booking for display purposes
-    const booking = bookings.find(booking => booking.id === bookingId);
-    if (booking) {
-      updatedBookings.push({
-        id: `cancelled-${Date.now()}`, // Generate a temporary ID
-        startDate: booking.startDate,
-        endDate: booking.endDate,
-        villaId: booking.villaId,
-        status: "cancelled"
-      });
-    }
-    
-    setAllBookings(updatedBookings);
-    toast({
-      title: "Booking Cancelled",
-      description: "The booking has been cancelled."
-    });
-  };
-  
   const handleRestrictDates = () => {
     if (!dateRange.from || !dateRange.to) {
       toast({
@@ -152,7 +122,6 @@ const AdminBookings = () => {
     
     // Create a new restricted date entry
     const restrictedBooking: BookingDate = {
-      id: `restricted-${Date.now()}`, // Generate a temporary ID
       startDate: dateRange.from,
       endDate: dateRange.to,
       villaId: selectedVillaId,
@@ -192,26 +161,12 @@ const AdminBookings = () => {
     });
   };
 
-  const handleCalendarChange = () => {
-    // Refresh all bookings data
-    setAllBookings(getAllBookings());
-  };
-
   return (
     <div className="p-6">
       <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 space-y-4 md:space-y-0">
         <h2 className="text-2xl font-serif font-semibold">Manage Bookings</h2>
         
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full md:w-auto">
-          <TabsList>
-            <TabsTrigger value="bookings">Bookings List</TabsTrigger>
-            <TabsTrigger value="calendar">Availability Calendar</TabsTrigger>
-          </TabsList>
-        </Tabs>
-      </div>
-      
-      <TabsContent value="bookings" className="mt-0">
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="w-full md:w-64">
             <Select defaultValue="all" onValueChange={setFilter}>
               <SelectTrigger>
@@ -352,109 +307,102 @@ const AdminBookings = () => {
             </DialogContent>
           </Dialog>
         </div>
-        
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Villa</TableHead>
-                <TableHead>Check-in</TableHead>
-                <TableHead>Check-out</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {getFilteredBookings().map((booking) => {
-                const villa = villas.find(v => v.id === booking.villaId);
-                const isRestricted = restrictedDates.some(r => r.id === booking.id);
-                
-                return (
-                  <TableRow key={booking.id}>
-                    <TableCell className="font-medium">{villa?.name}</TableCell>
-                    <TableCell>{format(booking.startDate, "MMM d, yyyy")}</TableCell>
-                    <TableCell>{format(booking.endDate, "MMM d, yyyy")}</TableCell>
-                    <TableCell>
-                      {isRestricted ? 
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
-                          Restricted
-                        </span> : 
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                          Booking
-                        </span>
-                      }
-                    </TableCell>
-                    <TableCell>
-                      {!isRestricted && (
-                        <Select 
-                          defaultValue={booking.status} 
-                          onValueChange={(value) => handleStatusChange(booking.id!, value)}
-                        >
-                          <SelectTrigger className="w-32 h-8">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="confirmed">
-                              <div className="flex items-center">
-                                <CheckCircle size={14} className="text-green-500 mr-1" />
-                                Confirmed
-                              </div>
-                            </SelectItem>
-                            <SelectItem value="pending">
-                              <div className="flex items-center">
-                                <CalendarCheck size={14} className="text-amber-500 mr-1" />
-                                Pending
-                              </div>
-                            </SelectItem>
-                            <SelectItem value="cancelled">
-                              <div className="flex items-center">
-                                <XCircle size={14} className="text-red-500 mr-1" />
-                                Cancelled
-                              </div>
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      )}
-                      {isRestricted && (
-                        <span className="flex items-center text-amber-600">
-                          <CalendarCheck size={14} className="mr-1" />
-                          Unavailable
-                        </span>
-                      )}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="text-red-500 border-red-500 hover:bg-red-50"
-                        onClick={() => handleDelete(booking.id!)}
-                      >
-                        Delete
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+      </div>
+      
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Villa</TableHead>
+              <TableHead>Check-in</TableHead>
+              <TableHead>Check-out</TableHead>
+              <TableHead>Type</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {getFilteredBookings().map((booking) => {
+              const villa = villas.find(v => v.id === booking.villaId);
+              const isRestricted = restrictedDates.some(r => r.id === booking.id);
               
-              {getFilteredBookings().length === 0 && (
-                <TableRow>
-                  <TableCell colSpan={6} className="h-24 text-center">
-                    No bookings found
+              return (
+                <TableRow key={booking.id}>
+                  <TableCell className="font-medium">{villa?.name}</TableCell>
+                  <TableCell>{format(booking.startDate, "MMM d, yyyy")}</TableCell>
+                  <TableCell>{format(booking.endDate, "MMM d, yyyy")}</TableCell>
+                  <TableCell>
+                    {isRestricted ? 
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                        Restricted
+                      </span> : 
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        Booking
+                      </span>
+                    }
+                  </TableCell>
+                  <TableCell>
+                    {!isRestricted && (
+                      <Select 
+                        defaultValue={booking.status} 
+                        onValueChange={(value) => handleStatusChange(booking.id!, value)}
+                      >
+                        <SelectTrigger className="w-32 h-8">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="confirmed">
+                            <div className="flex items-center">
+                              <CheckCircle size={14} className="text-green-500 mr-1" />
+                              Confirmed
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="pending">
+                            <div className="flex items-center">
+                              <CalendarCheck size={14} className="text-amber-500 mr-1" />
+                              Pending
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="cancelled">
+                            <div className="flex items-center">
+                              <XCircle size={14} className="text-red-500 mr-1" />
+                              Cancelled
+                            </div>
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
+                    {isRestricted && (
+                      <span className="flex items-center text-amber-600">
+                        <CalendarCheck size={14} className="mr-1" />
+                        Unavailable
+                      </span>
+                    )}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="text-red-500 border-red-500 hover:bg-red-50"
+                      onClick={() => handleDelete(booking.id!)}
+                    >
+                      Delete
+                    </Button>
                   </TableCell>
                 </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
-      </TabsContent>
-      
-      <TabsContent value="calendar" className="mt-0">
-        <AdminVillaCalendar 
-          villas={villas}
-          onStatusChange={handleCalendarChange}
-        />
-      </TabsContent>
+              );
+            })}
+            
+            {getFilteredBookings().length === 0 && (
+              <TableRow>
+                <TableCell colSpan={6} className="h-24 text-center">
+                  No bookings found
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };

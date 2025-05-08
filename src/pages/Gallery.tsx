@@ -27,7 +27,7 @@ const Gallery = () => {
     { value: "surroundings", label: "Surroundings" }
   ];
   
-  const filteredImages = category ? getImagesByCategory(category) : galleryImages;
+  const filteredImages = getImagesByCategory(category);
 
   // Handle tab change
   const handleTabChange = (value: string) => {

@@ -2,75 +2,11 @@
 import { BookingDate, GuestInfo } from "@/types";
 import { v4 as uuidv4 } from 'uuid';
 
-// Initialize bookings from localStorage or use empty array if none exist
-const getStoredBookings = (): BookingDate[] => {
-  const storedBookings = localStorage.getItem('bookings');
-  if (storedBookings) {
-    // Parse and convert string dates back to Date objects
-    const parsedBookings = JSON.parse(storedBookings);
-    return parsedBookings.map((booking: any) => ({
-      ...booking,
-      startDate: new Date(booking.startDate),
-      endDate: new Date(booking.endDate),
-      createdAt: booking.createdAt ? new Date(booking.createdAt) : undefined
-    }));
-  }
-  return [];
-};
+// Mock booking data - empty for now to reset all unavailable dates
+export const bookings: BookingDate[] = [];
 
-// Initialize restricted dates from localStorage or use empty array if none exist
-const getStoredRestrictedDates = (): BookingDate[] => {
-  const storedDates = localStorage.getItem('restrictedDates');
-  if (storedDates) {
-    // Parse and convert string dates back to Date objects
-    const parsedDates = JSON.parse(storedDates);
-    return parsedDates.map((date: any) => ({
-      ...date,
-      startDate: new Date(date.startDate),
-      endDate: new Date(date.endDate),
-      createdAt: date.createdAt ? new Date(date.createdAt) : undefined
-    }));
-  }
-  return [];
-};
-
-// Load bookings from localStorage
-export const bookings: BookingDate[] = getStoredBookings();
-
-// Load restricted dates from localStorage
-export const restrictedDates: BookingDate[] = getStoredRestrictedDates();
-
-// Store used booking numbers to ensure uniqueness
-const usedBookingNumbers: Set<string> = new Set(
-  bookings
-    .filter(booking => booking.bookingNumber)
-    .map(booking => booking.bookingNumber!)
-);
-
-// Generate a unique 6-digit booking number
-export const generateBookingNumber = (): string => {
-  let bookingNumber: string;
-  
-  do {
-    // Generate a random 6-digit number
-    bookingNumber = Math.floor(100000 + Math.random() * 900000).toString();
-  } while (usedBookingNumbers.has(bookingNumber));
-  
-  // Add to used numbers set to prevent future duplicates
-  usedBookingNumbers.add(bookingNumber);
-  
-  return bookingNumber;
-};
-
-// Save bookings to localStorage
-const saveBookings = () => {
-  localStorage.setItem('bookings', JSON.stringify(bookings));
-};
-
-// Save restricted dates to localStorage
-const saveRestrictedDates = () => {
-  localStorage.setItem('restrictedDates', JSON.stringify(restrictedDates));
-};
+// Array to store admin-restricted dates - also empty for now
+export const restrictedDates: BookingDate[] = [];
 
 export const getBookingsByVillaId = (villaId: string): BookingDate[] => {
   return [...bookings, ...restrictedDates].filter(booking => 
@@ -82,7 +18,7 @@ export const getAllBookings = (): BookingDate[] => {
   return [...bookings, ...restrictedDates];
 };
 
-// Function to get all restricted dates
+// New function to get all restricted dates
 export const getRestrictedDatesByVillaId = (villaId: string): BookingDate[] => {
   return restrictedDates.filter(date => date.villaId === villaId);
 };
@@ -120,31 +56,26 @@ export const checkAvailability = (
 };
 
 export const addBooking = (booking: BookingDate): string => {
-  const bookingNumber = booking.bookingNumber || generateBookingNumber();
-  
   const newBooking = {
     ...booking,
-    id: booking.id || uuidv4(),
+    id: uuidv4(),
     status: booking.status || "confirmed" as "confirmed" | "pending" | "cancelled",
-    createdAt: booking.createdAt || new Date(),
-    bookingNumber: bookingNumber
+    createdAt: new Date()
   };
   
   bookings.push(newBooking);
-  saveBookings(); // Save to localStorage
   return newBooking.id;
 };
 
 export const addRestrictedDates = (booking: BookingDate): string => {
   const restrictedBooking = {
     ...booking,
-    id: booking.id || uuidv4(),
+    id: uuidv4(),
     status: "cancelled" as "cancelled",
-    createdAt: booking.createdAt || new Date()
+    createdAt: new Date()
   };
   
   restrictedDates.push(restrictedBooking);
-  saveRestrictedDates(); // Save to localStorage
   return restrictedBooking.id;
 };
 
@@ -153,7 +84,6 @@ export const deleteBooking = (bookingId: string): boolean => {
   
   if (bookingIndex !== -1) {
     bookings.splice(bookingIndex, 1);
-    saveBookings(); // Save to localStorage
     return true;
   }
   
@@ -161,7 +91,6 @@ export const deleteBooking = (bookingId: string): boolean => {
   
   if (restrictedIndex !== -1) {
     restrictedDates.splice(restrictedIndex, 1);
-    saveRestrictedDates(); // Save to localStorage
     return true;
   }
   
@@ -173,7 +102,6 @@ export const updateBookingStatus = (bookingId: string, status: "confirmed" | "pe
   
   if (booking) {
     booking.status = status;
-    saveBookings(); // Save to localStorage
     return true;
   }
   
@@ -201,34 +129,6 @@ export const sendBookingEmail = async (booking: BookingDate): Promise<boolean> =
       Thank you for booking with Arteon Villas!
       Your booking for ${booking.villaId} from ${booking.startDate.toLocaleDateString()} to ${booking.endDate.toLocaleDateString()} has been confirmed.
     `);
-    
-    // Log emails in localStorage for persistence
-    const sentEmails = JSON.parse(localStorage.getItem('sentEmails') || '[]');
-    sentEmails.push({
-      to: 'booking@arteonvillas.com',
-      subject: `New Booking: ${booking.villaId}`,
-      body: `
-        Dates: ${booking.startDate.toLocaleDateString()} - ${booking.endDate.toLocaleDateString()}
-        Guest: ${booking.guestInfo.name}
-        Email: ${booking.guestInfo.email}
-        Phone: ${booking.guestInfo.phone}
-        Guests: ${booking.guestInfo.guests}
-        Special Requests: ${booking.guestInfo.specialRequests || 'None'}
-      `,
-      date: new Date().toISOString()
-    });
-    
-    sentEmails.push({
-      to: booking.guestInfo.email,
-      subject: 'Your Arteon Villas Booking Confirmation',
-      body: `
-        Thank you for booking with Arteon Villas!
-        Your booking for ${booking.villaId} from ${booking.startDate.toLocaleDateString()} to ${booking.endDate.toLocaleDateString()} has been confirmed.
-      `,
-      date: new Date().toISOString()
-    });
-    
-    localStorage.setItem('sentEmails', JSON.stringify(sentEmails));
     
     return true;
   } catch (error) {

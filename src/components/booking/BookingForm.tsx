@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -7,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { DateRangePicker } from "@/components/booking/DateRangePicker";
 import { BookingDate, GuestInfo, Villa } from "@/types";
-import { checkAvailability } from "@/data/bookings";
+import { addBooking, checkAvailability, sendBookingEmail } from "@/data/bookings";
 import { format, differenceInDays, isSunday } from "date-fns";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
@@ -178,10 +177,10 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       return;
     }
 
-    if (!dateRange.from || !dateRange.to || !seasonRate || !totalPrice) {
+    if (!dateRange.from || !dateRange.to) {
       toast({
-        title: "Booking Information Incomplete",
-        description: "Please select valid dates and ensure pricing is calculated.",
+        title: "Dates Required",
+        description: "Please select both check-in and check-out dates.",
         variant: "destructive",
       });
       return;
@@ -207,22 +206,34 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
         return;
       }
 
-      // Instead of confirming booking immediately, navigate to booking request page
-      navigate("/booking-request", { 
-        state: { 
-          bookingDetails: {
-            villaId: villa.id,
-            startDate: dateRange.from,
-            endDate: dateRange.to,
-            guestInfo: formData,
-            totalPrice: totalPrice,
-            nightRate: seasonRate
-          } 
-        } 
+      // Create new booking
+      const newBooking: BookingDate = {
+        startDate: dateRange.from,
+        endDate: dateRange.to,
+        villaId: villa.id,
+        guestInfo: {
+          ...formData,
+          guests: Number(formData.guests)
+        },
+        status: "confirmed"
+      };
+      
+      // Add booking to our system
+      const bookingId = addBooking(newBooking);
+      
+      // Send confirmation emails
+      await sendBookingEmail(newBooking);
+      
+      // Show success message
+      toast({
+        title: "Booking Successful!",
+        description: `Your stay at ${villa.name} has been confirmed.`,
       });
       
+      // Navigate to the thank you page instead of back to the villa
+      navigate(`/booking-confirmation?villa=${villa.slug}`);
     } catch (error) {
-      console.error("Booking processing failed:", error);
+      console.error("Booking failed:", error);
       toast({
         title: "Booking Failed",
         description: "There was an error processing your booking. Please try again.",
@@ -295,7 +306,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium mb-1.5">Full Name <span className="text-red-500">*</span></label>
+          <label className="block text-sm font-medium mb-1.5">Full Name</label>
           <Input
             name="name"
             value={formData.name}
@@ -312,7 +323,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
         </div>
         
         <div>
-          <label className="block text-sm font-medium mb-1.5">Email <span className="text-red-500">*</span></label>
+          <label className="block text-sm font-medium mb-1.5">Email</label>
           <Input
             type="email"
             name="email"
@@ -330,7 +341,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
         </div>
         
         <div>
-          <label className="block text-sm font-medium mb-1.5">Phone Number <span className="text-red-500">*</span></label>
+          <label className="block text-sm font-medium mb-1.5">Phone Number</label>
           <Input
             type="text"
             name="phone"
@@ -348,7 +359,7 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
         </div>
         
         <div>
-          <label className="block text-sm font-medium mb-1.5">Number of Guests <span className="text-red-500">*</span></label>
+          <label className="block text-sm font-medium mb-1.5">Number of Guests</label>
           <Input
             type="number"
             name="guests"
@@ -392,11 +403,11 @@ export const BookingForm = ({ villa, bookedDates }: BookingFormProps) => {
         className="w-full bg-villa-blue hover:bg-blue-800"
         disabled={isSubmitting || !dateRange.from || !dateRange.to}
       >
-        {isSubmitting ? "Processing..." : "Prepare Booking Request"}
+        {isSubmitting ? "Processing..." : "Confirm Booking"}
       </Button>
       
       <p className="text-sm text-center text-gray-500">
-        By clicking "Prepare Booking Request", you agree to our terms and conditions.
+        By clicking "Confirm Booking", you agree to our terms and conditions.
       </p>
     </form>
   );
