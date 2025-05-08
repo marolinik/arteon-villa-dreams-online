@@ -44,8 +44,6 @@ export type BookingDate = {
   createdAt?: Date;
   guestInfo?: GuestInfo;
   bookingNumber?: string;
-  totalPrice?: number;
-  reason?: string; // Added for restricted dates reason
 };
 
 export type GalleryImage = {
@@ -66,10 +64,11 @@ export type AdminUser = {
 
 export type Amenity = {
   id: string;
-  name: string; // Added this field which was missing
+  name: string;
   description: string;
   icon: string;
   category: "indoor" | "outdoor" | "service";
+  // Added missing fields found in the code
   image?: string;
   featured?: boolean;
   title?: string;
@@ -83,6 +82,7 @@ export type Attraction = {
   distance: string;
   location: string;
   category: "beach" | "cultural" | "nature" | "activity";
+  // Added missing fields found in the code
   title?: string;
   featured?: boolean;
 };

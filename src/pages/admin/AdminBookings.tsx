@@ -1,8 +1,14 @@
-
-import { useState, useEffect } from 'react';
-import { format } from 'date-fns';
-import AdminLayout from '@/components/admin/AdminLayout';
-import { Button } from '@/components/ui/button';
+import { useState, useEffect } from "react";
+import { format } from "date-fns";
+import { villas, getVillaById } from "@/data/villas";
+import { 
+  bookings, 
+  restrictedDates, 
+  getAllBookings, 
+  deleteBooking, 
+  updateBookingStatus,
+  addRestrictedDates
+} from "@/data/bookings";
 import {
   Table,
   TableBody,
@@ -10,304 +16,446 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
   DialogFooter,
-} from '@/components/ui/dialog';
-import { Badge } from '@/components/ui/badge';
-import { useToast } from '@/hooks/use-toast';
-import { getAllBookings, updateBookingStatus, deleteBooking, BookingDate, getVillaById } from '@/data';
-import { BookingDate as BookingDateType, Villa } from '@/types';
-import { Mail, Calendar, Check, X, Trash, Eye } from 'lucide-react';
+  DialogClose
+} from "@/components/ui/dialog";
+import {
+  Tabs, 
+  TabsContent, 
+  TabsList, 
+  TabsTrigger
+} from "@/components/ui/tabs";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { CalendarIcon, Calendar as CalendarCheck, CheckCircle, XCircle, PlusCircle } from "lucide-react";
+import { BookingDate } from "@/types";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { useForm } from "react-hook-form";
+import AdminVillaCalendar from "@/components/admin/AdminVillaCalendar";
 
 const AdminBookings = () => {
-  const [bookings, setBookings] = useState<BookingDateType[]>([]);
-  const [activeBooking, setActiveBooking] = useState<BookingDateType | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [villaNames, setVillaNames] = useState<{[key: string]: string}>({});
   const { toast } = useToast();
-
+  const [allBookings, setAllBookings] = useState<BookingDate[]>([]);
+  const [filter, setFilter] = useState<string>("all");
+  const [isRestrictDatesOpen, setIsRestrictDatesOpen] = useState(false);
+  const [selectedVillaId, setSelectedVillaId] = useState<string>(villas[0].id);
+  const [dateRange, setDateRange] = useState<{
+    from: Date | undefined;
+    to: Date | undefined;
+  }>({
+    from: undefined,
+    to: undefined,
+  });
+  const [activeTab, setActiveTab] = useState<string>("bookings");
+  
   useEffect(() => {
-    const loadBookings = async () => {
-      setIsLoading(true);
-      try {
-        const fetchedBookings = await getAllBookings();
-        setBookings(fetchedBookings);
-
-        // Fetch villa names for each booking
-        const villas: {[key: string]: string} = {};
-        for (const booking of fetchedBookings) {
-          if (!villas[booking.villaId]) {
-            const villa = await getVillaById(booking.villaId);
-            if (villa) {
-              villas[booking.villaId] = villa.name;
-            }
-          }
-        }
-        setVillaNames(villas);
-      } catch (error) {
-        console.error("Failed to load bookings:", error);
-        toast({
-          title: "Error",
-          description: "Failed to load bookings",
-          variant: "destructive"
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadBookings();
-  }, [toast]);
-
-  const handleStatusChange = async (bookingId: string, status: "confirmed" | "pending" | "cancelled") => {
-    try {
-      await updateBookingStatus(bookingId, status);
-      
-      // Update bookings list
-      const updatedBookings = await getAllBookings();
-      setBookings(updatedBookings);
-      
+    // Load all bookings on mount
+    setAllBookings(getAllBookings());
+  }, []);
+  
+  const handleStatusChange = (bookingId: string, status: string) => {
+    const success = updateBookingStatus(
+      bookingId, 
+      status as "confirmed" | "pending" | "cancelled"
+    );
+    
+    if (success) {
+      setAllBookings(getAllBookings());
       toast({
-        title: "Status Updated",
-        description: `Booking status changed to ${status}`,
+        title: "Booking Status Updated",
+        description: `The booking status has been changed to ${status}.`
       });
-    } catch (error) {
-      console.error("Failed to update status:", error);
+    } else {
       toast({
-        title: "Error",
-        description: "Failed to update booking status",
+        title: "Update Failed",
+        description: "Failed to update booking status.",
         variant: "destructive"
       });
     }
   };
-
-  const handleDelete = async (bookingId: string) => {
-    try {
-      await deleteBooking(bookingId);
-      
-      // Update bookings list
-      const updatedBookings = await getAllBookings();
-      setBookings(updatedBookings);
-      
+  
+  const handleDelete = (bookingId: string) => {
+    const success = deleteBooking(bookingId);
+    
+    if (success) {
+      setAllBookings(getAllBookings());
       toast({
         title: "Booking Deleted",
-        description: "The booking has been removed",
+        description: "The booking has been deleted successfully."
       });
-    } catch (error) {
-      console.error("Failed to delete booking:", error);
+    } else {
       toast({
-        title: "Error",
-        description: "Failed to delete booking",
+        title: "Delete Failed",
+        description: "Failed to delete booking.",
         variant: "destructive"
       });
     }
   };
-
-  const getStatusBadge = (status: string | undefined) => {
-    switch (status) {
-      case 'confirmed':
-        return <Badge className="bg-green-500">Confirmed</Badge>;
-      case 'pending':
-        return <Badge className="bg-yellow-500">Pending</Badge>;
-      case 'cancelled':
-        return <Badge className="bg-red-500">Cancelled</Badge>;
-      default:
-        return <Badge className="bg-gray-500">Unknown</Badge>;
+  
+  const handleCancelBooking = (bookingId: string) => {
+    // In a real app, we would make an API call here
+    const updatedBookings = bookings.filter(booking => booking.id !== bookingId);
+    
+    // Add canceled booking for display purposes
+    const booking = bookings.find(booking => booking.id === bookingId);
+    if (booking) {
+      updatedBookings.push({
+        id: `cancelled-${Date.now()}`, // Generate a temporary ID
+        startDate: booking.startDate,
+        endDate: booking.endDate,
+        villaId: booking.villaId,
+        status: "cancelled"
+      });
+    }
+    
+    setAllBookings(updatedBookings);
+    toast({
+      title: "Booking Cancelled",
+      description: "The booking has been cancelled."
+    });
+  };
+  
+  const handleRestrictDates = () => {
+    if (!dateRange.from || !dateRange.to) {
+      toast({
+        title: "Date Range Required",
+        description: "Please select both start and end dates for the restriction.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Create a new restricted date entry
+    const restrictedBooking: BookingDate = {
+      id: `restricted-${Date.now()}`, // Generate a temporary ID
+      startDate: dateRange.from,
+      endDate: dateRange.to,
+      villaId: selectedVillaId,
+      status: "cancelled" // Marked as cancelled to indicate it's restricted
+    };
+    
+    const id = addRestrictedDates(restrictedBooking);
+    
+    if (id) {
+      setAllBookings(getAllBookings());
+      setIsRestrictDatesOpen(false);
+      setDateRange({ from: undefined, to: undefined });
+      
+      toast({
+        title: "Dates Restricted",
+        description: `The selected dates for ${getVillaById(selectedVillaId)?.name} have been marked as unavailable.`
+      });
+    } else {
+      toast({
+        title: "Operation Failed",
+        description: "Failed to restrict the dates. Please try again.",
+        variant: "destructive"
+      });
     }
   };
+  
+  const getFilteredBookings = () => {
+    if (filter === "all") return allBookings;
+    if (filter === "restricted") {
+      return allBookings.filter(booking => 
+        booking.status === "cancelled" && restrictedDates.some(r => r.id === booking.id)
+      );
+    }
+    return allBookings.filter(booking => {
+      const villa = villas.find(v => v.id === booking.villaId);
+      return villa?.slug === filter;
+    });
+  };
 
-  const openBookingDetails = async (booking: BookingDateType) => {
-    setActiveBooking(booking);
-    setIsDialogOpen(true);
+  const handleCalendarChange = () => {
+    // Refresh all bookings data
+    setAllBookings(getAllBookings());
   };
 
   return (
-    <AdminLayout title="Bookings" subtitle="Manage guest bookings">
-      <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold">All Bookings</h2>
-        </div>
-
-        {isLoading ? (
-          <div className="text-center py-10">
-            Loading bookings...
-          </div>
-        ) : bookings.length === 0 ? (
-          <div className="text-center py-10">
-            <p className="text-gray-500">No bookings found</p>
-          </div>
-        ) : (
-          <div className="border rounded-md overflow-hidden">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Villa</TableHead>
-                  <TableHead>Guest</TableHead>
-                  <TableHead>Check-in</TableHead>
-                  <TableHead>Check-out</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {bookings.filter(b => b.status !== 'cancelled').map((booking) => (
-                  <TableRow key={booking.id}>
-                    <TableCell>{villaNames[booking.villaId] || 'Unknown Villa'}</TableCell>
-                    <TableCell>{booking.guestInfo?.name || 'N/A'}</TableCell>
-                    <TableCell>{format(booking.startDate, 'dd MMM yyyy')}</TableCell>
-                    <TableCell>{format(booking.endDate, 'dd MMM yyyy')}</TableCell>
-                    <TableCell>{getStatusBadge(booking.status)}</TableCell>
-                    <TableCell className="text-right space-x-2">
-                      <Button size="sm" variant="outline" onClick={() => openBookingDetails(booking)}>
-                        <Eye size={14} className="mr-1" /> View
-                      </Button>
-                      {booking.status === 'pending' && (
-                        <Button size="sm" variant="default" onClick={() => handleStatusChange(booking.id, "confirmed")}>
-                          <Check size={14} className="mr-1" /> Confirm
-                        </Button>
-                      )}
-                      {booking.status !== 'cancelled' && (
-                        <Button size="sm" variant="destructive" onClick={() => handleStatusChange(booking.id, "cancelled")}>
-                          <X size={14} className="mr-1" /> Cancel
-                        </Button>
-                      )}
-                    </TableCell>
-                  </TableRow>
+    <div className="p-6">
+      <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 space-y-4 md:space-y-0">
+        <h2 className="text-2xl font-serif font-semibold">Manage Bookings</h2>
+        
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full md:w-auto">
+          <TabsList>
+            <TabsTrigger value="bookings">Bookings List</TabsTrigger>
+            <TabsTrigger value="calendar">Availability Calendar</TabsTrigger>
+          </TabsList>
+        </Tabs>
+      </div>
+      
+      <TabsContent value="bookings" className="mt-0">
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <div className="w-full md:w-64">
+            <Select defaultValue="all" onValueChange={setFilter}>
+              <SelectTrigger>
+                <SelectValue placeholder="Filter by villa" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Bookings</SelectItem>
+                <SelectItem value="restricted">Restricted Dates</SelectItem>
+                {villas.map(villa => (
+                  <SelectItem key={villa.slug} value={villa.slug}>
+                    {villa.name}
+                  </SelectItem>
                 ))}
-              </TableBody>
-            </Table>
+              </SelectContent>
+            </Select>
           </div>
-        )}
-
-        {/* Booking Details Dialog */}
-        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="max-w-md">
-            <DialogHeader>
-              <DialogTitle>Booking Details</DialogTitle>
-            </DialogHeader>
-            
-            {activeBooking && (
-              <div className="space-y-4">
-                <div className="flex justify-between">
-                  <span className="font-medium">Booking Reference:</span>
-                  <span>{activeBooking.bookingNumber || 'N/A'}</span>
+          
+          <Dialog open={isRestrictDatesOpen} onOpenChange={setIsRestrictDatesOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-amber-600 hover:bg-amber-700">
+                <PlusCircle className="mr-2 h-4 w-4" />
+                Restrict Dates
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Restrict Availability Dates</DialogTitle>
+                <DialogDescription>
+                  Mark specific dates as unavailable for booking.
+                </DialogDescription>
+              </DialogHeader>
+              
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Select Villa</label>
+                  <Select 
+                    defaultValue={selectedVillaId} 
+                    onValueChange={setSelectedVillaId}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select villa" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {villas.map(villa => (
+                        <SelectItem key={villa.id} value={villa.id}>
+                          {villa.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="font-medium">Villa:</span>
-                  <span>{villaNames[activeBooking.villaId] || 'Unknown Villa'}</span>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="font-medium block">Check-in:</span>
-                    <span className="flex items-center">
-                      <Calendar size={14} className="mr-1" />
-                      {format(activeBooking.startDate, 'dd MMM yyyy')}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="font-medium block">Check-out:</span>
-                    <span className="flex items-center">
-                      <Calendar size={14} className="mr-1" />
-                      {format(activeBooking.endDate, 'dd MMM yyyy')}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="border-t pt-4">
-                  <h3 className="font-medium mb-2">Guest Information:</h3>
-                  <div className="space-y-2">
-                    <div>
-                      <span className="text-gray-500 block">Name:</span>
-                      <span>{activeBooking.guestInfo?.name || 'N/A'}</span>
-                    </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Date Range</label>
+                  <div className="grid grid-cols-2 gap-4">
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "justify-start text-left font-normal",
+                            !dateRange.from && "text-muted-foreground"
+                          )}
+                        >
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {dateRange.from ? (
+                            format(dateRange.from, "PPP")
+                          ) : (
+                            <span>Start date</span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="range"
+                          selected={{ 
+                            from: dateRange.from, 
+                            to: dateRange.to 
+                          }}
+                          onSelect={(range) => setDateRange({
+                            from: range?.from,
+                            to: range?.to
+                          })}
+                          initialFocus
+                          className={cn("p-3 pointer-events-auto")}
+                        />
+                      </PopoverContent>
+                    </Popover>
                     
-                    <div>
-                      <span className="text-gray-500 block">Email:</span>
-                      <span className="flex items-center">
-                        <Mail size={14} className="mr-1" />
-                        {activeBooking.guestInfo?.email || 'N/A'}
-                      </span>
-                    </div>
-                    
-                    <div>
-                      <span className="text-gray-500 block">Phone:</span>
-                      <span>{activeBooking.guestInfo?.phone || 'N/A'}</span>
-                    </div>
-                    
-                    <div>
-                      <span className="text-gray-500 block">Guests:</span>
-                      <span>{activeBooking.guestInfo?.guests || 'N/A'}</span>
-                    </div>
-                    
-                    {activeBooking.guestInfo?.specialRequests && (
-                      <div>
-                        <span className="text-gray-500 block">Special Requests:</span>
-                        <span className="text-sm">{activeBooking.guestInfo.specialRequests}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                
-                <div className="border-t pt-4">
-                  <div className="flex justify-between mb-2">
-                    <span className="font-medium">Status:</span>
-                    <span>{getStatusBadge(activeBooking.status)}</span>
-                  </div>
-                  
-                  <div className="flex justify-between">
-                    <span className="font-medium">Total Price:</span>
-                    <span className="font-bold">€{activeBooking.totalPrice || 'N/A'}</span>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "justify-start text-left font-normal",
+                            !dateRange.to && "text-muted-foreground"
+                          )}
+                        >
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {dateRange.to ? (
+                            format(dateRange.to, "PPP")
+                          ) : (
+                            <span>End date</span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="range"
+                          selected={{ 
+                            from: dateRange.from, 
+                            to: dateRange.to 
+                          }}
+                          onSelect={(range) => setDateRange({
+                            from: range?.from,
+                            to: range?.to
+                          })}
+                          initialFocus
+                          className={cn("p-3 pointer-events-auto")}
+                        />
+                      </PopoverContent>
+                    </Popover>
                   </div>
                 </div>
               </div>
-            )}
-            
-            <DialogFooter className="space-x-2">
-              {activeBooking && activeBooking.status === 'pending' && (
-                <Button onClick={() => {
-                  if (activeBooking) {
-                    handleStatusChange(activeBooking.id, "confirmed");
-                    setIsDialogOpen(false);
-                  }
-                }}>
-                  <Check size={14} className="mr-1" /> Confirm Booking
-                </Button>
-              )}
               
-              {activeBooking && activeBooking.status !== 'cancelled' && (
-                <Button variant="outline" onClick={() => {
-                  if (activeBooking) {
-                    handleStatusChange(activeBooking.id, "cancelled");
-                    setIsDialogOpen(false);
-                  }
-                }}>
-                  <X size={14} className="mr-1" /> Cancel Booking
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setIsRestrictDatesOpen(false)}>
+                  Cancel
                 </Button>
-              )}
+                <Button 
+                  onClick={handleRestrictDates}
+                  disabled={!dateRange.from || !dateRange.to}
+                >
+                  Restrict Dates
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
+        
+        <div className="bg-white rounded-lg shadow overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Villa</TableHead>
+                <TableHead>Check-in</TableHead>
+                <TableHead>Check-out</TableHead>
+                <TableHead>Type</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {getFilteredBookings().map((booking) => {
+                const villa = villas.find(v => v.id === booking.villaId);
+                const isRestricted = restrictedDates.some(r => r.id === booking.id);
+                
+                return (
+                  <TableRow key={booking.id}>
+                    <TableCell className="font-medium">{villa?.name}</TableCell>
+                    <TableCell>{format(booking.startDate, "MMM d, yyyy")}</TableCell>
+                    <TableCell>{format(booking.endDate, "MMM d, yyyy")}</TableCell>
+                    <TableCell>
+                      {isRestricted ? 
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                          Restricted
+                        </span> : 
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          Booking
+                        </span>
+                      }
+                    </TableCell>
+                    <TableCell>
+                      {!isRestricted && (
+                        <Select 
+                          defaultValue={booking.status} 
+                          onValueChange={(value) => handleStatusChange(booking.id!, value)}
+                        >
+                          <SelectTrigger className="w-32 h-8">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="confirmed">
+                              <div className="flex items-center">
+                                <CheckCircle size={14} className="text-green-500 mr-1" />
+                                Confirmed
+                              </div>
+                            </SelectItem>
+                            <SelectItem value="pending">
+                              <div className="flex items-center">
+                                <CalendarCheck size={14} className="text-amber-500 mr-1" />
+                                Pending
+                              </div>
+                            </SelectItem>
+                            <SelectItem value="cancelled">
+                              <div className="flex items-center">
+                                <XCircle size={14} className="text-red-500 mr-1" />
+                                Cancelled
+                              </div>
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      )}
+                      {isRestricted && (
+                        <span className="flex items-center text-amber-600">
+                          <CalendarCheck size={14} className="mr-1" />
+                          Unavailable
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="text-red-500 border-red-500 hover:bg-red-50"
+                        onClick={() => handleDelete(booking.id!)}
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
               
-              {activeBooking && (
-                <Button variant="destructive" onClick={() => {
-                  if (activeBooking) {
-                    handleDelete(activeBooking.id);
-                    setIsDialogOpen(false);
-                  }
-                }}>
-                  <Trash size={14} className="mr-1" /> Delete
-                </Button>
+              {getFilteredBookings().length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={6} className="h-24 text-center">
+                    No bookings found
+                  </TableCell>
+                </TableRow>
               )}
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </div>
-    </AdminLayout>
+            </TableBody>
+          </Table>
+        </div>
+      </TabsContent>
+      
+      <TabsContent value="calendar" className="mt-0">
+        <AdminVillaCalendar 
+          villas={villas}
+          onStatusChange={handleCalendarChange}
+        />
+      </TabsContent>
+    </div>
   );
 };
 
