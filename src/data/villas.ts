@@ -1,3 +1,4 @@
+
 import { Villa } from "@/types";
 
 export const villas: Villa[] = [
@@ -12,6 +13,7 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
+    maxGuests: 6,
     bedConfiguration: "2 Double Beds + 1 Sofa Bed",
     mainImage: "/lovable-uploads/53edea8e-01d3-4d66-b1b7-d934b3652d77.png",
     images: [
@@ -61,6 +63,7 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
+    maxGuests: 6,
     bedConfiguration: "1 Double Bed + 2 Single Beds + 1 Sofa Bed",
     mainImage: "/lovable-uploads/988d09fc-2fec-4387-bc8f-d124b600832f.png",
     images: [
@@ -93,7 +96,11 @@ export const villas: Villa[] = [
         title: "Full Connectivity",
         description: "High-speed Wi-Fi is available throughout the villa (and indeed across the whole property)."
       }
-    ]
+    ],
+    price: 380,
+    rating: 4.8,
+    location: "Halkidiki, Greece",
+    isFeatured: false
   },
   {
     id: "villa-thea",
@@ -106,6 +113,7 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
+    maxGuests: 6,
     bedConfiguration: "1 Double Bed + 2 Single Beds + 1 Sofa Bed",
     mainImage: "/lovable-uploads/4465fed9-a8e9-451e-b703-9277fe4a3d12.png",
     images: [
@@ -138,7 +146,11 @@ export const villas: Villa[] = [
         title: "Full Connectivity",
         description: "High-speed Wi-Fi is available throughout the villa (and indeed across the whole property)."
       }
-    ]
+    ],
+    price: 380,
+    rating: 4.7,
+    location: "Halkidiki, Greece",
+    isFeatured: false
   },
   {
     id: "villa-onar",
@@ -151,6 +163,7 @@ export const villas: Villa[] = [
     bathrooms: 2,
     size: 80,
     capacity: 6,
+    maxGuests: 6,
     bedConfiguration: "2 Double Beds + 1 Sofa Bed",
     mainImage: "/lovable-uploads/0021a2f4-f0b9-4cc6-a223-f7089ffc6733.png",
     images: [
@@ -183,7 +196,11 @@ export const villas: Villa[] = [
         title: "Full Connectivity",
         description: "High-speed Wi-Fi is available throughout the villa (and indeed across the whole property)."
       }
-    ]
+    ],
+    price: 380,
+    rating: 4.8,
+    location: "Halkidiki, Greece",
+    isFeatured: false
   }
 ];
 

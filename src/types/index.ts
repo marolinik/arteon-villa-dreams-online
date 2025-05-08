@@ -53,3 +53,33 @@ export type GalleryImage = {
   category: string;
   featured?: boolean;
 };
+
+// Add missing types used in AdminSidebar and admin pages
+export type AdminUser = {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+  role: string;
+};
+
+export type Amenity = {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  image: string;
+  category: string;
+  featured: boolean;
+};
+
+export type Attraction = {
+  id: string;
+  title: string;
+  description: string;
+  distance: string;
+  location: string;
+  image: string;
+  category: string;
+  featured: boolean;
+};
