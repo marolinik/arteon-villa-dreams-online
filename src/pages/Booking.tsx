@@ -18,6 +18,7 @@ const heroBackgroundImage = "/lovable-uploads/76eea9bd-1770-4907-b2b1-7b2c55ff47
 const Booking = () => {
   const location = useLocation();
   const [selectedVilla, setSelectedVilla] = useState<Villa | null>(null);
+  const [bookings, setBookings] = useState<any[]>([]);
   
   useEffect(() => {
     // Scroll to top on component mount
@@ -27,15 +28,29 @@ const Booking = () => {
     const queryParams = new URLSearchParams(location.search);
     const villaSlug = queryParams.get("villa");
     
-    if (villaSlug) {
-      const villa = getVillaBySlug(villaSlug);
-      if (villa) {
-        setSelectedVilla(villa);
+    const fetchVilla = async () => {
+      if (villaSlug) {
+        const villa = await getVillaBySlug(villaSlug);
+        if (villa) {
+          setSelectedVilla(villa);
+          
+          // Also fetch bookings for this villa
+          const villaBookings = await getBookingsByVillaId(villa.id);
+          setBookings(villaBookings);
+        }
+      } else if (villas.length > 0 && !selectedVilla) {
+        // Set a default villa if none is selected
+        const defaultVilla = await getVillaBySlug(villas[0].slug);
+        setSelectedVilla(defaultVilla || villas[0]);
+        
+        if (defaultVilla) {
+          const villaBookings = await getBookingsByVillaId(defaultVilla.id);
+          setBookings(villaBookings);
+        }
       }
-    } else if (villas.length > 0 && !selectedVilla) {
-      // Set a default villa if none is selected
-      setSelectedVilla(villas[0]);
-    }
+    };
+    
+    fetchVilla();
   }, [location.search]);
   
   // Make sure we have a selected villa
@@ -43,10 +58,14 @@ const Booking = () => {
   const activeVillaSlug = activeVilla?.slug || villas[0].slug;
   
   // Handle villa tab change
-  const handleVillaChange = (slug: string) => {
-    const villa = getVillaBySlug(slug);
+  const handleVillaChange = async (slug: string) => {
+    const villa = await getVillaBySlug(slug);
     if (villa) {
       setSelectedVilla(villa);
+      
+      // Fetch bookings for this villa
+      const villaBookings = await getBookingsByVillaId(villa.id);
+      setBookings(villaBookings);
       
       // Scroll to the top of the content
       const tabsContent = document.querySelector('.tabs-content');
@@ -149,7 +168,7 @@ const Booking = () => {
                       
                       <BookingForm 
                         villa={villa} 
-                        bookedDates={getBookingsByVillaId(villa.id)}
+                        bookedDates={bookings.filter(b => b.villaId === villa.id)}
                       />
                     </div>
                   </TabsContent>

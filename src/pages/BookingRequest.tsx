@@ -7,7 +7,7 @@ import { format, differenceInDays } from "date-fns";
 import { getVillaById } from "@/data/villas";
 import { sendEmail } from "@/utils/emailService";
 import { addBooking, generateBookingNumber } from "@/data/bookings";
-import { GuestInfo } from "@/types";
+import { GuestInfo, Villa } from "@/types";
 import { Mail, ArrowLeft, Check } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -21,6 +21,7 @@ const BookingRequest = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [villa, setVilla] = useState<Villa | null>(null);
   const [bookingDetails, setBookingDetails] = useState<{
     villaId: string;
     startDate: Date;
@@ -45,6 +46,16 @@ const BookingRequest = () => {
     
     setBookingDetails(state.bookingDetails);
     
+    // Fetch villa data
+    const fetchVilla = async () => {
+      if (state.bookingDetails.villaId) {
+        const villaData = await getVillaById(state.bookingDetails.villaId);
+        setVilla(villaData);
+      }
+    };
+    
+    fetchVilla();
+    
     // Scroll to top on component mount
     window.scrollTo(0, 0);
   }, [location, navigate, toast]);
@@ -55,7 +66,6 @@ const BookingRequest = () => {
     setIsSubmitting(true);
     
     try {
-      const villa = await getVillaById(bookingDetails.villaId);
       const villaName = villa ? villa.name : "Unknown Villa";
       const nights = differenceInDays(bookingDetails.endDate, bookingDetails.startDate);
       
@@ -185,7 +195,6 @@ ${bookingDetails.guestInfo.specialRequests ? `- Special Requests: ${bookingDetai
     );
   }
   
-  const villa = getVillaById(bookingDetails.villaId);
   const nights = differenceInDays(bookingDetails.endDate, bookingDetails.startDate);
   
   return (

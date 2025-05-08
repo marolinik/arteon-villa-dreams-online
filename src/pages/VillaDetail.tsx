@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { getVillaBySlug } from "@/data/villas";
 import { ImageCarousel } from "@/components/ui/image-carousel";
@@ -8,36 +9,63 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
+import { Villa } from "@/types";
 
 const VillaDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
-  const villa = slug ? getVillaBySlug(slug) : undefined;
+  const [villa, setVilla] = useState<Villa | null>(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const fetchVilla = async () => {
+      if (slug) {
+        setLoading(true);
+        const villaData = await getVillaBySlug(slug);
+        setVilla(villaData);
+        setLoading(false);
+        
+        // If villa not found, redirect to not found page
+        if (!villaData) {
+          navigate("/not-found");
+        }
+      }
+    };
+    
+    fetchVilla();
+  }, [slug, navigate]);
   
   // Check if redirected from successful booking
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const booked = queryParams.get("booked");
     
-    if (booked === "true") {
+    if (booked === "true" && villa) {
       toast({
         title: "Booking Confirmed!",
-        description: `Thank you for booking ${villa?.name}. We look forward to your stay.`,
+        description: `Thank you for booking ${villa.name}. We look forward to your stay.`,
       });
     }
   }, [location.search, toast, villa?.name]);
   
   useEffect(() => {
-    // If villa not found, redirect to not found page
-    if (!villa && slug) {
-      navigate("/not-found");
-    }
-    
     // Scroll to top on component mount
     window.scrollTo(0, 0);
-  }, [villa, slug, navigate]);
+  }, []);
+  
+  if (loading) {
+    return (
+      <div className="bg-[#07091A] text-white min-h-screen flex flex-col">
+        <Navbar />
+        <div className="flex-grow flex items-center justify-center">
+          <p>Loading villa details...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
   
   if (!villa) {
     return null;
@@ -50,7 +78,7 @@ const VillaDetail = () => {
       <PageHero
         title={villa.name}
         subtitle={`${villa.meaning} - ${villa.shortDescription}`}
-        backgroundImage={villa.mainImage || villa.images[0]}
+        backgroundImage={villa.mainImage || (villa.images.length > 0 ? villa.images[0] : '')}
       />
       
       <main className="pt-8 pb-20 flex-grow">

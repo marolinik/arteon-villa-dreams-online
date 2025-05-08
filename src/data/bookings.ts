@@ -55,9 +55,10 @@ export const getBookingsByVillaId = async (villaId: string): Promise<BookingDate
           villaId: booking.villa_id,
           startDate: new Date(booking.start_date),
           endDate: new Date(booking.end_date),
-          status: booking.status,
+          status: booking.status as "confirmed" | "pending" | "cancelled",
           createdAt: new Date(booking.created_at),
           bookingNumber: booking.booking_number,
+          totalPrice: booking.total_price,
           guestInfo: {
             name: booking.guest_name,
             email: booking.guest_email,
@@ -77,8 +78,9 @@ export const getBookingsByVillaId = async (villaId: string): Promise<BookingDate
           villaId: restricted.villa_id,
           startDate: new Date(restricted.start_date),
           endDate: new Date(restricted.end_date),
-          status: "cancelled", // Marked as cancelled for display purposes
-          createdAt: new Date(restricted.created_at)
+          status: "cancelled" as "cancelled", // Marked as cancelled for display purposes
+          createdAt: new Date(restricted.created_at),
+          reason: restricted.reason
         });
       });
     }
@@ -117,9 +119,10 @@ export const getAllBookings = async (): Promise<BookingDate[]> => {
           villaId: booking.villa_id,
           startDate: new Date(booking.start_date),
           endDate: new Date(booking.end_date),
-          status: booking.status,
+          status: booking.status as "confirmed" | "pending" | "cancelled",
           createdAt: new Date(booking.created_at),
           bookingNumber: booking.booking_number,
+          totalPrice: booking.total_price,
           guestInfo: {
             name: booking.guest_name,
             email: booking.guest_email,
@@ -139,8 +142,9 @@ export const getAllBookings = async (): Promise<BookingDate[]> => {
           villaId: restricted.villa_id,
           startDate: new Date(restricted.start_date),
           endDate: new Date(restricted.end_date),
-          status: "cancelled", // Marked as cancelled for display purposes
-          createdAt: new Date(restricted.created_at)
+          status: "cancelled" as "cancelled", // Marked as cancelled for display purposes
+          createdAt: new Date(restricted.created_at),
+          reason: restricted.reason
         });
       });
     }
@@ -168,7 +172,8 @@ export const getRestrictedDatesByVillaId = async (villaId: string): Promise<Book
       startDate: new Date(item.start_date),
       endDate: new Date(item.end_date),
       createdAt: new Date(item.created_at),
-      status: "cancelled" as "cancelled" // For type compatibility
+      status: "cancelled" as "cancelled", // For type compatibility
+      reason: item.reason
     })) : [];
   } catch (error) {
     console.error('Error fetching restricted dates:', error);
